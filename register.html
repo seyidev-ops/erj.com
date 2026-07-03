@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+<link rel="apple-touch-icon" href="appletouchicon.png">
+<meta name="theme-color" content="#000000" id="metaThemeColor">
+<title>Register — Secure Your Place | Everything Remote Job Mastery</title>
+<meta name="description" content="Complete your enrolment. Choose a single stage, the full programme, or the Inner Circle — all payments secured by Paystack.">
+<meta property="og:title" content="Register — Everything Remote Job Mastery" />
+<meta property="og:description" content="Complete your enrolment. Choose a stage, the full programme, or the Inner Circle. Secure Paystack checkout, cards, transfer & USSD." />
+<meta property="og:image" content="https://everythingremotejob.com/preview-register.jpg" />
+<meta property="og:url" content="https://everythingremotejob.com/register.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Everything Remote Job Mastery Training" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Register — Everything Remote Job Mastery" />
+<meta name="twitter:description" content="Complete your enrolment — secure Paystack checkout." />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-register.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="product.css">
+<style>
+  .reg-hero{padding-top:clamp(2.8rem,8vw,5rem);text-align:center;}
+  .reg-hero .lede{margin:0 auto;}
+  .kicker{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.66rem;font-weight:500;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;justify-content:center;}
+  .kicker .mark{width:22px;height:1px;background:var(--accent);}
+
+  .sec-label{font-size:0.66rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;align-items:center;gap:1rem;margin:0 0 1.8rem;}
+  .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  .discount{margin:0 0 1.8rem;padding:1.2rem 1.5rem;background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+    font-size:0.88rem;color:var(--ink-soft);line-height:1.65;text-align:center;}
+  .discount strong{color:var(--ink);font-weight:500;}
+  .discount .tag{display:block;font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;text-align:left;}
+  .pcard{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:2rem 1.8rem;display:flex;flex-direction:column;
+    transition:border-color .3s var(--ease),transform .3s var(--ease);}
+  .pcard:hover{border-color:rgba(255,87,34,0.45);transform:translateY(-3px);}
+  .pcard.feature{border-color:var(--accent);position:relative;}
+  .pcard.feature::before{content:'BEST VALUE';position:absolute;top:-10px;left:1.8rem;background:var(--accent);color:#fff;
+    font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:4px 12px;border-radius:100px;}
+  .p-stage{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+  .p-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:0.9rem;line-height:1.15;}
+  .p-amount{font-family:var(--font-display);font-size:2.1rem;font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1;margin-bottom:0.3rem;font-variant-numeric:tabular-nums;}
+  .p-was{font-size:0.82rem;color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--accent);margin-bottom:0.3rem;}
+  .p-save{display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.04em;color:var(--accent);border:1px solid var(--line);border-radius:100px;padding:3px 10px;margin-bottom:1.1rem;}
+  .p-multi{font-size:0.74rem;color:var(--accent);margin-bottom:1.1rem;}
+  .p-feat{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin:0.4rem 0 1.7rem;flex:1;}
+  .p-feat li{font-size:0.84rem;color:var(--ink-soft);font-weight:300;display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
+  .p-feat li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.5rem;}
+  .btn-pay{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--accent);color:#fff;
+    text-decoration:none;padding:0.9rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:0.88rem;font-weight:500;
+    border:1px solid var(--accent);transition:all 0.28s var(--ease);margin-top:auto;}
+  .btn-pay .arrow{transition:transform 0.28s var(--ease);}
+  .btn-pay:hover{background:var(--accent-h);border-color:var(--accent-h);transform:translateY(-2px);}
+  .btn-pay:hover .arrow{transform:translateX(4px);}
+  .btn-pay.quiet{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn-pay.quiet:hover{background:transparent;border-color:var(--ink);color:var(--ink);}
+
+  .payinfo{padding:2.2rem 2rem;background:var(--card);border:1px solid var(--card-line);border-radius:18px;text-align:center;}
+  .payinfo h3{font-family:var(--font-display);font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.8rem;}
+  .payinfo p{font-size:0.88rem;color:var(--ink-soft);line-height:1.7;max-width:540px;margin:0 auto 0.5rem;}
+  .payinfo strong{color:var(--ink);font-weight:500;}
+  .pay-actions{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1.5rem;}
+  .pay-actions a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.84rem;font-weight:500;text-decoration:none;
+    padding:0.75rem 1.5rem;border-radius:100px;transition:all 0.28s var(--ease);}
+  .pa-primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
+  .pa-primary:hover{background:var(--accent-h);border-color:var(--accent-h);}
+  .pa-quiet{color:var(--ink-soft);border:1px solid var(--line);}
+  .pa-quiet:hover{color:var(--ink);border-color:var(--ink);}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);margin:1.6rem auto 0;max-width:760px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .step{padding:1.6rem 1rem;text-align:center;position:relative;}
+  .step+.step::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--line);}
+  .step-n{font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:0.6rem;}
+  .step-t{font-size:0.82rem;color:var(--ink-soft);line-height:1.5;}
+  .step-t strong{color:var(--ink);font-weight:500;display:block;margin-bottom:0.2rem;}
+
+  @media (max-width:600px){
+    .grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;}
+    .step+.step::before{display:none;}
+    .step{border-top:1px solid var(--line-soft);}
+    .step:first-child{border-top:none;}
+  }
+</style>
+</head>
+<body>
+<div id="erjNavMount"></div>
+<script>window.ERJ_NAV={active:'pricing',onPage:[{label:'Training stages',href:'#sec-training'},{label:'Get a Remote Job',href:'#sec-remote'},{label:'Inner Circle',href:'#sec-inner'},{label:'Private Job Board',href:'#sec-jobboard'},{label:'Secured by Paystack',href:'#sec-paystack'}]};</script>
+
+<main>
+  <section class="wrap reg-hero">
+    <div class="kicker"><span class="mark"></span> Register · Enrolment Open</div>
+    <h1>Secure your place in <em>the next cohort</em></h1>
+    <p class="lede">One page, every option. Choose a single stage, the complete programme, or the Inner Circle — all payments are processed securely through Paystack: cards, bank transfer, and USSD accepted.</p>
+  </section>
+
+  <!-- ===== TRAINING ===== -->
+  <section class="wrap section-line" id="sec-training">
+    <div class="sec-label">Remote Job World Mastery — The Training</div>
+    <div class="grid">
+      <div class="pcard feature reveal">
+        <div class="p-stage">Stages 1 – 4</div>
+        <div class="p-title">Complete Remote Career Programme</div>
+        <div class="p-amount">₦250,000</div>
+        <div class="p-was">Regular total ₦300,000</div>
+        <span class="p-save">Save ₦50,000 · or ₦70,000 × 3 weekly</span>
+        <ul class="p-feat">
+          <li>All 4 stage intensives (20 training days)</li>
+          <li>Remote Mindset Blueprint (Stage 1)</li>
+          <li>Digital Toolkit Mastery (Stage 2)</li>
+          <li>Async Communication Mastery (Stage 3)</li>
+          <li>Global Ready Package — CV + Portfolio + Video (Stage 4)</li>
+          <li>All workbooks, templates &amp; resources</li>
+          <li>Full LMS portal access · priority support</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay">Enroll all 4 stages <span class="arrow">→</span></a>
+      </div>
+
+      <div class="pcard reveal">
+        <div class="p-stage">Stage 1</div>
+        <div class="p-title">Remote Mindset Blueprint</div>
+        <div class="p-amount">₦70,000</div>
+        <ul class="p-feat">
+          <li>5-day intensive bootcamp</li>
+          <li>Deep Work + Pomodoro system</li>
+          <li>Daily KPI framework</li>
+          <li>EOD report system</li>
+          <li>Workspace audit · workbook · LMS access</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+      </div>
+
+      <div class="pcard reveal">
+        <div class="p-stage">Stage 2</div>
+        <div class="p-title">The Digital Toolkit</div>
+        <div class="p-amount">₦70,000</div>
+        <ul class="p-feat">
+          <li>5-day intensive bootcamp</li>
+          <li>Zoom / Meet / Teams mastery</li>
+          <li>Asana / Trello / ClickUp boards</li>
+          <li>Cloud recording + transcription</li>
+          <li>Capstone sprint · LMS access</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+      </div>
+
+      <div class="pcard reveal">
+        <div class="p-stage">Stage 3</div>
+        <div class="p-title">Async Communication Mastery</div>
+        <div class="p-amount">₦70,000</div>
+        <ul class="p-feat">
+          <li>5-day intensive bootcamp</li>
+          <li>Zero-Follow-Up email framework</li>
+          <li>Slack batch-message protocol</li>
+          <li>Tone translation masterclass</li>
+          <li>Working With Me manual · LMS access</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+      </div>
+
+      <div class="pcard reveal">
+        <div class="p-stage">Stage 4</div>
+        <div class="p-title">Start Your Remote Career</div>
+        <div class="p-amount">₦100,000</div>
+        <ul class="p-feat">
+          <li>5-day intensive bootcamp</li>
+          <li>Remote-First CV (ATS optimised)</li>
+          <li>Digital portfolio (2–3 projects)</li>
+          <li>Video interview + STAR coaching</li>
+          <li>Global Ready Package review · LMS access</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STAGE 5 ===== -->
+  <section class="wrap section-line" id="sec-remote">
+    <div class="sec-label">How to Get a Remote Job — Stage 5</div>
+    <div class="grid" style="grid-template-columns:1fr;max-width:580px;">
+      <div class="pcard reveal">
+        <div class="p-stage">Stage 5</div>
+        <div class="p-title">How to Get a Remote Job</div>
+        <div class="p-amount">₦150,000</div>
+        <ul class="p-feat">
+          <li>The Autonomous Application Engine — 30+ pipelines weekly</li>
+          <li>30-Day Remote Job Secrets playbook</li>
+          <li>Weekly accountability check-ins</li>
+          <li>Verified weekly job listings</li>
+          <li>Lifetime community — we won't let you go until hired</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rjtraining" class="btn-pay">Join Stage 5 <span class="arrow">→</span></a>
+        <p class="note"><a href="howtogetaremotejob/">See how Stage 5 works →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INNER CIRCLE ===== -->
+  <section class="wrap section-line" id="sec-inner">
+    <div class="sec-label">The Inner Circle — Private Mentorship</div>
+    <div class="grid" style="grid-template-columns:1fr;max-width:580px;">
+      <div class="pcard reveal">
+        <div class="p-stage">Stages 6 – 12 · Private 1:1 WhatsApp Mentorship</div>
+        <div class="p-title">The Inner Circle</div>
+        <div class="p-was">₦400,000</div>
+        <div class="p-amount">₦250,000</div>
+        <span class="p-save">or ₦135,000 × 2 milestones</span>
+        <ul class="p-feat">
+          <li>Seven weeks, one-on-one, from positioning audit to a signed remote offer</li>
+          <li>Real-time co-applying + pre-interview dry-runs</li>
+          <li>Private partner directory &amp; alumni network of 200+</li>
+          <li>Application-first — admission verified before payment</li>
+        </ul>
+        <a href="innercircle/" class="btn-pay">Apply to join the Inner Circle <span class="arrow">→</span></a>
+        <p class="note">Pay ₦250,000 (or ₦135,000 × 2) to the Business Play account after admission, then send proof of payment on WhatsApp. <a href="innercircle/">See how it works →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOB BOARD ===== -->
+  <section class="wrap section-line" id="sec-jobboard">
+    <div class="sec-label">Private Remote Job Board</div>
+    <div class="grid" style="grid-template-columns:1fr;max-width:580px;">
+      <div class="pcard reveal">
+        <div class="p-stage">Members Feature (ALL Stages)</div>
+        <div class="p-title">Private Job Board Access</div>
+        <div class="p-amount">₦50,000<span style="font-size:0.9rem;color:var(--ink-faint);font-weight:300;"> /month</span></div>
+        <p class="p-multi" style="color:var(--ink-soft);">Free for 60 days with any stage enrolment.</p>
+        <ul class="p-feat">
+          <li>Curated global remote roles from Ashby, Greenhouse, Lever, Pinpoint, micro1.ai, Indeed &amp; more</li>
+          <li>We search for the job for you regularly, members only</li>
+        </ul>
+        <a href="https://paystack.shop/pay/rfix-j0sug" class="btn-pay quiet">Subscribe via Paystack <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAYSTACK (moved to bottom, after Private Remote Job Board) ===== -->
+  <section class="wrap section-line" id="sec-paystack">
+    <div class="payinfo reveal">
+      <h3>All payments secured by Paystack</h3>
+      <p>Cards, bank transfer, USSD and more — all supported, fully encrypted, PCI-DSS compliant. Your card details are never stored on our servers.</p>
+      <p style="margin-top:.6rem;">Prefer a bank transfer? <strong>GTBank — 0761646755</strong> (Business Play Limited). Send your receipt on WhatsApp to confirm enrolment.</p>
+      <div class="pay-actions">
+        <a href="https://paystack.shop/pay/rjtraining" class="pa-primary">Enroll via Paystack →</a>
+        <a href="login.html" class="pa-quiet">🎓 Participant Login</a>
+        <a href="https://wa.me/message/5PMRVGMUU4NGL1" class="pa-quiet">💬 WhatsApp Us</a>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Pay securely</strong>Choose your stage or bundle and complete checkout on Paystack.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Send your receipt</strong>Share proof of payment with us on WhatsApp.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Get portal access</strong>Receive your LMS login within 24 hours and begin your training.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  &copy; 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
+  <nav class="foot-links"><a href="index.html">Home</a><a href="masterytraining/">Mastery Training</a><a href="howtogetaremotejob/">Get a Remote Job</a><a href="innercircle/">Inner Circle</a></nav>
+  <nav class="foot-links"><a href="login.html">Participant Login</a><a href="blog.html">Blog</a></nav>
+</footer>
+
+<a href="https://wa.me/message/5PMRVGMUU4NGL1" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="erj-theme.js"></script>
+<script src="erj-product.js"></script>
+<script src="erj-nav.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+</body>
+</html>

@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+
+
+<link rel="apple-touch-icon" href="appletouchicon.png">
+<meta name="theme-color" content="#000000" id="metaThemeColor">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Training Dashboard | Everything Remote Job Mastery</title>
+<meta name="description" content="Your 5-stage remote job mastery training portal. Track progress, access slides and earn certificates.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ERJ Training">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="ERJ Training">
+<link rel="manifest" href="manifest.json">
+
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  /* RocketAir · NIGHT (default) — pure black */
+  --bg:#000000; --bg2:#0d0d0d; --bg3:#111111; --bg4:#0a0a0a;
+  --paper:#000000; --card:#0d0d0d; --sidebar:#000000; --input-bg:#111111;
+  --ink:#FFFFFF; --text:#FFFFFF; --txt:#FFFFFF; --t:#FFFFFF;
+  --ink-soft:#A1A1A1; --muted:#A1A1A1; --ink-faint:#6b6b6b; --muted2:#6b6b6b;
+  --accent:#FF5722; --accent-h:#ff6f43; --accent2:#FF5722; --electric:#FF5722;
+  --border:rgba(255,255,255,0.10); --border2:rgba(255,255,255,0.055);
+  --nav-bg:rgba(0,0,0,0.85); --nav:rgba(0,0,0,0.85);
+  --green:#3FB950; --amber:#FF5722; --red:#F85149; --teal:#39C5BB; --purple:#A371F7;
+  --glow:transparent; --fb:#FFFFFF; --fd:#FFFFFF;
+  --shadow:0 1px 0 rgba(0,0,0,0.5); --shadow-lg:0 8px 60px rgba(0,0,0,0.8);
+  --sh:0 1px 0 rgba(0,0,0,0.5); --sh2:0 8px 60px rgba(0,0,0,0.8); --sab:#000000;
+  --font-display:'Space Grotesk',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+  --font-d:'Space Grotesk',system-ui,sans-serif; --font-b:'Inter',system-ui,sans-serif;
+  --radius:16px; --r:16px; --transition:all 0.3s ease; --tr:all 0.3s ease;
+}
+html[data-theme="day"]{
+  /* RocketAir · DAY — clean light counterpart */
+  --bg:#FAFAF8; --bg2:#FFFFFF; --bg3:#F2F1ED; --bg4:#F2F1ED;
+  --paper:#FAFAF8; --card:#FFFFFF; --sidebar:#FFFFFF; --input-bg:#FFFFFF;
+  --ink:#0A0A0A; --text:#0A0A0A; --txt:#0A0A0A; --t:#0A0A0A;
+  --ink-soft:#52514C; --muted:#52514C; --ink-faint:#8A887F; --muted2:#8A887F;
+  --accent:#E8470F; --accent-h:#C53A0B; --accent2:#E8470F; --electric:#E8470F;
+  --border:rgba(10,10,10,0.12); --border2:rgba(10,10,10,0.06);
+  --nav-bg:rgba(250,250,248,0.9); --nav:rgba(250,250,248,0.9);
+  --glow:transparent; --fb:#0A0A0A; --fd:#0A0A0A;
+  --shadow:0 1px 0 rgba(10,10,10,0.06); --shadow-lg:0 12px 50px rgba(10,10,10,0.10);
+  --sh:0 1px 0 rgba(10,10,10,0.06); --sh2:0 12px 50px rgba(10,10,10,0.10); --sab:#FFFFFF;
+}
+html[data-theme="night"]{
+  --bg:#000000; --bg2:#0d0d0d; --bg3:#111111; --bg4:#0a0a0a;
+  --paper:#000000; --card:#0d0d0d; --sidebar:#000000; --input-bg:#111111;
+  --ink:#FFFFFF; --text:#FFFFFF; --txt:#FFFFFF; --t:#FFFFFF;
+  --ink-soft:#A1A1A1; --muted:#A1A1A1; --ink-faint:#6b6b6b; --muted2:#6b6b6b;
+  --accent:#FF5722; --accent-h:#ff6f43; --accent2:#FF5722; --electric:#FF5722;
+  --border:rgba(255,255,255,0.10); --border2:rgba(255,255,255,0.055);
+  --nav-bg:rgba(0,0,0,0.85); --nav:rgba(0,0,0,0.85);
+  --green:#3FB950; --amber:#FF5722; --red:#F85149; --teal:#39C5BB; --purple:#A371F7;
+  --glow:transparent; --fb:#FFFFFF; --fd:#FFFFFF;
+  --shadow:0 1px 0 rgba(0,0,0,0.5); --shadow-lg:0 8px 60px rgba(0,0,0,0.8);
+  --sh:0 1px 0 rgba(0,0,0,0.5); --sh2:0 8px 60px rgba(0,0,0,0.8); --sab:#000000;
+}
+
+
+
+
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-b); overflow-x: hidden; }
+
+/* ── TOP NAV ── */
+.topnav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--nav-bg); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  height: 64px; padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-left { display: flex; align-items: center; gap: 1rem; }
+.sidebar-toggle {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg3); cursor: pointer; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: var(--tr); flex-shrink: 0;
+}
+.sidebar-toggle:hover { color: var(--electric); background: var(--bg4); }
+.nav-brand { font-family: var(--font-d); font-weight: 800; font-size: 1rem; color: var(--text); letter-spacing: -.4px; min-width:0; flex:1; }
+.nav-brand .hi, .nav-brand .nb-short, .nav-brand .accent { color: var(--electric); font-style: italic; font-weight:800; margin-left:-0.08em; }
+.nb-full { display:inline; }
+.nb-short { display:none; }
+.nb-sub { font-size:.68rem; color:var(--muted); font-family:var(--font-b); font-weight:500; white-space:nowrap; }
+
+.nav-search {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--input-bg); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 0.5rem 1rem; max-width: 280px; flex: 1;
+}
+.nav-search input { background: none; border: none; outline: none; color: var(--text); font-family: var(--font-b); font-size: 0.88rem; width: 100%; }
+.nav-search input::placeholder { color: var(--muted2); }
+
+.nav-right { display: flex; align-items: center; gap: 0.8rem; }
+.nav-notif {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg3); cursor: pointer; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: var(--tr); position: relative;
+}
+.nav-notif:hover { color: var(--electric); }
+.notif-dot {
+  position: absolute; top: 6px; right: 6px; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--red); border: 2px solid var(--bg);
+}
+.theme-btn {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg3); cursor: pointer; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: var(--tr);
+}
+.theme-btn:hover { color: var(--electric); }
+.user-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 100px; padding: 4px 12px 4px 4px; cursor: pointer;
+  transition: var(--tr);
+}
+.user-pill:hover { border-color: var(--accent); }
+.user-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #963F12);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-weight: 800; font-size: 0.7rem; color: #fff;
+}
+.user-name { font-size: 0.82rem; font-weight: 600; color: var(--text); max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── LAYOUT ── */
+.app-layout { display: flex; min-height: calc(100vh - 64px); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 240px; flex-shrink: 0;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border2);
+  padding: 1.5rem 0;
+  display: flex; flex-direction: column;
+  transition: width 0.3s ease, transform 0.3s ease;
+  overflow: hidden; overflow-y: auto;
+}
+.sidebar.collapsed { width: 64px; }
+.sidebar-section { margin-bottom: 0.5rem; }
+.sidebar-label {
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted2);
+  padding: 0.5rem 1.2rem; margin-top: 0.5rem;
+  white-space: nowrap; overflow: hidden;
+  transition: opacity 0.2s;
+}
+.sidebar.collapsed .sidebar-label { opacity: 0; }
+.sidebar-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0.7rem 1.2rem; cursor: pointer; text-decoration: none;
+  color: var(--muted); font-size: 0.88rem; font-weight: 500;
+  transition: var(--tr); border-radius: 0; white-space: nowrap;
+  position: relative; border-left: 3px solid transparent;
+}
+.sidebar-item:hover { background: var(--bg3); color: var(--text); border-left-color: rgba(255,87,34,0.3); }
+.sidebar-item.active { background: rgba(255,87,34,0.12); color: var(--electric); border-left-color: var(--accent); }
+.sidebar-icon { font-size: 1.1rem; flex-shrink: 0; width: 20px; text-align: center; }
+.sidebar-text { overflow: hidden; transition: opacity 0.2s; }
+.sidebar.collapsed .sidebar-text { opacity: 0; width: 0; }
+.sidebar-badge {
+  margin-left: auto; background: var(--accent); color: #fff;
+  font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 100px;
+}
+.sidebar.collapsed .sidebar-badge { display: none; }
+
+/* ── MAIN CONTENT ── */
+.main { flex: 1; padding: 2rem; overflow-y: auto; min-width: 0; }
+
+/* ── WELCOME BANNER ── */
+.welcome-banner {
+  background: linear-gradient(135deg, var(--accent) 0%, #963F12 100%);
+  border-radius: 20px; padding: 2rem 2.5rem;
+  margin-bottom: 2rem; position: relative; overflow: hidden;
+  animation: fadeUp 0.6s ease both;
+}
+.welcome-banner::before {
+  content: ''; position: absolute; right: -50px; top: -80px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+}
+.welcome-banner::after {
+  content: ''; position: absolute; right: 60px; bottom: -60px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.wb-content { position: relative; z-index: 1; }
+.wb-greeting { font-family: var(--font-d); font-size: clamp(1.3rem,2.5vw,1.8rem); font-weight: 800; color: #fff; margin-bottom: 0.3rem; }
+.wb-sub { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin-bottom: 1.5rem; }
+.wb-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+.wb-stat { }
+.wb-stat .wb-num { font-family: var(--font-d); font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; }
+.wb-stat .wb-label { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+/* ── PROGRESS OVERVIEW ── */
+.overall-progress { margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.1s both; }
+.section-title {
+  font-family: var(--font-d); font-size: 1.1rem; font-weight: 700;
+  color: var(--text); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+}
+.progress-track {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.5rem;
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.prog-circle { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
+.prog-circle svg { transform: rotate(-90deg); }
+.prog-circle-bg { fill: none; stroke: var(--border2); stroke-width: 8; }
+.prog-circle-fill { fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+.prog-circle-text {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.prog-circle-text .pct { font-family: var(--font-d); font-size: 1.15rem; font-weight: 800; color: var(--text); line-height: 1; }
+.prog-circle-text .pct-label { font-size: 0.6rem; color: var(--muted); }
+.prog-bar-section { flex: 1; min-width: 200px; }
+.prog-stage-row { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; }
+.prog-stage-name { font-size: 0.78rem; font-weight: 600; color: var(--muted); width: 60px; flex-shrink: 0; }
+.prog-bar { flex: 1; height: 6px; background: var(--border2); border-radius: 100px; overflow: hidden; }
+.prog-bar-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 1s ease; }
+.prog-bar-fill.done { background: var(--green); }
+.prog-pct-label { font-size: 0.72rem; color: var(--muted2); width: 36px; text-align: right; }
+
+/* ── STATS GRID ── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  gap: 1rem; margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease 0.15s both;
+}
+.stat-card {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--r); padding: 1.2rem 1.4rem;
+  display: flex; flex-direction: column; gap: 0.3rem;
+  transition: var(--tr); backdrop-filter: blur(12px);
+}
+.stat-card:hover { border-color: var(--border); transform: translateY(-2px); box-shadow: var(--shadow); }
+.stat-card-icon { font-size: 1.5rem; margin-bottom: 0.2rem; }
+.stat-card-val { font-family: var(--font-d); font-size: 1.6rem; font-weight: 800; color: var(--text); }
+.stat-card-key { font-size: 0.78rem; color: var(--muted); }
+.stat-card-sub { font-size: 0.72rem; color: var(--green); display: flex; align-items: center; gap: 4px; }
+
+/* ── STAGES SECTION ── */
+.stages-section { margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.2s both; }
+.stages-list { display: flex; flex-direction: column; gap: 1rem; }
+
+/* Stage card */
+.stage-card {
+  background: var(--card); border: 1.5px solid var(--border2);
+  border-radius: 18px; padding: 1.8rem;
+  transition: var(--tr); backdrop-filter: blur(12px);
+  position: relative; overflow: hidden;
+}
+.stage-card.unlocked { border-color: var(--border); }
+.stage-card.active-stage { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(255,87,34,0.2), var(--shadow); }
+.stage-card.completed { border-color: rgba(16,185,129,0.3); }
+.stage-card.locked { opacity: 0.6; }
+.stage-card:not(.locked):hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+.stage-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  border-radius: 0 0 0 18px; opacity: 0; transition: opacity 0.3s;
+}
+.stage-card.active-stage::before { background: var(--accent); opacity: 1; }
+.stage-card.completed::before { background: var(--green); opacity: 1; }
+
+.stage-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1rem; }
+.stage-num-badge {
+  width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(255,87,34,0.1); border: 1.5px solid rgba(255,87,34,0.2);
+}
+.stage-card.completed .stage-num-badge { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); }
+.stage-card.locked .stage-num-badge { background: var(--bg3); border-color: var(--border2); }
+.stage-num-badge .s-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; }
+.stage-card.completed .stage-num-badge .s-label { color: var(--green); }
+.stage-card.locked .stage-num-badge .s-label { color: var(--muted2); }
+.stage-num-badge .s-num { font-family: var(--font-d); font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.stage-card.completed .stage-num-badge .s-num { color: var(--green); }
+.stage-card.locked .stage-num-badge .s-num { color: var(--muted2); }
+
+.stage-info { flex: 1; }
+.stage-info h3 { font-family: var(--font-d); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+.stage-info .stage-sub { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.7rem; }
+
+.stage-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.stage-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.5px;
+  padding: 3px 9px; border-radius: 100px;
+  background: rgba(255,87,34,0.1); color: var(--electric); border: 1px solid rgba(255,87,34,0.2);
+}
+.stage-tag.green { background: rgba(16,185,129,0.1); color: var(--green); border-color: rgba(16,185,129,0.2); }
+.stage-tag.amber { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.2); }
+.stage-tag.lock { background: rgba(100,116,139,0.1); color: var(--muted2); border-color: rgba(100,116,139,0.2); }
+
+.stage-meta {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+  font-size: 0.8rem; color: var(--muted);
+}
+.stage-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* Lesson list */
+.lessons-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.lesson-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.7rem 1rem; border-radius: 10px;
+  border: 1px solid var(--border2); background: var(--bg3);
+  cursor: pointer; transition: var(--tr); text-decoration: none;
+}
+.stage-card.locked .lesson-item { cursor: not-allowed; }
+.lesson-item:hover:not(.locked-item) { border-color: var(--border); background: var(--bg4); }
+.lesson-item.done { border-color: rgba(16,185,129,0.2); }
+.lesson-num { font-size: 0.7rem; font-weight: 700; color: var(--muted2); width: 20px; flex-shrink: 0; }
+.lesson-title { flex: 1; font-size: 0.86rem; color: var(--text); font-weight: 500; }
+.lesson-item.done .lesson-title { color: var(--muted); }
+.lesson-duration { font-size: 0.72rem; color: var(--muted2); flex-shrink: 0; }
+.lesson-check {
+  width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+  border: 1.5px solid var(--border); background: var(--bg3);
+  display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
+  transition: var(--tr);
+}
+.lesson-item.done .lesson-check { background: var(--green); border-color: var(--green); color: #fff; }
+.lesson-item.locked-item .lesson-check { background: var(--bg3); color: var(--muted2); }
+
+/* Stage actions */
+.stage-actions { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+.btn-start {
+  background: var(--accent); color: #fff; border: none;
+  padding: 0.65rem 1.5rem; border-radius: 8px; cursor: pointer;
+  font-family: var(--font-d); font-size: 0.88rem; font-weight: 700;
+  transition: var(--tr); display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 4px 16px rgba(255,87,34,0.3); text-decoration: none;
+}
+.btn-start:hover { background: var(--accent-h); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(255,87,34,0.4); }
+.btn-start.green-btn { background: var(--green); box-shadow: 0 4px 16px rgba(16,185,129,0.3); }
+.btn-start.green-btn:hover { filter: brightness(1.1); }
+.btn-outline {
+  background: none; color: var(--muted); border: 1px solid var(--border);
+  padding: 0.65rem 1.2rem; border-radius: 8px; cursor: pointer;
+  font-size: 0.85rem; font-weight: 600; transition: var(--tr); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--electric); }
+
+/* Stage progress bar */
+.stage-prog { margin-top: 1rem; }
+.stage-prog-header { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
+.stage-prog-bar { height: 5px; background: var(--border2); border-radius: 100px; overflow: hidden; }
+.stage-prog-fill { height: 100%; border-radius: 100px; background: var(--accent); transition: width 0.8s ease; }
+.stage-prog-fill.green { background: var(--green); }
+
+/* ── LEADERBOARD / STREAK ── */
+.bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; animation: fadeUp 0.6s ease 0.25s both; }
+@media(max-width:700px) { .bottom-grid { grid-template-columns: 1fr; } }
+
+.panel { background: var(--card); border: 1px solid var(--border2); border-radius: var(--r); padding: 1.5rem; backdrop-filter: blur(12px); }
+.panel-title { font-family: var(--font-d); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
+
+/* Streak calendar */
+.streak-row { display: flex; gap: 4px; flex-wrap: wrap; }
+.streak-day {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.58rem; color: var(--muted2); font-weight: 600;
+  transition: var(--tr);
+}
+.streak-day.active { background: rgba(255,87,34,0.3); border-color: var(--accent); color: var(--electric); }
+.streak-day.today { background: var(--accent); border-color: var(--accent); color: #fff; }
+.streak-stat { display: flex; gap: 1.5rem; margin-top: 1rem; }
+.streak-stat-item { text-align: center; }
+.streak-stat-item .sv { font-family: var(--font-d); font-size: 1.4rem; font-weight: 800; color: var(--text); }
+.streak-stat-item .sk { font-size: 0.72rem; color: var(--muted); }
+
+/* Achievements */
+.achievements-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; }
+.achieve-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 0.8rem 0.5rem; border-radius: 10px;
+  border: 1px solid var(--border2); background: var(--bg3);
+  text-align: center; transition: var(--tr);
+}
+.achieve-item.earned { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.05); }
+.achieve-item:hover { transform: translateY(-2px); }
+.achieve-icon { font-size: 1.5rem; }
+.achieve-name { font-size: 0.65rem; font-weight: 600; color: var(--muted); }
+.achieve-item.earned .achieve-name { color: var(--amber); }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+.modal {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2.5rem; max-width: 520px; width: 100%;
+  box-shadow: var(--shadow-lg); animation: scaleIn 0.25s ease;
+  max-height: 90vh; overflow-y: auto;
+  position: relative;
+}
+@keyframes scaleIn { from{opacity:0;transform:scale(.94)} to{opacity:1;transform:scale(1)} }
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--bg3);
+  cursor: pointer; color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  transition: var(--tr);
+}
+.modal-close:hover { color: var(--red); border-color: var(--red); }
+.modal-title { font-family: var(--font-d); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; }
+.modal-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; }
+.modal-lessons { display: flex; flex-direction: column; gap: 0.6rem; }
+.modal-lesson {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.2rem; border-radius:4px;
+  border: 1px solid var(--border2); background: var(--bg3);
+  cursor: pointer; transition: var(--tr);
+}
+.modal-lesson:hover { border-color: var(--accent); background: var(--bg4); }
+.modal-lesson.done { border-color: rgba(16,185,129,0.25); }
+.ml-icon { font-size: 1.2rem; width: 30px; text-align: center; flex-shrink: 0; }
+.ml-info { flex: 1; }
+.ml-title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.ml-meta { font-size: 0.75rem; color: var(--muted); }
+.ml-status { font-size: 0.75rem; font-weight: 600; }
+.ml-status.done { color: var(--green); }
+.ml-status.open { color: var(--electric); }
+.btn-complete {
+  background: var(--green); color: #fff; border: none;
+  padding: 0.5rem 1.2rem; border-radius: 8px; cursor: pointer;
+  font-size: 0.82rem; font-weight: 700; transition: var(--tr); white-space: nowrap;
+}
+.btn-complete:hover { filter: brightness(1.1); }
+
+/* ── CERTIFICATE SECTION ── */
+.certs-section { animation: fadeUp 0.6s ease 0.3s both; margin-bottom: 2rem; }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.cert-card {
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: var(--r); padding: 1.5rem; transition: var(--tr);
+  backdrop-filter: blur(12px); text-align: center;
+}
+.cert-card.earned { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.03); }
+.cert-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.cert-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+.cert-name { font-family: var(--font-d); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.cert-sub { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; }
+.cert-btn {
+  display: inline-block; padding: 0.5rem 1.2rem; border-radius: 8px;
+  font-size: 0.8rem; font-weight: 700; text-decoration: none;
+  cursor: pointer; border: none; transition: var(--tr);
+}
+.cert-btn.locked { background: var(--bg3); color: var(--muted2); border: 1px solid var(--border2); cursor: not-allowed; }
+.cert-btn.earn { background: var(--amber); color: #fff; cursor: not-allowed; font-size: 0.75rem; }
+.cert-btn.download { background: var(--green); color: #fff; }
+.cert-btn.download:hover { filter: brightness(1.1); }
+
+/* Confetti */
+.confetti-piece {
+  position: fixed; pointer-events: none; z-index: 9999;
+  width: 8px; height: 8px; border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall { 0%{opacity:1;top:-20px;transform:rotate(0deg)} 100%{opacity:0;top:100vh;transform:rotate(720deg)} }
+
+/* Toasts */
+.toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 999; display: flex; flex-direction: column; gap: 0.5rem; }
+.toast {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius:4px; padding: 0.9rem 1.3rem;
+  font-size: 0.88rem; color: var(--text); box-shadow: var(--shadow-lg);
+  display: flex; align-items: center; gap: 10px;
+  animation: slideInRight 0.3s ease;
+  max-width: 320px;
+}
+@keyframes slideInRight { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
+.toast.success { border-left: 3px solid var(--green); }
+.toast.info    { border-left: 3px solid var(--electric); }
+.toast.unlock  { border-left: 3px solid var(--amber); }
+
+/* Pending access banner */
+.pending-banner {
+  background: rgba(245,158,11,0.07);
+  border: 1.5px solid rgba(245,158,11,0.3);
+  border-radius: 18px; padding: 2rem 2.5rem;
+  margin-bottom: 2rem; display: none;
+  align-items: flex-start; gap: 1.5rem;
+  animation: fadeUp 0.6s ease both;
+}
+.pending-banner.show { display: flex; }
+.pb-icon { font-size: 2.5rem; flex-shrink: 0; }
+.pb-title { font-family: var(--font-d); font-size: 1.2rem; font-weight: 800; color: var(--amber); margin-bottom: 0.4rem; }
+.pb-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+.pb-action {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 1rem;
+  background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.35);
+  color: var(--amber); padding: 0.5rem 1.2rem; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: var(--tr);
+}
+.pb-action:hover { background: rgba(245,158,11,0.25); }
+
+/* WA Float */
+.wa-float {
+  position: fixed; bottom: 1.8rem; right: 1.8rem; z-index: 100;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(26,24,20,0.4); text-decoration: none; transition: var(--tr);
+}
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 24px; height: 24px; fill: #fff; }
+
+/* User dropdown */
+.user-dropdown {
+  position: absolute; top: 56px; right: 1.5rem; z-index: 300;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 14px; padding: 0.5rem;
+  min-width: 200px; box-shadow: var(--shadow-lg);
+  display: none; animation: fadeDown 0.2s ease;
+}
+.user-dropdown.open { display: block; }
+.ud-header { padding: 0.8rem 0.8rem 0.5rem; border-bottom: 1px solid var(--border2); margin-bottom: 0.3rem; }
+.ud-name { font-weight: 700; font-size: 0.9rem; }
+.ud-role { font-size: 0.72rem; color: var(--muted); }
+.ud-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0.6rem 0.8rem; border-radius: 8px; cursor: pointer;
+  color: var(--muted); font-size: 0.85rem; transition: var(--tr); text-decoration: none;
+}
+.ud-item:hover { background: var(--bg3); color: var(--text); }
+.ud-item.danger:hover { color: var(--red); }
+
+/* Animations */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET 768px
+══════════════════════════════════════════ */
+@media(max-width:768px) {
+  .sidebar { position: fixed; left: -240px; top: var(--erj-nav-h,58px); height: calc(100vh - var(--erj-nav-h,58px)); z-index: 100; transition: left 0.3s ease; }
+  .sidebar.mobile-open { left: 0; }
+  .main { padding: .9rem .9rem 2rem .9rem; }
+  .topnav { height: 56px; padding: 0 .9rem; }
+  .bottom-grid { grid-template-columns: 1fr; }
+  .stage-header { flex-direction: column; gap: .7rem; }
+  .nav-search { display: none; }
+  .welcome-banner { padding: 1.2rem 1.3rem; border-radius:6px; }
+  .wb-greeting { font-size: 1.15rem !important; }
+  .wb-stats { gap: 1.2rem; }
+  .wb-stat .wb-num { font-size: 1.4rem; }
+  .section-title { font-size: .92rem; }
+  .prog-bar-section { min-width: 0 !important; }
+  .modal { padding: 1.6rem 1.2rem; border-radius:6px; }
+  .certs-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — PHONE ≤ 480px
+   (covers most Android & iOS phones)
+══════════════════════════════════════════ */
+@media(max-width:480px) {
+  /* Layout */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+  .topnav { height: 52px; padding: 0 .75rem; gap: .4rem; }
+  .sidebar-toggle { width: 32px; height: 32px; font-size: .9rem; }
+  .nav-brand { font-size: .82rem; }
+  .nav-right { gap: .4rem; }
+  .nav-notif, .theme-btn { width: 32px; height: 32px; font-size: .85rem; }
+  .user-pill { padding: 3px 8px 3px 3px; gap: 5px; }
+  .user-avatar { width: 26px; height: 26px; font-size: .6rem; }
+  .user-name { font-size: .72rem; max-width: 72px; }
+
+  /* Main content */
+  .main { padding: .75rem .75rem calc(70px + env(safe-area-inset-bottom,0px)) .75rem; }
+  .app-layout { min-height: calc(100vh - 52px); }
+
+  /* Welcome banner */
+  .welcome-banner { padding: 1rem 1.1rem; border-radius: 14px; margin-bottom: 1.1rem; }
+  .wb-greeting { font-size: 1rem !important; }
+  .wb-sub { font-size: .78rem !important; }
+  .wb-stats { gap: .9rem; flex-wrap: nowrap; }
+  .wb-stat .wb-num { font-size: 1.2rem; }
+  .wb-stat .wb-label { font-size: .62rem; }
+
+  /* Stats cards — 2 col on phones */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: .65rem;
+    margin-bottom: 1.2rem;
+  }
+  .stat-card { padding: .9rem 1rem; }
+  .stat-card-icon { font-size: 1.25rem; }
+  .stat-card-val { font-size: 1.35rem; }
+  .stat-card-key { font-size: .7rem; }
+
+  /* Stage cards */
+  .stage-card { padding: 1.1rem 1rem; border-radius: 14px; }
+  .stage-header { flex-direction: row; align-items: flex-start; gap: .7rem; }
+  .stage-num-badge { width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0; }
+  .stage-num-badge .s-num { font-size: 1.15rem; }
+  .stage-info h3 { font-size: .9rem; }
+  .stage-info .stage-sub { font-size: .74rem; }
+  .stage-tags { gap: .3rem; }
+  .stage-tag { font-size: .6rem; padding: 2px 7px; }
+  .stage-meta { font-size: .72rem; gap: .6rem; flex-wrap: wrap; }
+  .lesson-item { padding: .6rem .8rem; }
+  .lesson-title { font-size: .8rem; }
+  .lesson-duration { font-size: .66rem; }
+  .lesson-check { width: 20px; height: 20px; font-size: .65rem; }
+  .stage-actions { gap: .5rem; flex-wrap: wrap; }
+  .btn-start { font-size: .78rem; padding: .55rem 1rem; }
+  .btn-outline { font-size: .75rem; padding: .55rem .9rem; }
+
+  /* Pending access banner */
+  .pending-banner { padding: 1.1rem; flex-direction: column; gap: .8rem; border-radius: 14px; }
+  .pb-icon { font-size: 1.8rem; }
+  .pb-title { font-size: 1rem; }
+  .pb-sub { font-size: .78rem; }
+
+  /* Progress overview */
+  .progress-track { flex-direction: column; align-items: center; gap: 1rem; padding: 1rem; }
+  .prog-bar-section { width: 100%; min-width: 0 !important; }
+  .prog-stage-name { width: 50px; font-size: .7rem; }
+  .prog-pct-label { font-size: .65rem; }
+
+  /* Achievements */
+  .achievements-grid { grid-template-columns: repeat(3,1fr); gap: .4rem; }
+  .achieve-icon { font-size: 1.2rem; }
+  .achieve-name { font-size: .58rem; }
+
+  /* Cert cards */
+  .certs-section { margin-bottom: 1.2rem; }
+  .certs-grid { grid-template-columns: 1fr; gap: .7rem; }
+  .cert-card { padding: 1.1rem; }
+  .cert-icon { font-size: 2rem; margin-bottom: .5rem; }
+  .cert-name { font-size: .85rem; }
+
+  /* Section titles */
+  .section-title { font-size: .88rem; margin-bottom: .7rem; }
+  .stages-section { margin-bottom: 1.2rem; }
+  .stages-list { gap: .7rem; }
+
+  /* Lesson modal */
+  .modal { padding: 1.2rem 1rem; border-radius: 14px; max-height: 90vh; overflow-y: auto; }
+  .modal-title { font-size: 1.1rem; }
+  .modal-sub { font-size: .78rem; }
+  .modal-lesson { padding: .75rem .9rem; border-radius: 10px; }
+  .ml-title { font-size: .82rem; }
+  .ml-meta { font-size: .68rem; }
+  .btn-complete { font-size: .74rem; padding: .42rem .9rem; }
+
+  /* Bottom nav — 6 items on one line */
+  .bn-inner { grid-template-columns: repeat(6,1fr); }
+  .bn-icon { font-size: 1.05rem; }
+  .bn-label { font-size: .46rem; letter-spacing: 0; }
+
+  /* Install banner */
+  .install-banner { bottom: calc(58px + env(safe-area-inset-bottom,0px)); padding: .85rem 1rem; border-radius:4px; }
+  .ib-title { font-size: .82rem; }
+  .ib-sub { font-size: .7rem; }
+
+  /* WA float */
+  .wa-float { width: 42px; height: 42px; bottom: calc(72px + env(safe-area-inset-bottom,0px)); right: .75rem; }
+  .wa-float svg { width: 21px; height: 21px; }
+
+  /* Dropdown */
+  .user-dropdown { right: .75rem; min-width: 180px; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — VERY SMALL PHONES ≤ 360px
+   (Galaxy A series, older iPhones, etc.)
+══════════════════════════════════════════ */
+@media(max-width:360px) {
+  .main { padding: .6rem .6rem calc(68px + env(safe-area-inset-bottom,0px)) .6rem; }
+  .stat-card { padding: .75rem .8rem; }
+  .stat-card-val { font-size: 1.2rem; }
+  .stage-card { padding: .9rem .85rem; }
+  .wb-stats { gap: .6rem; }
+  .wb-stat .wb-num { font-size: 1.05rem; }
+  .wb-stat .wb-label { font-size: .56rem; }
+  .nav-brand { font-size: .75rem; }
+  .user-name { display: none; }
+  .bn-label { font-size: .44rem; }
+  .bn-icon { font-size: .95rem; }
+  .modal { padding: 1rem .85rem; }
+  .nb-short { font-size: .82rem; }
+}
+
+/* ── MOBILE NAV BRAND: hide long text, show short on small screens ── */
+.nb-full { display: inline-flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.nb-short { display: none; font-weight: 800; }
+@media(max-width:480px) {
+  .nb-full  { display: none !important; }
+  .nb-short { display: inline !important; }
+  .nav-right { gap: .3rem; }
+  .nav-notif,.theme-btn { width: 30px; height: 30px; font-size: .82rem; }
+  .user-avatar { width: 26px; height: 26px; font-size: .6rem; }
+  .user-pill { padding: 2px 4px 2px 2px; gap: 3px; }
+  .user-name { display: none; }
+}
+
+/* ── NOTIFICATION PANEL ── */
+.notif-panel {
+  position: fixed; top: 56px; right: 0; left: 0; z-index: 350;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,.4);
+  max-height: calc(100vh - 56px); overflow-y: auto;
+  display: none; animation: npSlide .22s ease;
+  -webkit-overflow-scrolling: touch;
+}
+.notif-panel.open { display: block; }
+@keyframes npSlide { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+@media(min-width:640px) {
+  .notif-panel { left: auto; width: 360px; border-radius: 0 0 16px 16px; border: 1px solid var(--border); top: 64px; border-top: none; }
+}
+.np-hdr { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.2rem .75rem; border-bottom: 1px solid var(--border2); }
+.np-hdr-title { font-family: var(--font-d); font-weight: 700; font-size: .95rem; color: var(--text); }
+.np-close { background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; padding: 4px 6px; border-radius: 6px; line-height: 1; }
+.np-close:hover { color: var(--text); background: var(--bg3); }
+.np-body { padding: 1rem 1.2rem 1.5rem; }
+.np-empty { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: .84rem; line-height: 1.7; }
+.np-class-card { background: linear-gradient(135deg,var(--accent),#963F12); border-radius: 14px; padding: 1.2rem; margin-bottom: .9rem; }
+.npc-badge { font-size: .58rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; background: rgba(255,255,255,.2); border-radius: 100px; padding: 2px 9px; display: inline-block; margin-bottom: .6rem; color: #fff; }
+.npc-title { font-family: var(--font-d); font-size: 1rem; font-weight: 800; margin-bottom: .35rem; color: #fff; }
+.npc-meta { font-size: .78rem; color: rgba(255,255,255,.82); margin-bottom: .9rem; line-height: 1.7; }
+.npc-join { display: flex; align-items: center; justify-content: center; gap: 6px; background: #fff; color: var(--accent); padding: .6rem 1.2rem; border-radius: 9px; font-weight: 700; font-size: .84rem; text-decoration: none; transition: all .2s; }
+.npc-join:hover { background: var(--electric); color: #fff; }
+.np-countdown { background: var(--bg3); border: 1px solid var(--border2); border-radius:4px; padding: .9rem; margin-bottom: .9rem; text-align: center; }
+.np-cd-label { font-size: .66rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: .4rem; }
+.np-cd-time { font-family: var(--font-d); font-size: 1.4rem; font-weight: 800; color: var(--electric); letter-spacing: 2px; }
+.np-note { font-size: .78rem; color: var(--muted); background: var(--bg3); border-radius: 10px; padding: .8rem; border-left: 3px solid var(--amber); margin-bottom: .8rem; line-height: 1.65; }
+.np-wa { display: flex; align-items: center; justify-content: center; gap: 6px; background: rgba(26,24,20,.1); border: 1px solid rgba(26,24,20,.3); color: #25D366; border-radius: 9px; padding: .6rem 1rem; text-decoration: none; font-size: .8rem; font-weight: 700; transition: all .2s; }
+.np-wa:hover { background: #25D366; color: #fff; }
+
+/* ── BOTTOM NAV BAR (mobile PWA) ── */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding: 0 0 env(safe-area-inset-bottom, 0px);
+  height: calc(60px + env(safe-area-inset-bottom, 0px));
+}
+.bn-inner {
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  height: 60px; align-items: stretch;
+}
+.bn-item {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; cursor: pointer; border: none; background: none;
+  color: var(--muted2); transition: color 0.2s; padding: 0;
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+.bn-item.active { color: var(--accent); }
+.bn-item:hover { color: var(--electric); }
+.bn-icon { font-size: 1.3rem; line-height: 1; }
+.bn-label { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.3px; font-family: var(--font-b); }
+.bn-dot {
+  width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+  position: absolute; top: 8px; right: calc(50% - 14px);
+  display: none;
+}
+.bn-item.active .bn-dot { display: block; }
+@media(max-width:768px) {
+  .bottom-nav { display: block; }
+  .sidebar-toggle { display: none; }
+}
+
+/* ── PWA INSTALL BANNER ── */
+.install-banner {
+  display: none; position: fixed; bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  left: 1rem; right: 1rem; z-index: 500;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius:6px; padding: 1rem 1.2rem;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+  animation: slideUp 0.4s ease;
+  align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.install-banner.show { display: flex; }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.ib-icon { font-size: 2rem; flex-shrink: 0; }
+.ib-text { flex: 1; min-width: 0; }
+.ib-title { font-family: var(--font-d); font-size: .9rem; font-weight: 700; color: var(--text); }
+.ib-sub { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+.ib-actions { display: flex; gap: .5rem; flex-shrink: 0; }
+.ib-btn-install {
+  background: var(--accent); color: #fff; border: none;
+  border-radius: 8px; padding: .48rem 1rem; font-size: .8rem; font-weight: 700;
+  cursor: pointer; transition: all .2s; font-family: var(--font-d);
+}
+.ib-btn-install:hover { background: var(--accent-h); }
+.ib-btn-dismiss {
+  background: none; color: var(--muted); border: 1px solid var(--border2);
+  border-radius: 8px; padding: .48rem .8rem; font-size: .78rem;
+  cursor: pointer; transition: all .2s;
+}
+.ib-btn-dismiss:hover { color: var(--text); }
+
+/* ── PWA STATUS BADGE in topnav ── */
+.pwa-badge {
+  font-size: .58rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  background: rgba(16,185,129,.12); color: var(--green);
+  border: 1px solid rgba(16,185,129,.25); border-radius: 100px;
+  padding: 2px 8px; display: none;
+}
+@media(display-mode: standalone) { .pwa-badge { display: inline-block; } }
+
+/* ── OFFLINE INDICATOR ── */
+.offline-bar {
+  display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 350;
+  background: rgba(245,158,11,.9); color: #fff; text-align: center;
+  font-size: .78rem; font-weight: 600; padding: .4rem 1rem;
+  backdrop-filter: blur(8px);
+}
+body.offline .offline-bar { display: block; }
+body.offline .main { filter: none; }
+
+/* ── Cohort 9 minimalist overrides ── */
+#particles,.radial-glow,.grid-overlay{display:none!important}
+*{text-shadow:none!important}
+h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!important;color:var(--accent)!important;}
+.btn-register::before,.btn-primary::before,.timer-wrap::before,.auth-card::before{display:none!important}
+.btn-register,.btn-primary{box-shadow:none!important;border-radius:2px!important;font-family:'DM Sans',system-ui,sans-serif!important;font-weight:500!important;letter-spacing:0.3px!important;}
+.btn-register:hover,.btn-primary:hover{box-shadow:none!important;}
+.auth-card,.timer-wrap,.card,.stage-card,.lesson-card{backdrop-filter:none!important;}
+.wa-float{background:var(--text)!important;box-shadow:none!important;border-radius:50%!important;}
+.wa-float svg{fill:var(--bg)!important;}
+.wa-float:hover{box-shadow:none!important;}
+
+/* ── Cohort 9 cleanup ── */
+h1 span,h2 span,.hero h1 span,[class*="grad"]{ -webkit-text-fill-color:var(--accent)!important;background:none!important;background-image:none!important;color:var(--accent)!important;-webkit-background-clip:initial!important;background-clip:initial!important;}
+.nav,nav{background:var(--bg)!important;}
+html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!important;}
+.featured-badge,.badge,.tag,.pill{box-shadow:none!important;}
+.cover,.post-cover,.art-cover,.card-cover,.featured-img{filter:saturate(0.6);}
+</style>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<meta property="og:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Everything Remote Job Mastery Training" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
+<style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
+<style id="erjPortalNavOffset">
+.erj-nav{z-index:600 !important;}
+/* Floating portal controls (replace the removed second header) */
+.portal-panel-toggle,.portal-notif-toggle{
+  position:fixed;z-index:160;top:calc(var(--erj-nav-h,58px) + 10px);
+  width:42px;height:42px;border-radius:11px;
+  border:1px solid var(--border,rgba(255,255,255,.12));background:var(--bg3,#221E18);
+  color:var(--text,#FFFFFF);font-size:1.15rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.35);transition:all .2s ease;
+}
+.portal-panel-toggle{left:12px;}
+.portal-notif-toggle{right:12px;gap:2px;}
+.portal-panel-toggle:hover,.portal-notif-toggle:hover{color:var(--electric,#FF5722);background:var(--bg4,#1B1814);}
+.portal-notif-toggle .notif-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--red,#EF4444);display:none;}
+.portal-notif-toggle .notif-dot.show{display:block;}
+/* Desktop: sidebar is always visible, so hide the floating panel toggle there */
+@media(min-width:769px){ .portal-panel-toggle{ display:none; } }
+</style>
+</head>
+<body>
+<div id="erjNavMount"></div>
+<script>window.ERJ_NAV={active:'login'};</script>
+
+
+<!-- Legacy dashboard top header removed (unified erj-nav is the only header).
+     Floating controls keep the sidebar and notifications reachable on mobile. -->
+<button class="portal-panel-toggle" id="sidebarToggle" title="Menu" aria-label="Open menu">☰</button>
+<button class="portal-notif-toggle" id="notifBtn" title="Class Notifications" onclick="toggleNotifPanel()">🔔 <span class="notif-dot" id="notifDot"></span></button>
+
+<!-- Offline indicator -->
+<div class="offline-bar">📡 You're offline — showing cached content</div>
+
+<!-- ── NOTIFICATION PANEL ── -->
+<div class="notif-panel" id="notifPanel">
+  <div class="np-hdr">
+    <div class="np-hdr-title">🔔 Class Notifications</div>
+    <button class="np-close" onclick="toggleNotifPanel()">✕</button>
+  </div>
+  <div class="np-body" id="notifBody">
+    <div class="np-empty">Loading…</div>
+  </div>
+</div>
+
+<!-- User Dropdown -->
+<div class="user-dropdown" id="userDropdown">
+  <div class="ud-header">
+    <div class="ud-name" id="ddName">–</div>
+    <div class="ud-role" id="ddRole">–</div>
+  </div>
+  <a href="#" class="ud-item">⚙️ Account Settings</a>
+  <a href="#" class="ud-item" onclick="promptInstall()">📲 Install App</a>
+  <a href="index.html" class="ud-item">🏠 Back to Site</a>
+  <a href="#" class="ud-item danger" onclick="logout()">🚪 Sign Out</a>
+</div>
+
+<!-- Mobile bottom navigation removed (sidebar via floating toggle is the single nav) -->
+
+<!-- ── PWA INSTALL BANNER ── -->
+<div class="install-banner" id="installBanner">
+  <div class="ib-icon">📲</div>
+  <div class="ib-text">
+    <div class="ib-title">Install Training App</div>
+    <div class="ib-sub">Add to your home screen for quick access — works offline too.</div>
+  </div>
+  <div class="ib-actions">
+    <button class="ib-btn-install" onclick="promptInstall()">Install</button>
+    <button class="ib-btn-dismiss" onclick="dismissInstall()">✕</button>
+  </div>
+</div>
+
+<!-- ── LAYOUT ── -->
+<div class="app-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Learning</div>
+      <a class="sidebar-item active" href="#" onclick="showView('stages'); return false">
+        <span class="sidebar-icon">📚</span>
+        <span class="sidebar-text">My Stages</span>
+        <span class="sidebar-badge" id="inProgressBadge">1</span>
+      </a>
+      <a class="sidebar-item" href="#" onclick="showView('overview'); return false">
+        <span class="sidebar-icon">📊</span>
+        <span class="sidebar-text">Progress Overview</span>
+      </a>
+      <a class="sidebar-item" href="#" onclick="showView('materials'); return false">
+        <span class="sidebar-icon">📁</span>
+        <span class="sidebar-text">Downloads</span>
+      </a>
+      <a class="sidebar-item" href="#" onclick="showView('certs'); return false">
+        <span class="sidebar-icon">🏆</span>
+        <span class="sidebar-text">Certificates</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Resources</div>
+      <a class="sidebar-item" href="#" onclick="showView('jobs');return false" style="color:var(--teal,#E8470F)">
+        <span class="sidebar-icon">🌍</span>
+        <span class="sidebar-text">Private Job Board</span>
+        <span style="font-size:.52rem;font-weight:700;letter-spacing:.8px;background:rgba(20,184,166,.15);color:var(--teal,#E8470F);border-radius:100px;padding:1px 6px;margin-left:auto;flex-shrink:0">NEW</span>
+      </a>
+      <a class="sidebar-item" href="https://wa.me/message/5PMRVGMUU4NGL1" target="_blank">
+        <span class="sidebar-icon">💬</span>
+        <span class="sidebar-text">WhatsApp Support</span>
+      </a>
+      <a class="sidebar-item" href="#" onclick="promptInstall();return false">
+        <span class="sidebar-icon">📲</span>
+        <span class="sidebar-text">Install App</span>
+      </a>
+      <a class="sidebar-item" href="index.html">
+        <span class="sidebar-icon">🏠</span>
+        <span class="sidebar-text">Back to Site</span>
+      </a>
+    </div>
+    <div class="sidebar-section" style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border2);">
+      <a class="sidebar-item danger" href="#" onclick="logout(); return false">
+        <span class="sidebar-icon">🚪</span>
+        <span class="sidebar-text">Sign Out</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main" id="mainContent">
+
+    <!-- WELCOME BANNER -->
+    <div class="welcome-banner" id="welcomeBanner">
+      <div class="wb-content">
+        <div class="wb-greeting" id="welcomeGreeting">Good morning! 👋</div>
+        <div class="wb-sub">Continue your remote job mastery journey. You're making great progress!</div>
+        <div class="wb-stats">
+          <div class="wb-stat">
+            <div class="wb-num" id="wbLessons">0</div>
+            <div class="wb-label">Lessons Done</div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-num" id="wbStreak">0</div>
+            <div class="wb-label">Day Streak 🔥</div>
+          </div>
+          <div class="wb-stat">
+            <div class="wb-num" id="wbStages">0/5</div>
+            <div class="wb-label">Stages Complete</div>
+          </div>
+        </div>
+        <span id="jbAccessBadge" style="display:none;margin-top:.7rem;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);cursor:pointer" onclick="window.location.href='testimonials.html#jobboard'"></span>
+      </div>
+    </div>
+
+    <!-- PENDING ACCESS BANNER (shown when no stages are unlocked beyond stage1) -->
+    <div class="pending-banner" id="pendingBanner">
+      <div class="pb-icon">🔐</div>
+      <div style="width:100%">
+        <div class="pb-title">Unlock All Stages</div>
+        <div class="pb-sub">
+          Stage 1 is open for you. To unlock all 5 stages instantly, enter the access code your admin sent you via WhatsApp — or contact support to get yours.
+        </div>
+
+        <!-- Access code entry -->
+        <div style="display:flex;gap:.5rem;margin:.9rem 0 .6rem;flex-wrap:wrap">
+          <input id="accessCodeInput" type="text" placeholder="Enter access code e.g. ERJM-FULL-2026"
+            style="flex:1;min-width:180px;padding:.65rem .9rem;border-radius:9px;border:1.5px solid rgba(217,119,6,.35);background:rgba(217,119,6,.07);color:inherit;font-size:.85rem;outline:none;font-family:inherit"
+            onkeydown="if(event.key==='Enter') redeemCode()">
+          <button onclick="redeemCode()" style="padding:.65rem 1.1rem;border-radius:9px;background:var(--accent2,#D97706);color:#fff;border:none;font-weight:700;font-size:.84rem;cursor:pointer;white-space:nowrap">Unlock →</button>
+        </div>
+        <div id="codeMsg" style="font-size:.78rem;margin-bottom:.5rem;display:none"></div>
+
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href="https://wa.me/message/5PMRVGMUU4NGL1" class="pb-action" target="_blank">💬 Get My Access Code</a>
+          <a href="testimonials.html#jobboard" class="pb-action" style="background:rgba(16,185,129,.12);color:#7A8B5A;border-color:rgba(16,185,129,.3)">🔒 Private Job Board</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: STAGES (default) -->
+    <div id="viewStages">
+
+      <!-- Quick stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-icon">🎯</div>
+          <div class="stat-card-val" id="scLessons">0</div>
+          <div class="stat-card-key">Lessons Completed</div>
+          <div class="stat-card-sub">↑ Keep going!</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🔥</div>
+          <div class="stat-card-val" id="scStreak">0</div>
+          <div class="stat-card-key">Day Streak</div>
+          <div class="stat-card-sub">↑ Daily progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">🏁</div>
+          <div class="stat-card-val" id="scStages">0</div>
+          <div class="stat-card-key">Stages Unlocked</div>
+          <div class="stat-card-sub" id="scStagesSub">Complete Stage 1 →</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon">⏱️</div>
+          <div class="stat-card-val" id="scHours">0h</div>
+          <div class="stat-card-key">Study Time</div>
+          <div class="stat-card-sub">↑ Growing!</div>
+        </div>
+      </div>
+
+      <!-- 5 Stage cards -->
+      <div class="stages-section">
+        <div class="section-title">📚 Your 5-Stage Remote Mastery Journey</div>
+        <div class="stages-list" id="stagesList"></div>
+      </div>
+
+    </div>
+
+    <!-- VIEW: PROGRESS OVERVIEW -->
+    <div id="viewOverview" style="display:none">
+      <div class="section-title">📊 Progress Overview</div>
+      <div class="overall-progress">
+        <div class="progress-track">
+          <div class="prog-circle">
+            <svg viewBox="0 0 90 90" width="90" height="90">
+              <circle class="prog-circle-bg" cx="45" cy="45" r="36"/>
+              <circle class="prog-circle-fill" id="pcFill" cx="45" cy="45" r="36" stroke-dasharray="226" stroke-dashoffset="226"/>
+            </svg>
+            <div class="prog-circle-text">
+              <div class="pct" id="pcPct">0%</div>
+              <div class="pct-label">Overall</div>
+            </div>
+          </div>
+          <div class="prog-bar-section" id="progBars"></div>
+        </div>
+      </div>
+      <!-- Streak + Achievements -->
+      <div class="bottom-grid">
+        <div class="panel">
+          <div class="panel-title">🔥 Learning Streak</div>
+          <div class="streak-row" id="streakCalendar"></div>
+          <div class="streak-stat">
+            <div class="streak-stat-item"><div class="sv" id="ssCurrent">0</div><div class="sk">Current Streak</div></div>
+            <div class="streak-stat-item"><div class="sv" id="ssBest">0</div><div class="sk">Best Streak</div></div>
+            <div class="streak-stat-item"><div class="sv" id="ssDays">0</div><div class="sk">Days Active</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">🏅 Achievements</div>
+          <div class="achievements-grid" id="achievementsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: MATERIALS / DOWNLOADS -->
+    <div id="viewMaterials" style="display:none">
+      <div class="section-title">📁 Downloads & Study Materials</div>
+
+      <!-- Slide Decks -->
+      <div style="margin-bottom:2rem">
+        <div class="section-title" style="font-size:.92rem;margin-bottom:.8rem">🎞️ Stage Slide Decks <span style="font-size:.72rem;color:var(--muted);font-weight:500;font-family:var(--font-b)">— available when your stage is unlocked</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;" id="slideDeckGrid"></div>
+      </div>
+
+      <!-- Workbooks & Templates -->
+      <div style="margin-bottom:2rem">
+        <div class="section-title" style="font-size:.92rem;margin-bottom:.8rem">📒 Workbooks & Templates <span style="font-size:.72rem;color:var(--muted);font-weight:500;font-family:var(--font-b)">— locked until stage access is granted</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem;" id="workbookGrid"></div>
+      </div>
+
+    </div>
+
+    <!-- VIEW: CERTIFICATES -->
+    <div id="viewCerts" style="display:none">
+      <div class="certs-section">
+        <div class="section-title">🏆 My Certificates</div>
+        <div class="certs-grid" id="certsGrid"></div>
+      </div>
+    </div>
+
+    <!-- VIEW: PRIVATE JOB BOARD -->
+    <div id="viewJobs" style="display:none">
+
+      <!-- LOCKED STATE -->
+      <div id="jobsLocked" style="display:none;text-align:center;padding:3rem 1rem">
+        <div style="font-size:3rem;margin-bottom:1rem">🔒</div>
+        <div style="font-family:var(--font-d);font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:.5rem">Private Job Board</div>
+        <div style="font-size:.88rem;color:var(--muted);max-width:460px;margin:0 auto 1.8rem;line-height:1.7">Global curated remote jobs from Ashby, Greenhouse, Lever, micro1.ai, Indeed and more — updated regularly. Access requires a membership or admin approval.</div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;max-width:400px;margin:0 auto 1.5rem;backdrop-filter:blur(12px)">
+          <div style="font-family:var(--font-d);font-size:2rem;font-weight:900;color:var(--text)">₦<span style="font-size:1.6rem">10,000</span></div>
+          <div style="font-size:.78rem;color:var(--muted2);margin-bottom:1.2rem">per month · Cancel anytime</div>
+          <ul style="list-style:none;text-align:left;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:.5rem">
+            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Curated global remote jobs updated daily</li>
+            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Jobs from Ashby, Greenhouse, Lever, Pinpoint</li>
+            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>micro1.ai AI-matched worldwide roles</li>
+            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Apply directly to company sites instantly</li>
+            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Push notifications when new roles drop</li>
+          </ul>
+          <a href="https://paystack.shop/pay/rfix-j0sug" target="_blank" rel="noopener" onclick="showPayInstructions()" style="display:block;width:100%;background:linear-gradient(135deg,var(--accent),#963F12);color:#fff;padding:.85rem;border-radius:10px;font-family:var(--font-d);font-size:.92rem;font-weight:800;text-decoration:none;text-align:center;box-shadow:0 4px 20px rgba(255,87,34,.4);margin-bottom:.7rem;box-sizing:border-box">🔓 Unlock — ₦10,000/month →</a>
+        </div>
+        <div id="jobPayInstructions" style="display:none;max-width:420px;margin:0 auto .9rem;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:.9rem;font-size:.8rem;color:var(--muted);text-align:left;line-height:1.7">
+          ✅ <strong style="color:var(--green)">After payment:</strong> Send your phone number to <a href="https://wa.me/message/5PMRVGMUU4NGL1" target="_blank" style="color:#25D366;font-weight:700">+234 706 754 7610</a> on WhatsApp with "JOB BOARD ACCESS" and your payment confirmation. Admin will activate your access within 24 hours.
+        </div>
+        <p style="font-size:.76rem;color:var(--muted2)">Already approved by admin? Your access will appear automatically when you reload this page.</p>
+      </div>
+
+      <!-- UNLOCKED JOB BOARD -->
+      <div id="jobsBoard" style="display:none">
+        <!-- Board header -->
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.2rem">
+          <div>
+            <div class="section-title" style="margin-bottom:.2rem">🌍 Private Job Board</div>
+            <div style="font-size:.78rem;color:var(--muted);display:flex;gap:1rem;flex-wrap:wrap">
+              <span>🟢 <strong id="jbLiveCount" style="color:var(--text)">0</strong> live roles</span>
+              <span>🆕 <strong id="jbNewCount" style="color:var(--text)">0</strong> this week</span>
+              <span>🌐 Worldwide remote</span>
+            </div>
+          </div>
+          <button id="jbBellBtn" onclick="handleDashJobBell()" style="background:none;border:1px solid var(--border);border-radius:8px;width:36px;height:36px;cursor:pointer;color:var(--muted);font-size:.95rem;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0">
+            🔔<span id="jbBellDot" style="position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1.5px solid var(--bg);display:none"></span>
+          </button>
+        </div>
+
+        <!-- micro1 featured banner -->
+        <a href="https://refer.micro1.ai/referral/jobs/?referralCode=c7e58760-581b-45d4-9deb-475e02122729&utm_source=referral&utm_medium=share&utm_campaign=job_referral" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(20,184,166,.12),rgba(255,87,34,.08));border:1px solid rgba(20,184,166,.3);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1.2rem;text-decoration:none;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+          <span style="font-size:1.8rem;flex-shrink:0">🤖</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem">micro1.ai — AI-Matched Remote Jobs</div>
+            <div style="font-size:.76rem;color:var(--muted)">Browse 100+ worldwide remote roles matched by AI across engineering, design, data, and operations →</div>
+          </div>
+          <span style="color:var(--electric);font-size:.8rem;font-weight:700;flex-shrink:0">Browse →</span>
+        </a>
+
+        <!-- Search + filter -->
+        <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+          <div style="flex:1;min-width:180px;position:relative">
+            <span style="position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none">🔍</span>
+            <input id="jbSearchInput" type="text" placeholder="Search roles, companies…" oninput="renderDashJobs()" style="width:100%;padding:.65rem .9rem .65rem 2.2rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--font-b);font-size:.84rem;outline:none;box-sizing:border-box">
+          </div>
+          <select id="jbCatFilter" onchange="renderDashJobs()" style="padding:.65rem .9rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--font-b);font-size:.82rem;outline:none;appearance:none;cursor:pointer;white-space:nowrap">
+            <option value="">All Categories</option>
+            <option>Engineering</option><option>Design</option><option>Marketing</option><option>Product</option>
+            <option>Customer Success</option><option>Writing & Content</option><option>Data & Analytics</option>
+            <option>AI & Machine Learning</option><option>HR & People</option><option>Finance</option>
+          </select>
+        </div>
+
+        <!-- Job cards -->
+        <div id="dashJobsList" style="display:flex;flex-direction:column;gap:.7rem"></div>
+        <div id="dashJobsPager" style="display:flex;gap:.35rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap"></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ── LESSON MODAL ── -->
+<div class="modal-overlay" id="lessonModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modalTitle">Stage 1</div>
+    <div class="modal-sub" id="modalSub">Complete all lessons to unlock the next stage.</div>
+    <div class="modal-lessons" id="modalLessons"></div>
+  </div>
+</div>
+
+<!-- ── TOAST CONTAINER ── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- WA Float -->
+<a href="https://wa.me/message/5PMRVGMUU4NGL1" class="wa-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ════════════════════════════════════════
+   DATA — 5 STAGES + LESSONS
+══════════════════════════════════════════ */
+const STAGES = [
+  {
+    id: 'stage1', num: 1,
+    title: 'Remote Mindset Blueprint',
+    sub: 'Build the Internal Operating System Every Remote Professional Runs On',
+    days: '5 Days', type: 'Foundation', icon: '🧠',
+    lessons: [
+      { id:'s1l1', title:'Understanding Remote Work Psychology', dur:'45 min', icon:'🧠' },
+      { id:'s1l2', title:'Deep Work: The 90-Minute Block Method', dur:'60 min', icon:'⏱️' },
+      { id:'s1l3', title:'KPI Setting & Daily Accountability Framework', dur:'50 min', icon:'📋' },
+      { id:'s1l4', title:'EOD Reporting Masterclass', dur:'40 min', icon:'📄' },
+      { id:'s1l5', title:'Workspace Audit & Distraction-Free Setup', dur:'55 min', icon:'🖥️' },
+    ]
+  },
+  {
+    id: 'stage2', num: 2,
+    title: 'Professional Identity & Toolkit',
+    sub: 'Craft the Digital Presence That Makes Global Employers Stop Scrolling',
+    days: '5 Days', type: 'Identity', icon: '🪪',
+    lessons: [
+      { id:'s2l1', title:'Remote Work Tools Masterclass (Notion, Slack, Zoom)', dur:'65 min', icon:'🛠️' },
+      { id:'s2l2', title:'Async Communication Protocols', dur:'50 min', icon:'💬' },
+      { id:'s2l3', title:'Digital Security for Remote Workers', dur:'45 min', icon:'🔒' },
+      { id:'s2l4', title:'Time Zone Management & Global Scheduling', dur:'40 min', icon:'🌍' },
+      { id:'s2l5', title:'Building Your Professional Digital Brand', dur:'60 min', icon:'✨' },
+    ]
+  },
+  {
+    id: 'stage3', num: 3,
+    title: 'CV & LinkedIn Transformation',
+    sub: 'Engineer a Market-Ready Profile That Gets You Shortlisted',
+    days: '5 Days', type: 'Branding', icon: '📄',
+    lessons: [
+      { id:'s3l1', title:'ATS-Optimized CV Architecture', dur:'70 min', icon:'📝' },
+      { id:'s3l2', title:'Achievement-Driven Bullet Point Formula', dur:'55 min', icon:'🎯' },
+      { id:'s3l3', title:'LinkedIn Headline & Summary Optimization', dur:'60 min', icon:'💼' },
+      { id:'s3l4', title:'Portfolio & Case Study Creation', dur:'65 min', icon:'🗂️' },
+      { id:'s3l5', title:'Cover Letter Templates for Global Roles', dur:'50 min', icon:'✉️' },
+    ]
+  },
+  {
+    id: 'stage4', num: 4,
+    title: 'Global Job Search Mastery',
+    sub: 'Find and Apply to Remote Jobs Where 99% of Candidates Never Look',
+    days: '5 Days', type: 'Search', icon: '🔍',
+    lessons: [
+      { id:'s4l1', title:'Top 15 Remote Job Platforms Deep Dive', dur:'75 min', icon:'🌐' },
+      { id:'s4l2', title:'Boolean Search Strings for Recruiters', dur:'60 min', icon:'⚙️' },
+      { id:'s4l3', title:'Cold Outreach to Hiring Managers', dur:'55 min', icon:'📧' },
+      { id:'s4l4', title:'Application Tracking System (ATS) Strategy', dur:'50 min', icon:'📊' },
+      { id:'s4l5', title:'Interview Preparation for Remote Roles', dur:'80 min', icon:'🎤' },
+    ]
+  },
+  {
+    id: 'stage5', num: 5,
+    title: 'Offer Negotiation & Onboarding',
+    sub: 'Negotiate Like a Pro and Nail Your First 90 Days Remotely',
+    days: '5 Days', type: 'Mastery', icon: '💰',
+    lessons: [
+      { id:'s5l1', title:'Salary Benchmarking for Global Roles', dur:'55 min', icon:'💹' },
+      { id:'s5l2', title:'Negotiation Scripts & Counter-Offer Tactics', dur:'65 min', icon:'🤝' },
+      { id:'s5l3', title:'Remote Onboarding Best Practices', dur:'50 min', icon:'🚀' },
+      { id:'s5l4', title:'Building Trust with Global Teams', dur:'45 min', icon:'🌟' },
+      { id:'s5l5', title:'90-Day Remote Success Blueprint', dur:'70 min', icon:'🏆' },
+    ]
+  }
+];
+
+const ACHIEVEMENTS = [
+  { id:'first_lesson', name:'First Lesson', icon:'🌱', earned: false },
+  { id:'stage1_done',  name:'Mindset Pro',  icon:'🧠', earned: false },
+  { id:'stage3_done',  name:'CV Master',    icon:'📄', earned: false },
+  { id:'streak3',      name:'3-Day Streak', icon:'🔥', earned: false },
+  { id:'stage5_done',  name:'Remote Ready', icon:'🏆', earned: false },
+  { id:'all_stages',   name:'Graduate',     icon:'🎓', earned: false },
+];
+
+/* ════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let session = null;
+let progress = null;
+let progressKey = '';
+let currentStageModal = null;
+
+/* ════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+(function init() {
+  const raw = localStorage.getItem('rjm_session');
+  if (!raw) { window.location.href = 'login.html'; return; }
+  try { session = JSON.parse(raw); } catch { window.location.href = 'login.html'; return; }
+  // Allow student, participant, admin, and instructor to view the dashboard
+  if (!['student','participant','admin','instructor'].includes(session.role)) { window.location.href = 'login.html'; return; }
+
+  progressKey = `rjm_progress_${session.email}`;
+  loadProgress();
+  populateUser();
+  updateWelcome();
+  renderStages();
+  renderOverview();
+  renderCerts();
+  updateStats();
+  applyTheme(localStorage.getItem('rjt-theme') || 'night');
+
+  // Show bell dot if job board expiry is within 10 days
+  const jbDaysLeft = getJbDaysLeft ? getJbDaysLeft() : 0;
+  const dot = document.getElementById('notifDot');
+  if (dot && jbDaysLeft > 0 && jbDaysLeft <= 10) dot.style.display = 'block';
+})();
+
+function loadProgress() {
+  const raw = localStorage.getItem(progressKey);
+  if (raw) { try { progress = JSON.parse(raw); } catch {} }
+  if (!progress) {
+    progress = {
+      stage1:{ unlocked:true,  completed:false, lessons:[] },
+      stage2:{ unlocked:false, completed:false, lessons:[] },
+      stage3:{ unlocked:false, completed:false, lessons:[] },
+      stage4:{ unlocked:false, completed:false, lessons:[] },
+      stage5:{ unlocked:false, completed:false, lessons:[] },
+    };
+    saveProgress();
+  } else if (!progress.stage1?.unlocked) {
+    progress.stage1.unlocked = true;
+    saveProgress();
+  }
+  // Auto-grant 60-day job board access whenever any stage is unlocked
+  ensureJobBoardAccess(60);
+}
+
+function saveProgress() { localStorage.setItem(progressKey, JSON.stringify(progress)); }
+
+/* ── JOB BOARD ACCESS ── */
+function getJbExpiry() {
+  try {
+    const v = localStorage.getItem(`rjm_jb_expiry_${session.email}`);
+    if (!v) return null;
+    const d = new Date(v); return isNaN(d.getTime()) ? null : d;
+  } catch { return null; }
+}
+function ensureJobBoardAccess(days) {
+  days = days || 60;
+  const key  = `rjm_jb_expiry_${session.email}`;
+  const existing = getJbExpiry();
+  if (!existing || existing < new Date()) {
+    const expiry = new Date(); expiry.setDate(expiry.getDate() + days);
+    localStorage.setItem(key, expiry.toISOString());
+  }
+  // Also write to the shared email-access map (checked by the job board on testimonials.html)
+  try {
+    const map = JSON.parse(localStorage.getItem('rjm_jb_email_access') || '{}');
+    if (!map[session.email] || new Date(map[session.email]) < new Date()) {
+      const expiry = new Date(); expiry.setDate(expiry.getDate() + days);
+      map[session.email] = expiry.toISOString();
+      localStorage.setItem('rjm_jb_email_access', JSON.stringify(map));
+    }
+  } catch {}
+}
+function getJbDaysLeft() {
+  const exp = getJbExpiry();
+  if (!exp) return 0;
+  return Math.max(0, Math.ceil((exp - new Date()) / 86400000));
+}
+
+/* ════════════════════════════════════════
+   USER INFO
+══════════════════════════════════════════ */
+function populateUser() {
+  const av = document.getElementById('userAvatar');
+  const un = document.getElementById('userName');
+  const dn = document.getElementById('ddName');
+  const dr = document.getElementById('ddRole');
+  if (av) av.textContent = session.avatar || session.name?.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() || '?';
+  if (un) un.textContent = session.name || 'Student';
+  if (dn) dn.textContent = session.name || 'Student';
+  if (dr) dr.textContent = (session.role === 'admin' ? '⚙️ Admin' : session.role === 'instructor' ? '🎓 Instructor' : '🎓 Participant · Cohort 9');
+}
+
+function updateWelcome() {
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  const first = (session.name || 'Student').split(' ')[0];
+  document.getElementById('welcomeGreeting').textContent = `${greet}, ${first}! 👋`;
+
+  const totalLessons = countCompletedLessons();
+  const completedStages = countCompletedStages();
+  const streak = getStreak();
+
+  document.getElementById('wbLessons').textContent = totalLessons;
+  document.getElementById('wbStreak').textContent  = streak;
+  document.getElementById('wbStages').textContent  = `${completedStages}/5`;
+}
+
+/* ════════════════════════════════════════
+   COUNTS & HELPERS
+══════════════════════════════════════════ */
+function countCompletedLessons() {
+  return STAGES.reduce((acc, s) => acc + (progress[s.id]?.lessons?.length || 0), 0);
+}
+function countCompletedStages() {
+  return STAGES.filter(s => progress[s.id]?.completed).length;
+}
+function countUnlockedStages() {
+  return STAGES.filter(s => progress[s.id]?.unlocked).length;
+}
+function getStreak() {
+  const streakKey = `rjm_streak_${session.email}`;
+  try { return JSON.parse(localStorage.getItem(streakKey) || '0'); } catch { return 0; }
+}
+function bumpStreak() {
+  const streakKey = `rjm_streak_${session.email}`;
+  const lastKey   = `rjm_last_${session.email}`;
+  const today = new Date().toDateString();
+  const last  = localStorage.getItem(lastKey);
+  if (last === today) return;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  let streak = getStreak();
+  streak = last === yesterday ? streak + 1 : 1;
+  localStorage.setItem(streakKey, streak);
+  localStorage.setItem(lastKey, today);
+  // bump active days
+  const daysKey = `rjm_days_${session.email}`;
+  const days = JSON.parse(localStorage.getItem(daysKey) || '[]');
+  if (!days.includes(today)) days.push(today);
+  localStorage.setItem(daysKey, JSON.stringify(days));
+  return streak;
+}
+
+function getActiveDays() {
+  const daysKey = `rjm_days_${session.email}`;
+  return JSON.parse(localStorage.getItem(daysKey) || '[]');
+}
+
+/* ════════════════════════════════════════
+   UPDATE STATS
+══════════════════════════════════════════ */
+function updateStats() {
+  const lessons   = countCompletedLessons();
+  const stages    = countUnlockedStages();
+  const completed = countCompletedStages();
+  const streak    = getStreak();
+  const hours     = Math.round((lessons * 52) / 60);
+
+  document.getElementById('scLessons').textContent = lessons;
+  document.getElementById('scStreak').textContent  = streak;
+  document.getElementById('scStages').textContent  = stages;
+  document.getElementById('scHours').textContent   = hours + 'h';
+  document.getElementById('scStagesSub').textContent = stages === 0 ? 'Awaiting access' : completed < 5 ? `Stage ${completed+1} next →` : '🎉 All done!';
+  document.getElementById('inProgressBadge').textContent = STAGES.filter(s => progress[s.id]?.unlocked && !progress[s.id]?.completed).length;
+
+  document.getElementById('wbLessons').textContent = lessons;
+  document.getElementById('wbStreak').textContent  = streak;
+  document.getElementById('wbStages').textContent  = `${completed}/5`;
+
+  // Job board access badge
+  const jbDays = getJbDaysLeft();
+  const jbBadge = document.getElementById('jbAccessBadge');
+  if (jbBadge) {
+    if (jbDays > 0) {
+      jbBadge.textContent = `🔒 Job Board: ${jbDays}d left`;
+      jbBadge.style.display = 'inline-flex';
+      jbBadge.style.color = jbDays > 14 ? '#7A8B5A' : '#C96130';
+    } else {
+      jbBadge.style.display = 'none';
+    }
+  }
+
+  // Show pending banner when only stage1 is unlocked (stages 2-5 locked)
+  const banner = document.getElementById('pendingBanner');
+  const allLocked = !progress.stage2?.unlocked && !progress.stage3?.unlocked && !progress.stage4?.unlocked && !progress.stage5?.unlocked;
+  if (banner) banner.classList.toggle('show', allLocked);
+}
+
+/* ════════════════════════════════════════
+   ACCESS CODE UNLOCK
+══════════════════════════════════════════ */
+const ACCESS_CODES = {
+  'ERJM-FULL-2026':  ['stage1','stage2','stage3','stage4','stage5'],
+  'ERJM-S1-2026':    ['stage1'],
+  'ERJM-S2-2026':    ['stage1','stage2'],
+  'ERJM-S3-2026':    ['stage1','stage2','stage3'],
+  'ERJM-S4-2026':    ['stage1','stage2','stage3','stage4'],
+  'ERJ-ALL-ACCESS':  ['stage1','stage2','stage3','stage4','stage5'],
+  'COHORT7-FULL':    ['stage1','stage2','stage3','stage4','stage5'],
+};
+
+function redeemCode() {
+  const raw  = (document.getElementById('accessCodeInput')?.value || '').trim().toUpperCase();
+  const msg  = document.getElementById('codeMsg');
+  const stages = ACCESS_CODES[raw];
+
+  if (!stages) {
+    if (msg) { msg.style.color='#EF4444'; msg.textContent='❌ Invalid code. Contact admin on WhatsApp to get your code.'; msg.style.display='block'; }
+    return;
+  }
+
+  let changed = false;
+  stages.forEach(id => {
+    if (!progress[id]) progress[id] = { unlocked:false, completed:false, lessons:[] };
+    if (!progress[id].unlocked) { progress[id].unlocked = true; changed = true; }
+  });
+
+  if (changed) {
+    saveProgress();
+    ensureJobBoardAccess(60); // Grant/extend job board for 60 days on any code redemption
+    const used = JSON.parse(localStorage.getItem('rjm_codes_used') || '[]');
+    used.push({ code: raw, email: session.email, at: new Date().toISOString() });
+    localStorage.setItem('rjm_codes_used', JSON.stringify(used));
+    const daysLeft = getJbDaysLeft();
+    if (msg) { msg.style.color='#7A8B5A'; msg.textContent=`✅ Access granted! ${stages.length} stage(s) unlocked. Job Board access: ${daysLeft} days.`; msg.style.display='block'; }
+    setTimeout(() => { renderStages(); updateStats(); renderOverview(); }, 600);
+  } else {
+    if (msg) { msg.style.color='#C96130'; msg.textContent='ℹ️ Those stages are already unlocked for your account.'; msg.style.display='block'; }
+  }
+}
+
+/* ════════════════════════════════════════
+   RENDER STAGE CARDS
+══════════════════════════════════════════ */
+function renderStages() {
+  const container = document.getElementById('stagesList');
+  container.innerHTML = '';
+  STAGES.forEach(stage => {
+    const sp      = progress[stage.id];
+    const locked  = !sp.unlocked;
+    const done    = sp.completed;
+    const lessonsDone = sp.lessons.length;
+    const totalL  = stage.lessons.length;
+    const pct     = Math.round((lessonsDone / totalL) * 100);
+
+    let statusClass = locked ? 'locked' : done ? 'completed' : (lessonsDone > 0 ? 'active-stage' : 'unlocked');
+    let statusTag   = locked ? `<span class="stage-tag lock">🔒 Locked</span>` :
+                      done   ? `<span class="stage-tag green">✓ Completed</span>` :
+                      lessonsDone > 0 ? `<span class="stage-tag amber">⚡ In Progress</span>` :
+                                        `<span class="stage-tag">🔓 Unlocked</span>`;
+
+    const lessonsHTML = stage.lessons.slice(0,3).map(l => {
+      const isDone = sp.lessons.includes(l.id);
+      return `<div class="lesson-item ${isDone?'done':''} ${locked?'locked-item':''}" onclick="${locked?'showLockedMsg()':''}">
+        <span class="lesson-num">${l.id.replace(/\D/g,'').slice(-1)}</span>
+        <span class="lesson-title">${l.title}</span>
+        <span class="lesson-duration">${l.dur}</span>
+        <div class="lesson-check">${isDone?'✓':locked?'🔒':''}</div>
+      </div>`;
+    }).join('') + (totalL > 3 ? `<div class="lesson-item" style="justify-content:center;color:var(--muted);font-size:.8rem;cursor:pointer" onclick="${locked?'showLockedMsg()':'openModal(\''+stage.id+'\')'}">+ ${totalL-3} more lessons…</div>` : '');
+
+    let actionsHTML = '';
+    if (!locked && !done) {
+      actionsHTML = `<button class="btn-start" onclick="openModal('${stage.id}')">▶ ${lessonsDone>0?'Continue':'Start'} Stage ${stage.num}</button>`;
+    } else if (done) {
+      actionsHTML = `<button class="btn-start green-btn" onclick="openModal('${stage.id}')">✓ Review Stage ${stage.num}</button>
+                     <button class="btn-outline" onclick="downloadCert('${stage.id}')">📜 Download Certificate</button>`;
+    } else {
+      actionsHTML = `<button class="btn-outline" style="cursor:not-allowed;opacity:.6">🔒 Access not granted — contact your admin</button>`;
+    }
+
+    const html = `
+    <div class="stage-card ${statusClass}" id="card_${stage.id}">
+      <div class="stage-header">
+        <div class="stage-num-badge">
+          <span class="s-label">Stage</span>
+          <span class="s-num">${done ? '✓' : stage.num}</span>
+        </div>
+        <div class="stage-info">
+          <h3>${stage.icon} ${stage.title}</h3>
+          <p class="stage-sub">${stage.sub}</p>
+          <div class="stage-tags">
+            ${statusTag}
+            <span class="stage-tag">${stage.days}</span>
+            <span class="stage-tag">${stage.type}</span>
+          </div>
+        </div>
+      </div>
+      <div class="stage-meta">
+        <span>📖 ${totalL} Lessons</span>
+        <span>⏱️ ~${Math.round(stage.lessons.reduce((a,l)=>a+parseInt(l.dur),0)/60*10)/10}h total</span>
+        <span>✓ ${lessonsDone}/${totalL} done</span>
+      </div>
+      <div class="lessons-list">${lessonsHTML}</div>
+      <div class="stage-prog">
+        <div class="stage-prog-header"><span>${lessonsDone}/${totalL} lessons</span><span>${pct}%</span></div>
+        <div class="stage-prog-bar"><div class="stage-prog-fill ${done?'green':''}" style="width:${pct}%"></div></div>
+      </div>
+      <div class="stage-actions">${actionsHTML}</div>
+    </div>`;
+    container.innerHTML += html;
+  });
+}
+
+/* ════════════════════════════════════════
+   LESSON MODAL
+══════════════════════════════════════════ */
+function openModal(stageId) {
+  const stage = STAGES.find(s => s.id === stageId);
+  if (!stage) return;
+  currentStageModal = stageId;
+  const sp = progress[stageId];
+
+  document.getElementById('modalTitle').textContent = `${stage.icon} Stage ${stage.num}: ${stage.title}`;
+  document.getElementById('modalSub').textContent   = sp.completed
+    ? '✓ Stage completed! You can review lessons or download your certificate.'
+    : `Complete all ${stage.lessons.length} lessons to unlock Stage ${stage.num + 1}.`;
+
+  const cont = document.getElementById('modalLessons');
+  cont.innerHTML = stage.lessons.map(l => {
+    const done = sp.lessons.includes(l.id);
+    return `<div class="modal-lesson ${done?'done':''}" id="ml_${l.id}">
+      <div class="ml-icon">${done ? '✅' : l.icon}</div>
+      <div class="ml-info">
+        <div class="ml-title">${l.title}</div>
+        <div class="ml-meta">⏱️ ${l.dur} &nbsp;·&nbsp; Stage ${stage.num}</div>
+      </div>
+      <div class="ml-status ${done?'done':'open'}">${done ? '✓ Done' : '▶ Open'}</div>
+      ${!done ? `<button class="btn-complete" onclick="completeLesson('${stageId}','${l.id}',this)">Mark Done</button>` : ''}
+    </div>`;
+  }).join('');
+
+  document.getElementById('lessonModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('lessonModal').classList.remove('open'); currentStageModal = null; }
+
+/* ════════════════════════════════════════
+   COMPLETE LESSON + UNLOCK LOGIC
+══════════════════════════════════════════ */
+function completeLesson(stageId, lessonId, btn) {
+  const sp = progress[stageId];
+  if (sp.lessons.includes(lessonId)) return;
+  sp.lessons.push(lessonId);
+  bumpStreak();
+
+  // Mark done in modal
+  const row = document.getElementById(`ml_${lessonId}`);
+  if (row) {
+    row.classList.add('done');
+    row.querySelector('.ml-icon').textContent = '✅';
+    row.querySelector('.ml-status').textContent = '✓ Done';
+    row.querySelector('.ml-status').classList.replace('open','done');
+    btn.remove();
+  }
+
+  const stage  = STAGES.find(s => s.id === stageId);
+  const allDone = sp.lessons.length === stage.lessons.length;
+
+  if (allDone && !sp.completed) {
+    sp.completed = true;
+    // Unlock next stage
+    const idx = STAGES.findIndex(s => s.id === stageId);
+    if (idx < STAGES.length - 1) {
+      const nextId = STAGES[idx + 1].id;
+      progress[nextId].unlocked = true;
+      showToast(`🔓 Stage ${idx+2} unlocked! "${STAGES[idx+1].title}"`, 'unlock');
+      confettiBlast();
+    } else {
+      showToast('🎉 Congratulations! You have completed ALL 5 Stages!', 'success');
+      confettiBlast();
+    }
+    document.getElementById('modalSub').textContent = '✓ Stage completed! Download your certificate below.';
+  } else {
+    showToast(`✓ Lesson marked complete! ${stage.lessons.length - sp.lessons.length} left.`, 'success');
+  }
+
+  saveProgress();
+  updateStats();
+  renderStages();
+  renderOverview();
+  renderCerts();
+}
+
+function showLockedMsg() {
+  showToast('🔒 This stage is locked. Your administrator must grant access before you can begin.', 'info');
+}
+
+/* ════════════════════════════════════════
+   RENDER OVERVIEW
+══════════════════════════════════════════ */
+function renderOverview() {
+  // Overall progress circle
+  const total  = STAGES.length * 5;
+  const done   = countCompletedLessons();
+  const pct    = Math.round((done / total) * 100);
+  const circ   = 2 * Math.PI * 36;
+  const fill   = circ - (circ * pct / 100);
+  const el = document.getElementById('pcFill');
+  if (el) { el.style.strokeDashoffset = fill; }
+  const pp = document.getElementById('pcPct');
+  if (pp) pp.textContent = pct + '%';
+
+  // Per-stage bars
+  const pb = document.getElementById('progBars');
+  if (pb) {
+    pb.innerHTML = STAGES.map(s => {
+      const sp = progress[s.id];
+      const p  = sp ? Math.round((sp.lessons.length / s.lessons.length) * 100) : 0;
+      return `<div class="prog-stage-row">
+        <span class="prog-stage-name">Stage ${s.num}</span>
+        <div class="prog-bar"><div class="prog-bar-fill ${sp?.completed?'done':''}" style="width:${p}%"></div></div>
+        <span class="prog-pct-label">${p}%</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Streak calendar (last 28 days)
+  const cal = document.getElementById('streakCalendar');
+  if (cal) {
+    const activeDays = getActiveDays();
+    const today = new Date().toDateString();
+    cal.innerHTML = Array.from({length:28},(_,i) => {
+      const d = new Date(Date.now() - (27-i)*86400000);
+      const ds = d.toDateString();
+      const isToday = ds === today;
+      const active  = activeDays.includes(ds);
+      const dayLabel = ['S','M','T','W','T','F','S'][d.getDay()];
+      return `<div class="streak-day ${isToday?'today':active?'active':''}" title="${ds}">${dayLabel}</div>`;
+    }).join('');
+  }
+
+  const streak = getStreak();
+  const activeDays = getActiveDays();
+  ['ssCurrent','ssBest','ssDays'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = [streak, streak, activeDays.length][i];
+  });
+
+  // Achievements
+  const ag = document.getElementById('achievementsGrid');
+  if (ag) {
+    const earned = new Set();
+    if (countCompletedLessons() > 0) earned.add('first_lesson');
+    if (progress.stage1?.completed) earned.add('stage1_done');
+    if (progress.stage3?.completed) earned.add('stage3_done');
+    if (getStreak() >= 3) earned.add('streak3');
+    if (progress.stage5?.completed) earned.add('stage5_done');
+    if (countCompletedStages() === 5) earned.add('all_stages');
+    ag.innerHTML = ACHIEVEMENTS.map(a => `
+      <div class="achieve-item ${earned.has(a.id)?'earned':''}" title="${a.name}">
+        <div class="achieve-icon">${a.icon}</div>
+        <div class="achieve-name">${a.name}</div>
+      </div>`).join('');
+  }
+}
+
+/* ════════════════════════════════════════
+   RENDER CERTS
+══════════════════════════════════════════ */
+function renderCerts() {
+  const grid = document.getElementById('certsGrid');
+  if (!grid) return;
+  grid.innerHTML = STAGES.map(s => {
+    const sp = progress[s.id];
+    const earned = sp?.completed;
+    const locked = !sp?.unlocked;
+    let btnHtml;
+    if (locked)  btnHtml = `<span class="cert-btn locked">🔒 Locked</span>`;
+    else if (!earned) btnHtml = `<span class="cert-btn earn">Complete stage to earn</span>`;
+    else btnHtml = `<button class="cert-btn download" onclick="downloadCert('${s.id}')">📥 Download Certificate</button>`;
+    return `<div class="cert-card ${earned?'earned':''}">
+      <div class="cert-icon">${earned ? '🏆' : locked ? '🔒' : '🎯'}</div>
+      <div class="cert-name">Stage ${s.num} Certificate</div>
+      <div class="cert-sub">${s.title}</div>
+      ${btnHtml}
+    </div>`;
+  }).join('');
+}
+
+function downloadCert(stageId) {
+  const stage = STAGES.find(s => s.id === stageId);
+  if (!progress[stageId]?.completed) { showToast('Complete all lessons in this stage first!','info'); return; }
+  showToast(`📜 Generating certificate for Stage ${stage.num}…`, 'success');
+  // In a real app this would generate a PDF certificate
+  setTimeout(() => showToast('✅ Certificate ready! (Demo mode — PDF generation requires backend)','info'), 1500);
+}
+
+/* ════════════════════════════════════════
+   VIEW SWITCHING
+══════════════════════════════════════════ */
+function showView(v) {
+  ['Stages','Overview','Materials','Certs','Jobs'].forEach(n => {
+    const _el = document.getElementById('view'+n); if (_el) _el.style.display = n.toLowerCase() === v ? '' : 'none';
+  });
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  const map = { stages:0, overview:1, materials:2, certs:3, jobs:4 };
+  document.querySelectorAll('.sidebar-item')[map[v]]?.classList.add('active');
+  if (v === 'materials') renderMaterials();
+  if (v === 'certs')     renderCerts();
+  if (v === 'jobs')      initDashJobs();
+}
+
+/* ════════════════════════════════════════
+   RENDER MATERIALS
+══════════════════════════════════════════ */
+function renderMaterials() {
+  /* ── SLIDE DECKS: one per stage, exact file URLs ── */
+  const STAGE_SLIDES = [
+    { stageId:'stage1', stage:'Stage 1', icon:'🧠', title:'Remote Mindset Blueprint',
+      color:'#E8470F', sessions:'Sessions 1 & 2',
+      url:'https://docs.google.com/presentation/d/1ZpqlDPebvO9yyYRaGQ4RPzAv_tqyQ5YT/edit?usp=sharing' },
+    { stageId:'stage2', stage:'Stage 2', icon:'🛠️', title:'The Digital Toolkit',
+      color:'#E8470F', sessions:'Sessions 3 & 4',
+      url:'https://docs.google.com/presentation/d/1a_DK-axvPo1x7V7hPdpdQ9EFqmb7tSrv/edit?usp=sharing' },
+    { stageId:'stage3', stage:'Stage 3', icon:'📡', title:'Asynchronous Communication Mastery',
+      color:'#C96130', sessions:'Sessions 5 & 6',
+      url:'https://docs.google.com/presentation/d/1r7dJvXQbFC4QQGWXL8JYy_QAMiXXpIuk/edit?usp=sharing' },
+    { stageId:'stage4', stage:'Stage 4', icon:'🔍', title:'Global Job Search Mastery',
+      color:'#E8470F', sessions:'Sessions 7 & 8',
+      url:'https://docs.google.com/presentation/d/1esTZfKNm8HiKaLUTa_xzlMunNO12BJkc/edit?usp=sharing' },
+    { stageId:'stage5', stage:'Stage 5', icon:'🌟', title:'The Thrive Programme',
+      color:'#7A8B5A', sessions:'Sessions 9 & 10',
+      url:'https://docs.google.com/presentation/d/1yXgfoU1k0QyXtGiw6-YOeGhxOWQrIb4K/edit?usp=sharing' },
+  ];
+
+  const slideGrid = document.getElementById('slideDeckGrid');
+  if (slideGrid) {
+    slideGrid.innerHTML = STAGE_SLIDES.map(s => {
+      const unlocked = progress[s.stageId]?.unlocked;
+      return `
+      <div style="background:var(--card);border:1.5px solid ${unlocked ? s.color+'44' : 'var(--border2)'};border-radius:4px;overflow:hidden;backdrop-filter:blur(12px);opacity:${unlocked?1:.5}">
+        <div style="background:${unlocked ? s.color+'22' : 'var(--bg3)'};padding:.8rem 1rem;border-bottom:1px solid ${unlocked ? s.color+'33' : 'var(--border2)'};display:flex;align-items:center;gap:.6rem">
+          <span style="font-size:1.4rem">${unlocked ? s.icon : '🔒'}</span>
+          <div>
+            <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${unlocked ? s.color : 'var(--muted2)'}">${s.stage} · ${s.sessions}</div>
+            <div style="font-size:.84rem;font-weight:700;color:var(--text);line-height:1.3">${s.title}</div>
+          </div>
+        </div>
+        <div style="padding:.85rem 1rem">
+          ${unlocked
+            ? `<a href="${s.url}" target="_blank" rel="noopener"
+                 style="display:flex;align-items:center;justify-content:center;gap:6px;background:${s.color};color:#fff;padding:.55rem 1rem;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .2s;">
+                 🎞️ Open Slide Deck
+               </a>`
+            : `<div style="text-align:center;font-size:.72rem;color:var(--muted2);padding:.45rem;background:var(--bg3);border-radius:7px;border:1px solid var(--border2)">🔒 Unlock stage to access</div>`
+          }
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  /* ── WORKBOOKS & TEMPLATES: exact per-stage file URLs ── */
+  const WORKBOOK_ITEMS = [
+    { stageId:'stage1', icon:'📒', title:'Stage 1 Participant Workbook',
+      meta:'Remote Mindset Blueprint · Fill-in workbook',
+      url:'https://docs.google.com/document/d/1-hkntAHJMObEnlnj46k8gmnhteua4ws9/edit?usp=sharing',
+      color:'#E8470F', type:'doc' },
+    { stageId:'stage2', icon:'📒', title:'Stage 2 Participant Workbook',
+      meta:'The Digital Toolkit · Tools & setup guide',
+      url:'https://docs.google.com/document/d/1lBr38HcT2Zg_43Pd-DzegSRoq8QXgxLB/edit?usp=sharing',
+      color:'#E8470F', type:'doc' },
+    { stageId:'stage3', icon:'📒', title:'Stage 3 Participant Workbook',
+      meta:'Async Communication Mastery · Exercises & templates',
+      url:'https://docs.google.com/document/d/1yKXGv4aSgWCqG1p9kSb8fc85F_wexFoc/edit?usp=sharing',
+      color:'#C96130', type:'doc' },
+    { stageId:'stage4', icon:'📒', title:'Stage 4 Participant Workbook',
+      meta:'Job Search Mastery · Platform tracker & scripts',
+      url:'https://docs.google.com/document/d/1hBdH5Quu7xc3BwBpqhiLgDs_OwI_8Arv/edit?usp=sharing',
+      color:'#E8470F', type:'doc' },
+    { stageId:'stage4', icon:'✉️', title:'3-Sentence Cover Letter Formula',
+      meta:'Stage 4 Extra · Copy-and-adapt templates',
+      url:'https://docs.google.com/document/d/1_wgHpeADksgTjcmYr7jCLA3XfQO75rGz/edit?usp=sharing',
+      color:'#E8470F', type:'doc' },
+    { stageId:'stage4', icon:'📋', title:'Job Application Tracker',
+      meta:'Stage 4 Extra · Google Sheets template',
+      url:'https://docs.google.com/spreadsheets/d/14xT13fK-QKCIH-LGsy02tVxmm-aQZVKp/edit?usp=sharing',
+      color:'#E8470F', type:'sheet' },
+    { stageId:'stage4', icon:'📄', title:'Stage 4 Supplementary Resource',
+      meta:'Stage 4 Extra · Additional reference material',
+      url:'https://docs.google.com/document/d/1D-8cVtNqpfHohSML563aqAsAg--8LYRu/edit?usp=sharing',
+      color:'#E8470F', type:'doc' },
+    { stageId:'stage5', icon:'📒', title:'Stage 5 Participant Workbook',
+      meta:'Negotiation & Onboarding · Salary scripts & 90-day plan',
+      url:'https://docs.google.com/document/d/17uMf44bl9RTHHTzf6pTxh_3GDR33q1qH/edit?usp=sharing',
+      color:'#7A8B5A', type:'doc' },
+  ];
+
+  const wbGrid = document.getElementById('workbookGrid');
+  if (wbGrid) {
+    wbGrid.innerHTML = WORKBOOK_ITEMS.map(w => {
+      const unlocked = progress[w.stageId]?.unlocked;
+      const typeIcon = w.type === 'sheet' ? '📊' : w.type === 'pptx' ? '🎞️' : '📄';
+      return `
+      <div style="background:var(--card);border:1.5px solid ${unlocked ? w.color+'33' : 'var(--border2)'};border-radius:4px;padding:1rem;backdrop-filter:blur(12px);display:flex;flex-direction:column;gap:.6rem;opacity:${unlocked?1:.5}">
+        <div style="display:flex;align-items:flex-start;gap:.7rem">
+          <span style="font-size:1.4rem;flex-shrink:0;margin-top:1px">${unlocked ? w.icon : '🔒'}</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:.84rem;font-weight:700;color:var(--text);margin-bottom:2px;line-height:1.3">${w.title}</div>
+            <div style="font-size:.7rem;color:var(--muted)">${w.meta}</div>
+          </div>
+        </div>
+        ${unlocked
+          ? `<a href="${w.url}" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(255,87,34,.1);border:1px solid rgba(255,87,34,.25);color:var(--electric);padding:.5rem;border-radius:7px;text-decoration:none;font-size:.76rem;font-weight:700;">
+               ${typeIcon} Open &amp; Download
+             </a>`
+          : `<div style="text-align:center;font-size:.7rem;color:var(--muted2);padding:.45rem;background:var(--bg3);border-radius:7px;border:1px solid var(--border2)">🔒 Locked</div>`
+        }
+      </div>`;
+    }).join('');
+  }
+}
+
+/* ════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
+function showToast(msg, type='info') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transform='translateX(40px)'; t.style.transition='.3s ease'; setTimeout(()=>t.remove(),300); }, 3500);
+}
+
+/* ════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════ */
+function confettiBlast() {
+  const colors = ['#E8470F','#E8470F','#7A8B5A','#C96130','#EF4444','#E8470F'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `left:${Math.random()*100}vw;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;animation-duration:${2+Math.random()*2}s;animation-delay:${Math.random()*.5}s;border-radius:${Math.random()>0.5?'50%':'2px'}`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 4000);
+  }
+}
+
+/* ════════════════════════════════════════
+   THEME + SIDEBAR
+══════════════════════════════════════════ */
+/* ════════════════════════════════════════
+   PRIVATE JOB BOARD — DASHBOARD
+══════════════════════════════════════════ */
+const JOB_ACCESS_KEY  = 'erj_job_user_access';
+const DASH_JOBS_KEY   = 'erj_jobs';
+const DASH_JSEEN_KEY  = 'erj_dash_jobs_seen';
+
+const SEED_JOBS = [
+  {id:'m1',src:'micro1.ai',company:'micro1.ai',emoji:'🤖',role:'AI-Matched Worldwide Jobs',cat:'AI & Machine Learning',salary:'$50k–$200k',type:'Various',loc:'Worldwide',desc:'Browse 100+ AI-matched remote roles.',url:'https://refer.micro1.ai/referral/jobs/?referralCode=c7e58760-581b-45d4-9deb-475e02122729&utm_source=referral&utm_medium=share&utm_campaign=job_referral',posted:'2026-05-26'},
+  {id:'a1',src:'Ashby',company:'Arc (YC W16)',emoji:'⚡',role:'Senior Software Engineer',cat:'Engineering',salary:'$120k–$165k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/arc/jobs',posted:'2026-05-24'},
+  {id:'a2',src:'Ashby',company:'Mercury',emoji:'🏦',role:'Product Designer',cat:'Design',salary:'$130k–$175k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/mercury/jobs',posted:'2026-05-23'},
+  {id:'a3',src:'Ashby',company:'Linear',emoji:'📐',role:'Frontend Engineer',cat:'Engineering',salary:'$140k–$180k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/linear/jobs',posted:'2026-05-22'},
+  {id:'a4',src:'Ashby',company:'Vercel',emoji:'▲',role:'Developer Relations Engineer',cat:'Engineering',salary:'$130k–$170k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/vercel/jobs',posted:'2026-05-21'},
+  {id:'a5',src:'Ashby',company:'Notion',emoji:'📓',role:'Senior Data Analyst',cat:'Data & Analytics',salary:'$130k–$160k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/notion/jobs',posted:'2026-05-20'},
+  {id:'g1',src:'Greenhouse',company:'Buffer',emoji:'📱',role:'Content Writer',cat:'Writing & Content',salary:'$55k–$70k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/buffer',posted:'2026-05-25'},
+  {id:'g2',src:'Greenhouse',company:'GitLab',emoji:'🦊',role:'Senior Marketing Manager',cat:'Marketing',salary:'$100k–$140k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/gitlab',posted:'2026-05-24'},
+  {id:'g3',src:'Greenhouse',company:'Automattic',emoji:'🅰️',role:'Happiness Engineer',cat:'Customer Success',salary:'$65k–$85k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/automattic',posted:'2026-05-23'},
+  {id:'g4',src:'Greenhouse',company:'Doist',emoji:'✅',role:'Product Manager',cat:'Product',salary:'$90k–$120k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/doist',posted:'2026-05-22'},
+  {id:'g5',src:'Greenhouse',company:'Remote.com',emoji:'🌍',role:'HR Compliance Specialist',cat:'HR & People',salary:'$70k–$95k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/remote',posted:'2026-05-21'},
+  {id:'l1',src:'Lever',company:'Zapier',emoji:'⚡',role:'Technical Writer',cat:'Writing & Content',salary:'$80k–$110k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/zapier',posted:'2026-05-25'},
+  {id:'l2',src:'Lever',company:'InVision',emoji:'🎨',role:'UX Researcher',cat:'Design',salary:'$100k–$130k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/invisionapp',posted:'2026-05-24'},
+  {id:'l3',src:'Lever',company:'Auth0 (Okta)',emoji:'🔐',role:'Customer Success Manager',cat:'Customer Success',salary:'$85k–$115k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/auth0',posted:'2026-05-23'},
+  {id:'l4',src:'Lever',company:'Toptal',emoji:'🌟',role:'QA Engineer',cat:'Engineering',salary:'$70k–$95k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/toptal',posted:'2026-05-22'},
+  {id:'l5',src:'Lever',company:'Deel',emoji:'💸',role:'Finance Operations Analyst',cat:'Finance',salary:'$75k–$100k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/deel',posted:'2026-05-21'},
+  {id:'p1',src:'Pinpoint',company:'CharlieHR',emoji:'👥',role:'People Operations Manager',cat:'HR & People',salary:'£45k–£60k',type:'Full-time',loc:'UK / Europe Remote',url:'https://pinpointhq.com/en/postings',posted:'2026-05-24'},
+  {id:'p2',src:'Pinpoint',company:'Hotjar',emoji:'🔥',role:'Growth Marketing Specialist',cat:'Marketing',salary:'€55k–€80k',type:'Full-time',loc:'Worldwide',url:'https://pinpointhq.com/en/postings',posted:'2026-05-23'},
+  {id:'i1',src:'Indeed',company:'HubSpot',emoji:'🧲',role:'Solutions Engineer',cat:'Engineering',salary:'$110k–$145k',type:'Full-time',loc:'Remote – Americas / EMEA',url:'https://www.indeed.com/cmp/Hubspot/jobs',posted:'2026-05-25'},
+  {id:'i2',src:'Indeed',company:'Shopify',emoji:'🛍️',role:'Merchant Success Manager',cat:'Customer Success',salary:'$70k–$95k',type:'Full-time',loc:'Remote – Canada / EMEA',url:'https://www.indeed.com/cmp/Shopify/jobs',posted:'2026-05-24'},
+  {id:'i3',src:'Indeed',company:'Stripe',emoji:'💳',role:'Technical Support Specialist',cat:'Customer Success',salary:'$65k–$85k',type:'Full-time',loc:'Remote – EMEA',url:'https://www.indeed.com/cmp/Stripe/jobs',posted:'2026-05-23'},
+  {id:'r1',src:'Remote.co',company:'Loom',emoji:'🎬',role:'Brand Designer',cat:'Design',salary:'$110k–$140k',type:'Full-time',loc:'Worldwide',url:'https://remote.co/remote-jobs/',posted:'2026-05-25'},
+  {id:'r2',src:'Remote.co',company:'Close CRM',emoji:'📞',role:'Sales Operations Manager',cat:'Operations',salary:'$85k–$110k',type:'Full-time',loc:'Worldwide',url:'https://remote.co/remote-jobs/',posted:'2026-05-23'},
+  {id:'h1',src:'Himalayas',company:'Basecamp',emoji:'⛺',role:'Programmer',cat:'Engineering',salary:'$150k–$175k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-22'},
+  {id:'h2',src:'Himalayas',company:'Whereby',emoji:'📹',role:'Product Manager – Enterprise',cat:'Product',salary:'$100k–$130k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-21'},
+  {id:'h3',src:'Himalayas',company:'Oyster HR',emoji:'🦪',role:'ML Engineer – Payroll Intelligence',cat:'AI & Machine Learning',salary:'$120k–$155k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-24'},
+];
+
+let _djPage = 1;
+const DJ_PER = 8;
+
+function getDashJobs() {
+  try {
+    const custom = JSON.parse(localStorage.getItem(DASH_JOBS_KEY)||'[]');
+    const merged = [...SEED_JOBS];
+    custom.forEach(j=>{ const idx=merged.findIndex(x=>x.id===j.id); if(idx>=0)merged[idx]=j; else merged.unshift(j); });
+    return merged.sort((a,b)=>new Date(b.posted)-new Date(a.posted));
+  } catch { return SEED_JOBS; }
+}
+
+function djIsNew(p){ return (Date.now()-new Date(p).getTime())<7*24*60*60*1000; }
+
+function checkDashJobAccess() {
+  try {
+    const s = JSON.parse(localStorage.getItem('rjm_session')||'null');
+    if (!s) return false;
+    if (s.role==='admin') return true;
+    return JSON.parse(localStorage.getItem(JOB_ACCESS_KEY)||'[]').includes(s.email);
+  } catch { return false; }
+}
+
+function showPayInstructions() {
+  document.getElementById('jobPayInstructions').style.display='block';
+}
+
+function initDashJobs() {
+  const ok = checkDashJobAccess();
+  document.getElementById('jobsLocked').style.display = ok?'none':'block';
+  document.getElementById('jobsBoard').style.display  = ok?'block':'none';
+  if (ok) { renderDashJobs(); checkDashJobNotif(); }
+}
+
+function renderDashJobs() {
+  const q   = (document.getElementById('jbSearchInput')?.value||'').toLowerCase();
+  const cat = document.getElementById('jbCatFilter')?.value||'';
+  const all = getDashJobs().filter(j=>{
+    if(cat&&j.cat!==cat)return false;
+    if(!q)return true;
+    return (j.role+j.company+(j.cat||'')).toLowerCase().includes(q);
+  });
+  const el = document.getElementById('dashJobsList');
+  if(!el)return;
+  document.getElementById('jbLiveCount').textContent = getDashJobs().length;
+  document.getElementById('jbNewCount').textContent  = getDashJobs().filter(j=>djIsNew(j.posted)).length;
+
+  const paged = all.slice((_djPage-1)*DJ_PER, _djPage*DJ_PER);
+  if(!paged.length){
+    el.innerHTML='<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:.85rem">No matching jobs. Try clearing the search or category filter.</div>';
+    document.getElementById('dashJobsPager').innerHTML='';
+    return;
+  }
+  el.innerHTML = paged.map(j=>`
+    <div style="background:var(--card);border:1px solid ${djIsNew(j.posted)?'rgba(16,185,129,.3)':'var(--border2)'};border-radius:var(--r);padding:1rem 1.1rem;position:relative;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--sh)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      ${djIsNew(j.posted)?'<span style="position:absolute;top:.7rem;right:.7rem;background:var(--green);color:#fff;font-size:.5rem;font-weight:700;letter-spacing:1.5px;padding:2px 7px;border-radius:100px">NEW</span>':''}
+      <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.6rem">
+        <div style="width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#963F12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">${j.emoji||'🌐'}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.role}</div>
+          <div style="font-size:.76rem;color:var(--muted)">${j.company} · <span style="color:var(--electric)">${j.src}</span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.75rem">
+        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(255,87,34,.1);color:var(--electric)">${j.cat||'General'}</span>
+        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(16,185,129,.08);color:var(--green)">🌐 ${j.loc||'Worldwide'}</span>
+        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(245,158,11,.08);color:var(--amber)">${j.type||'Full-time'}</span>
+        ${j.salary?`<span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(20,184,166,.08);color:#E8470F">💰 ${j.salary}</span>`:''}
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:.68rem;color:var(--muted2)">📅 ${new Date(j.posted).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}</span>
+        <a href="${j.url}" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border-radius:7px;padding:.42rem .9rem;font-family:var(--font-d);font-size:.76rem;font-weight:700;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:5px" onmouseover="this.style.background='#963F12'" onmouseout="this.style.background='var(--accent)'">Apply Now <span style="font-size:.9rem">→</span></a>
+      </div>
+    </div>`).join('');
+
+  const pages = Math.ceil(all.length/DJ_PER);
+  document.getElementById('dashJobsPager').innerHTML = pages>1?Array.from({length:pages},(_,i)=>
+    `<button onclick="_djPage=${i+1};renderDashJobs()" style="min-width:32px;height:32px;padding:0 .4rem;border-radius:7px;border:1px solid ${i+1===_djPage?'var(--accent)':'var(--border2)'};background:${i+1===_djPage?'var(--accent)':'var(--bg3)'};color:${i+1===_djPage?'#fff':'var(--muted)'};cursor:pointer;font-size:.78rem;font-weight:600">${i+1}</button>`
+  ).join(''):'';
+}
+
+function checkDashJobNotif() {
+  const seen = JSON.parse(localStorage.getItem(DASH_JSEEN_KEY)||'[]');
+  const nj   = getDashJobs().find(j=>djIsNew(j.posted)&&!seen.includes(j.id));
+  const dot  = document.getElementById('jbBellDot');
+  if (dot) dot.style.display = nj?'block':'none';
+}
+
+async function handleDashJobBell() {
+  const seen  = JSON.parse(localStorage.getItem(DASH_JSEEN_KEY)||'[]');
+  const nj    = getDashJobs().find(j=>djIsNew(j.posted)&&!seen.includes(j.id));
+  if (nj) {
+    seen.push(nj.id); localStorage.setItem(DASH_JSEEN_KEY,JSON.stringify(seen));
+    showToast('🆕 Latest: '+nj.role+' @ '+nj.company,'success');
+    document.getElementById('jbBellDot').style.display='none';
+    return;
+  }
+  if (!('Notification' in window)) { showToast('Push notifications not supported.','info'); return; }
+  if (Notification.permission==='granted') { showToast('✅ You will be notified when new remote jobs drop!','success'); return; }
+  if (Notification.permission==='denied')  { showToast('⚠ Enable notifications in browser settings.','info'); return; }
+  const r = await Notification.requestPermission();
+  if (r==='granted') { showToast('🔔 Job alerts enabled!','success'); try{new Notification('ERJ Job Board',{body:'You\'ll be notified when new global remote jobs are posted!',icon:'/icon192.png'})}catch{} }
+}
+
+setInterval(()=>{ if(document.getElementById('jobsBoard')?.style.display!=='none') renderDashJobs(); },60000);
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  var _tb=document.getElementById('themeBtn'); if(_tb) _tb.textContent = t === 'day' ? '🌙' : '☀️';
+  localStorage.setItem('rjt-theme', t);
+  // sync PWA theme-color meta
+  const m = document.getElementById('metaThemeColor');
+  if (m) m.content = t === 'day' ? '#FAF8F4' : '#E8470F';
+}
+var _dashTB=document.getElementById('themeBtn');
+if(_dashTB) _dashTB.addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'day' ? 'night' : 'day');
+});
+
+let sidebarCollapsed = false;
+document.getElementById('sidebarToggle').addEventListener('click', () => {
+  const sb = document.getElementById('sidebar');
+  if (window.innerWidth <= 768) {
+    sb.classList.toggle('mobile-open');
+  } else {
+    sidebarCollapsed = !sidebarCollapsed;
+    sb.classList.toggle('collapsed', sidebarCollapsed);
+  }
+});
+
+/* ════════════════════════════════════════
+   USER DROPDOWN
+══════════════════════════════════════════ */
+function toggleDropdown() {
+  document.getElementById('userDropdown').classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('#userPill') && !e.target.closest('#userDropdown')) {
+    document.getElementById('userDropdown').classList.remove('open');
+  }
+});
+
+/* ════════════════════════════════════════
+   LOGOUT
+══════════════════════════════════════════ */
+function logout() {
+  localStorage.removeItem('rjm_session');
+  window.location.href = 'login.html';
+}
+
+/* Close modal on overlay click */
+document.getElementById('lessonModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+/* ════════════════════════════════════════
+   NOTIFICATION PANEL — CLASS SCHEDULE
+══════════════════════════════════════════ */
+const CLASS_KEY = 'erj_next_class';
+let _cdInterval = null;
+
+function getClassSchedule() {
+  try { return JSON.parse(localStorage.getItem(CLASS_KEY) || 'null'); } catch { return null; }
+}
+
+function toggleNotifPanel() {
+  const panel = document.getElementById('notifPanel');
+  const open  = panel.classList.toggle('open');
+  if (open) renderNotifPanel();
+  // Close when clicking outside
+  if (open) {
+    setTimeout(() => {
+      const handler = e => {
+        if (!panel.contains(e.target) && e.target.id !== 'notifBtn') {
+          panel.classList.remove('open');
+          document.removeEventListener('click', handler);
+        }
+      };
+      document.addEventListener('click', handler);
+    }, 50);
+  }
+}
+
+function renderNotifPanel() {
+  const cls  = getClassSchedule();
+  const body = document.getElementById('notifBody');
+  const dot  = document.getElementById('notifDot');
+
+  // ── JOB BOARD EXPIRY ALERTS ──
+  const jbDays = getJbDaysLeft();
+  let jbAlert = '';
+  if (jbDays === 0) {
+    jbAlert = `<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:.9rem 1rem;margin-bottom:.8rem;font-size:.84rem;line-height:1.6">
+      🔴 <strong style="color:#f87171">Job Board Access EXPIRES TODAY!</strong><br>
+      Renew now to keep access. <a href="https://paystack.shop/pay/rfix-j0sug" target="_blank" style="color:#34d399;font-weight:700">Renew ₦10,000 →</a>
+    </div>`;
+    if (dot) dot.style.display = 'block';
+  } else if (jbDays > 0 && jbDays <= 5) {
+    jbAlert = `<div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:.9rem 1rem;margin-bottom:.8rem;font-size:.84rem;line-height:1.6">
+      🔴 <strong style="color:#f87171">Job Board expires in ${jbDays} day${jbDays===1?'':'s'}!</strong><br>
+      Renew soon to avoid losing access. <a href="https://paystack.shop/pay/rfix-j0sug" target="_blank" style="color:#34d399;font-weight:700">Renew now →</a>
+    </div>`;
+    if (dot) dot.style.display = 'block';
+  } else if (jbDays > 5 && jbDays <= 10) {
+    jbAlert = `<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:.9rem 1rem;margin-bottom:.8rem;font-size:.84rem;line-height:1.6">
+      🟡 <strong style="color:#fbbf24">Job Board access: ${jbDays} days remaining</strong><br>
+      Plan ahead — renew before it expires. <a href="https://paystack.shop/pay/rfix-j0sug" target="_blank" style="color:#34d399;font-weight:700">Renew →</a>
+    </div>`;
+  }
+
+  if (!cls) {
+    body.innerHTML = jbAlert + `
+      <div class="np-empty">
+        📭 No class scheduled yet.<br>
+        Your instructor or admin will post the next live class here.<br><br>
+        <a href="https://wa.me/message/5PMRVGMUU4NGL1" target="_blank" rel="noopener" class="np-wa">💬 Check WhatsApp Group</a>
+      </div>`;
+    if (!jbAlert && dot) dot.style.display = 'none';
+    return;
+  }
+
+  // Show red dot if class is in the future or jb expiring soon
+  const classTime = new Date(cls.date + 'T' + cls.time);
+  const isFuture  = classTime > new Date();
+  if (dot) dot.style.display = (isFuture || jbDays <= 10) ? 'block' : 'none';
+
+  const dateStr = classTime.toLocaleDateString('en-NG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const timeStr = classTime.toLocaleTimeString('en-NG', { hour:'2-digit', minute:'2-digit' });
+  const tz      = cls.timezone || 'WAT (UTC+1)';
+
+  body.innerHTML = jbAlert + `
+    <div class="np-class-card">
+      <div class="npc-badge">🔴 LIVE CLASS</div>
+      <div class="npc-title">${cls.title || 'Live Training Session'}</div>
+      <div class="npc-meta">
+        📅 ${dateStr}<br>
+        ⏰ ${timeStr} ${tz}<br>
+        📺 ${cls.platform || 'Online'}<br>
+        ${cls.stage ? '📚 ' + cls.stage : ''}
+      </div>
+      <a href="${cls.link || 'https://youtube.com/@everythingremotejob'}" target="_blank" rel="noopener" class="npc-join">
+        ▶ Join Live Class
+      </a>
+    </div>
+    <div class="np-countdown" id="npCountdown">
+      <div class="np-cd-label">Class starts in</div>
+      <div class="np-cd-time" id="npCdTime">--:--:--</div>
+    </div>
+    ${cls.notes ? `<div class="np-note">📌 ${cls.notes}</div>` : ''}
+    <a href="https://wa.me/message/5PMRVGMUU4NGL1" target="_blank" rel="noopener" class="np-wa">💬 WhatsApp Support</a>`;
+
+  // Countdown
+  if (_cdInterval) clearInterval(_cdInterval);
+  function updateCd() {
+    const now  = new Date();
+    const diff = classTime - now;
+    const el   = document.getElementById('npCdTime');
+    const cd   = document.getElementById('npCountdown');
+    if (!el) { clearInterval(_cdInterval); return; }
+    if (diff <= 0) {
+      el.textContent = 'Class is LIVE now! 🔴';
+      el.style.color = 'var(--red)';
+      if (cd) cd.style.border = '2px solid var(--red)';
+      clearInterval(_cdInterval);
+      return;
+    }
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    el.textContent = h > 24
+      ? Math.floor(diff/86400000) + 'd ' + h%24 + 'h ' + m + 'm'
+      : String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  updateCd();
+  _cdInterval = setInterval(updateCd, 1000);
+}
+
+/* Check for scheduled class on load and show dot */
+(function initNotif() {
+  const cls = getClassSchedule();
+  const dot = document.getElementById('notifDot');
+  if (cls && dot) {
+    const t = new Date(cls.date + 'T' + cls.time);
+    if (t > new Date()) dot.style.display = 'block';
+  }
+})();
+function bnNav(v) {
+  showView(v);
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('bn-' + v);
+  if (btn) btn.classList.add('active');
+}
+
+/* ════════════════════════════════════════
+   PWA INSTALL PROMPT
+══════════════════════════════════════════ */
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (!localStorage.getItem('erj_install_dismissed')) {
+    setTimeout(() => document.getElementById('installBanner')?.classList.add('show'), 8000);
+  }
+});
+function promptInstall() {
+  if (!deferredInstallPrompt) {
+    showToast('Tap your browser menu → "Add to Home Screen" to install', 'info');
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  deferredInstallPrompt.userChoice.then(c => {
+    if (c.outcome === 'accepted') { showToast('✅ ERJ Training installed!', 'success'); dismissInstall(); }
+    deferredInstallPrompt = null;
+  });
+}
+function dismissInstall() {
+  document.getElementById('installBanner')?.classList.remove('show');
+  localStorage.setItem('erj_install_dismissed', '1');
+}
+window.addEventListener('appinstalled', () => {
+  showToast('🎉 App installed! Open from your home screen.', 'success');
+  dismissInstall();
+  deferredInstallPrompt = null;
+});
+
+/* ════════════════════════════════════════
+   OFFLINE DETECTION
+══════════════════════════════════════════ */
+window.addEventListener('online',  () => { document.body.classList.remove('offline'); showToast('✅ Back online', 'success'); });
+window.addEventListener('offline', () => { document.body.classList.add('offline');    showToast('📡 Offline — showing cached content', 'info'); });
+
+/* ════════════════════════════════════════
+   URL PARAM VIEW ROUTING (PWA shortcuts)
+══════════════════════════════════════════ */
+(function() {
+  const p = new URLSearchParams(location.search).get('view');
+  if (p && ['stages','overview','materials','certs'].includes(p)) {
+    setTimeout(() => bnNav(p), 400);
+  }
+})();
+
+/* ════════════════════════════════════════
+   THEME COLOR META SYNC — handled inside applyTheme above
+══════════════════════════════════════════ */
+</script>
+<script id="erjPWA">
+(function(){
+  // Register service worker (enables offline + install criteria)
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    });
+  }
+  // Capture install prompt
+  var deferred=null, btn=null;
+  function makeBtn(){
+    if(btn) return btn;
+    btn=document.createElement('button');
+    btn.id='erjInstallBtn';
+    btn.textContent='⤓ Install App';
+    btn.setAttribute('aria-label','Install app');
+    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;align-items:center;gap:7px;background:var(--accent,#E8470F);color:#fff;border:none;border-radius:10px;padding:9px 14px;font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);';
+    btn.addEventListener('click',async function(){
+      if(!deferred) return;
+      deferred.prompt();
+      try{ await deferred.userChoice; }catch(e){}
+      deferred=null; btn.style.display='none';
+    });
+    document.body.appendChild(btn);
+    return btn;
+  }
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault(); deferred=e; makeBtn().style.display='inline-flex';
+  });
+  window.addEventListener('appinstalled',function(){ if(btn) btn.style.display='none'; deferred=null; });
+  // iOS Safari: no beforeinstallprompt — show a hint button that explains Add to Home Screen
+  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if(isIOS && !standalone){
+    window.addEventListener('load',function(){
+      var b=makeBtn(); b.textContent='⤓ Add to Home Screen'; b.style.display='inline-flex';
+      b.addEventListener('click',function(){ alert('To install: tap the Share icon, then “Add to Home Screen”.'); });
+    });
+  }
+})();
+</script>
+<!-- ===== Unified Theme Control (Day / System / Night) — header based ===== -->
+<script id="erjThemeJS">
+(function(){
+  var KEY='rjt-theme', html=document.documentElement;
+  var ICON={day:'☀️',night:'🌙',system:'💻'};
+  var NEXT={day:'system',system:'night',night:'day'};   // cycle order
+  var TITLE={day:'Theme: Day (tap for System)',system:'Theme: System (tap for Night)',night:'Theme: Night (tap for Day)'};
+  function sys(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'night':'day';}
+  function bar(resolved){
+    var m=document.getElementById('metaThemeColor')||document.querySelector('meta[name="theme-color"]:not([media])');
+    if(!m){m=document.createElement('meta');m.name='theme-color';m.id='metaThemeColor';document.head.appendChild(m);}
+    m.setAttribute('content', resolved==='night'?'#000000':'#FAFAF8');
+  }
+  function curPref(){ var p=localStorage.getItem(KEY); return ICON[p]?p:'system'; }
+  function apply(pref){
+    if(!ICON[pref]) pref='system';
+    var resolved = pref==='system'? sys() : pref;
+    html.setAttribute('data-theme', resolved);
+    localStorage.setItem(KEY, pref);
+    bar(resolved);
+    // update every in-header theme button on the page
+    document.querySelectorAll('[data-erj-theme-btn], #themeToggle, #themeBtn').forEach(function(btn){
+      btn.textContent = ICON[pref];
+      btn.setAttribute('title', TITLE[pref]);
+      btn.setAttribute('aria-label', TITLE[pref]);
+    });
+  }
+  window.erjApplyTheme=apply;
+  function wire(btn){
+    if(!btn || btn.__erjWired) return; btn.__erjWired=true;
+    // strip any legacy onclick and clone to drop old listeners
+    btn.removeAttribute('onclick');
+    var fresh=btn.cloneNode(true); btn.parentNode.replaceChild(fresh,btn);
+    fresh.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); apply(NEXT[curPref()]); });
+    fresh.style.cursor='pointer';
+  }
+  function wireAll(){ document.querySelectorAll('[data-erj-theme-btn], #themeToggle, #themeBtn').forEach(wire); }
+  if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(curPref()==='system')apply('system');});}
+  if(document.readyState!=='loading'){ wireAll(); apply(curPref()); }
+  else document.addEventListener('DOMContentLoaded',function(){ wireAll(); apply(curPref()); });
+  // re-apply after a tick in case header is injected late
+  setTimeout(function(){ wireAll(); apply(curPref()); }, 300);
+})();
+</script>
+<!-- ===== /Unified Theme Control ===== -->
+
+<script src="erj-nav.js"></script>
+</body>
+</html>

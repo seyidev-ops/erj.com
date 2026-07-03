@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+
+
+<link rel="apple-touch-icon" href="appletouchicon.png">
+<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" id="metaThemeColor">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Redirecting… | Everything Remote Job Mastery</title>
+<script>
+// Participant and Student portals are now merged into dashboard.html
+// Update role in session so dashboard accepts it
+try {
+  var sess = JSON.parse(localStorage.getItem('rjm_session') || 'null');
+  if (sess) { window.location.replace('dashboard.html'); }
+  else      { window.location.replace('login.html'); }
+} catch(e) { window.location.replace('login.html'); }
+</script>
+<meta property="og:image" content="https://everythingremotejob.com/preview-participant.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Everything Remote Job Mastery Training" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-participant.jpg" />
+</head>
+<body style="background:#000000;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:Inter,system-ui,sans-serif;color:#A1A1A1;font-size:.9rem">
+  Redirecting to your portal…
+</body>
+</html>

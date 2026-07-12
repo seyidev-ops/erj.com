@@ -28,6 +28,31 @@
 <style>
   .reg-hero{padding-top:clamp(2.8rem,8vw,5rem);text-align:center;}
   .reg-hero .lede{margin:0 auto;}
+  /* urgency strip */
+  .urgency{margin:1.8rem auto 0;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.9rem 1.4rem;
+    border:1px solid var(--card-line);background:var(--card);border-radius:100px;padding:0.75rem 1.5rem;}
+  .urg-lbl{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  .urg-count{display:flex;align-items:baseline;gap:0.55rem;font-family:var(--font-display);font-weight:800;color:var(--ink);
+    font-size:1.05rem;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
+  .urg-count small{font-size:0.6rem;font-weight:400;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase;margin-left:1px;}
+  .urg-date{font-size:0.78rem;color:var(--ink-soft);font-weight:300;}
+  .urg-date strong{color:var(--ink);font-weight:500;}
+  /* trust strip */
+  .trust{margin-top:1.4rem;font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.6rem;}
+  .trust span b{color:var(--ink-soft);font-weight:500;}
+  @media (max-width:520px){.urgency{border-radius:18px;flex-direction:column;gap:0.5rem;padding:0.9rem 1.2rem;}}
+  /* inner-circle in-card countdown */
+  .ic-card-count{border:1px solid var(--card-line);background:var(--bg2);border-radius:12px;
+    padding:0.9rem 1.1rem;margin:0.4rem 0 1.1rem;}
+  .icc-lbl{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.5rem;}
+  .icc-row{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
+  .icc-b{text-align:center;}
+  .icc-n{font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1;
+    letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .icc-l{font-size:0.54rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.25rem;}
+  .icc-date{font-size:0.74rem;color:var(--ink-soft);font-weight:300;margin-top:0.55rem;}
+  .icc-date strong{color:var(--ink);font-weight:500;}
   .kicker{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.66rem;font-weight:500;letter-spacing:0.22em;
     text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;justify-content:center;}
   .kicker .mark{width:22px;height:1px;background:var(--accent);}
@@ -103,6 +128,21 @@
     <div class="kicker"><span class="mark"></span> Register · Enrolment Open</div>
     <h1>Secure your place in <em>the next cohort</em></h1>
     <p class="lede">One page, every option. Choose a single stage, the complete programme, or the Inner Circle — all payments are processed securely through Paystack: cards, bank transfer, and USSD accepted.</p>
+    <div class="urgency" data-deadline="2026-08-02T20:00:00+01:00">
+      <span class="urg-lbl">Cohort 9 begins in</span>
+      <span class="urg-count">
+        <span><span data-k="d">00</span><small>d</small></span>
+        <span><span data-k="h">00</span><small>h</small></span>
+        <span><span data-k="m">00</span><small>m</small></span>
+        <span><span data-k="s">00</span><small>s</small></span>
+      </span>
+      <span class="urg-date"><strong>Sun, 2 Aug · 8:00 PM WAT</strong> — enrolment closes when the cohort fills</span>
+    </div>
+    <div class="trust">
+      <span><b>382+</b> trained &amp; placed</span>
+      <span><b>7</b> cohorts refined</span>
+      <span>The Thrive Pledge — <b>we don't let go until you're hired</b></span>
+    </div>
   </section>
 
   <!-- ===== TRAINING ===== -->
@@ -125,6 +165,7 @@
           <li>Full LMS portal access · priority support</li>
         </ul>
         <a href="https://paystack.shop/pay/rjtraining" class="btn-pay">Enroll all 4 stages <span class="arrow">→</span></a>
+        <p class="note">Includes <strong>60 days of the Private Job Board free</strong> (₦50,000/mo value) · covered by the Thrive Pledge — the community and sourcing engine stay with you until you're hired.</p>
       </div>
 
       <div class="pcard reveal">
@@ -222,6 +263,16 @@
           <li>Private partner directory &amp; alumni network of 200+</li>
           <li>Application-first — admission verified before payment</li>
         </ul>
+        <div class="ic-card-count" data-deadline="2026-08-31T19:00:00+01:00">
+          <div class="icc-lbl">Next residency begins in</div>
+          <div class="icc-row">
+            <div class="icc-b"><div class="icc-n" data-k="d">00</div><div class="icc-l">Days</div></div>
+            <div class="icc-b"><div class="icc-n" data-k="h">00</div><div class="icc-l">Hrs</div></div>
+            <div class="icc-b"><div class="icc-n" data-k="m">00</div><div class="icc-l">Min</div></div>
+            <div class="icc-b"><div class="icc-n" data-k="s">00</div><div class="icc-l">Sec</div></div>
+          </div>
+          <div class="icc-date"><strong>Mon, 31 August 2026 · 7:00 PM WAT</strong></div>
+        </div>
         <a href="innercircle/" class="btn-pay">Apply to join the Inner Circle <span class="arrow">→</span></a>
         <p class="note">Pay ₦250,000 (or ₦135,000 × 2) to the Business Play account after admission, then send proof of payment on WhatsApp. <a href="innercircle/">See how it works →</a></p>
       </div>

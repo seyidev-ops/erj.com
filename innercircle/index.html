@@ -28,6 +28,18 @@
   .wk-k{font-size:0.64rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem;}
   .wk-t{font-family:var(--font-display);font-size:1.2rem;font-weight:500;color:var(--ink);margin-bottom:0.3rem;}
   .wk-d{font-size:0.9rem;color:var(--ink-soft);font-weight:300;line-height:1.55;}
+  /* residency countdown */
+  .ic-count{margin:0 0 2rem;border:1px solid var(--card-line);background:var(--card);border-radius:16px;
+    padding:1.4rem 1.6rem;display:inline-flex;flex-wrap:wrap;align-items:center;gap:1rem 1.8rem;}
+  .ic-lbl{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  .ic-blocks{display:flex;align-items:baseline;gap:1rem;}
+  .ic-b{text-align:center;}
+  .ic-n{font-family:var(--font-display);font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--ink);
+    line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .ic-l{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.3rem;}
+  .ic-date{font-size:0.8rem;color:var(--ink-soft);font-weight:300;}
+  .ic-date strong{color:var(--ink);font-weight:500;}
+  @media (max-width:560px){.ic-count{width:100%;flex-direction:column;align-items:flex-start;gap:0.9rem;}}
 </style>
 </head>
 <body>
@@ -106,7 +118,17 @@
   <section class="section-line wrap" id="apply">
     <p class="section-label">Admission</p>
     <h2>Invite-only. <span>Apply to join.</span></h2>
-    <p class="section-sub">To preserve the quality of the room, the Inner Circle is application-first. Submit your details and we'll confirm fit before sharing payment paths. The next residency begins Mon, 13 July 2026 · 7:00 PM WAT.</p>
+    <p class="section-sub">To preserve the quality of the room, the Inner Circle is application-first. Submit your details and we'll confirm fit before sharing payment paths. The next residency begins Mon, 31 August 2026 · 7:00 PM WAT.</p>
+    <div class="ic-count reveal" data-deadline="2026-08-31T19:00:00+01:00">
+      <span class="ic-lbl">Next residency begins in</span>
+      <div class="ic-blocks">
+        <div class="ic-b"><div class="ic-n" data-k="d">00</div><div class="ic-l">Days</div></div>
+        <div class="ic-b"><div class="ic-n" data-k="h">00</div><div class="ic-l">Hrs</div></div>
+        <div class="ic-b"><div class="ic-n" data-k="m">00</div><div class="ic-l">Min</div></div>
+        <div class="ic-b"><div class="ic-n" data-k="s">00</div><div class="ic-l">Sec</div></div>
+      </div>
+      <span class="ic-date"><strong>Mon, 31 August 2026 · 7:00 PM WAT</strong></span>
+    </div>
     <div class="form-grid">
       <div class="card reveal">
         <h3 style="margin-bottom:1.2rem;">Request admission</h3>

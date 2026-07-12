@@ -174,9 +174,64 @@
   .paths-lead{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:58ch;margin-bottom:2.4rem;}
   .paths-lead strong{color:var(--ink);font-weight:500;}
 
+  /* ── path price anchors ── */
+  .fb-price{display:block;margin-top:0.8rem;font-size:0.78rem;letter-spacing:0.06em;color:var(--ink-faint);font-weight:400;}
+  .fb-price strong{color:var(--ink);font-weight:600;font-family:var(--font-display);letter-spacing:0;}
+
+  /* ── quick-proof strip ── */
+  .mini-ts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.4rem;}
+  .mini-t{border:1px solid var(--card-line);border-radius:14px;background:var(--card);padding:1.3rem 1.4rem;}
+  .mini-t p{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.6;}
+  .mini-t p strong{color:var(--ink);font-weight:500;}
+  .mini-t .who{margin-top:0.8rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);}
+  .more-stories{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;font-size:0.85rem;color:var(--accent);text-decoration:none;font-weight:500;}
+  .more-stories:hover{text-decoration:underline;}
+
+  /* ── FAQ ── */
+  .faq{display:flex;flex-direction:column;margin-top:0.5rem;}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq details:first-child{border-top:1px solid var(--line);}
+  .faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1rem;
+    padding:1.4rem 0;font-family:var(--font-display);font-weight:600;font-size:clamp(1rem,1.8vw,1.15rem);color:var(--ink);
+    transition:color .25s var(--ease);}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:'+';font-weight:400;font-size:1.4rem;color:var(--accent);line-height:1;transition:transform .3s var(--ease);}
+  .faq details[open] summary::after{transform:rotate(45deg);}
+  .faq summary:hover{color:var(--accent);}
+  .faq .a{padding:0 0 1.5rem;font-size:0.95rem;color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:62ch;}
+  .faq .a strong{color:var(--ink);font-weight:500;}
+  .faq .a a{color:var(--accent);text-decoration:none;}
+
+  /* ── final CTA ── */
+  .final-cta{text-align:center;border:1px solid var(--card-line);border-radius:20px;background:var(--card);
+    padding:clamp(2.4rem,6vw,4rem) clamp(1.4rem,4vw,3rem);}
+  .final-h{font-family:var(--font-display);font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.02em;
+    color:var(--ink);line-height:1.08;max-width:18ch;margin:0 auto 1rem;}
+  .final-h em{font-style:normal;color:var(--accent);}
+  .final-p{font-size:clamp(0.98rem,1.6vw,1.15rem);color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:52ch;margin:0 auto 2rem;}
+  .final-p strong{color:var(--ink);font-weight:500;}
+  .final-cta .answers{justify-content:center;}
+  .final-note{margin-top:1.4rem;font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);}
+
+  /* ── sticky mobile CTA ── */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;align-items:center;justify-content:space-between;
+    gap:0.9rem;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease);}
+  html[data-theme="day"] .sticky-cta{background:rgba(250,250,248,0.92);}
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta .s-txt{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;}
+  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.86rem;letter-spacing:0;text-transform:none;}
+  .sticky-cta .btn-yes{padding:0.75rem 1.3rem;font-size:0.86rem;white-space:nowrap;flex-shrink:0;}
+  @media (max-width:740px){
+    .sticky-cta{display:flex;}
+    body.sticky-on .wa-float{bottom:86px;}
+  }
+
   @media (prefers-reduced-motion:reduce){
     .kicker,.ask,.ask-sub,.answers,.scroll-hint{opacity:1!important;animation:none!important;}
     .btn-yes.pulse::after{display:none;}
+    .sticky-cta{transition:none;}
   }
   @media (max-width:640px){
     .answers{flex-direction:column;width:100%;}
@@ -190,7 +245,7 @@
 </head>
 <body>
 <div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'home',onPage:[{label:'Cohort 9 countdown',href:'#timers'},{label:'The proof',href:'#proof'},{label:'Why it works',href:'#story'},{label:'The three paths',href:'#paths'}]};</script>
+<script>window.ERJ_NAV={active:'home',onPage:[{label:'Cohort 9 countdown',href:'#timers'},{label:'The proof',href:'#proof'},{label:'Why it works',href:'#story'},{label:'The three paths',href:'#paths'},{label:'Questions',href:'#faq'}]};</script>
 
 <main>
   <!-- COUNTDOWN -->
@@ -276,6 +331,12 @@
       </div>
     </div>
     <p class="note reveal" style="margin-top:1.4rem;">A real message from a Cohort member, shared with permission. Names abbreviated for privacy.</p>
+    <div class="mini-ts">
+      <div class="mini-t reveal"><p>&ldquo;<strong>The 312 applications were not wasted.</strong> They taught me exactly what was not working. The 8 weeks taught me what was.&rdquo;</p><div class="who">Cohort member · Placed</div></div>
+      <div class="mini-t reveal"><p>&ldquo;Not exceptional talent or luck — <strong>90 minutes a day</strong>, applied consistently, in the right direction. The constraints don't disqualify you.&rdquo;</p><div class="who">Cohort member · Placed</div></div>
+      <div class="mini-t reveal"><p>&ldquo;A one-page PDF that <strong>looked like work — not a job application</strong> — changed the response rate most.&rdquo;</p><div class="who">Cohort member · Placed</div></div>
+    </div>
+    <a href="testimonials.html" class="more-stories reveal">Read more member stories <span>→</span></a>
   </section>
 
   <!-- THREE PATHS -->
@@ -289,6 +350,7 @@
           <span class="fb-tag"><span class="fb-dot"></span> Start here · Stages 1–4 · 4-Week Training</span>
           <h3 class="fb-title">Remote Job World <em>Mastery</em></h3>
           <p class="fb-desc">Go from "I'm not sure I'm ready" to a <strong>global-ready CV, portfolio and interview game</strong> in 4 weeks. The hands-on foundation that makes everything after it work.</p>
+          <span class="fb-price">Full programme <strong>₦250,000</strong> · or from ₦70,000 per stage</span>
         </div>
         <span class="fb-cta">Start here <span class="fb-arrow">→</span></span>
       </a>
@@ -298,6 +360,7 @@
           <span class="fb-tag"><span class="fb-dot"></span> Then get placed · Stage 5 · The Placement Engine</span>
           <h3 class="fb-title">How to Get a <em>Remote Job</em></h3>
           <p class="fb-desc">Already hireable but stuck in the silence? This is the engine that lands the offer — <strong>30+ verified global roles sourced weekly</strong>, applied at volume with you, with accountability until you're hired.</p>
+          <span class="fb-price">One payment <strong>₦150,000</strong> · lifetime community included</span>
         </div>
         <span class="fb-cta">See the system <span class="fb-arrow">→</span></span>
       </a>
@@ -307,6 +370,7 @@
           <span class="fb-tag"><span class="fb-dot"></span> Premium · Stages 6–12 · Private 1:1</span>
           <h3 class="fb-title">The Inner <em>Circle</em></h3>
           <p class="fb-desc">Want it done <strong>with</strong> you, not just for you? A private residency where we personally co-build, co-apply and co-negotiate beside you — from positioning audit to a <strong>signed remote offer</strong>.</p>
+          <span class="fb-price"><strong>₦250,000</strong> <s style="color:var(--ink-faint)">₦400,000</s> · or ₦135,000 × 2 milestones · by application</span>
         </div>
         <span class="fb-cta">Apply <span class="fb-arrow">→</span></span>
       </a>
@@ -324,6 +388,38 @@
       <span class="fb-cta">Join free on WhatsApp <span class="fb-arrow">→</span></span>
     </a>
   </section>
+<!-- FAQ / OBJECTIONS -->
+  <section class="wrap section-line" id="faq">
+    <p class="section-label"><span class="mark"></span> Before you decide</p>
+    <h2 class="cost-h" style="margin-bottom:1.6rem;">The questions everyone asks <em>first.</em></h2>
+    <div class="faq reveal">
+      <details>
+        <summary>I've applied to hundreds of jobs with no reply. How is this actually different?</summary>
+        <p class="a">Public job boards put you against 500–800 applicants and an ATS bot that rejects in seconds. We flip that: <strong>global-standard positioning first</strong> (CV, portfolio, video presence), then <strong>30+ verified pipelines sourced weekly</strong> and applied at volume with you — with accountability check-ins until the offer lands. You stop spraying; you start targeting companies already willing to hire you.</p>
+      </details>
+      <details>
+        <summary>I don't have "tech skills." Can this still work for me?</summary>
+        <p class="a">Yes. Remote roles span operations, customer success, virtual assistance, sales, admin, writing, project coordination and more. Stages 1–4 build the <strong>remote work skills every global employer screens for</strong> — async communication, digital tools, deliverable discipline — on top of the experience you already have.</p>
+      </details>
+      <details>
+        <summary>How much time do I need each week?</summary>
+        <p class="a">Members have landed roles while juggling exams, full-time work and ministry. Plan for roughly <strong>90 focused minutes a day</strong>. The system is built for busy professionals — everything is structured, templated and guided so no minute is wasted.</p>
+      </details>
+      <details>
+        <summary>What does "we don't let you go until you're hired" really mean?</summary>
+        <p class="a">It's the <strong>Thrive Pledge</strong>: your enrolment doesn't expire when the training ends. You keep the community, the weekly verified job listings and the accountability structure until you're hired — and the support to keep the job after you land it.</p>
+      </details>
+      <details>
+        <summary>How do payments work? Is it safe?</summary>
+        <p class="a">All payments run through <strong>Paystack</strong> — cards, bank transfer and USSD, fully encrypted and PCI-DSS compliant. Flexible options exist too: the full programme can be split <strong>₦70,000 × 3 weekly</strong>, and the Inner Circle across 2 milestones. <a href="register.html">See every option on one page →</a></p>
+      </details>
+      <details>
+        <summary>I'm not sure which path fits me. Where do I start?</summary>
+        <p class="a">If you're unsure, start with the <strong>Remote Job World Mastery Training</strong> (Stages 1–4). It builds the foundation everything else stands on — and we'll guide your next step from inside. Already global-ready? Go straight to <a href="howtogetaremotejob/">Stage 5</a> or apply for the <a href="innercircle/">Inner Circle</a>.</p>
+      </details>
+    </div>
+  </section>
+
 <!-- THRIVE PLEDGE -->
   <section class="wrap section-line" id="pledge">
     <div class="pledge reveal">
@@ -333,7 +429,25 @@
     </div>
   </section>
 
+  <!-- FINAL CTA -->
+  <section class="wrap section-line" id="enrol">
+    <div class="final-cta reveal">
+      <h2 class="final-h">Cohort 9 starts <em>2 August.</em> Will you be in it?</h2>
+      <p class="final-p">Every cohort fills, closes, and moves on — with or without you. The next time this page matters is <strong>after another month of silence and shrinking naira</strong>. Or you can make this the month it changed.</p>
+      <div class="answers">
+        <a href="register.html" class="btn-yes pulse">Secure my place in Cohort 9 <span class="arrow">→</span></a>
+        <a href="https://wa.me/message/5PMRVGMUU4NGL1" target="_blank" rel="noopener" class="btn-more">Ask a question on WhatsApp</a>
+      </div>
+      <div class="final-note">Enrolment open now · Secured by Paystack · The Thrive Pledge applies</div>
+    </div>
+  </section>
+
   </main>
+
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="s-txt"><strong>Cohort 9 · 2 August</strong>Enrolment open now</div>
+  <a href="register.html" class="btn-yes">Secure my place →</a>
+</div>
 
 <footer class="foot wrap">
   &copy; 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
@@ -349,5 +463,22 @@
 <script src="erj-product.js"></script>
 <script src="erj-nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script>
+(function(){
+  var bar=document.getElementById('stickyCta'),hero=document.querySelector('.home-hero'),final=document.getElementById('enrol');
+  if(!bar||!hero)return;
+  var update=function(){
+    var past=window.scrollY>(hero.offsetTop+hero.offsetHeight);
+    var atEnd=final?(window.scrollY+window.innerHeight>final.offsetTop+80):false;
+    var show=past&&!atEnd;
+    bar.classList.toggle('show',show);
+    bar.setAttribute('aria-hidden',show?'false':'true');
+    document.body.classList.toggle('sticky-on',show);
+  };
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
 </body>
 </html>

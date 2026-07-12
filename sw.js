@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v43';
+const CACHE   = 'erj-v44';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -57,21 +57,38 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request)
+  // HTML pages: NETWORK-FIRST — published updates always show; cache is only the offline fallback.
+  const isHTML = e.request.mode === 'navigate' ||
+    (e.request.headers.get('accept') || '').includes('text/html');
+
+  if (isHTML) {
+    e.respondWith(
+      fetch(e.request)
         .then(res => {
-          if (!res || res.status !== 200 || res.type === 'opaque') return res;
-          const clone = res.clone();
-          caches.open(CACHE).then(c => c.put(e.request, clone));
+          if (res && res.status === 200) {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
           return res;
         })
-        .catch(() => {
-          if (e.request.headers.get('accept') && e.request.headers.get('accept').includes('text/html')) {
-            return caches.match(OFFLINE);
+        .catch(() => caches.match(e.request).then(cached => cached || caches.match(OFFLINE)))
+    );
+    return;
+  }
+
+  // Static assets (css/js/images): STALE-WHILE-REVALIDATE — instant from cache, silently refreshed in background.
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      const network = fetch(e.request)
+        .then(res => {
+          if (res && res.status === 200 && res.type !== 'opaque') {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
           }
-        });
+          return res;
+        })
+        .catch(() => cached);
+      return cached || network;
     })
   );
 });

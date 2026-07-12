@@ -1092,7 +1092,11 @@ renderStudents();
   // Register service worker (enables offline + install criteria)
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
-      navigator.serviceWorker.register('sw.js').catch(function(){});
+      navigator.serviceWorker.register('sw.js').then(function(reg){reg.update();}).catch(function(){});
+    });
+    var swReloaded=false;
+    navigator.serviceWorker.addEventListener('controllerchange',function(){
+      if(swReloaded)return; swReloaded=true; window.location.reload();
     });
   }
   // Capture install prompt

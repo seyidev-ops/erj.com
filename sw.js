@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v44';
+const CACHE   = 'erj-v45';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -45,6 +45,12 @@ self.addEventListener('activate', e => {
     caches.keys()
       .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
+      // Self-heal: reload every open page so devices stuck on stale cached HTML
+      // immediately pick up fresh content served by this new worker.
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(clients => Promise.all(
+        clients.map(c => ('navigate' in c) ? c.navigate(c.url).catch(() => null) : null)
+      ))
   );
 });
 

@@ -33,6 +33,10 @@
   }
   /* PWA */
   if('serviceWorker' in navigator){
-    window.addEventListener('load',function(){navigator.serviceWorker.register(base+'sw.js').catch(function(){});});
+    window.addEventListener('load',function(){navigator.serviceWorker.register(base+'sw.js').then(function(reg){reg.update();}).catch(function(){});});
+    var swReloaded=false;
+    navigator.serviceWorker.addEventListener('controllerchange',function(){
+      if(swReloaded)return; swReloaded=true; window.location.reload();
+    });
   }
 })();

@@ -281,6 +281,6 @@
 <script src="../erj-theme.js"></script>
 <script src="../erj-product.js"></script>
 <script src="../erj-nav.js"></script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(reg){reg.update();}).catch(function(){});});var swReloaded=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(swReloaded)return;swReloaded=true;window.location.reload();});}</script>
 </body>
 </html>

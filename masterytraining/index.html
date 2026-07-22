@@ -21,6 +21,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="../product.css">
+<style>
+  /* ── sticky mobile CTA ── */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;align-items:center;justify-content:space-between;
+    gap:0.9rem;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+    background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease);}
+  html[data-theme="day"] .sticky-cta{background:rgba(250,250,248,0.92);}
+  .sticky-cta.show{transform:translateY(0);}
+  .sticky-cta .s-txt{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;}
+  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.86rem;letter-spacing:0;text-transform:none;}
+  .sticky-cta .btn-yes{padding:0.75rem 1.3rem;font-size:0.86rem;white-space:nowrap;flex-shrink:0;}
+  @media (max-width:740px){
+    .sticky-cta{display:flex;}
+    body.sticky-on .wa-float{bottom:86px;}
+  }
+  @media (prefers-reduced-motion:reduce){.sticky-cta{transition:none;}}
+</style>
 </head>
 <body>
 <div id="erjNavMount"></div>
@@ -32,11 +49,12 @@
 ]};</script>
 
 <main>
+<a class="pledge-ribbon" href="#pricing"><span class="pr-tag"><span class="pr-dot"></span> The Thrive Pledge</span><span class="pr-text">We don’t let go <em>until you’re hired.</em></span><span class="pr-go">→</span></a>
   <!-- HERO -->
   <section class="hero wrap reveal">
     <p class="section-label"><span class="mark"></span> Get Trained And Certified To Work Remotely · Stages 1–4 </p>
-    <h1>Remote Job World <em>Mastery Training.</em></h1>
-    <p class="lede">Stop competing in high-inflation local markets. Join Africa's most rigorous, hands-on 4-week accelerator to secure international, dollar-backed remote employment.</p>
+    <h1>Command a <em>$500–$2,000/month</em> global salary — hiring-ready in 20 days.</h1>
+    <p class="lede">Remote Job World Mastery Training: stop competing in high-inflation local markets. Africa's most rigorous, hands-on 4-week accelerator builds you into the candidate international teams hire — one entry-level global role repays the entire fee in under a week.</p>
     <div class="hero-cta">
       <a href="#pricing" class="btn-yes">Secure your place <span class="arrow">→</span></a>
       <a href="#stages" class="btn-more">See the 4 stages ↓</a>
@@ -140,7 +158,7 @@
       </div>
     </div>
 
-    <p class="note reveal">Looking for the sourcing &amp; placement system that comes after the build? That's <a href="../howtogetaremotejob/">Stage 5 — How to Get a Remote Job →</a></p>
+    <p class="note reveal">Looking for the sourcing &amp; placement system that comes after the build? That's <a href="../getaremotejob/">Stage 5 — Get A Remote Job →</a></p>
   </section>
 
   <!-- ROI -->
@@ -189,7 +207,7 @@
           <li>Lifetime cohort resources &amp; templates</li>
           <li>Full LMS portal access + priority support</li>
         </ul>
-        <a href="https://paystack.shop/pay/rjtraining" class="btn-yes btn-block">Enroll all 4 stages <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/rjmtstages1-4" class="btn-yes btn-block">Enroll all 4 stages <span class="arrow">→</span></a>
       </div>
       <div class="price-card reveal">
         <span class="price-tag">Option 2 · Flexible Milestone</span>
@@ -200,16 +218,21 @@
           <li>Clear the balance in 3 easy weekly steps</li>
           <li>Same full programme, lower upfront friction</li>
         </ul>
-        <a href="https://paystack.shop/pay/rjtraining" class="btn-more btn-block">Start with ₦70,000 →</a>
+        <a href="https://paystack.shop/pay/remotejobmastery" class="btn-more btn-block">Start with ₦70,000 →</a>
       </div>
     </div>
     <p class="note reveal">After payment, send your receipt on WhatsApp to confirm enrolment — your LMS login arrives within 24 hours. Prefer a single stage or bank transfer? <a href="../register.html">See all options on the register page →</a></p>
   </section>
 </main>
 
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="s-txt"><strong>Cohort 9 · 2 August</strong>Enrolment open now</div>
+  <a href="../register.html" class="btn-yes">Secure my place →</a>
+</div>
+
 <footer class="foot wrap">
   © 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
-  <nav class="foot-links"><a href="../index.html">Home</a><a href="../masterytraining/">Mastery Training</a><a href="../howtogetaremotejob/">Get a Remote Job</a><a href="../innercircle/">Inner Circle</a></nav>
+  <nav class="foot-links"><a href="../index.html">Home</a><a href="../masterytraining/">Mastery Training</a><a href="../getaremotejob/">Get A Remote Job</a><a href="../innercircle/">Inner Circle</a></nav>
   <nav class="foot-links"><a href="../login.html">Participant Login</a><a href="../blog.html">Blog</a></nav>
 </footer>
 
@@ -221,5 +244,22 @@
 <script src="../erj-product.js"></script>
 <script src="../erj-nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(reg){reg.update();}).catch(function(){});});var swReloaded=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(swReloaded)return;swReloaded=true;window.location.reload();});}</script>
+<script>
+(function(){
+  var bar=document.getElementById('stickyCta'),hero=document.querySelector('.hero'),final=document.getElementById('pricing');
+  if(!bar||!hero)return;
+  var update=function(){
+    var past=window.scrollY>(hero.offsetTop+hero.offsetHeight);
+    var atEnd=final?(window.scrollY+window.innerHeight>final.offsetTop+80):false;
+    var show=past&&!atEnd;
+    bar.classList.toggle('show',show);
+    bar.setAttribute('aria-hidden',show?'false':'true');
+    document.body.classList.toggle('sticky-on',show);
+  };
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
 </body>
 </html>

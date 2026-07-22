@@ -23,8 +23,9 @@
   // The single, unified primary menu — identical everywhere. Clean-URL folders.
   var MENU = [
     { key: 'home',    label: 'Home',              href: 'index.html' },
+    { key: 'cvscan',  label: 'Free CV Self-Scan', href: 'cvscan/' },
     { key: 'mastery', label: 'Mastery Training',  href: 'masterytraining/' },
-    { key: 'remote',  label: 'Get a Remote Job',  href: 'howtogetaremotejob/' },
+    { key: 'remote',  label: 'Get A Remote Job',  href: 'getaremotejob/' },
     { key: 'inner',   label: 'Inner Circle',      href: 'innercircle/' },
     { key: 'stories', label: 'Success Stories',   href: 'testimonials.html' },
     { key: 'pricing', label: 'Register',          href: 'register.html' },
@@ -161,6 +162,87 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
+  else mount();
+})();
+
+/* ── Tour navigator: floating up/down arrows that step through
+      the page's ERJ_NAV.onPage anchors. Auto-mounts on any page
+      that declares 2+ on-page sections. ── */
+(function () {
+  function mount() {
+    var nav = window.ERJ_NAV;
+    if (!nav || !Array.isArray(nav.onPage)) return;
+    var stops = nav.onPage
+      .filter(function (s) { return s && s.href && s.href.charAt(0) === '#'; })
+      .map(function (s) { return document.querySelector(s.href); })
+      .filter(Boolean);
+    if (stops.length < 2) return;
+
+    var css = document.createElement('style');
+    css.textContent =
+      '.erj-tournav{position:fixed;right:clamp(0.7rem,2vw,1.4rem);top:50%;transform:translateY(-50%);' +
+      'display:flex;flex-direction:column;gap:0.5rem;z-index:900;}' +
+      '.erj-tournav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--card-line,rgba(128,128,128,.3));' +
+      'background:var(--card,#111);color:var(--ink,#fff);cursor:pointer;display:flex;align-items:center;justify-content:center;' +
+      'box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .25s ease,border-color .25s ease,opacity .3s ease;padding:0;}' +
+      '.erj-tournav button:hover{transform:scale(1.08);border-color:var(--accent,#FF5722);}' +
+      '.erj-tournav button:focus-visible{outline:2px solid var(--accent,#FF5722);outline-offset:2px;}' +
+      '.erj-tournav button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}' +
+      '.erj-tournav button[disabled]{opacity:.28;cursor:default;transform:none;}' +
+      '@media(max-width:640px){.erj-tournav{top:auto;bottom:6.2rem;transform:none;}' +
+      '.erj-tournav button{width:36px;height:36px;}}';
+    document.head.appendChild(css);
+
+    var box = document.createElement('div');
+    box.className = 'erj-tournav';
+    box.setAttribute('aria-label', 'Tour navigation');
+    box.innerHTML =
+      '<button type="button" data-dir="-1" aria-label="Previous section" title="Previous section">' +
+      '<svg viewBox="0 0 24 24"><polyline points="6 15 12 9 18 15"></polyline></svg></button>' +
+      '<button type="button" data-dir="1" aria-label="Next section" title="Next section">' +
+      '<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></button>';
+    document.body.appendChild(box);
+
+    var upBtn = box.children[0], downBtn = box.children[1];
+    var OFFSET = 84; /* sticky header clearance */
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function tops() {
+      return stops.map(function (el) {
+        return el.getBoundingClientRect().top + window.pageYOffset - OFFSET;
+      });
+    }
+    function currentIndex() {
+      var y = window.pageYOffset, t = tops(), idx = -1;
+      for (var i = 0; i < t.length; i++) { if (y >= t[i] - 4) idx = i; }
+      return idx; /* -1 = above first stop */
+    }
+    function go(dir) {
+      var idx = currentIndex();
+      var next = Math.min(stops.length - 1, Math.max(0, idx + dir));
+      /* if above the first stop and going down, land on the first stop */
+      if (idx === -1 && dir === 1) next = 0;
+      if (idx === -1 && dir === -1) { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); return; }
+      /* going up from exactly-at-first goes to page top */
+      if (idx === 0 && dir === -1) { window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); sync(); return; }
+      window.scrollTo({ top: tops()[next], behavior: reduced ? 'auto' : 'smooth' });
+      setTimeout(sync, 350);
+    }
+    function sync() {
+      var idx = currentIndex();
+      upBtn.disabled = (window.pageYOffset < 8);
+      downBtn.disabled = (idx >= stops.length - 1);
+    }
+    upBtn.addEventListener('click', function () { go(-1); });
+    downBtn.addEventListener('click', function () { go(1); });
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () { sync(); ticking = false; });
+    }, { passive: true });
+    sync();
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
   else mount();
 })();

@@ -199,3 +199,20 @@ h3{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em;color:
   .stage{grid-template-columns:auto 1fr;gap:1rem;}
   .stage:hover{padding-left:0;padding-right:0;}
 }
+
+/* ── The Thrive Pledge ribbon — the promise the site is built on ── */
+.pledge-ribbon{display:flex;align-items:center;justify-content:center;gap:0.65rem;flex-wrap:wrap;
+  padding:0.72rem clamp(1rem,3vw,2rem);background:var(--card);border-bottom:1px solid var(--card-line);
+  text-decoration:none;text-align:center;position:relative;overflow:hidden;}
+.pledge-ribbon::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);}
+.pledge-ribbon .pr-tag{font-family:var(--font-display);font-size:0.6rem;font-weight:700;letter-spacing:0.24em;
+  text-transform:uppercase;color:var(--accent);white-space:nowrap;display:inline-flex;align-items:center;gap:0.45rem;}
+.pledge-ribbon .pr-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  animation:prPulse 2.4s ease-in-out infinite;}
+.pledge-ribbon .pr-text{font-size:0.86rem;font-weight:500;color:var(--ink);letter-spacing:0.01em;}
+.pledge-ribbon .pr-text em{font-style:normal;color:var(--accent);font-weight:700;}
+.pledge-ribbon .pr-go{font-size:0.8rem;color:var(--ink-faint);transition:color .25s var(--ease),transform .25s var(--ease);}
+a.pledge-ribbon:hover .pr-go{color:var(--accent);transform:translateX(3px);}
+@keyframes prPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.75);}}
+@media(max-width:640px){.pledge-ribbon{gap:0.35rem;padding:0.6rem 0.8rem;}
+  .pledge-ribbon .pr-text{font-size:0.78rem;}}

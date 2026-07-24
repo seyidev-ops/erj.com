@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png">
+<link rel="apple-touch-icon" href="../appletouchicon.png">
+<meta name="theme-color" content="#000000" id="metaThemeColor">
+<title>Free Live Masterclass — The Global Remote Job Blueprint | Everything Remote Job</title>
+<meta name="description" content="Free 1-hour live masterclass: how to land a USD remote job from Nigeria in the next 90 days — without japa, connections abroad, or 300 wasted applications. 23 &amp; 30 July 2026, 7:00 PM WAT on Zoom. 100 seats, free.">
+<meta property="og:title" content="Free Live Masterclass — The Global Remote Job Blueprint">
+<meta property="og:description" content="How to land a USD remote job from Nigeria in the next 90 days — without japa, connections abroad, or 300 wasted applications. Live on Zoom, 7:00 PM WAT. Free — 100 seats.">
+<meta property="og:image" content="https://everythingremotejob.com/preview-masterclass.jpg">
+<meta property="og:url" content="https://everythingremotejob.com/masterclass/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://everythingremotejob.com/masterclass/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../product.css">
+<style>
+  /* ── Live badge ── */
+  .live-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 0.85rem;border-radius:100px;
+    border:1px solid var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);
+    font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:1.2rem;}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:lvPulse 1.8s ease-in-out infinite;}
+  @keyframes lvPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.7);}}
+
+  /* ── Session facts strip ── */
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--card-line);
+    border:1px solid var(--card-line);border-radius:14px;overflow:hidden;margin:2rem 0 0;}
+  .fact{background:var(--card);padding:1.1rem 1.2rem;}
+  .fact-k{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.4rem;}
+  .fact-v{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.3;}
+  .fact-v em{font-style:normal;color:var(--accent);}
+
+  /* ── Countdown ── */
+  .mc-count{margin:2rem 0 0;border:1px solid var(--card-line);background:var(--card);border-radius:16px;
+    padding:1.4rem 1.6rem;display:flex;flex-wrap:wrap;align-items:center;gap:1rem 2rem;}
+  .mc-lbl{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .mc-blocks{display:flex;align-items:baseline;gap:1.3rem;}
+  .mc-b{text-align:center;}
+  .mc-n{font-family:var(--font-display);font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:800;color:var(--ink);
+    line-height:1;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
+  .mc-l{font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.35rem;}
+  .mc-when{font-size:0.85rem;color:var(--ink-soft);font-weight:300;}
+  .mc-when strong{color:var(--ink);font-weight:600;}
+  @media(max-width:560px){.mc-count{flex-direction:column;align-items:flex-start;gap:1rem;}}
+
+  /* ── Agenda list ── */
+  .agenda{list-style:none;display:flex;flex-direction:column;margin-top:1.6rem;}
+  .agenda li{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;padding:1.3rem 0;border-bottom:1px solid var(--line);}
+  .agenda li:first-child{border-top:1px solid var(--line);}
+  .ag-n{font-family:var(--font-display);font-size:0.72rem;font-weight:800;color:var(--accent);letter-spacing:0.1em;padding-top:0.25rem;}
+  .ag-t{font-family:var(--font-display);font-size:1.12rem;font-weight:600;color:var(--ink);margin-bottom:0.35rem;line-height:1.3;}
+  .ag-d{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.6;}
+
+  /* ── Seats meter ── */
+  .seats{border:1px solid var(--card-line);background:var(--card);border-radius:14px;padding:1.3rem 1.5rem;margin-top:1.8rem;}
+  .seats-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:0.8rem;flex-wrap:wrap;}
+  .seats-t{font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--ink);}
+  .seats-c{font-size:0.78rem;color:var(--accent);font-weight:600;letter-spacing:0.05em;}
+  .seats-bar{height:6px;border-radius:100px;background:var(--line);overflow:hidden;}
+  .seats-fill{height:100%;width:0;background:var(--accent);border-radius:100px;transition:width 1.4s var(--ease);}
+  .seats-note{font-size:0.8rem;color:var(--ink-soft);font-weight:300;margin-top:0.7rem;line-height:1.6;}
+
+  /* ── Host block ── */
+  .host{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:1.8rem;}
+  .host-photo{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--card-line);background:var(--card);}
+  .host-photo img{display:block;width:100%;height:auto;}
+  .host-name{font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--ink);margin-bottom:0.3rem;}
+  .host-role{font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:600;}
+  .host-bio{font-size:0.95rem;color:var(--ink-soft);font-weight:300;line-height:1.75;max-width:58ch;}
+  .host-bio strong{color:var(--ink);font-weight:500;}
+  @media(max-width:700px){.host{grid-template-columns:1fr;}.host-photo{max-width:220px;}}
+
+  /* ── Big CTA panel ── */
+  .cta-panel{border:1px solid var(--accent);border-radius:20px;background:var(--card);
+    padding:clamp(1.8rem,5vw,3rem);text-align:center;}
+  .cta-h{font-family:var(--font-display);font-size:clamp(1.6rem,4.4vw,2.5rem);font-weight:800;letter-spacing:-0.02em;
+    color:var(--ink);line-height:1.15;margin-bottom:0.9rem;}
+  .cta-h em{font-style:normal;color:var(--accent);}
+  .cta-p{font-size:0.98rem;color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:56ch;margin:0 auto 1.6rem;}
+  .cta-how{font-size:0.82rem;color:var(--ink-faint);font-weight:300;margin-top:1rem;line-height:1.7;}
+  .cta-how strong{color:var(--ink);font-weight:500;}
+</style>
+</head>
+<body>
+<div id="erjNavMount"></div>
+<script>window.ERJ_NAV={active:'masterclass',base:'../',onPage:[
+  {label:'What you will get',href:'#agenda'},
+  {label:'Who it is for',href:'#who'},
+  {label:'Your host',href:'#host'},
+  {label:'Reserve your seat',href:'#reserve'}
+]};</script>
+
+<main>
+<a class="pledge-ribbon" href="#reserve"><span class="pr-tag"><span class="pr-dot"></span> The Thrive Pledge</span><span class="pr-text">We don&rsquo;t let go <em>until you&rsquo;re hired.</em></span><span class="pr-go">→</span></a>
+
+  <!-- HERO -->
+  <section class="hero wrap reveal">
+    <span class="live-badge"><span class="live-dot"></span> Free Live Masterclass</span>
+    <h1>Land a <em>USD remote job</em> from Nigeria in the next 90 days.</h1>
+    <p class="lede">The Global Remote Job Blueprint — one free hour, live. No japa. No connections abroad. No 300 wasted applications. Just the exact system our members use to move from a Naira salary to a USD payroll, taught end to end.</p>
+
+    <div class="mc-count" id="mcCount">
+      <div>
+        <div class="mc-lbl" id="mcLbl">Next session starts in</div>
+        <div class="mc-when" id="mcWhen">Loading session…</div>
+      </div>
+      <div class="mc-blocks">
+        <div class="mc-b"><div class="mc-n" id="mcD">–</div><div class="mc-l">Days</div></div>
+        <div class="mc-b"><div class="mc-n" id="mcH">–</div><div class="mc-l">Hrs</div></div>
+        <div class="mc-b"><div class="mc-n" id="mcM">–</div><div class="mc-l">Min</div></div>
+        <div class="mc-b"><div class="mc-n" id="mcS">–</div><div class="mc-l">Sec</div></div>
+      </div>
+    </div>
+
+    <div class="hero-cta" style="margin-top:1.8rem;">
+      <a href="#reserve" class="btn-yes">Reserve my free seat <span class="arrow">→</span></a>
+      <a href="#agenda" class="btn-more">See what's covered ↓</a>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="fact-k">Dates</div><div class="fact-v">23 July 2026<br><em>30 July (repeat)</em></div></div>
+      <div class="fact"><div class="fact-k">Time</div><div class="fact-v">7:00 PM <em>WAT</em></div></div>
+      <div class="fact"><div class="fact-k">Where</div><div class="fact-v">Live on <em>Zoom</em></div></div>
+      <div class="fact"><div class="fact-k">Price</div><div class="fact-v"><em>Free</em> · 100 seats</div></div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section class="section-line wrap" id="agenda">
+    <p class="section-label"><span class="mark"></span> On this free 1-hour session</p>
+    <h2>Five things you walk away with. <span>All of them usable tomorrow.</span></h2>
+    <ul class="agenda">
+      <li class="reveal">
+        <div class="ag-n">01</div>
+        <div>
+          <div class="ag-t">The complete 5-Stage System</div>
+          <div class="ag-d">The full path our members use to move from Naira salaries to USD payrolls — every stage, in order, with what happens at each one. You will see the whole map, not a teaser of it.</div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="ag-n">02</div>
+        <div>
+          <div class="ag-t">The 3 categories of companies that actually hire from Nigeria</div>
+          <div class="ag-d">Most applications die because they were sent to companies that were never going to hire from here. Learn the three categories that do — and how to tell them apart before you spend an evening applying.</div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="ag-n">03</div>
+        <div>
+          <div class="ag-t">A live ATS test — on a real CV, on screen</div>
+          <div class="ag-d">We run an actual CV through the screening machine live so you can see exactly what gets a document rejected before a human ever reads it. Most attendees say this segment alone changed how they write.</div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="ag-n">04</div>
+        <div>
+          <div class="ag-t">The affiliate marketing route to remote work</div>
+          <div class="ag-d">The parallel path most people never hear about — how to earn in foreign currency through affiliate work while your job search runs, and how the two reinforce each other.</div>
+        </div>
+      </li>
+      <li class="reveal">
+        <div class="ag-n">05</div>
+        <div>
+          <div class="ag-t">Live Q&amp;A</div>
+          <div class="ag-d">Bring your actual situation — your field, your gap year, your CV question, your "is it too late for me at 38?" You ask, we answer on the call. No questions filtered.</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="seats">
+      <div class="seats-top">
+        <div class="seats-t">100 seats per session</div>
+        <div class="seats-c">Free · first come, first seated</div>
+      </div>
+      <div class="seats-bar"><div class="seats-fill" id="seatsFill"></div></div>
+      <div class="seats-note">Zoom caps the room at 100. When it is full, it is full — the door closes on time and we start at 7:00 PM WAT sharp. Reserving early also means you get the reminder before it begins.</div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="section-line wrap" id="who">
+    <p class="section-label"><span class="mark"></span> Who this is for</p>
+    <h2>If any of these is you, <span>this hour was built for you.</span></h2>
+    <div class="cards" style="margin-top:1.6rem;">
+      <div class="card reveal">
+        <div class="card-k">01</div>
+        <h3>You've applied and heard nothing</h3>
+        <p>Dozens — maybe hundreds — of applications into silence, and you've started to wonder whether the problem is you. It isn't. You'll see exactly where the applications were dying.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-k">02</div>
+        <h3>You're earning in Naira and watching it shrink</h3>
+        <p>You're good at what you do; the currency is the problem, not the competence. This is the route to a payroll that doesn't melt every quarter.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-k">03</div>
+        <h3>You don't want to japa</h3>
+        <p>You want the global salary without leaving your family, your city or your country. That's precisely what remote work makes possible — and precisely what this session maps.</p>
+      </div>
+      <div class="card reveal">
+        <div class="card-k">04</div>
+        <h3>You have no connections abroad</h3>
+        <p>No uncle in Canada, no friend who "referred" you. Good — the system taught here is built for people starting with no network at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOST -->
+  <section class="section-line wrap" id="host">
+    <p class="section-label"><span class="mark"></span> Your host</p>
+    <div class="host">
+      <div class="host-photo reveal">
+        <img src="../founder-oluwaseyi.jpg" alt="Oluwaseyi Ashiru — Lead Facilitator, Everything Remote Job" width="760" height="1064" loading="lazy">
+      </div>
+      <div class="reveal">
+        <div class="host-name">Oluwaseyi Ashiru</div>
+        <div class="host-role">Lead Facilitator · Everything Remote Job</div>
+        <p class="host-bio">I've spent the last several years doing one thing: helping African professionals get hired into globally competitive remote roles — from right where they are. Across nine cohorts I've sat with hundreds of people who were qualified, hardworking, and applying into silence.</p>
+        <p class="host-bio" style="margin-top:0.9rem;">This masterclass is the honest version of what I've learned: <strong>the system, the company categories, the ATS machine, and the routes most people never hear about.</strong> One hour, everything on the table, nothing held back for the paid programme.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVE -->
+  <section class="section-line wrap" id="reserve">
+    <div class="cta-panel reveal">
+      <span class="live-badge"><span class="live-dot"></span> Free · 100 seats</span>
+      <h2 class="cta-h">Reserve your <em>free seat.</em></h2>
+      <p class="cta-p">Send us one WhatsApp message and your seat is booked — we'll reply with the Zoom link and send you a reminder before we go live at 7:00 PM WAT.</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a href="https://wa.me/2348032925957?text=I%20want%20to%20reserve%20my%20FREE%20seat%20for%20The%20Global%20Remote%20Job%20Blueprint%20masterclass.%20Please%20send%20me%20the%20Zoom%20link." target="_blank" rel="noopener" class="btn-yes">Reserve my free seat on WhatsApp <span class="arrow">→</span></a>
+      </div>
+      <p class="cta-how">Or save and message <strong>+234 803 292 5957</strong> directly.<br>
+      <strong>23 July 2026</strong> &middot; repeat session <strong>30 July 2026</strong> &middot; 7:00 PM WAT &middot; Live on Zoom &middot; Free.</p>
+    </div>
+  </section>
+
+  <!-- AFTER -->
+  <section class="section-line wrap">
+    <p class="section-label"><span class="mark"></span> After the masterclass</p>
+    <h2>Come for the blueprint. <span>Leave with a decision.</span></h2>
+    <p class="section-sub" style="max-width:64ch;">The session stands completely on its own — attend, take everything, implement it alone, and we'll be glad. But if you'd rather not do it alone, the door to Cohort 9 is open, and the Thrive Pledge is exactly what it says: we don't let go until you're hired. Everything is laid out plainly on the site — no pressure, no mystery.</p>
+    <div class="hero-cta" style="margin-top:1.6rem;">
+      <a href="../index.html" class="btn-more">See the full programme →</a>
+      <a href="../cvscan/" class="btn-more">Scan your CV free →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot wrap">
+  © 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
+  <nav class="foot-links">
+    <a href="../index.html">Home</a>
+    <a href="../cvscan/">Free CV Self-Scan</a>
+    <a href="../masterytraining/">Mastery Training</a>
+    <a href="../getaremotejob/">Get A Remote Job</a>
+    <a href="../innercircle/">Inner Circle</a>
+  </nav>
+</footer>
+
+<a href="https://wa.me/2348032925957" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  /* Session countdown — auto-advances to the repeat session, then to standby. */
+  (function () {
+    var SESSIONS = [
+      { start: '2026-07-23T19:00:00+01:00', label: 'Thu, 23 July 2026 · 7:00 PM WAT' },
+      { start: '2026-07-30T19:00:00+01:00', label: 'Thu, 30 July 2026 · 7:00 PM WAT (repeat)' }
+    ];
+    var LIVE_MINUTES = 75; /* keep "live now" state through the hour + buffer */
+    var d = document.getElementById('mcD'), h = document.getElementById('mcH'),
+        m = document.getElementById('mcM'), s = document.getElementById('mcS'),
+        when = document.getElementById('mcWhen'), lbl = document.getElementById('mcLbl'),
+        blocks = document.querySelector('.mc-blocks');
+    if (!d) return;
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var now = Date.now(), next = null, live = null;
+      for (var i = 0; i < SESSIONS.length; i++) {
+        var t = new Date(SESSIONS[i].start).getTime();
+        if (now >= t && now < t + LIVE_MINUTES * 60000) { live = SESSIONS[i]; break; }
+        if (now < t) { next = SESSIONS[i]; break; }
+      }
+      if (live) {
+        lbl.textContent = 'Happening now';
+        when.innerHTML = '<strong>We are live.</strong> Message us on WhatsApp for the Zoom link.';
+        if (blocks) blocks.style.display = 'none';
+        return;
+      }
+      if (!next) {
+        lbl.textContent = 'Next session';
+        when.innerHTML = '<strong>Dates for the next masterclass are being announced.</strong> Message us to be told first.';
+        if (blocks) blocks.style.display = 'none';
+        return;
+      }
+      if (blocks) blocks.style.display = '';
+      when.innerHTML = '<strong>' + next.label + '</strong>';
+      var diff = new Date(next.start).getTime() - now;
+      var dd = Math.floor(diff / 86400000);
+      var hh = Math.floor(diff % 86400000 / 3600000);
+      var mm = Math.floor(diff % 3600000 / 60000);
+      var ss = Math.floor(diff % 60000 / 1000);
+      d.textContent = pad(dd); h.textContent = pad(hh); m.textContent = pad(mm); s.textContent = pad(ss);
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  /* Seats meter animates on view — indicative fill, not a fake live counter. */
+  (function () {
+    var fill = document.getElementById('seatsFill');
+    if (!fill) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { fill.style.width = '72%'; io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(fill);
+  })();
+</script>
+<script src="../erj-theme.js"></script>
+<script src="../erj-product.js"></script>
+<script src="../erj-nav.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(reg){reg.update();}).catch(function(){});});var swReloaded=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(swReloaded)return;swReloaded=true;window.location.reload();});}</script>
+</body>
+</html>

@@ -862,35 +862,56 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
-<style id="erjPortalNavOffset">
-.erj-nav{z-index:600 !important;}
-/* Floating portal controls (replace the removed second header) */
-.portal-panel-toggle,.portal-notif-toggle{
-  position:fixed;z-index:160;top:calc(var(--erj-nav-h,58px) + 10px);
-  width:42px;height:42px;border-radius:11px;
-  border:1px solid var(--border,rgba(255,255,255,.12));background:var(--bg3,#221E18);
-  color:var(--text,#FFFFFF);font-size:1.15rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px rgba(0,0,0,.35);transition:all .2s ease;
+<style id="erjPortalShell">
+/* ── Portal app-shell topbar: the single header for logged-in views ── */
+:root{--erj-nav-h:58px;}
+.portal-topbar{position:fixed;top:0;left:0;right:0;height:58px;z-index:600;
+  display:flex;align-items:center;gap:.6rem;padding:0 .9rem;
+  background:var(--bg2,#141210);border-bottom:1px solid var(--border,rgba(255,255,255,.1));
+  box-shadow:0 1px 12px rgba(0,0,0,.18);}
+.pt-toggle{width:38px;height:38px;flex-shrink:0;border-radius:10px;border:1px solid var(--border,rgba(255,255,255,.12));
+  background:transparent;color:var(--text,#fff);font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;}
+.pt-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;min-width:0;}
+.pt-logo{width:26px;height:26px;border-radius:7px;flex-shrink:0;}
+.pt-name{font-family:'Space Grotesk',system-ui,sans-serif;font-weight:800;font-size:.95rem;letter-spacing:-.01em;
+  color:var(--text,#fff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pt-name span{color:var(--electric,#FF5722);}
+.pt-tag{font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8A8378);
+  border-left:1px solid var(--border,rgba(255,255,255,.14));padding-left:.6rem;margin-left:.2rem;white-space:nowrap;}
+.pt-right{margin-left:auto;display:flex;align-items:center;gap:.35rem;}
+.pt-btn{width:38px;height:38px;border-radius:10px;border:1px solid transparent;background:transparent;
+  color:var(--text,#fff);font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  position:relative;transition:background .2s ease,border-color .2s ease;}
+.pt-btn:hover{background:var(--bg3,#221E18);border-color:var(--border,rgba(255,255,255,.12));}
+.pt-btn .notif-dot{position:absolute;top:7px;right:7px;width:8px;height:8px;border-radius:50%;
+  background:var(--red,#EF4444);display:none;}
+.pt-btn .notif-dot.show{display:block;}
+.pt-avatar{width:34px;height:34px;border-radius:50%;background:var(--electric,#FF5722);color:#fff;border:none;
+  font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+@media(max-width:768px){
+  .pt-toggle{display:flex;}
+  .pt-tag{display:none;}
+  .pt-name{font-size:.85rem;}
 }
-.portal-panel-toggle{left:12px;}
-.portal-notif-toggle{right:12px;gap:2px;}
-.portal-panel-toggle:hover,.portal-notif-toggle:hover{color:var(--electric,#FF5722);background:var(--bg4,#1B1814);}
-.portal-notif-toggle .notif-dot{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--red,#EF4444);display:none;}
-.portal-notif-toggle .notif-dot.show{display:block;}
-/* Desktop: sidebar is always visible, so hide the floating panel toggle there */
-@media(min-width:769px){ .portal-panel-toggle{ display:none; } }
 </style>
 </head>
 <body>
-<div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'login'};</script>
-
-
-<!-- Legacy dashboard top header removed (unified erj-nav is the only header).
-     Floating controls keep the sidebar and notifications reachable on mobile. -->
-<button class="portal-panel-toggle" id="sidebarToggle" title="Menu" aria-label="Open menu">☰</button>
-<button class="portal-notif-toggle" id="notifBtn" title="Class Notifications" onclick="toggleNotifPanel()">🔔 <span class="notif-dot" id="notifDot"></span></button>
+<!-- Portal app shell: this topbar + the sidebar are the ONLY navigation here.
+     The marketing hamburger nav is deliberately not loaded on logged-in views. -->
+<header class="portal-topbar">
+  <button class="pt-toggle" id="sidebarToggle" title="Menu" aria-label="Open menu">☰</button>
+  <a class="pt-brand" href="dashboard.html">
+    <img class="pt-logo" src="logo.png" alt="" width="26" height="26">
+    <span class="pt-name">Everything <span>RemoteJob</span></span>
+  </a>
+  <span class="pt-tag">Participant Portal</span>
+  <div class="pt-right">
+    <button class="pt-btn" data-erj-theme-btn type="button" title="Toggle theme">🌙</button>
+    <button class="pt-btn" id="notifBtn" title="Class Notifications" onclick="toggleNotifPanel()">🔔<span class="notif-dot" id="notifDot"></span></button>
+    <button class="pt-avatar" id="avatarBtn" title="Account" onclick="toggleUserDropdown()">–</button>
+  </div>
+</header>
 
 <!-- Offline indicator -->
 <div class="offline-bar">📡 You're offline — showing cached content</div>
@@ -913,8 +934,6 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
     <div class="ud-role" id="ddRole">–</div>
   </div>
   <a href="#" class="ud-item">⚙️ Account Settings</a>
-  <a href="#" class="ud-item" onclick="promptInstall()">📲 Install App</a>
-  <a href="index.html" class="ud-item">🏠 Back to Site</a>
   <a href="#" class="ud-item danger" onclick="logout()">🚪 Sign Out</a>
 </div>
 
@@ -969,16 +988,16 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
         <span class="sidebar-icon">💬</span>
         <span class="sidebar-text">WhatsApp Support</span>
       </a>
-      <a class="sidebar-item" href="#" onclick="promptInstall();return false">
-        <span class="sidebar-icon">📲</span>
-        <span class="sidebar-text">Install App</span>
-      </a>
       <a class="sidebar-item" href="index.html">
         <span class="sidebar-icon">🏠</span>
         <span class="sidebar-text">Back to Site</span>
       </a>
     </div>
     <div class="sidebar-section" style="margin-top:auto; padding-top:1rem; border-top:1px solid var(--border2);">
+      <a class="sidebar-item" href="#" id="sidebarInstall" onclick="promptInstall();return false" style="display:none">
+        <span class="sidebar-icon">📲</span>
+        <span class="sidebar-text">Install App</span>
+      </a>
       <a class="sidebar-item danger" href="#" onclick="logout(); return false">
         <span class="sidebar-icon">🚪</span>
         <span class="sidebar-text">Sign Out</span>
@@ -994,6 +1013,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
       <div class="wb-content">
         <div class="wb-greeting" id="welcomeGreeting">Good morning! 👋</div>
         <div class="wb-sub">Continue your remote job mastery journey. You're making great progress!</div>
+        <a href="#" onclick="showView('jobs');return false" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:.85rem;background:rgba(255,87,34,.12);border:1px solid rgba(255,87,34,.35);color:var(--electric,#FF5722);border-radius:100px;padding:.4rem .9rem;font-size:.74rem;font-weight:700;text-decoration:none;letter-spacing:.02em">🌍 Your Private Job Board is included — open it →</a>
         <div class="wb-stats">
           <div class="wb-stat">
             <div class="wb-num" id="wbLessons">0</div>
@@ -1243,73 +1263,79 @@ const STAGES = [
     sub: 'Build the Internal Operating System Every Remote Professional Runs On',
     days: '5 Days', type: 'Foundation', icon: '🧠',
     lessons: [
-      { id:'s1l1', title:'Understanding Remote Work Psychology', dur:'45 min', icon:'🧠' },
-      { id:'s1l2', title:'Deep Work: The 90-Minute Block Method', dur:'60 min', icon:'⏱️' },
-      { id:'s1l3', title:'KPI Setting & Daily Accountability Framework', dur:'50 min', icon:'📋' },
-      { id:'s1l4', title:'EOD Reporting Masterclass', dur:'40 min', icon:'📄' },
-      { id:'s1l5', title:'Workspace Audit & Distraction-Free Setup', dur:'55 min', icon:'🖥️' },
-    ]
+      { id:'s1l1', title:'Remote Work Psychology & The Self-Managed Professional', dur:'45 min', icon:'🧠' },
+      { id:'s1l2', title:'Deep Work: Two 90-Minute Blocks, Daily', dur:'60 min', icon:'⏱️' },
+      { id:'s1l3', title:'The Pomodoro Protocol — Four Sprints, Zero Self-Interruption', dur:'50 min', icon:'🍅' },
+      { id:'s1l4', title:'3 Morning KPIs & The Structured EOD Report', dur:'55 min', icon:'📋' },
+      { id:'s1l5', title:'Full Physical & Digital Workspace Audit', dur:'45 min', icon:'🖥️' },
+    ],
+    deliverable: 'Your Personal Remote Operating System — calendar blocks, KPI sheet, Pomodoro tracker, EOD template.'
   },
   {
     id: 'stage2', num: 2,
-    title: 'Professional Identity & Toolkit',
-    sub: 'Craft the Digital Presence That Makes Global Employers Stop Scrolling',
-    days: '5 Days', type: 'Identity', icon: '🪪',
+    title: 'The Digital Toolkit',
+    sub: 'Operate the Software Stack Global Teams Actually Run On',
+    days: '5 Days', type: 'Tools', icon: '🛠️',
     lessons: [
-      { id:'s2l1', title:'Remote Work Tools Masterclass (Notion, Slack, Zoom)', dur:'65 min', icon:'🛠️' },
-      { id:'s2l2', title:'Async Communication Protocols', dur:'50 min', icon:'💬' },
-      { id:'s2l3', title:'Digital Security for Remote Workers', dur:'45 min', icon:'🔒' },
-      { id:'s2l4', title:'Time Zone Management & Global Scheduling', dur:'40 min', icon:'🌍' },
-      { id:'s2l5', title:'Building Your Professional Digital Brand', dur:'60 min', icon:'✨' },
-    ]
+      { id:'s2l1', title:'Zoom, Google Meet & Teams — Screen Share, Annotation, Chat', dur:'60 min', icon:'🎥' },
+      { id:'s2l2', title:'Cloud Recordings, Auto-Transcription & Protected Links', dur:'45 min', icon:'☁️' },
+      { id:'s2l3', title:'Build a Structured Board in Asana, Trello or ClickUp', dur:'65 min', icon:'📌' },
+      { id:'s2l4', title:'Co-Editing in Suggestion Mode with Version History', dur:'50 min', icon:'📝' },
+      { id:'s2l5', title:'The Integrated Sprint — Putting the Stack Together', dur:'55 min', icon:'⚙️' },
+    ],
+    deliverable: 'The Integrated Sprint — PM board with 5 task cards, linked doc, and a 2-min cloud-recorded walkthrough.'
   },
   {
     id: 'stage3', num: 3,
-    title: 'CV & LinkedIn Transformation',
-    sub: 'Engineer a Market-Ready Profile That Gets You Shortlisted',
-    days: '5 Days', type: 'Branding', icon: '📄',
+    title: 'Async Communication Mastery',
+    sub: 'Write So Clearly That No One Ever Needs to Ask What You Meant',
+    days: '5 Days', type: 'Communication', icon: '💬',
     lessons: [
-      { id:'s3l1', title:'ATS-Optimized CV Architecture', dur:'70 min', icon:'📝' },
-      { id:'s3l2', title:'Achievement-Driven Bullet Point Formula', dur:'55 min', icon:'🎯' },
-      { id:'s3l3', title:'LinkedIn Headline & Summary Optimization', dur:'60 min', icon:'💼' },
-      { id:'s3l4', title:'Portfolio & Case Study Creation', dur:'65 min', icon:'🗂️' },
-      { id:'s3l5', title:'Cover Letter Templates for Global Roles', dur:'50 min', icon:'✉️' },
-    ]
+      { id:'s3l1', title:'Zero-Follow-Up Emails That Never Generate a Clarifying Reply', dur:'60 min', icon:'✉️' },
+      { id:'s3l2', title:'The Batch Message Protocol in Slack & Teams', dur:'50 min', icon:'📨' },
+      { id:'s3l3', title:'Warm Tone Across Text — Without Losing Directness', dur:'55 min', icon:'🤝' },
+      { id:'s3l4', title:'Your "Working With Me" Manual', dur:'50 min', icon:'📘' },
+      { id:'s3l5', title:'The Tech Fallback Plan — When Power & Network Fail', dur:'45 min', icon:'🔌' },
+    ],
+    deliverable: '5 Professional Communication Assets — ready to deploy from day one of a remote role.'
   },
   {
     id: 'stage4', num: 4,
-    title: 'Global Job Search Mastery',
-    sub: 'Find and Apply to Remote Jobs Where 99% of Candidates Never Look',
-    days: '5 Days', type: 'Search', icon: '🔍',
+    title: 'Start Your Remote Career',
+    sub: 'Build the Global Ready Package That Represents You in Rooms You Will Never Enter',
+    days: '5 Days', type: 'Career Launch', icon: '🚀',
     lessons: [
-      { id:'s4l1', title:'Top 15 Remote Job Platforms Deep Dive', dur:'75 min', icon:'🌐' },
-      { id:'s4l2', title:'Boolean Search Strings for Recruiters', dur:'60 min', icon:'⚙️' },
-      { id:'s4l3', title:'Cold Outreach to Hiring Managers', dur:'55 min', icon:'📧' },
-      { id:'s4l4', title:'Application Tracking System (ATS) Strategy', dur:'50 min', icon:'📊' },
-      { id:'s4l5', title:'Interview Preparation for Remote Roles', dur:'80 min', icon:'🎤' },
-    ]
+      { id:'s4l1', title:'The Remote-First, ATS-Compliant CV', dur:'70 min', icon:'📄' },
+      { id:'s4l2', title:'Achievement Bullets — Excavating Your Real Evidence', dur:'55 min', icon:'⛏️' },
+      { id:'s4l3', title:'The Remote-Optimised LinkedIn Zone-1 Summary', dur:'60 min', icon:'💼' },
+      { id:'s4l4', title:'Your 2–3 Project Digital Portfolio with Read-Me Briefs', dur:'75 min', icon:'🗂️' },
+      { id:'s4l5', title:'The 2-Minute STAR Video Interview Response', dur:'65 min', icon:'🎬' },
+    ],
+    deliverable: 'Global Ready Package — Remote-First CV (PDF) + Digital Portfolio (public link) + STAR video.'
   },
   {
     id: 'stage5', num: 5,
-    title: 'Offer Negotiation & Onboarding',
-    sub: 'Negotiate Like a Pro and Nail Your First 90 Days Remotely',
-    days: '5 Days', type: 'Mastery', icon: '💰',
+    title: 'Get A Remote Job — Placement Engine',
+    sub: 'The Done-For-You Sourcing, Applying & Negotiation System (Stage 5 Add-On)',
+    days: '7 Days · then until hired', type: 'Placement', icon: '🎯',
+    locked: true, addon: true,
     lessons: [
-      { id:'s5l1', title:'Salary Benchmarking for Global Roles', dur:'55 min', icon:'💹' },
-      { id:'s5l2', title:'Negotiation Scripts & Counter-Offer Tactics', dur:'65 min', icon:'🤝' },
-      { id:'s5l3', title:'Remote Onboarding Best Practices', dur:'50 min', icon:'🚀' },
-      { id:'s5l4', title:'Building Trust with Global Teams', dur:'45 min', icon:'🌟' },
-      { id:'s5l5', title:'90-Day Remote Success Blueprint', dur:'70 min', icon:'🏆' },
-    ]
+      { id:'s5l1', title:'The ATS-Defeating Global CV — Built For You', dur:'Done for you', icon:'📄' },
+      { id:'s5l2', title:'The LinkedIn Outbound Funnel', dur:'Done for you', icon:'🔗' },
+      { id:'s5l3', title:'The Autonomous Application Engine', dur:'Done for you', icon:'⚡' },
+      { id:'s5l4', title:'The Multi-Currency Negotiation Playbook', dur:'60 min', icon:'💱' },
+      { id:'s5l5', title:'Interview Dry-Runs & Offer Review — Until Hired', dur:'Ongoing', icon:'🏆' },
+    ],
+    deliverable: 'Four done-for-you assets + application engine running until you are hired (Thrive Pledge).'
   }
 ];
 
 const ACHIEVEMENTS = [
   { id:'first_lesson', name:'First Lesson', icon:'🌱', earned: false },
   { id:'stage1_done',  name:'Mindset Pro',  icon:'🧠', earned: false },
-  { id:'stage3_done',  name:'CV Master',    icon:'📄', earned: false },
+  { id:'stage3_done',  name:'Async Pro',    icon:'💬', earned: false },
   { id:'streak3',      name:'3-Day Streak', icon:'🔥', earned: false },
-  { id:'stage5_done',  name:'Remote Ready', icon:'🏆', earned: false },
+  { id:'stage4_done',  name:'Global Ready', icon:'📄', earned: false },
   { id:'all_stages',   name:'Graduate',     icon:'🎓', earned: false },
 ];
 
@@ -1407,9 +1433,12 @@ function getJbDaysLeft() {
 function populateUser() {
   const av = document.getElementById('userAvatar');
   const un = document.getElementById('userName');
+  const avBtn = document.getElementById('avatarBtn');
   const dn = document.getElementById('ddName');
   const dr = document.getElementById('ddRole');
-  if (av) av.textContent = session.avatar || session.name?.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() || '?';
+  const initials = session.avatar || session.name?.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() || '?';
+  if (av) av.textContent = initials;
+  if (avBtn) avBtn.textContent = initials;
   if (un) un.textContent = session.name || 'Student';
   if (dn) dn.textContent = session.name || 'Student';
   if (dr) dr.textContent = (session.role === 'admin' ? '⚙️ Admin' : session.role === 'instructor' ? '🎓 Instructor' : '🎓 Participant · Cohort 9');
@@ -2016,11 +2045,11 @@ function getDashJobs() {
 function djIsNew(p){ return (Date.now()-new Date(p).getTime())<7*24*60*60*1000; }
 
 function checkDashJobAccess() {
+  /* Registration IS the access: every signed-in participant gets the
+     Private Job Board as part of their programme. Staff always have it. */
   try {
     const s = JSON.parse(localStorage.getItem('rjm_session')||'null');
-    if (!s) return false;
-    if (s.role==='admin') return true;
-    return JSON.parse(localStorage.getItem(JOB_ACCESS_KEY)||'[]').includes(s.email);
+    return !!s;
   } catch { return false; }
 }
 
@@ -2134,11 +2163,12 @@ document.getElementById('sidebarToggle').addEventListener('click', () => {
 /* ════════════════════════════════════════
    USER DROPDOWN
 ══════════════════════════════════════════ */
-function toggleDropdown() {
+function toggleUserDropdown() {
   document.getElementById('userDropdown').classList.toggle('open');
 }
+function toggleDropdown() { toggleUserDropdown(); }   /* legacy alias */
 document.addEventListener('click', e => {
-  if (!e.target.closest('#userPill') && !e.target.closest('#userDropdown')) {
+  if (!e.target.closest('#avatarBtn') && !e.target.closest('#userDropdown')) {
     document.getElementById('userDropdown').classList.remove('open');
   }
 });
@@ -2299,6 +2329,7 @@ function bnNav(v) {
 ══════════════════════════════════════════ */
 let deferredInstallPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
+  const _si = document.getElementById('sidebarInstall'); if (_si) _si.style.display = '';
   e.preventDefault();
   deferredInstallPrompt = e;
   if (!localStorage.getItem('erj_install_dismissed')) {
@@ -2318,6 +2349,7 @@ function promptInstall() {
 }
 function dismissInstall() {
   document.getElementById('installBanner')?.classList.remove('show');
+  const _si2 = document.getElementById('sidebarInstall'); if (_si2) _si2.style.display = 'none';
   localStorage.setItem('erj_install_dismissed', '1');
 }
 window.addEventListener('appinstalled', () => {
@@ -2356,37 +2388,6 @@ window.addEventListener('offline', () => { document.body.classList.add('offline'
     var swReloaded=false;
     navigator.serviceWorker.addEventListener('controllerchange',function(){
       if(swReloaded)return; swReloaded=true; window.location.reload();
-    });
-  }
-  // Capture install prompt
-  var deferred=null, btn=null;
-  function makeBtn(){
-    if(btn) return btn;
-    btn=document.createElement('button');
-    btn.id='erjInstallBtn';
-    btn.textContent='⤓ Install App';
-    btn.setAttribute('aria-label','Install app');
-    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;align-items:center;gap:7px;background:var(--accent,#E8470F);color:#fff;border:none;border-radius:10px;padding:9px 14px;font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);';
-    btn.addEventListener('click',async function(){
-      if(!deferred) return;
-      deferred.prompt();
-      try{ await deferred.userChoice; }catch(e){}
-      deferred=null; btn.style.display='none';
-    });
-    document.body.appendChild(btn);
-    return btn;
-  }
-  window.addEventListener('beforeinstallprompt',function(e){
-    e.preventDefault(); deferred=e; makeBtn().style.display='inline-flex';
-  });
-  window.addEventListener('appinstalled',function(){ if(btn) btn.style.display='none'; deferred=null; });
-  // iOS Safari: no beforeinstallprompt — show a hint button that explains Add to Home Screen
-  var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-  if(isIOS && !standalone){
-    window.addEventListener('load',function(){
-      var b=makeBtn(); b.textContent='⤓ Add to Home Screen'; b.style.display='inline-flex';
-      b.addEventListener('click',function(){ alert('To install: tap the Share icon, then “Add to Home Screen”.'); });
     });
   }
 })();
@@ -2437,6 +2438,5 @@ window.addEventListener('offline', () => { document.body.classList.add('offline'
 </script>
 <!-- ===== /Unified Theme Control ===== -->
 
-<script src="erj-nav.js"></script>
 </body>
 </html>

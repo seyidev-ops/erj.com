@@ -21,6 +21,15 @@
   };
 
   // The single, unified primary menu — identical everywhere. Clean-URL folders.
+  var PORTAL_MENU = [
+    { key: 'dash',    label: 'Participant Dashboard', href: 'dashboard.html' },
+    { key: 'admin',   label: 'Admin Console',         href: 'admin.html' },
+    { key: 'instr',   label: 'Instructor Console',    href: 'instructor.html' },
+    { key: 'blogadm', label: 'Blog Admin',            href: 'blog-admin.html' },
+    { key: 'site',    label: 'Back to Website',       href: 'index.html' }
+  ];
+
+  var IS_PORTAL = !!cfg.portal;
   var MENU = [
     { key: 'home',    label: 'Home',              href: 'index.html' },
     { key: 'cvscan',  label: 'Free CV Self-Scan', href: 'cvscan/' },
@@ -96,7 +105,7 @@
     + '</div>';
 
   function buildItems() {
-    return MENU.map(function (m) {
+    return (IS_PORTAL ? PORTAL_MENU : MENU).map(function (m) {
       var isActive = (m.key === active);
       var sub = '';
       if (isActive && onPage.length) {
@@ -172,7 +181,7 @@
 (function () {
   function mount() {
     var nav = window.ERJ_NAV;
-    if (!nav || !Array.isArray(nav.onPage)) return;
+    if (!nav || nav.portal || !Array.isArray(nav.onPage)) return;
     var stops = nav.onPage
       .filter(function (s) { return s && s.href && s.href.charAt(0) === '#'; })
       .map(function (s) { return document.querySelector(s.href); })

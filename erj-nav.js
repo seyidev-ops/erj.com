@@ -190,17 +190,22 @@
 
     var css = document.createElement('style');
     css.textContent =
-      '.erj-tournav{position:fixed;right:clamp(0.7rem,2vw,1.4rem);top:50%;transform:translateY(-50%);' +
-      'display:flex;flex-direction:column;gap:0.5rem;z-index:900;}' +
-      '.erj-tournav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--card-line,rgba(128,128,128,.3));' +
+      /* Left edge on every breakpoint: the right side is reserved for the
+         WhatsApp float, sticky CTAs and toasts, so nothing can collide. */
+      '.erj-tournav{position:fixed;left:clamp(0.6rem,1.6vw,1.1rem);top:50%;transform:translateY(-50%);' +
+      'display:flex;flex-direction:column;gap:0.45rem;z-index:190;}' +
+      '.erj-tournav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--card-line,rgba(128,128,128,.28));' +
       'background:var(--card,#111);color:var(--ink,#fff);cursor:pointer;display:flex;align-items:center;justify-content:center;' +
-      'box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .25s ease,border-color .25s ease,opacity .3s ease;padding:0;}' +
-      '.erj-tournav button:hover{transform:scale(1.08);border-color:var(--accent,#FF5722);}' +
+      'box-shadow:0 6px 20px rgba(0,0,0,.28);transition:transform .25s ease,border-color .25s ease,opacity .3s ease;padding:0;opacity:.55;}' +
+      '.erj-tournav:hover button,.erj-tournav button:focus-visible{opacity:1;}' +
+      '.erj-tournav button:hover{transform:scale(1.08);border-color:var(--accent,#FF5722);opacity:1;}' +
       '.erj-tournav button:focus-visible{outline:2px solid var(--accent,#FF5722);outline-offset:2px;}' +
-      '.erj-tournav button svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}' +
-      '.erj-tournav button[disabled]{opacity:.28;cursor:default;transform:none;}' +
-      '@media(max-width:640px){.erj-tournav{top:auto;bottom:6.2rem;transform:none;}' +
-      '.erj-tournav button{width:36px;height:36px;}}';
+      '.erj-tournav button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}' +
+      '.erj-tournav button[disabled]{opacity:.16;cursor:default;transform:none;}' +
+      '@media(max-width:768px){.erj-tournav{gap:0.4rem;left:0.5rem;}' +
+      '.erj-tournav button{width:33px;height:33px;box-shadow:0 4px 14px rgba(0,0,0,.24);}' +
+      '.erj-tournav button svg{width:13px;height:13px;}}' +
+      '@media(max-width:380px){.erj-tournav{display:none;}}';
     document.head.appendChild(css);
 
     var box = document.createElement('div');

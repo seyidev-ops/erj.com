@@ -379,9 +379,6 @@ html[data-theme="day"] .s-tw{background:#1DA1F2 !important;border-color:#1DA1F2 
 .cm-empty{text-align:center;padding:20px;color:var(--muted2);font-size:.78rem;}
 
 /* ── UTILITIES ───────────────────────────── */
-.back-top{position:fixed;bottom:calc(55px + var(--sab));right:14px;z-index:200;width:34px;height:34px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.82rem;display:none;align-items:center;justify-content:center;transition:var(--t);box-shadow:var(--sh);}
-.back-top.on{display:flex;}
-.back-top:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
 .wa-btn{position:fixed;bottom:calc(14px + var(--sab));right:14px;z-index:150;width:44px;height:44px;border-radius:50%;background:var(--txt);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,24,20,.4);text-decoration:none;transition:var(--t);}
 .wa-btn:hover{transform:scale(1.08);}
 .wa-btn svg{width:21px;height:21px;fill:var(--bg);}
@@ -542,7 +539,6 @@ h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!
 </div>
 
 <!-- ─── UTILITIES ─── -->
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 <a href="https://wa.me/message/5PMRVGMUU4NGL1" class="wa-btn" title="Chat on WhatsApp" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
@@ -1389,7 +1385,23 @@ let cat='All', page=1, curPost=null;
 /* ── Sync ALL seeds (incl. drafts) into localStorage so blog-admin.html can see and manage them ──
    SEED_VERSION: bump this whenever seed content/publish-state changes so existing
    visitors get the corrected seeds reconciled into their cached localStorage. ── */
-const SEED_VERSION = '2026-07-14-published-through-jul14-featured-jul14';
+const SEED_VERSION = '2026-07-25-auto-publish-by-date';
+
+/* ── AUTO-PUBLISH BY DATE ────────────────────────────────────────────
+   The series is written ahead of time. Rather than requiring someone to
+   flip a switch every morning (which only ever updated ONE device,
+   because publish state lived in that device's localStorage), a seed
+   post goes live automatically once its date arrives — on every device,
+   for every visitor, with no admin action and no redeploy.
+   The newest live post automatically becomes the featured post. ── */
+function erjLocalToday() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0')
+         + '-' + String(d.getDate()).padStart(2, '0');
+}
+function erjSeedIsDue(seed) {
+  return !!(seed && seed.date && seed.date <= erjLocalToday());
+}
 (function syncSeedsToStorage() {
   try {
     let stored = JSON.parse(localStorage.getItem('rjm_blog_posts') || '[]');
@@ -1406,6 +1418,8 @@ const SEED_VERSION = '2026-07-14-published-through-jul14-featured-jul14';
       SEEDS.forEach(seed => {
         const prev = byId.get(seed.id);
         const merged = { ...seed };
+        /* A post whose date has arrived is live everywhere, always. */
+        if (erjSeedIsDue(seed)) merged.published = true;
         if (prev && typeof prev.published === 'boolean') {
           if (prev._adminEdited) {
             /* Admin explicitly toggled this post — their choice is law,
@@ -1419,7 +1433,7 @@ const SEED_VERSION = '2026-07-14-published-through-jul14-featured-jul14';
                devices whose published posts were wrongly reverted to draft
                by the previous buggy reconcile. A post never silently
                "unposts" on reload again. */
-            merged.published = !!(seed.published || prev.published);
+            merged.published = !!(seed.published || prev.published || erjSeedIsDue(seed));
           }
         }
         byId.set(seed.id, merged);
@@ -1431,7 +1445,32 @@ const SEED_VERSION = '2026-07-14-published-through-jul14-featured-jul14';
       /* Same version: only add seeds missing entirely (original behaviour). */
       const storedIds = new Set(stored.map(p => p.id));
       SEEDS.forEach(seed => {
-        if (!storedIds.has(seed.id)) { stored.push({ ...seed }); changed = true; }
+        if (!storedIds.has(seed.id)) {
+          const s = { ...seed };
+          if (erjSeedIsDue(seed)) s.published = true;
+          stored.push(s); changed = true;
+        }
+      });
+      /* Promote any seed post whose publish date has now arrived —
+         this is what makes the blog current on every device, daily,
+         without an admin toggle or a redeploy. */
+      const seedById = new Map(SEEDS.map(s => [s.id, s]));
+      stored.forEach(p => {
+        const seed = seedById.get(p.id);
+        if (seed && !p.published && !p._adminEdited && erjSeedIsDue(seed)) {
+          p.published = true; changed = true;
+        }
+      });
+    }
+
+    /* The newest live post is always the featured one — no manual flag. */
+    const live = stored.filter(p => p.published)
+                       .sort((a,b) => new Date(b.date) - new Date(a.date));
+    if (live.length) {
+      const topId = live[0].id;
+      stored.forEach(p => {
+        const shouldFeature = (p.id === topId);
+        if (!!p.featured !== shouldFeature) { p.featured = shouldFeature; changed = true; }
       });
     }
 
@@ -1445,7 +1484,9 @@ const SEED_VERSION = '2026-07-14-published-through-jul14-featured-jul14';
 function saved(){try{return JSON.parse(localStorage.getItem('rjm_blog_posts')||'[]')}catch{return[]}}
 function allPosts(){
   const s=saved(), ids=new Set(s.map(p=>p.id));
-  return [...s,...SEEDS.filter(x=>!ids.has(x.id))].filter(p=>p.published).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const extras = SEEDS.filter(x=>!ids.has(x.id))
+                      .map(x => erjSeedIsDue(x) ? { ...x, published:true } : x);
+  return [...s,...extras].filter(p=>p.published).sort((a,b)=>new Date(b.date)-new Date(a.date));
 }
 function filtered(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
@@ -1744,7 +1785,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReader();});
 
 /* ─── BACK TO TOP ─── */
 window.addEventListener('scroll',()=>{
-  document.getElementById('backTop').classList.toggle('on',window.scrollY>380);
+  /* back-to-top removed — shared tour-nav arrows handle scrolling */
 },{passive:true});
 
 /* ─── TOAST ─── */

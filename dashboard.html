@@ -1054,7 +1054,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 
         <!-- Access code entry -->
         <div style="display:flex;gap:.5rem;margin:.9rem 0 .6rem;flex-wrap:wrap">
-          <input id="accessCodeInput" type="text" placeholder="Enter access code e.g. ERJM-FULL-2026"
+          <input id="accessCodeInput" type="text" placeholder="Enter your access code, e.g. ERJM-FULL-2026EL"
             style="flex:1;min-width:180px;padding:.65rem .9rem;border-radius:9px;border:1.5px solid rgba(217,119,6,.35);background:rgba(217,119,6,.07);color:inherit;font-size:.85rem;outline:none;font-family:inherit"
             onkeydown="if(event.key==='Enter') redeemCode()">
           <button onclick="redeemCode()" style="padding:.65rem 1.1rem;border-radius:9px;background:var(--accent2,#D97706);color:#fff;border:none;font-weight:700;font-size:.84rem;cursor:pointer;white-space:nowrap">Unlock →</button>
@@ -1213,7 +1213,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
         </div>
 
         <!-- micro1 featured banner -->
-        <a href="https://refer.micro1.ai/referral/jobs/?referralCode=c7e58760-581b-45d4-9deb-475e02122729&utm_source=referral&utm_medium=share&utm_campaign=job_referral" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(20,184,166,.12),rgba(255,87,34,.08));border:1px solid rgba(20,184,166,.3);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1.2rem;text-decoration:none;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+        <a href="https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(20,184,166,.12),rgba(255,87,34,.08));border:1px solid rgba(20,184,166,.3);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1.2rem;text-decoration:none;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
           <span style="font-size:1.8rem;flex-shrink:0">🤖</span>
           <div style="flex:1;min-width:0">
             <div style="font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem">micro1.ai — AI-Matched Remote Jobs</div>
@@ -1656,44 +1656,79 @@ function updateStats() {
 /* ════════════════════════════════════════
    ACCESS CODE UNLOCK
 ══════════════════════════════════════════ */
-const ACCESS_CODES = {
-  'ERJM-FULL-2026':  ['stage1','stage2','stage3','stage4','stage5'],
-  'ERJM-S1-2026':    ['stage1'],
-  'ERJM-S2-2026':    ['stage1','stage2'],
-  'ERJM-S3-2026':    ['stage1','stage2','stage3'],
-  'ERJM-S4-2026':    ['stage1','stage2','stage3','stage4'],
-  'ERJ-ALL-ACCESS':  ['stage1','stage2','stage3','stage4','stage5'],
-  'COHORT7-FULL':    ['stage1','stage2','stage3','stage4','stage5'],
-};
+/* Codes now come from erj-passcode.js — one source of truth shared with the
+   admin panel. Format: ERJM-CORE-<YYYY><Hebrew month>  (Stages 1-4)
+                        ERJM-FULL-<YYYY><Hebrew month>  (Stages 1-5)
+   Legacy codes issued to earlier cohorts are still honoured there. */
 
 function redeemCode() {
-  const raw  = (document.getElementById('accessCodeInput')?.value || '').trim().toUpperCase();
-  const msg  = document.getElementById('codeMsg');
-  const stages = ACCESS_CODES[raw];
+  const input = document.getElementById('accessCodeInput');
+  const msg   = document.getElementById('codeMsg');
+  const raw   = (input?.value || '');
 
-  if (!stages) {
-    if (msg) { msg.style.color='#EF4444'; msg.textContent='❌ Invalid code. Contact admin on WhatsApp to get your code.'; msg.style.display='block'; }
+  function say(color, text) {
+    if (!msg) return;
+    msg.style.color = color; msg.textContent = text; msg.style.display = 'block';
+  }
+
+  if (!window.ERJPasscode) {
+    say('#EF4444', '\u26a0\ufe0f Code checker did not load. Refresh the page, then try again.');
+    return;
+  }
+
+  const r = window.ERJPasscode.validate(raw);
+
+  if (!r.ok) {
+    const why = {
+      'empty'          : 'Enter the code we sent you.',
+      'bad-month'      : 'That code ends in a month we do not recognise. Check the last two letters.',
+      'unknown-cohort' : 'That code is not for a cohort we are running. Check it against your receipt.',
+      'invalid'        : 'Invalid code.'
+    }[r.reason] || 'Invalid code.';
+    say('#EF4444', '\u274c ' + why + ' If it still fails, message us on WhatsApp and we will sort it.');
     return;
   }
 
   let changed = false;
-  stages.forEach(id => {
+  r.stages.forEach(id => {
     if (!progress[id]) progress[id] = { unlocked:false, completed:false, lessons:[] };
     if (!progress[id].unlocked) { progress[id].unlocked = true; changed = true; }
   });
 
-  if (changed) {
-    saveProgress();
-    ensureJobBoardAccess(60); // Grant/extend job board for 60 days on any code redemption
+  /* Record every redemption, including repeats — this is the attribution trail. */
+  try {
     const used = JSON.parse(localStorage.getItem('rjm_codes_used') || '[]');
-    used.push({ code: raw, email: session.email, at: new Date().toISOString() });
+    used.push({
+      code   : r.code,
+      tier   : r.tier,
+      cohort : r.cohort ? r.cohort.n : 'legacy',
+      email  : session.email,
+      at     : new Date().toISOString(),
+      repeat : !changed
+    });
     localStorage.setItem('rjm_codes_used', JSON.stringify(used));
-    const daysLeft = getJbDaysLeft();
-    if (msg) { msg.style.color='#7A8B5A'; msg.textContent=`✅ Access granted! ${stages.length} stage(s) unlocked. Job Board access: ${daysLeft} days.`; msg.style.display='block'; }
-    setTimeout(() => { renderStages(); updateStats(); renderOverview(); }, 600);
-  } else {
-    if (msg) { msg.style.color='#C96130'; msg.textContent='ℹ️ Those stages are already unlocked for your account.'; msg.style.display='block'; }
+  } catch {}
+
+  if (!changed) {
+    say('#C96130', '\u2139\ufe0f Those stages are already unlocked on your account. Nothing to do.');
+    return;
   }
+
+  saveProgress();
+  ensureJobBoardAccess(60);
+  const daysLeft = getJbDaysLeft();
+  const where = r.cohort ? (' \u00b7 Cohort ' + r.cohort.n) : '';
+  say('#7A8B5A', '\u2705 Access granted' + where + '. ' + r.stages.length +
+      ' stage(s) unlocked. Job Board access: ' + daysLeft + ' days.');
+
+  /* An out-of-window code still works — the person paid for it — but say so,
+     so nobody thinks they are in the current cohort when they are not. */
+  if (r.expired) {
+    setTimeout(() => say('#C96130',
+      '\u2705 Unlocked. Note: this code is from an earlier cohort, so your stages are open but the live sessions for that cohort have finished. Message us if you want to join the current one.'), 2600);
+  }
+
+  setTimeout(() => { renderStages(); updateStats(); renderOverview(); }, 600);
 }
 
 /* ════════════════════════════════════════
@@ -2287,7 +2322,7 @@ const DASH_JOBS_KEY   = 'erj_jobs';
 const DASH_JSEEN_KEY  = 'erj_dash_jobs_seen';
 
 const SEED_JOBS = [
-  {id:'m1',src:'micro1.ai',company:'micro1.ai',emoji:'🤖',role:'AI-Matched Worldwide Jobs',cat:'AI & Machine Learning',salary:'$50k–$200k',type:'Various',loc:'Worldwide',desc:'Browse 100+ AI-matched remote roles.',url:'https://refer.micro1.ai/referral/jobs/?referralCode=c7e58760-581b-45d4-9deb-475e02122729&utm_source=referral&utm_medium=share&utm_campaign=job_referral',posted:'2026-05-26'},
+  {id:'m1',src:'micro1.ai',company:'micro1.ai',emoji:'🤖',role:'AI-Matched Worldwide Jobs',cat:'AI & Machine Learning',salary:'$50k–$200k',type:'Various',loc:'Worldwide',desc:'Browse 100+ AI-matched remote roles.',url:'https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26',posted:'2026-05-26'},
   {id:'a1',src:'Ashby',company:'Arc (YC W16)',emoji:'⚡',role:'Senior Software Engineer',cat:'Engineering',salary:'$120k–$165k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/arc/jobs',posted:'2026-05-24'},
   {id:'a2',src:'Ashby',company:'Mercury',emoji:'🏦',role:'Product Designer',cat:'Design',salary:'$130k–$175k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/mercury/jobs',posted:'2026-05-23'},
   {id:'a3',src:'Ashby',company:'Linear',emoji:'📐',role:'Frontend Engineer',cat:'Engineering',salary:'$140k–$180k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/linear/jobs',posted:'2026-05-22'},
@@ -2723,5 +2758,6 @@ window.addEventListener('offline', () => { document.body.classList.add('offline'
 </script>
 <!-- ===== /Unified Theme Control ===== -->
 
+<script src="erj-passcode.js"></script>
 </body>
 </html>

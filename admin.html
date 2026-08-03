@@ -607,6 +607,9 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
         <div class="page-title">Stage Access Management 🔑</div>
         <div class="page-sub">Grant or revoke access to individual stages for participants and instructors. Changes take effect immediately.</div>
       </div>
+      <!-- Cohort passcodes -->
+      <div id="passcodePanel" style="margin-bottom:1.5rem"></div>
+
       <!-- Search -->
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap">
         <div class="tbl-search" style="max-width:320px;flex:1"><span>🔍</span><input id="accessSearch" placeholder="Search participants…" oninput="renderAccessGrid()"></div>
@@ -1563,7 +1566,66 @@ function revokeAllStudents() {
 }
 
 /* ── ACCESS GRID RENDER ── */
+/* ── COHORT PASSCODES ──────────────────────────────────────────────
+   Read straight from erj-passcode.js so this panel and the participant
+   dashboard can never drift apart. Codes are a convenience gate and an
+   attribution trail, not security — see the note in that file.
+─────────────────────────────────────────────────────────────────── */
+function renderPasscodePanel() {
+  const el = document.getElementById('passcodePanel');
+  if (!el) return;
+  if (!window.ERJPasscode) {
+    el.innerHTML = '<div style="padding:1rem;border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:.82rem">Passcode module did not load \u2014 refresh the page.</div>';
+    return;
+  }
+  const P = window.ERJPasscode;
+  const now = P.codesFor();
+
+  const row = (c) => {
+    const x = P.codesFor(c);
+    const live = (c.n === now.cohort.n);
+    return `<tr style="${live ? 'background:rgba(255,87,34,.06)' : ''}">
+      <td style="padding:.55rem .7rem;font-weight:${live ? '700' : '500'}">Cohort ${c.n}${live ? ' \u00b7 <span style="color:var(--accent,#FF5722)">live</span>' : ''}${c.confirmed ? '' : ' <span title="Projected \u2014 confirm the Hebrew month before announcing" style="color:var(--muted)">(provisional)</span>'}</td>
+      <td style="padding:.55rem .7rem;color:var(--muted);font-size:.8rem">${x.window}</td>
+      <td style="padding:.55rem .7rem;color:var(--muted);font-size:.8rem">${x.month}</td>
+      <td style="padding:.55rem .7rem"><code style="font-size:.8rem">${x.core}</code>
+        <button onclick="copyCode('${x.core}')" style="margin-left:.4rem;border:none;background:none;cursor:pointer;font-size:.78rem;color:var(--accent,#FF5722)">copy</button></td>
+      <td style="padding:.55rem .7rem"><code style="font-size:.8rem">${x.full}</code>
+        <button onclick="copyCode('${x.full}')" style="margin-left:.4rem;border:none;background:none;cursor:pointer;font-size:.78rem;color:var(--accent,#FF5722)">copy</button></td>
+    </tr>`;
+  };
+
+  el.innerHTML = `
+    <div style="border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem">
+      <div style="font-weight:700;margin-bottom:.25rem">🔑 Cohort passcodes</div>
+      <div style="color:var(--muted);font-size:.8rem;margin-bottom:.9rem;line-height:1.6">
+        <b>CORE</b> unlocks Stages 1\u20134 \u00b7 <b>FULL</b> unlocks Stages 1\u20135.
+        The last two letters are the Hebrew month the cohort begins in.
+        Send the buyer the code for the tier they actually paid for.
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+        <thead><tr style="text-align:left;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em">
+          <th style="padding:.45rem .7rem">Cohort</th><th style="padding:.45rem .7rem">Window</th>
+          <th style="padding:.45rem .7rem">Hebrew month</th>
+          <th style="padding:.45rem .7rem">Stages 1\u20134</th><th style="padding:.45rem .7rem">Stages 1\u20135</th>
+        </tr></thead>
+        <tbody>${P.COHORTS.map(row).join('')}</tbody>
+      </table>
+      <div style="color:var(--muted);font-size:.75rem;margin-top:.8rem;line-height:1.6">
+        These codes run in the browser, so treat them as a convenience gate and a record of who redeemed what \u2014 not as security.
+      </div>
+    </div>`;
+}
+
+function copyCode(c) {
+  navigator.clipboard?.writeText(c).then(
+    () => showToast('📋 ' + c + ' copied', 'success'),
+    () => showToast('Could not copy \u2014 select it by hand', 'error')
+  );
+}
+
 function renderAccessGrid() {
+  renderPasscodePanel();
   const q = (document.getElementById('accessSearch')?.value || '').toLowerCase();
   const learners = getUsers().filter(u =>
     (u.role === 'student' || u.role === 'instructor') &&
@@ -2185,5 +2247,6 @@ renderContent();
 <!-- ===== /Unified Theme Control ===== -->
 
 <script src="erj-nav.js"></script>
+<script src="erj-passcode.js"></script>
 </body>
 </html>

@@ -125,6 +125,88 @@
   .free-board:hover .fb-cta{background:var(--accent-h);}
   .free-board:hover .fb-arrow{transform:translateX(4px);}
 
+
+  /* ── the ladder: "Your starting line" ── */
+  .ladder{position:relative;margin-top:0.6rem;}
+  .ladder::before{content:'';position:absolute;left:calc(1.5rem + 0.5px);top:1.9rem;bottom:1.9rem;
+    width:1px;background:linear-gradient(180deg,var(--accent),var(--line) 55%,var(--line));}
+  @media(max-width:760px){.ladder::before{display:none;}}
+
+  .rung{position:relative;display:grid;grid-template-columns:3rem 1fr auto;gap:0 1.6rem;align-items:start;
+    padding:1.9rem 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+    transition:background .3s var(--ease);}
+  .rung:first-of-type{border-top:1px solid var(--line);}
+  .rung:hover{background:var(--card);}
+  .rung:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px;}
+
+  .rung-n{grid-column:1;display:flex;align-items:center;justify-content:center;
+    width:3rem;height:3rem;border-radius:50%;background:var(--paper);
+    border:1px solid var(--line);font-family:var(--font-display);font-size:0.9rem;font-weight:800;
+    color:var(--ink-faint);transition:all .3s var(--ease);position:relative;z-index:1;}
+  .rung:hover .rung-n{border-color:var(--accent);color:var(--accent);}
+  .rung.is-start .rung-n{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  .rung-body{grid-column:2;min-width:0;}
+  .rung-who{display:block;font-size:0.72rem;font-weight:500;color:var(--ink-faint);
+    margin-bottom:0.55rem;line-height:1.5;}
+  .rung-who b{color:var(--accent);font-weight:600;}
+  .rung-title{font-family:var(--font-display);font-size:clamp(1.3rem,2.4vw,1.75rem);font-weight:800;
+    letter-spacing:-0.02em;color:var(--ink);line-height:1.1;margin-bottom:0.5rem;}
+  .rung-title em{font-style:normal;color:var(--accent);}
+  .rung-desc{font-size:0.88rem;color:var(--ink-soft);font-weight:300;line-height:1.65;max-width:52ch;}
+  .rung-meta{display:flex;flex-wrap:wrap;gap:0.5rem 1.1rem;margin-top:0.8rem;
+    font-size:0.72rem;color:var(--ink-faint);letter-spacing:0.02em;}
+  .rung-meta span{display:inline-flex;align-items:center;gap:0.4rem;}
+  .rung-meta span::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--accent);}
+
+  .rung-buy{grid-column:3;text-align:right;flex-shrink:0;padding-left:1rem;}
+  .rung-price{font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:var(--ink);
+    line-height:1.15;white-space:nowrap;}
+  .rung-was{display:block;font-size:0.76rem;font-weight:400;color:var(--ink-faint);
+    text-decoration:line-through;margin-top:0.15rem;}
+  .rung-alt{display:block;font-size:0.72rem;color:var(--ink-faint);margin-top:0.35rem;line-height:1.45;
+    max-width:19ch;margin-left:auto;}
+  .rung-go{display:inline-flex;align-items:center;gap:0.45rem;margin-top:0.9rem;
+    font-size:0.8rem;font-weight:500;color:var(--accent);white-space:nowrap;}
+  .rung-go .a{transition:transform .3s var(--ease);}
+  .rung:hover .rung-go .a{transform:translateX(4px);}
+
+  .start-badge{display:inline-block;font-size:0.6rem;font-weight:700;letter-spacing:0.16em;
+    text-transform:uppercase;color:#fff;background:var(--accent);padding:0.2rem 0.55rem;
+    border-radius:100px;margin-bottom:0.6rem;}
+
+  @media(max-width:760px){
+    .rung{grid-template-columns:2.4rem 1fr;gap:0 1rem;padding:1.5rem 0;}
+    .rung-n{width:2.4rem;height:2.4rem;font-size:0.78rem;}
+    .rung-buy{grid-column:2;text-align:left;padding-left:0;margin-top:1rem;}
+    .rung-alt{margin-left:0;max-width:none;}
+  }
+
+  /* ── the free shelf: "Free · for everyone" ── */
+  .free-lead{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.65;
+    max-width:56ch;margin-bottom:1.8rem;}
+  .shelf{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:1rem;}
+  @media(min-width:700px) and (max-width:1150px){
+    .shelf{grid-template-columns:repeat(2,1fr);}
+  }
+  .shelf-item{display:flex;flex-direction:column;padding:1.5rem 1.4rem;border-radius:14px;
+    border:1px dashed var(--line);background:transparent;text-decoration:none;color:inherit;
+    transition:border-color .3s var(--ease),background .3s var(--ease),transform .3s var(--ease);}
+  .shelf-item:hover{border-color:var(--accent);border-style:solid;background:var(--card);transform:translateY(-2px);}
+  .shelf-item:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .shelf-kind{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:0.85rem;}
+  .shelf-title{font-family:var(--font-display);font-size:1.08rem;font-weight:800;letter-spacing:-0.01em;
+    color:var(--ink);line-height:1.2;margin-bottom:0.5rem;}
+  .shelf-title em{font-style:normal;color:var(--accent);}
+  .shelf-desc{font-size:0.82rem;color:var(--ink-soft);font-weight:300;line-height:1.6;flex:1;}
+  .shelf-go{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.1rem;
+    font-size:0.76rem;font-weight:500;color:var(--accent);}
+  .shelf-go .a{transition:transform .3s var(--ease);}
+  .shelf-item:hover .shelf-go .a{transform:translateX(3px);}
+  .free-note{margin-top:1.4rem;font-size:0.78rem;color:var(--ink-faint);line-height:1.6;
+    padding-left:0.9rem;border-left:2px solid var(--line);max-width:60ch;}
+
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
   /* ── proof bar (open loop under hero) ── */
@@ -404,74 +486,110 @@
     <a href="testimonials.html" class="more-stories reveal">Read more member stories <span>→</span></a>
   </section>
 
-  <!-- THREE PATHS -->
+  <!-- THE LADDER -->
   <section class="wrap section-line" id="paths">
     <p class="section-label"><span class="mark"></span> Your starting line</p>
-    <h2 class="cost-h" style="margin-bottom:0.9rem;">Wherever you are, there's a <em>next step.</em></h2>
-    <p class="paths-lead">You don't have to figure out the whole journey today — just the one move that fits where you stand right now. <strong>Not sure?</strong> Start with the Mastery Training and we'll guide the rest.</p>
-    <div style="display:flex;flex-direction:column;gap:1.2rem;">
-      <a href="masterytraining/" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Start here · Stages 1–4 · 4-Week Training</span>
-          <h3 class="fb-title">Remote Job World <em>Mastery</em></h3>
-          <p class="fb-desc">Walk out in <strong>20 training days</strong> able to command <strong>$500–$2,000/month</strong> global roles — CV, portfolio and interview game built hands-on, not watched. One entry-level role repays the fee in under a week.</p>
-          <span class="fb-price">Full programme <strong>₦250,000</strong> <s style="color:var(--ink-faint)">₦370,000</s> · or from ₦70,000 per stage</span>
+    <h2 class="cost-h" style="margin-bottom:0.9rem;">Three rungs. You only need to find <em>yours.</em></h2>
+    <p class="paths-lead">These are not three competing options — they are one ladder, in order. Read the line above each rung. The moment one of them describes you, that is your starting point, and you can stop reading.</p>
+
+    <div class="ladder">
+
+      <a href="masterytraining/" class="rung is-start reveal">
+        <span class="rung-n">01</span>
+        <div class="rung-body">
+          <span class="start-badge">Most people start here</span>
+          <span class="rung-who"><b>If this is you:</b> you can do real work, but nothing you own would convince a stranger of it in thirty seconds.</span>
+          <h3 class="rung-title">Remote Job World <em>Mastery</em></h3>
+          <p class="rung-desc">Twenty training days that turn what you can already do into a CV, a portfolio and an interview a global employer can actually read. Built hands-on, not watched.</p>
+          <div class="rung-meta">
+            <span>Stages 1–4</span><span>20 training days</span><span>Targets $500–$2,000/mo roles</span>
+          </div>
         </div>
-        <span class="fb-cta">Start here <span class="fb-arrow">→</span></span>
+        <div class="rung-buy">
+          <div class="rung-price">₦250,000<s class="rung-was">₦370,000</s></div>
+          <span class="rung-alt">or from ₦70,000 for a single stage</span>
+          <span class="rung-go">Start here <span class="a">→</span></span>
+        </div>
       </a>
 
-      <a href="getaremotejob/" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Then get placed · Stage 5 · The Placement Engine</span>
-          <h3 class="fb-title">Get A <em>Remote Job</em></h3>
-          <p class="fb-desc">The hunt, done for you in <strong>7 days</strong> — then <strong>30+ verified dollar roles weekly</strong> until a <strong>$1,000+/month</strong> offer letter lands. We don't let go until you're hired.</p>
-          <span class="fb-price">One payment <strong>₦150,000</strong> · lifetime community included</span>
+      <a href="getaremotejob/" class="rung reveal">
+        <span class="rung-n">02</span>
+        <div class="rung-body">
+          <span class="rung-who"><b>If this is you:</b> you are already employable and properly represented — what you do not have is the bandwidth to run the search.</span>
+          <h3 class="rung-title">Get A <em>Remote Job</em></h3>
+          <p class="rung-desc">We run the hunt for you: the sourcing, the outbound, the applications. You attend the interviews and make the decisions. We do not let go until the offer letter lands.</p>
+          <div class="rung-meta">
+            <span>Stage 5</span><span>Done for you</span><span>Weekly written report</span>
+          </div>
         </div>
-        <span class="fb-cta">See the system <span class="fb-arrow">→</span></span>
+        <div class="rung-buy">
+          <div class="rung-price">₦150,000</div>
+          <span class="rung-alt">one payment · community included</span>
+          <span class="rung-go">See the system <span class="a">→</span></span>
+        </div>
       </a>
 
-      <a href="innercircle/" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Premium · Stages 6–12 · Private 1:1</span>
-          <h3 class="fb-title">The Inner <em>Circle</em></h3>
-          <p class="fb-desc">A <strong>7-week 1:1 residency</strong> with one ending: you, deployed into a <strong>$1,000–$2,500/month</strong> international role — co-built, co-applied and co-negotiated beside you until the offer is signed.</p>
-          <span class="fb-price"><strong>₦250,000</strong> <s style="color:var(--ink-faint)">₦400,000</s> · or ₦135,000 × 2 milestones · by application</span>
+      <a href="innercircle/" class="rung reveal">
+        <span class="rung-n">03</span>
+        <div class="rung-body">
+          <span class="rung-who"><b>If this is you:</b> you are stable and skilled, and what you are actually missing is a room — peers, a place to test a negotiation, leads before they go public.</span>
+          <h3 class="rung-title">The Inner <em>Circle</em></h3>
+          <p class="rung-desc">A seven-week one-to-one residency with a single ending: you, placed in a $1,000–$2,500/month international role, co-built and co-negotiated beside you until it is signed.</p>
+          <div class="rung-meta">
+            <span>Stages 6–12</span><span>Private 1:1</span><span>Admission verified first</span>
+          </div>
         </div>
-        <span class="fb-cta">Apply <span class="fb-arrow">→</span></span>
+        <div class="rung-buy">
+          <div class="rung-price">₦250,000<s class="rung-was">₦400,000</s></div>
+          <span class="rung-alt">or ₦135,000 × 2 · by application</span>
+          <span class="rung-go">Apply <span class="a">→</span></span>
+        </div>
       </a>
+
     </div>
   </section>
 
-  <!-- FREE JOB BOARD -->
+  <!-- FREE SHELF -->
   <section class="wrap section-line" id="free">
     <p class="section-label"><span class="mark"></span> Free · for everyone</p>
-    <div style="display:flex;flex-direction:column;gap:1.2rem;">
-      <a href="cvscan/" id="cvscan" style="scroll-margin-top:100px;" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Free · Instant · Private</span>
-          <h3 class="fb-title">10-Point CV <em>Self-Scan</em></h3>
-          <p class="fb-desc">Upload your CV and get a <strong>remote-readiness score out of 10 in seconds</strong> — see exactly where you default: ATS formatting, metrics, async evidence, timezone signals, keywords. Runs entirely on your device. <strong>Nothing uploads, nothing is stored.</strong></p>
-        </div>
-        <span class="fb-cta">Scan my CV free <span class="fb-arrow">→</span></span>
+    <h2 class="cost-h" style="margin-bottom:0.9rem;">You can get a long way without <em>paying us anything.</em></h2>
+    <p class="free-lead">Everything on this shelf is genuinely free and stays free. No card, no trial that expires, no drip campaign. Work through it properly and you will arrive at a cohort ahead of where most people start — or land a role without us, which is a good outcome too.</p>
+
+    <div class="shelf">
+
+      <a href="cvscan/" id="cvscan" style="scroll-margin-top:100px;" class="shelf-item reveal">
+        <span class="shelf-kind">Instant · private</span>
+        <h3 class="shelf-title">10-Point CV <em>Self-Scan</em></h3>
+        <p class="shelf-desc">Score your CV out of 10 for remote readiness in under a minute — ATS formatting, metrics, async evidence, keywords. Runs entirely on your own device: nothing uploads, nothing is stored.</p>
+        <span class="shelf-go">Scan my CV <span class="a">→</span></span>
       </a>
-      <a href="blog.html" id="blog" style="scroll-margin-top:100px;" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Free · Always On</span>
-          <h3 class="fb-title">The Remote Career <em>Blog</em></h3>
-          <p class="fb-desc">Continuous remote-job education, published free — practical lessons, real case studies, salary literacy and the systems behind every stage of the journey. <strong>New posts all month, every month.</strong> Read at your own pace.</p>
-        </div>
-        <span class="fb-cta">Read the blog <span class="fb-arrow">→</span></span>
+
+      <a href="masterclass/" class="shelf-item reveal">
+        <span class="shelf-kind">Live · 100 seats</span>
+        <h3 class="shelf-title">The Global Remote Job <em>Blueprint</em></h3>
+        <p class="shelf-desc">A free live masterclass on Zoom walking the whole path end to end — what a remote job actually is, which doors are open to you from here, and how hiring really works. Attend, take everything, implement it alone.</p>
+        <span class="shelf-go">Reserve a seat <span class="a">→</span></span>
       </a>
-      <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" id="jobboard" style="scroll-margin-top:100px;" target="_blank" rel="noopener" class="free-board reveal">
-        <div class="fb-left">
-          <span class="fb-tag"><span class="fb-dot"></span> Free · Open to All</span>
-          <h3 class="fb-title">Global Remote Job <em>Board</em> <span class="fb-sub">(Africans)</span></h3>
-          <p class="fb-desc">A free WhatsApp channel sharing real, verified global remote roles open to Africans — updated regularly, no fees, no gatekeeping. Tap to join.</p>
-        </div>
-        <span class="fb-cta">Join free on WhatsApp <span class="fb-arrow">→</span></span>
+
+      <a href="blog.html" id="blog" style="scroll-margin-top:100px;" class="shelf-item reveal">
+        <span class="shelf-kind">Daily · no account</span>
+        <h3 class="shelf-title">The Remote Career <em>Blog</em></h3>
+        <p class="shelf-desc">Practical, plain-English guidance published daily: what to prepare before applying, spotting a scam, ATS CVs, portfolios from nothing, pay ranges, interviews and the first thirty days in the job.</p>
+        <span class="shelf-go">Read the blog <span class="a">→</span></span>
       </a>
+
+      <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" id="jobboard" style="scroll-margin-top:100px;" target="_blank" rel="noopener" class="shelf-item reveal">
+        <span class="shelf-kind">Open to all · WhatsApp</span>
+        <h3 class="shelf-title">Global Remote Job <em>Board</em></h3>
+        <p class="shelf-desc">A free WhatsApp channel carrying real, verified global remote roles open to Africans. Updated regularly, no fees, no gatekeeping. Tap to join and leave whenever you like.</p>
+        <span class="shelf-go">Join free <span class="a">→</span></span>
+      </a>
+
     </div>
+
+    <p class="free-note">Why give this away? Because the people who work through it and still want help arrive knowing exactly what they need — and the people who do not need us should not be paying us.</p>
   </section>
+
 <!-- THRIVE PLEDGE -->
   <section class="wrap section-line" id="pledge">
     <div class="pledge reveal">

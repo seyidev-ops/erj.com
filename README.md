@@ -33,7 +33,7 @@ The programme it powers:
 
 ```
 /
-├── index.html                  # Home — Cohort 9 conversion page
+├── index.html                  # Home — Cohort 10 conversion page
 ├── register.html               # Evergreen enrolment & pricing page
 ├── testimonials.html           # Social proof + Private Job Board
 ├── blog.html · blog-admin.html # "Everything Remote" blog + admin

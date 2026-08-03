@@ -17,13 +17,29 @@
   /* countdown */
   var pad=function(n){return String(n).padStart(2,'0');};
   var panels=[].slice.call(document.querySelectorAll('[data-deadline]')).map(function(p){
-    return {deadline:new Date(p.dataset.deadline),nodes:{
+    return {el:p,closedLabel:p.dataset.closedLabel||'',done:false,
+      deadline:new Date(p.dataset.deadline),nodes:{
       d:p.querySelector('[data-k="d"]'),h:p.querySelector('[data-k="h"]'),
       m:p.querySelector('[data-k="m"]'),s:p.querySelector('[data-k="s"]')}};
   }).filter(function(p){return p.nodes.d;});
   if(panels.length){
     var tick=function(){panels.forEach(function(p){
-      var diff=p.deadline-new Date(); if(diff<0)diff=0;
+      var diff=p.deadline-new Date();
+      if(diff<=0){
+        diff=0;
+        if(!p.done){
+          p.done=true;
+          p.el.classList.add('is-closed');
+          if(p.closedLabel){
+            var lbl=p.el.querySelector('[data-lbl]');
+            if(!lbl){
+              var scope=p.el.parentNode;
+              while(scope&&scope!==document.body&&!lbl){lbl=scope.querySelector('[data-lbl]');scope=scope.parentNode;}
+            }
+            if(lbl)lbl.textContent=p.closedLabel;
+          }
+        }
+      }
       var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),
           m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
       if(p.nodes.d)p.nodes.d.textContent=pad(d); if(p.nodes.h)p.nodes.h.textContent=pad(h);

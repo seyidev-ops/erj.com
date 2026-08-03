@@ -32,6 +32,8 @@
   .urgency{margin:1.8rem auto 0;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.9rem 1.4rem;
     border:1px solid var(--card-line);background:var(--card);border-radius:100px;padding:0.75rem 1.5rem;}
   .urg-lbl{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;}
+  .urgency.is-closed .urg-count{opacity:0.35;}
+  .urgency.is-closed .urg-lbl{color:var(--ink-faint);}
   .urg-count{display:flex;align-items:baseline;gap:0.55rem;font-family:var(--font-display);font-weight:800;color:var(--ink);
     font-size:1.05rem;font-variant-numeric:tabular-nums;letter-spacing:-0.01em;}
   .urg-count small{font-size:0.6rem;font-weight:400;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase;margin-left:1px;}
@@ -117,32 +119,148 @@
     .step{border-top:1px solid var(--line-soft);}
     .step:first-child{border-top:none;}
   }
+
+  /* ── "Which door is mine?" chooser ── */
+  .ch-wrap{border:1px solid var(--card-line);background:var(--card);border-radius:20px;
+    padding:clamp(1.4rem,4vw,2.4rem);margin-top:1.6rem;}
+  .ch-step{display:none;}
+  .ch-step.on{display:block;animation:chIn .35s var(--ease) both;}
+  @keyframes chIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  .ch-prog{display:flex;align-items:center;gap:0.5rem;margin-bottom:1.4rem;}
+  .ch-pip{height:3px;flex:1;border-radius:100px;background:var(--line);overflow:hidden;}
+  .ch-pip i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s var(--ease);}
+  .ch-pip.done i,.ch-pip.now i{width:100%;}
+  .ch-pip.now i{opacity:.5;}
+  .ch-qn{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);
+    font-weight:600;margin-bottom:0.6rem;}
+  .ch-q{font-family:var(--font-display);font-size:clamp(1.25rem,3.2vw,1.75rem);font-weight:800;
+    letter-spacing:-0.02em;color:var(--ink);line-height:1.2;margin-bottom:0.5rem;}
+  .ch-why{font-size:0.86rem;color:var(--ink-soft);font-weight:300;line-height:1.65;max-width:62ch;margin-bottom:1.3rem;}
+  .ch-opts{display:flex;flex-direction:column;gap:0.7rem;}
+  .ch-opt{display:grid;grid-template-columns:auto 1fr auto;gap:0.9rem;align-items:center;width:100%;
+    text-align:left;cursor:pointer;background:var(--bg2);border:1px solid var(--card-line);
+    border-radius:12px;padding:0.95rem 1.1rem;transition:border-color .2s var(--ease),transform .2s var(--ease),background .2s var(--ease);}
+  .ch-opt:hover{border-color:var(--accent);transform:translateX(3px);}
+  .ch-opt-k{font-family:var(--font-display);font-size:0.72rem;font-weight:800;color:var(--accent);
+    border:1px solid var(--accent);border-radius:7px;width:26px;height:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .ch-opt-t{font-size:0.95rem;color:var(--ink);font-weight:500;line-height:1.35;}
+  .ch-opt-t small{display:block;font-size:0.78rem;color:var(--ink-faint);font-weight:300;margin-top:0.2rem;line-height:1.5;}
+  .ch-opt-go{font-size:0.85rem;color:var(--ink-faint);}
+  .ch-opt:hover .ch-opt-go{color:var(--accent);}
+  .ch-back{background:none;border:none;color:var(--ink-faint);font-size:0.78rem;cursor:pointer;
+    padding:0;margin-top:1.1rem;text-decoration:underline;font-family:inherit;}
+  .ch-back:hover{color:var(--accent);}
+  /* Result */
+  .ch-res-k{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.7rem;}
+  .ch-res-t{font-family:var(--font-display);font-size:clamp(1.4rem,3.6vw,2.1rem);font-weight:800;
+    letter-spacing:-0.02em;color:var(--ink);line-height:1.15;margin-bottom:0.35rem;}
+  .ch-res-p{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:1rem;}
+  .ch-res-body{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.75;max-width:62ch;margin-bottom:1rem;}
+  .ch-res-body strong{color:var(--ink);font-weight:500;}
+  .ch-logic{border-left:2px solid var(--accent);padding:0.2rem 0 0.2rem 1rem;margin:1.1rem 0 1.3rem;}
+  .ch-logic-t{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.5rem;}
+  .ch-logic p{font-size:0.85rem;color:var(--ink-soft);font-weight:300;line-height:1.7;margin:0;}
+  .ch-acts{display:flex;flex-wrap:wrap;gap:0.7rem;align-items:center;}
+  .ch-alt{font-size:0.82rem;color:var(--ink-faint);font-weight:300;line-height:1.7;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--line);}
+  .ch-alt a{color:var(--accent);text-decoration:none;font-weight:500;}
+  .ch-alt a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
 <div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'pricing',onPage:[{label:'Training stages',href:'#sec-training'},{label:'Get A Remote Job',href:'#sec-remote'},{label:'Inner Circle',href:'#sec-inner'},{label:'Private Job Board',href:'#sec-jobboard'},{label:'Secured by Paystack',href:'#sec-paystack'}]};</script>
+<script>window.ERJ_NAV={active:'pricing',onPage:[{label:'Which door is mine?',href:'#sec-chooser'},{label:'Training stages',href:'#sec-training'},{label:'Get A Remote Job',href:'#sec-remote'},{label:'Inner Circle',href:'#sec-inner'},{label:'Private Job Board',href:'#sec-jobboard'},{label:'Secured by Paystack',href:'#sec-paystack'}]};</script>
 
 <main>
 <div class="pledge-ribbon"><span class="pr-tag"><span class="pr-dot"></span> The Thrive Pledge</span><span class="pr-text">We don’t let go <em>until you’re hired.</em></span></div>
   <section class="wrap reg-hero">
     <div class="kicker"><span class="mark"></span> Register · Enrolment Open</div>
-    <h1>Your first dollar salary is one enrolment away — <em>Cohort 9 closes 2 August.</em></h1>
+    <h1>Your first dollar salary is one enrolment away — <em>Cohort 10 closes 31 August.</em></h1>
     <p class="lede">One page, every option. Choose a single stage, the complete programme, or the Inner Circle — all payments are processed securely through Paystack: cards, bank transfer, and USSD accepted.</p>
-    <div class="urgency" data-deadline="2026-08-02T20:00:00+01:00">
-      <span class="urg-lbl">Cohort 9 begins in</span>
+    <div class="urgency" data-deadline="2026-08-31T20:00:00+01:00" data-closed-label="Enrolment for Cohort 10 has closed">
+      <span class="urg-lbl" data-lbl>Enrolment closes in</span>
       <span class="urg-count">
         <span><span data-k="d">00</span><small>d</small></span>
         <span><span data-k="h">00</span><small>h</small></span>
         <span><span data-k="m">00</span><small>m</small></span>
         <span><span data-k="s">00</span><small>s</small></span>
       </span>
-      <span class="urg-date"><strong>Sun, 2 Aug · 8:00 PM WAT</strong> — enrolment closes when the cohort fills</span>
+      <span class="urg-date"><strong>Closes Mon, 31 Aug · 8:00 PM WAT</strong> — or earlier if the cohort fills. Cohort 10 begins Tue, 1 Sep · 8:00 PM WAT.</span>
     </div>
     <div class="trust">
       <span><b>382+</b> trained &amp; placed</span>
       <span><b>7</b> cohorts refined</span>
       <span>The Thrive Pledge — <b>we don't let go until you're hired</b></span>
+    </div>
+  </section>
+
+
+  <!-- ===== WHICH DOOR IS MINE? ===== -->
+  <section class="wrap section-line" id="sec-chooser">
+    <div class="sec-label">Which door is mine?</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.15;margin-bottom:0.7rem;">Three questions. Then you'll know — <em style="font-style:normal;color:var(--accent)">and you'll know why.</em></h2>
+    <p style="font-size:0.95rem;color:var(--ink-soft);font-weight:300;line-height:1.75;max-width:64ch;">Buying the wrong rung is the most expensive mistake in this market — people spend on placement when they needed training, or train again when they needed placing. These are the same three questions we ask on every enrolment call, in the same order, for the same reason.</p>
+
+    <div class="ch-wrap" id="chooser">
+      <div class="ch-prog">
+        <span class="ch-pip now" data-pip="1"><i></i></span>
+        <span class="ch-pip" data-pip="2"><i></i></span>
+        <span class="ch-pip" data-pip="3"><i></i></span>
+      </div>
+
+      <!-- Q1 — SKILL -->
+      <div class="ch-step on" data-step="1">
+        <div class="ch-qn">Question 1 of 3 · Skill</div>
+        <div class="ch-q">Do you already have a skill a global company would pay for?</div>
+        <p class="ch-why">We ask this first because it decides everything downstream. No filter, feed or placement engine can sell a skill that isn't there yet — and no amount of training helps someone who was already hireable and just badly represented. Be honest here; the answer costs you nothing but saves you a wrong purchase.</p>
+        <div class="ch-opts">
+          <button class="ch-opt" onclick="chPick('skill','none')"><span class="ch-opt-k">A</span><span class="ch-opt-t">Not yet — I'd be starting from scratch<small>No portfolio, no remote-relevant experience, or changing field entirely</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('skill','some')"><span class="ch-opt-k">B</span><span class="ch-opt-t">I have experience, but not remote-ready<small>Real work history, but no global CV, portfolio or async working habits</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('skill','strong')"><span class="ch-opt-k">C</span><span class="ch-opt-t">Yes — I'm employable today<small>Dev, design, support, ops, marketing, VA, data — I could start Monday if hired</small></span><span class="ch-opt-go">→</span></button>
+        </div>
+      </div>
+
+      <!-- Q2 — TIMELINE -->
+      <div class="ch-step" data-step="2">
+        <div class="ch-qn">Question 2 of 3 · Timeline</div>
+        <div class="ch-q">When do you need the dollar income to start?</div>
+        <p class="ch-why">Timeline is not impatience — it's a real constraint that changes the correct answer. Someone who needs income in six weeks should not be starting a four-week build then applying alone; someone with six months should not be paying for speed they don't need.</p>
+        <div class="ch-opts">
+          <button class="ch-opt" onclick="chPick('time','urgent')"><span class="ch-opt-k">A</span><span class="ch-opt-t">As fast as humanly possible — weeks, not months<small>The naira maths is not holding; I need this moving now</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('time','quarter')"><span class="ch-opt-k">B</span><span class="ch-opt-t">Within about 3 months<small>I can build properly first, as long as it's actually progressing</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('time','patient')"><span class="ch-opt-k">C</span><span class="ch-opt-t">I'm building for the long game<small>Employed and stable — I want it done right, not rushed</small></span><span class="ch-opt-go">→</span></button>
+        </div>
+        <button class="ch-back" onclick="chBack(1)">← Back to question 1</button>
+      </div>
+
+      <!-- Q3 — BUDGET -->
+      <div class="ch-step" data-step="3">
+        <div class="ch-qn">Question 3 of 3 · Budget</div>
+        <div class="ch-q">What can you commit right now — without borrowing dangerously?</div>
+        <p class="ch-why">We ask this last, deliberately. Budget should narrow the options after skill and timeline have identified the right kind of help — never before. And the honest instruction stands: if the amount competes with rent or school fees, the correct answer is the next cohort, not a loan.</p>
+        <div class="ch-opts">
+          <button class="ch-opt" onclick="chPick('budget','low')"><span class="ch-opt-k">A</span><span class="ch-opt-t">Under ₦100,000 for now<small>Or nothing yet — I'm working out whether this is real</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('budget','mid')"><span class="ch-opt-k">B</span><span class="ch-opt-t">₦100,000 – ₦300,000<small>Serious, and I want the full build or the placement engine</small></span><span class="ch-opt-go">→</span></button>
+          <button class="ch-opt" onclick="chPick('budget','high')"><span class="ch-opt-k">C</span><span class="ch-opt-t">₦300,000+ if it's the thing that actually works<small>I'd rather buy the outcome once than the cheapest option twice</small></span><span class="ch-opt-go">→</span></button>
+        </div>
+        <button class="ch-back" onclick="chBack(2)">← Back to question 2</button>
+      </div>
+
+      <!-- RESULT -->
+      <div class="ch-step" data-step="4">
+        <div class="ch-res-k" id="chResKicker">Your door</div>
+        <div class="ch-res-t" id="chResTitle">—</div>
+        <div class="ch-res-p" id="chResPrice">—</div>
+        <p class="ch-res-body" id="chResBody">—</p>
+        <div class="ch-logic">
+          <div class="ch-logic-t">Why this one, given your answers</div>
+          <p id="chResLogic">—</p>
+        </div>
+        <div class="ch-acts">
+          <a class="btn-pay" id="chResCta" href="#">See this option <span class="arrow">→</span></a>
+          <button class="ch-back" style="margin-top:0" onclick="chReset()">Start the three questions again</button>
+        </div>
+        <p class="ch-alt" id="chResAlt"></p>
+      </div>
     </div>
   </section>
 
@@ -154,8 +272,8 @@
         <div class="p-stage">Stages 1 – 4</div>
         <div class="p-title">Complete Remote Career Programme</div>
         <div class="p-amount">₦250,000</div>
-        <div class="p-was">Regular total ₦300,000</div>
-        <span class="p-save">Save ₦50,000 · or ₦70,000 × 3 weekly</span>
+        <div class="p-was">Regular total ₦370,000</div>
+        <span class="p-save">Save ₦120,000</span>
         <ul class="p-feat">
           <li>All 4 stage intensives (20 training days)</li>
           <li>Remote Mindset Blueprint (Stage 1)</li>
@@ -163,6 +281,7 @@
           <li>Async Communication Mastery (Stage 3)</li>
           <li>Global Ready Package — CV + Portfolio + Video (Stage 4)</li>
           <li>All workbooks, templates &amp; resources</li>
+          <li>AI Fluency — prompt craft, AI-assisted output and the AI tools global teams now expect</li>
           <li>Full LMS portal access · priority support</li>
         </ul>
         <a href="https://paystack.shop/pay/rjmtstages1-4" class="btn-pay">Enroll all 4 stages <span class="arrow">→</span></a>
@@ -178,23 +297,25 @@
           <li>Deep Work + Pomodoro system</li>
           <li>Daily KPI framework</li>
           <li>EOD report system</li>
+          <li>AI Fluency — AI-assisted planning, KPIs and daily reporting</li>
           <li>Workspace audit · workbook · LMS access</li>
         </ul>
-        <a href="https://paystack.shop/pay/remotejobmastery" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/Stage1" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
       </div>
 
       <div class="pcard reveal">
         <div class="p-stage">Stage 2</div>
         <div class="p-title">The Digital Toolkit</div>
-        <div class="p-amount">₦70,000</div>
+        <div class="p-amount">₦130,000</div>
         <ul class="p-feat">
           <li>5-day intensive bootcamp</li>
           <li>Zoom / Meet / Teams mastery</li>
           <li>Asana / Trello / ClickUp boards</li>
           <li>Cloud recording + transcription</li>
+          <li>AI Fluency — the AI layer on top of every tool in the stack</li>
           <li>Capstone sprint · LMS access</li>
         </ul>
-        <a href="https://paystack.shop/pay/remotejobmastery" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/stage2ai" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
       </div>
 
       <div class="pcard reveal">
@@ -206,9 +327,10 @@
           <li>Zero-Follow-Up email framework</li>
           <li>Slack batch-message protocol</li>
           <li>Tone translation masterclass</li>
+          <li>AI Fluency — AI-assisted writing that still sounds like you</li>
           <li>Working With Me manual · LMS access</li>
         </ul>
-        <a href="https://paystack.shop/pay/remotejobmastery" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/stage3alony" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
       </div>
 
       <div class="pcard reveal">
@@ -220,9 +342,10 @@
           <li>Remote-First CV (ATS optimised)</li>
           <li>Digital portfolio (2–3 projects)</li>
           <li>Video interview + STAR coaching</li>
+          <li>AI Fluency — AI-assisted CV, portfolio and interview preparation</li>
           <li>Global Ready Package review · LMS access</li>
         </ul>
-        <a href="https://paystack.shop/pay/remotejobmastery" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/stage4only" class="btn-pay quiet">Pay via Paystack <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -238,6 +361,7 @@
         <ul class="p-feat">
           <li>All 4 career assets done for you in 7 days (CV, LinkedIn, Engine, Negotiation)</li>
           <li>30+ verified roles sourced &amp; applied weekly</li>
+          <li>AI Fluency — AI-assisted sourcing, applications and interview prep</li>
           <li>The until-hired pledge — we don't let go until your offer letter lands</li>
         </ul>
         <a href="https://paystack.shop/pay/gtdj-stage5" class="btn-pay">Join Stage 5 only <span class="arrow">→</span></a>
@@ -253,6 +377,7 @@
           <li>All 4 career assets done for you in 7 days</li>
           <li>Bonus: 30-Day Remote Job Secrets playbook</li>
           <li>Bonus: weekly accountability + lifetime mentor access</li>
+          <li>AI Fluency — prompt craft and AI-assisted output, woven through all five stages</li>
           <li>The until-hired pledge — we don't let go until your offer letter lands</li>
         </ul>
         <a href="https://paystack.shop/pay/gydjo-stages1-5" class="btn-pay">Claim the Dream Job Offer <span class="arrow">→</span></a>
@@ -275,6 +400,7 @@
           <li>Seven weeks, one-on-one, from positioning audit to a signed remote offer</li>
           <li>Real-time co-applying + pre-interview dry-runs</li>
           <li>Private partner directory &amp; alumni network of 200+</li>
+          <li>AI Fluency — prompt craft and AI-assisted output, applied to your own pipeline</li>
           <li>Application-first — admission verified before payment</li>
         </ul>
         <div class="ic-card-count" data-deadline="2026-08-31T19:00:00+01:00">
@@ -320,7 +446,7 @@
       <div class="pay-actions">
         <a href="https://paystack.shop/pay/rjmtstages1-4" class="pa-primary">Enroll via Paystack →</a>
         <a href="login.html" class="pa-quiet">🎓 Participant Login</a>
-        <a href="https://wa.me/message/5PMRVGMUU4NGL1" class="pa-quiet">💬 WhatsApp Us</a>
+        <a href="https://wa.me/2348032925957" class="pa-quiet">💬 WhatsApp Us</a>
       </div>
       <div class="steps">
         <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Pay securely</strong>Choose your stage or bundle and complete checkout on Paystack.</div></div>
@@ -337,11 +463,164 @@
   <nav class="foot-links"><a href="login.html">Participant Login</a><a href="blog.html">Blog</a></nav>
 </footer>
 
-<a href="https://wa.me/message/5PMRVGMUU4NGL1" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener">
+<a href="https://wa.me/2348032925957" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script src="erj-theme.js"></script>
+<script>
+/* ── "Which door is mine?" — a decision-teaching chooser.
+      Order matters: skill decides WHAT kind of help, timeline decides
+      HOW MUCH help, budget only narrows within what's already correct.
+      Every outcome explains its own reasoning, and two outcomes
+      deliberately tell the visitor NOT to buy the expensive thing. ── */
+(function () {
+  var A = { skill: null, time: null, budget: null };
+
+  var DOORS = {
+    mastery14: {
+      title: 'Stages 1–4 · Complete Remote Career Programme',
+      price: '₦250,000 · 20 training days',
+      body: 'The full build: mindset and deep-work systems, the digital toolkit, async communication, then the Global Ready Package (Remote-First CV, portfolio, STAR video). You leave hireable and properly represented — <strong>then you apply yourself</strong>, with the Private Job Board included.',
+      cta: 'See Stages 1–4', href: '#sec-training',
+      alt: 'Prefer to spread it? The four stages can be taken one at a time — ₦70,000, ₦130,000, ₦70,000 and ₦100,000, ₦370,000 in total. Same content, slower cash flow, ₦120,000 more overall. <a href="#sec-training">See single stages →</a>'
+    },
+    singleStage: {
+      title: 'Start with one stage',
+      price: 'From ₦70,000 · 5 days',
+      body: 'Take Stage 1 (Remote Mindset Blueprint) on its own. It is the smallest honest entry point into the programme — real training, real deliverable, no commitment to the rest. Most people who start here continue, but you decide after you have seen how we teach.',
+      cta: 'See single stages', href: '#sec-training',
+      alt: 'Want the whole build at a better rate? <a href="#sec-training">Stages 1–4 together is ₦250,000 →</a>'
+    },
+    stage4: {
+      title: 'Stage 4 · Start Your Remote Career',
+      price: '₦100,000 · 5 days',
+      body: 'You are already employable — your problem is representation, not competence. Five days turns your existing history into the <strong>Global Ready Package</strong>: an ATS-compliant Remote-First CV, a live portfolio, an optimised LinkedIn and a rehearsed STAR video, expert-reviewed as a set.',
+      cta: 'See Stage 4', href: '#sec-training',
+      alt: 'Not sure your CV is the bottleneck? Run the free 10-point scan first — it takes seconds and costs nothing. <a href="cvscan/">Scan my CV →</a>'
+    },
+    stage5: {
+      title: 'Stage 5 · Done-For-You Placement Engine',
+      price: '₦150,000 · 7 days, then until hired',
+      body: 'You can do the job; you do not have the bandwidth to run the hunt. We build the four assets and run the sourcing, outbound and applications for you — and under the Thrive Pledge <strong>we do not let go until you are hired.</strong>',
+      cta: 'See Stage 5', href: '#sec-remote',
+      alt: 'If your CV and portfolio also need building from scratch, the Stages 1–5 bundle covers both and saves ₦240,000. <a href="#sec-remote">Compare Stages 1–5 →</a>'
+    },
+    dream: {
+      title: 'Stages 1–5 · Get Your Dream Job Offer',
+      price: '₦500,000 (from ₦740,000+) · Recommended',
+      body: 'The whole path, end to end: the four-stage build, the done-for-you placement engine, the 30-day playbook and lifetime mentor access. This is the option for someone who wants one decision to cover everything rather than four decisions over a year.',
+      cta: 'See Stages 1–5', href: '#sec-remote',
+      alt: 'Only need the placement half? <a href="#sec-remote">Stage 5 alone is ₦150,000 →</a>'
+    },
+    inner: {
+      title: 'The Inner Circle · Private 1:1 mentorship',
+      price: '₦250,000/year (or ₦135,000 ×2)',
+      body: 'You are stable and skilled — what you lack is a room. Direct mentor access, member job leads, live reviews of your negotiations and a network that compounds for twelve months. This is the long-game option, not the emergency one.',
+      cta: 'See the Inner Circle', href: '#sec-inner',
+      alt: 'Want targets to apply to as well? The Private Job Board pairs naturally with it at ₦50,000/month. <a href="#sec-jobboard">See the job board →</a>'
+    },
+    board: {
+      title: 'Private Job Board — and keep your money for now',
+      price: '₦50,000/month · stop anytime',
+      body: 'Honest answer: you are hireable and you do not need us to teach or build anything. What you need is a supply of real, verified, Africa-eligible roles instead of ghost listings — and one month tells you whether it works. <strong>Nothing else on this page would serve you better today.</strong>',
+      cta: 'See the job board', href: '#sec-jobboard',
+      alt: 'And run the free CV scan before your next application — if it scores well, you genuinely need nothing else from us. <a href="cvscan/">Scan my CV free →</a>'
+    },
+    free: {
+      title: 'Start free — do not buy anything today',
+      price: '₦0',
+      body: 'This is the recommendation we give most often, and it costs us money to give: with the budget you have named, buying a fraction of the programme would be worse than starting with what is free. Run the <strong>10-point CV self-scan</strong>, attend the <strong>free live masterclass</strong>, read the blog series, and join the free WhatsApp job channel. Come back when the timing is right — the price will be the same.',
+      cta: 'Start with the free masterclass', href: 'masterclass/',
+      alt: 'Also free, right now: <a href="cvscan/">the 10-point CV scan</a> · <a href="blog.html">the blog series</a> · <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" target="_blank" rel="noopener">the global job channel</a>.'
+    }
+  };
+
+  /* The reasoning shown to the visitor — this is the teaching part. */
+  function decide(a) {
+    var s = a.skill, t = a.time, b = a.budget;
+
+    /* Budget floor first: never recommend something they cannot pay for. */
+    if (b === 'low') {
+      if (s === 'strong') {
+        return { door: 'board', logic: 'You are already employable, so training is not your gap — and with the budget you named, the honest move is the cheapest thing that actually addresses your real problem: finding roles worth applying to. ₦50,000 a month, stoppable any time, and nothing else here would serve you better today.' };
+      }
+      if (s === 'some') {
+        return { door: 'singleStage', logic: 'You have experience but are not remote-ready, so you do need building — and at this budget the right entry is one stage rather than a fraction of the programme. Start with Stage 1, see how we teach, and add the rest when the cash flow allows.' };
+      }
+      return { door: 'free', logic: 'Starting from scratch on this budget, buying part of the programme would leave you with part of a system — which is the expensive mistake. Everything free comes first; enrol when you can take the full build properly.' };
+    }
+
+    /* Strong skill: the question is only whether they want the hunt run for them. */
+    if (s === 'strong') {
+      if (t === 'urgent') {
+        return { door: (b === 'high' ? 'stage5' : 'stage5'), logic: 'You can already do the job and you need income in weeks — so every day spent learning something you already know is a day lost. Stage 5 skips the training entirely: we build the assets and run the hunt, and the pledge keeps us on it until you are hired.' };
+      }
+      if (t === 'patient') {
+        return { door: 'inner', logic: 'Skilled, stable, and not in a hurry — that is exactly the profile the Inner Circle is built for. You do not need to be taught or placed; you need a room, calibration and deal flow compounding over twelve months.' };
+      }
+      return { door: (b === 'high' ? 'stage5' : 'stage4'), logic: b === 'high'
+        ? 'You are employable with a three-month window and the budget for help — so buy the bottleneck, not the syllabus. Stage 5 runs the sourcing and applications for you while your existing skill does the winning.'
+        : 'You are employable, so training is not the gap — representation is. Stage 4 alone rebuilds how you are seen for ₦100,000, leaving your budget intact for the job board if you want targets too.' };
+    }
+
+    /* Some skill: needs building, question is how much is done for them. */
+    if (s === 'some') {
+      if (t === 'urgent' && b === 'high') {
+        return { door: 'dream', logic: 'You need building AND you need speed — that combination is the single case where the bundle is genuinely cheaper than the parts. Stages 1–5 covers the four-stage build and the done-for-you hunt in one decision, at ₦240,000 less than buying them separately.' };
+      }
+      if (b === 'high') {
+        return { door: 'dream', logic: 'Real experience but not remote-ready, with the budget to finish it properly: the full path removes the second decision later. Build in Stages 1–4, then let the placement engine run — one enrolment, no gap between being ready and being applied for.' };
+      }
+      return { door: 'mastery14', logic: 'Your history is real; what is missing is the remote layer and the assets that prove it. Stages 1–4 builds exactly that in 20 days and includes the job board — the most direct path for your profile without paying for placement you may not need.' };
+    }
+
+    /* No skill yet: training is non-negotiable; placement can wait. */
+    if (t === 'urgent') {
+      return { door: 'mastery14', logic: 'Starting from scratch, the honest thing to say is that nobody can place you next week — so the fastest real route is the shortest complete build. Stages 1–4 in 20 days makes you hireable and represented, and the job board gives you somewhere to aim immediately after.' };
+    }
+    return { door: (b === 'high' ? 'dream' : 'mastery14'), logic: b === 'high'
+      ? 'From scratch, with time and budget: buy the complete path once. Stages 1–5 trains you, builds your assets and runs the hunt — so there is no month where you are ready and still applying alone.'
+      : 'From scratch with time to do it properly, the full four-stage build is the right rung. Get hireable and represented first; add the placement engine later only if applying yourself has not converted.' };
+  }
+
+  function show(step) {
+    document.querySelectorAll('#chooser .ch-step').forEach(function (el) {
+      el.classList.toggle('on', +el.dataset.step === step);
+    });
+    document.querySelectorAll('#chooser .ch-pip').forEach(function (p) {
+      var n = +p.dataset.pip;
+      p.classList.toggle('done', n < step);
+      p.classList.toggle('now', n === step);
+    });
+    var box = document.getElementById('chooser');
+    if (box && step > 1) {
+      var y = box.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }
+
+  window.chPick = function (key, val) {
+    A[key] = val;
+    if (key === 'skill') return show(2);
+    if (key === 'time')  return show(3);
+    var r = decide(A);
+    var d = DOORS[r.door];
+    document.getElementById('chResKicker').textContent = (r.door === 'free' || r.door === 'board') ? 'Our honest recommendation' : 'Your door';
+    document.getElementById('chResTitle').textContent = d.title;
+    document.getElementById('chResPrice').textContent = d.price;
+    document.getElementById('chResBody').innerHTML = d.body;
+    document.getElementById('chResLogic').textContent = r.logic;
+    var cta = document.getElementById('chResCta');
+    cta.setAttribute('href', d.href);
+    cta.innerHTML = d.cta + ' <span class="arrow">→</span>';
+    document.getElementById('chResAlt').innerHTML = d.alt;
+    show(4);
+  };
+  window.chBack  = function (step) { show(step); };
+  window.chReset = function () { A = { skill:null, time:null, budget:null }; show(1); };
+})();
+</script>
 <script src="erj-product.js"></script>
 <script src="erj-nav.js"></script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(reg){reg.update();}).catch(function(){});});var swReloaded=false;navigator.serviceWorker.addEventListener("controllerchange",function(){if(swReloaded)return;swReloaded=true;window.location.reload();});}</script>

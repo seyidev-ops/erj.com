@@ -1,7 +1,7 @@
 # Cohort 10 Surge — Graphic Guide
 
 **Story:** Amara · ₦2.1M/yr ceiling → $38,400/yr · 27.8× in dollar terms
-**Window:** Wed 26 August → Mon 31 August 2026, 8:00 PM WAT
+**Window:** Wed 26 August → Sun 30 August 2026, 8:00 PM WAT
 **Blog post:** `everythingremotejob.com/blog.html?p=ceiling-to-dollars`
 
 ---
@@ -51,7 +51,7 @@ Everything is drawn from the live ERJ RocketAir tokens in `product.css`. No new 
 | 07 | $38,400 | The payoff. Held back until frame 07 deliberately — earn it first. |
 | 08 | $37,000 ÷ 54 hours ≈ $685/hr | Converts the result into a rate. Makes the price of any tier look small by comparison, without mentioning price. |
 | 09 | "They did not disqualify her. They only decided the pace." | The line people quote back at you. No numbers at all — the frame breathes. |
-| 10 | Monday 31 August · 8:00 PM WAT | The only frame with a button and a URL. |
+| 10 | Sunday 30 August · 8:00 PM WAT | The only frame with a button and a URL. |
 
 **Do not reorder them.** The sequence is: ceiling → constraint → method → evidence → contrast → result → arithmetic → meaning → deadline. Moving the result earlier collapses the whole thing into a brag.
 

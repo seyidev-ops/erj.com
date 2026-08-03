@@ -1,0 +1,19 @@
+# Everything Remote Job
+# The portal pages below are private and have no search value; keeping them
+# out preserves crawl budget for the pages that should rank.
+
+User-agent: *
+Allow: /
+
+Disallow: /dashboard.html
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /instructor.html
+Disallow: /instructor-login.html
+Disallow: /blog-admin.html
+Disallow: /login.html
+Disallow: /participant.html
+Disallow: /offline.html
+Disallow: /*?p=
+
+Sitemap: https://everythingremotejob.com/sitemap.xml

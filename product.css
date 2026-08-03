@@ -216,3 +216,8 @@ a.pledge-ribbon:hover .pr-go{color:var(--accent);transform:translateX(3px);}
 @keyframes prPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.75);}}
 @media(max-width:640px){.pledge-ribbon{gap:0.35rem;padding:0.6rem 0.8rem;}
   .pledge-ribbon .pr-text{font-size:0.78rem;}}
+
+/* narrow-screen safety: never let a long word push a block past the edge */
+h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h{
+  overflow-wrap:break-word; word-break:break-word; hyphens:auto;
+}

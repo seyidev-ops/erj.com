@@ -8,16 +8,16 @@
 <link rel="apple-touch-icon" href="appletouchicon.png">
 <meta name="theme-color" content="#000000" id="metaThemeColor">
 <title>Land a Dollar-Paying Remote Job From Africa — Even If You've Been Ghosted 200 Times | Cohort 10</title>
-<meta name="description" content="Stop sending applications into the void. We help African professionals land globally competitive remote roles that pay in USD, EUR and GBP — and we don't let go until you're hired. Cohort 10 begins 1 September 2026.">
+<meta name="description" content="Stop sending applications into the void. We help African professionals land globally competitive remote roles that pay in USD, EUR and GBP — and we don't let go until you're hired. Cohort 10 begins 31 August 2026.">
 <meta property="og:title" content="Land a Dollar-Paying Remote Job From Africa." />
-<meta property="og:description" content="The done-with-you system that turns ghosted applicants into hired remote professionals earning in hard currency. We don't stop until you're hired. Cohort 10 begins 1 September 2026." />
+<meta property="og:description" content="The done-with-you system that turns ghosted applicants into hired remote professionals earning in hard currency. We don't stop until you're hired. Cohort 10 begins 31 August 2026." />
 <meta property="og:image" content="https://everythingremotejob.com/preview-index.jpg" />
 <meta property="og:url" content="https://everythingremotejob.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Land a Dollar-Paying Remote Job From Africa." />
-<meta name="twitter:description" content="The done-with-you system that turns ghosted applicants into hired remote professionals. We don't stop until you're hired. Cohort 10 begins 1 September 2026." />
+<meta name="twitter:description" content="The done-with-you system that turns ghosted applicants into hired remote professionals. We don't stop until you're hired. Cohort 10 begins 31 August 2026." />
 <meta name="twitter:image" content="https://everythingremotejob.com/preview-index.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -207,6 +207,101 @@
   .free-note{margin-top:1.4rem;font-size:0.78rem;color:var(--ink-faint);line-height:1.6;
     padding-left:0.9rem;border-left:2px solid var(--line);max-width:60ch;}
 
+
+  /* ══ redesign: section rhythm ══ */
+  section[id]{scroll-margin-top:96px;}
+
+  .step{display:inline-flex;align-items:baseline;gap:0.7rem;margin-bottom:1.1rem;}
+  .step-n{font-family:var(--font-display);font-size:0.72rem;font-weight:800;letter-spacing:0.06em;
+    color:var(--accent);opacity:0.9;}
+  .step-n::after{content:'';display:inline-block;width:18px;height:1px;background:var(--accent);
+    vertical-align:middle;margin-left:0.7rem;opacity:0.55;}
+  .step-l{font-size:0.68rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--ink-faint);}
+
+  /* hero accent */
+  .ask em{position:relative;}
+  .ask em::after{content:'';position:absolute;left:0;right:0;bottom:0.08em;height:0.14em;
+    background:var(--accent);opacity:0.22;border-radius:2px;z-index:-1;}
+
+  /* proof bar */
+  .proof-cell{position:relative;transition:background .3s var(--ease);}
+  .proof-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+    transition:transform .45s var(--ease);}
+  .proof-cell:hover::before{transform:scaleX(1);}
+  .proof-cell:hover{background:var(--card);}
+
+  /* ══ redesign: the ladder ══ */
+  .ladder{position:relative;margin-top:0.4rem;display:flex;flex-direction:column;gap:0.6rem;}
+  .ladder::before{content:'';position:absolute;left:3.1rem;top:3.4rem;bottom:3.4rem;width:1px;
+    background:linear-gradient(180deg,var(--accent),var(--line) 60%,transparent);opacity:0.5;}
+  @media(max-width:820px){.ladder::before{display:none;}}
+
+  .rung{position:relative;display:grid;grid-template-columns:5rem 1fr auto;gap:0 1.4rem;
+    align-items:start;padding:1.7rem 1.6rem;border:1px solid var(--line);border-radius:16px;
+    background:transparent;text-decoration:none;color:inherit;
+    transition:border-color .35s var(--ease),background .35s var(--ease),transform .35s var(--ease);}
+  .rung:hover{border-color:var(--accent);background:var(--card);transform:translateY(-3px);}
+  .rung:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .rung.is-start{border-color:rgba(255,87,34,0.45);}
+
+  .rung-n{grid-column:1;display:flex;align-items:center;justify-content:center;
+    width:3rem;height:3rem;border-radius:50%;background:var(--paper);
+    border:1px solid var(--line);font-family:var(--font-display);font-size:0.92rem;font-weight:800;
+    color:var(--ink-faint);transition:all .35s var(--ease);position:relative;z-index:2;}
+  .rung:hover .rung-n{border-color:var(--accent);color:var(--accent);transform:scale(1.06);}
+  .rung.is-start .rung-n{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  .rung-body{grid-column:2;min-width:0;padding-top:0.15rem;}
+  .rung-who{display:block;font-size:0.74rem;font-weight:400;color:var(--ink-faint);
+    margin-bottom:0.6rem;line-height:1.55;max-width:56ch;}
+  .rung-who b{color:var(--accent);font-weight:600;}
+  .rung-title{font-family:var(--font-display);font-size:clamp(1.25rem,2.3vw,1.7rem);font-weight:800;
+    letter-spacing:-0.02em;color:var(--ink);line-height:1.12;margin-bottom:0.5rem;}
+  .rung-title em{font-style:normal;color:var(--accent);}
+  .rung-desc{font-size:0.87rem;color:var(--ink-soft);font-weight:300;line-height:1.65;max-width:54ch;}
+  .rung-meta{display:flex;flex-wrap:wrap;gap:0.4rem 1rem;margin-top:0.85rem;
+    font-size:0.71rem;color:var(--ink-faint);}
+  .rung-meta span{display:inline-flex;align-items:center;gap:0.4rem;}
+  .rung-meta span::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+  .rung-buy{grid-column:3;text-align:right;flex-shrink:0;padding-left:1.2rem;padding-top:0.15rem;
+    border-left:1px solid var(--line);align-self:stretch;display:flex;flex-direction:column;
+    justify-content:center;min-width:11.5rem;}
+  .rung:hover .rung-buy{border-left-color:rgba(255,87,34,0.3);}
+  .rung-price{font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:var(--ink);
+    line-height:1.15;white-space:nowrap;}
+  .rung-was{display:block;font-size:0.75rem;font-weight:400;color:var(--ink-faint);
+    text-decoration:line-through;margin-top:0.12rem;}
+  .rung-alt{display:block;font-size:0.71rem;color:var(--ink-faint);margin-top:0.4rem;line-height:1.45;}
+  .rung-go{display:inline-flex;align-items:center;justify-content:flex-end;gap:0.45rem;margin-top:1rem;
+    font-size:0.79rem;font-weight:500;color:var(--accent);white-space:nowrap;}
+  .rung-go .a{transition:transform .3s var(--ease);}
+  .rung:hover .rung-go .a{transform:translateX(4px);}
+
+  .start-badge{display:inline-block;font-size:0.58rem;font-weight:700;letter-spacing:0.16em;
+    text-transform:uppercase;color:#fff;background:var(--accent);padding:0.22rem 0.6rem;
+    border-radius:100px;margin-bottom:0.65rem;}
+
+  @media(max-width:820px){
+    .rung{grid-template-columns:3.4rem 1fr;gap:0 1rem;padding:1.4rem 1.2rem;}
+    .rung-n{width:2.6rem;height:2.6rem;font-size:0.8rem;}
+    .rung-buy{grid-column:1 / -1;text-align:left;padding-left:0;margin-top:1.1rem;
+      padding-top:1.1rem;border-left:none;border-top:1px solid var(--line);min-width:0;
+      flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:0.5rem 1rem;}
+    .rung:hover .rung-buy{border-top-color:rgba(255,87,34,0.3);}
+    .rung-alt{margin-top:0;}
+    .rung-go{margin-top:0;width:100%;justify-content:flex-start;}
+  }
+
+  /* ══ redesign: the free shelf ══ */
+  .shelf-item{position:relative;overflow:hidden;}
+  .shelf-item::after{content:'';position:absolute;top:0;right:0;width:36px;height:36px;
+    background:linear-gradient(225deg,var(--accent) 0%,transparent 62%);opacity:0;
+    transition:opacity .35s var(--ease);}
+  .shelf-item:hover::after{opacity:0.5;}
+
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
   /* ── proof bar (open loop under hero) ── */
@@ -354,13 +449,30 @@
     text-transform:uppercase;color:var(--ink-faint);margin-top:0.3rem;}
   .f-tour{border-top:1px solid var(--line);padding-top:1.3rem;}
   .f-tour-t{font-size:0.62rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.9rem;}
-  .f-stops{display:flex;flex-direction:column;gap:0.15rem;}
-  .f-stop{display:grid;grid-template-columns:auto 1fr auto;gap:0.9rem;align-items:baseline;text-decoration:none;
-    padding:0.55rem 0.4rem;border-radius:8px;transition:background .25s var(--ease),padding-left .25s var(--ease);}
-  .f-stop:hover{background:var(--bg2);padding-left:0.75rem;}
+  .f-stops{display:grid;grid-template-columns:1fr;gap:0.1rem;}
+  @media(min-width:760px){.f-stops{grid-template-columns:1fr 1fr;column-gap:1.6rem;}}
+  .f-stop{display:grid;grid-template-columns:auto 1fr auto;gap:0.7rem;align-items:baseline;text-decoration:none;
+    padding:0.5rem 0.5rem;border-radius:8px;position:relative;
+    transition:background .25s var(--ease),padding-left .25s var(--ease);}
+  .f-stop::before{content:'';position:absolute;left:0;top:12%;bottom:12%;width:2px;border-radius:2px;
+    background:var(--accent);opacity:0;transition:opacity .25s var(--ease);}
+  .f-stop:hover{background:var(--bg2);padding-left:0.85rem;}
+  .f-stop.is-here{background:var(--bg2);padding-left:0.85rem;}
+  .f-stop.is-here::before{opacity:1;}
+  .f-tour-skip{display:inline-flex;align-items:center;gap:0.45rem;margin-top:1.1rem;
+    font-size:0.76rem;font-weight:500;color:var(--accent);text-decoration:none;}
+  .f-tour-skip span{transition:transform .25s var(--ease);}
+  .f-tour-skip:hover span{transform:translateX(4px);}
+
+  /* reading progress — long pages feel shorter when you can see the end */
+  .read-bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:1001;
+    background:linear-gradient(90deg,var(--accent),#ff8a5c);
+    transition:width .12s linear;pointer-events:none;}
+  @media(prefers-reduced-motion:reduce){.read-bar{transition:none;}}
   .f-stop .no{font-family:var(--font-display);font-size:0.72rem;font-weight:700;color:var(--accent);}
-  .f-stop .lbl{font-size:0.9rem;color:var(--ink);font-weight:400;}
-  .f-stop .lbl small{display:block;font-size:0.76rem;color:var(--ink-faint);font-weight:300;margin-top:0.1rem;}
+  .f-stop .lbl{font-size:0.86rem;color:var(--ink);font-weight:400;line-height:1.35;}
+  .f-stop .lbl small{display:block;font-size:0.74rem;color:var(--ink-faint);font-weight:300;margin-top:0.12rem;line-height:1.45;}
+  @media(max-width:620px){.f-stop .lbl small{display:none;}.f-stop{padding:0.42rem 0.5rem;}}
   .f-stop .go{font-size:0.8rem;color:var(--ink-faint);transition:color .25s var(--ease),transform .25s var(--ease);}
   .f-stop:hover .go{color:var(--accent);transform:translateX(3px);}
   @media(max-width:820px){
@@ -371,10 +483,14 @@
     .f-frame{margin-bottom:1.6rem;}
   }
 </style>
+  <link rel="canonical" href="https://everythingremotejob.com/">
+  <meta property="og:locale" content="en_NG">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"I've applied to hundreds of jobs with no reply. How is this actually different?","acceptedAnswer":{"@type":"Answer","text":"Public job boards put you against 500–800 applicants and an ATS bot that rejects in seconds. We flip that: global-standard positioning first (CV, portfolio, video presence), then 30+ verified pipelines sourced weekly and applied at volume with you — with accountability check-ins until the offer lands. You stop spraying; you start targeting companies already willing to hire you."}},{"@type":"Question","name":"I don't have \"tech skills.\" Can this still work for me?","acceptedAnswer":{"@type":"Answer","text":"Yes. Remote roles span operations, customer success, virtual assistance, sales, admin, writing, project coordination and more. Stages 1–4 build the remote work skills every global employer screens for — async communication, digital tools, deliverable discipline — on top of the experience you already have."}},{"@type":"Question","name":"How much time do I need each week?","acceptedAnswer":{"@type":"Answer","text":"Members have landed roles while juggling exams, full-time work and ministry. Plan for roughly 90 focused minutes a day. The system is built for busy professionals — everything is structured, templated and guided so no minute is wasted."}},{"@type":"Question","name":"What does \"we don't let you go until you're hired\" really mean?","acceptedAnswer":{"@type":"Answer","text":"It's the Thrive Pledge: your enrolment doesn't expire when the training ends. You keep the community, the weekly verified job listings and the accountability structure until you're hired — and the support to keep the job after you land it."}},{"@type":"Question","name":"How do payments work? Is it safe?","acceptedAnswer":{"@type":"Answer","text":"All payments run through Paystack — cards, bank transfer and USSD, fully encrypted and PCI-DSS compliant. Flexible options exist too: you can take the programme one stage at a time from ₦70,000, and the Inner Circle across 2 milestones. See every option on one page →"}},{"@type":"Question","name":"I'm not sure which path fits me. Where do I start?","acceptedAnswer":{"@type":"Answer","text":"If you're unsure, start with the Remote Job World Mastery Training (Stages 1–4). It builds the foundation everything else stands on — and we'll guide your next step from inside. Already global-ready? Go straight to Stage 5 or apply for the Inner Circle."}}]}</script>
 </head>
 <body>
 <div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'home',onPage:[{label:'Meet your facilitator',href:'#facilitator'},{label:'What we can do for you',href:'#promise'},{label:'Read this first',href:'#cost'},{label:'Proof it works',href:'#story'},{label:'Your starting line',href:'#paths'},{label:'Free blog — keep learning',href:'#blog'},{label:'Global job board (free)',href:'#jobboard'},{label:'The promise',href:'#pledge'},{label:'Before you decide',href:'#faq'},{label:'Cohort 10 countdown',href:'#timers'}]};</script>
+<script>window.ERJ_NAV={active:'home',tourTitle:'A quick tour — or jump anywhere',tourSkip:{label:'Skip the tour — show me the options',href:'#paths'},onPage:[{label:'Meet Your Facilitator',href:'#facilitator',sub:'Why this page exists, in his own words'},{label:'What We Can Do For You',href:'#promise',sub:'We land YOU a dollar-paying remote job — from right where you are'},{label:'Read This First',href:'#cost',sub:'The most expensive thing you can do is nothing'},{label:'Proof It Works',href:'#story',sub:'Real people, real offers — seven cohorts of receipts'},{label:'Your Starting Line',href:'#paths',sub:'Three rungs — you only need to find yours'},{label:'Free · For Everyone',href:'#free',sub:'The CV scan, the masterclass, the blog and the job board — all free'},{label:'The Promise',href:'#pledge',sub:'The Thrive Pledge — we do not let you go until you are hired'},{label:'Before You Decide',href:'#faq',sub:'The questions everyone asks first'},{label:'Cohort 10 Countdown',href:'#timers',sub:'Enrolment closes Sunday 30 August · 8:00 PM WAT'}]};</script>
 
 <main>
 <a class="pledge-ribbon" href="#pledge"><span class="pr-tag"><span class="pr-dot"></span> The Thrive Pledge</span><span class="pr-text">We don’t let go <em>until you’re hired.</em></span><span class="pr-go">→</span></a>
@@ -397,28 +513,16 @@
         <p class="f-note">My name is Oluwaseyi, and I built Everything Remote Job for one person: the capable African professional the global market keeps overlooking — not for lack of skill, but for lack of a system. I've sat with hundreds of people exactly where you are right now: qualified, hardworking, and tired of applying into silence.</p>
         <p class="f-note">So before you scroll, let me say the part a website rarely says: <strong>you are not the problem.</strong> The way you've been taught to present yourself and search is. Across seven cohorts we've refined a system that fixes exactly that — and everything it involves is laid out openly on this page. No mystery, no pressure. Read it the way I'd walk you through it if we were sitting together.</p>
         <p class="f-sign">— Oluwaseyi<span>Lead Facilitator, Everything Remote Job · Business Play Ltd</span></p>
-        <div class="f-tour">
-          <div class="f-tour-t">A quick tour — read in this order</div>
-          <div class="f-stops">
-            <a class="f-stop" href="#promise"><span class="no">01</span><span class="lbl">What we can do for you<small>We land YOU a dollar-paying remote job — from right where you are</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#cost"><span class="no">02</span><span class="lbl">Read this first<small>The most expensive thing you can do is nothing</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#story"><span class="no">03</span><span class="lbl">Proof it works<small>Real people, real offers — seven cohorts of receipts</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#paths"><span class="no">04</span><span class="lbl">Your starting line<small>Wherever you are, there's a next step</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#blog"><span class="no">05</span><span class="lbl">Keep learning — free<small>Continuous remote-job education on our blog, published all year</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#jobboard"><span class="no">06</span><span class="lbl">The global job board<small>Free, verifiable remote jobs Africans can actually get — posted continuously</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#pledge"><span class="no">07</span><span class="lbl">The promise<small>The Thrive Pledge — we will not let you go until you're hired</small></span><span class="go">→</span></a>
-            <a class="f-stop" href="#faq"><span class="no">08</span><span class="lbl">Before you decide<small>The questions everyone asks — then the countdown and enrolment</small></span><span class="go">→</span></a>
-          </div>
-        </div>
+        <div class="f-tour" data-erj-tour></div>
       </div>
     </div>
   </section>
 
   <!-- HERO -->
   <section class="wrap home-hero section-line" id="promise" style="padding-top:clamp(2.5rem,6vw,4rem);">
-    <div class="kicker"><span class="mark"></span> What we can do for you</div>
+    <div class="step"><span class="step-n">01</span><span class="step-l">What we can do for you</span></div>
     <h1 class="ask">We land <em>YOU</em> a $500–$2,000/month remote job — from right where you are.</h1>
-    <p class="ask-sub">You don't need to relocate, and you don't need permission. You need a system. We help African professionals get hired into globally competitive remote roles that pay in USD, EUR &amp; GBP — and we don't let go until you're hired. <strong>Cohort 10 closes 31 August.</strong></p>
+    <p class="ask-sub">You don't need to relocate, and you don't need permission. You need a system. We help African professionals get hired into globally competitive remote roles that pay in USD, EUR &amp; GBP — and we don't let go until you're hired. <strong>Cohort 10 closes 30 August.</strong></p>
     <div class="answers">
       <a href="#enrol" class="btn-yes pulse">Show me how <span class="arrow">→</span></a>
       <a href="#cost" class="btn-more">Continue the tour ↓</a>
@@ -446,7 +550,7 @@
 
   <!-- COST OF INACTION -->
   <section class="wrap section-line" id="cost">
-    <p class="section-label"><span class="mark"></span> Read this first</p>
+    <div class="step"><span class="step-n">02</span><span class="step-l">Read this first</span></div>
     <h2 class="cost-h">The most expensive thing you can do is <em>nothing.</em></h2>
     <p class="cost-lead">Every month you stay on the local job market, inflation quietly eats your salary and the global window stays shut. It's not a skill problem. It's a system problem — and right now the system is working against you:</p>
     <div class="cost-list reveal">
@@ -459,7 +563,7 @@
 
   <!-- TRANSFORMATION STORY -->
   <section class="wrap section-line" id="story">
-    <p class="section-label"><span class="mark"></span> Proof it works</p>
+    <div class="step"><span class="step-n">03</span><span class="step-l">Proof it works</span></div>
     <div class="story reveal">
       <div class="story-main">
         <p class="story-quote">&ldquo;<span class="hl">I landed my first remote job</span> — I'm now with an agency on Upwork. I just thought to let you know immediately I did confirm this. And I'm already at second-interview stage for another role I applied to.&rdquo;</p>
@@ -488,7 +592,7 @@
 
   <!-- THE LADDER -->
   <section class="wrap section-line" id="paths">
-    <p class="section-label"><span class="mark"></span> Your starting line</p>
+    <div class="step"><span class="step-n">04</span><span class="step-l">Your starting line</span></div>
     <h2 class="cost-h" style="margin-bottom:0.9rem;">Three rungs. You only need to find <em>yours.</em></h2>
     <p class="paths-lead">These are not three competing options — they are one ladder, in order. Read the line above each rung. The moment one of them describes you, that is your starting point, and you can stop reading.</p>
 
@@ -551,7 +655,7 @@
 
   <!-- FREE SHELF -->
   <section class="wrap section-line" id="free">
-    <p class="section-label"><span class="mark"></span> Free · for everyone</p>
+    <div class="step"><span class="step-n">05</span><span class="step-l">Free · for everyone</span></div>
     <h2 class="cost-h" style="margin-bottom:0.9rem;">You can get a long way without <em>paying us anything.</em></h2>
     <p class="free-lead">Everything on this shelf is genuinely free and stays free. No card, no trial that expires, no drip campaign. Work through it properly and you will arrive at a cohort ahead of where most people start — or land a role without us, which is a good outcome too.</p>
 
@@ -593,7 +697,7 @@
 <!-- THRIVE PLEDGE -->
   <section class="wrap section-line" id="pledge">
     <div class="pledge reveal">
-      <span class="pledge-tag"><span class="pledge-dot"></span> The Thrive Pledge</span>
+      <span class="pledge-tag"><span class="pledge-dot"></span> 06 · The Thrive Pledge</span>
       <h2 class="pledge-h">We will not let you go until you're <em>hired.</em></h2>
       <p class="pledge-p">This isn't a course you finish and forget. It's an ongoing community and sourcing engine built around one outcome: <strong>your first remote job</strong> — and the support to keep it.</p>
     </div>
@@ -601,7 +705,7 @@
 
 <!-- FAQ / OBJECTIONS -->
   <section class="wrap section-line" id="faq">
-    <p class="section-label"><span class="mark"></span> Before you decide</p>
+    <div class="step"><span class="step-n">07</span><span class="step-l">Before you decide</span></div>
     <h2 class="cost-h" style="margin-bottom:1.6rem;">The questions everyone asks <em>first.</em></h2>
     <div class="faq reveal">
       <details>
@@ -638,13 +742,13 @@
       <div class="timers-head" data-lbl>Enrolment Closes In</div>
       <div class="timer-panel reveal">
         <div class="timer-for">Remote Job World Mastery Training</div>
-        <div class="timer-wrap" data-deadline="2026-08-31T20:00:00+01:00" data-closed-label="Enrolment Has Closed">
+        <div class="timer-wrap" data-deadline="2026-08-30T20:00:00+01:00" data-closed-label="Enrolment Has Closed">
           <div class="timer-block"><div class="timer-num" data-k="d">00</div><div class="timer-lbl">Days</div></div>
           <div class="timer-block"><div class="timer-num" data-k="h">00</div><div class="timer-lbl">Hrs</div></div>
           <div class="timer-block"><div class="timer-num" data-k="m">00</div><div class="timer-lbl">Min</div></div>
           <div class="timer-block"><div class="timer-num" data-k="s">00</div><div class="timer-lbl">Sec</div></div>
         </div>
-        <div class="timer-date">Closes <strong>Mon, 31 August 2026 · 8:00 PM WAT</strong> · cohort begins Tue, 1 September · 8:00 PM WAT</div>
+        <div class="timer-date">Closes <strong>Sun, 30 August 2026 · 8:00 PM WAT</strong> · cohort begins Mon, 31 August · 8:00 PM WAT</div>
       </div>
     </div>
   </section>
@@ -653,7 +757,7 @@
 
   <section class="wrap section-line" id="enrol">
     <div class="final-cta reveal">
-      <h2 class="final-h">Enrolment closes <em>31 August.</em> Cohort 10 begins 1 September. Will you be in it?</h2>
+      <h2 class="final-h">Enrolment closes <em>30 August.</em> Cohort 10 begins 31 August. Will you be in it?</h2>
       <p class="final-p">Every cohort fills, closes, and moves on — with or without you. The next time this page matters is <strong>after another month of silence and shrinking naira</strong>. Or you can make this the month it changed.</p>
       <div class="answers">
         <a href="register.html" class="btn-yes pulse">Secure my place in Cohort 10 <span class="arrow">→</span></a>
@@ -666,7 +770,7 @@
   </main>
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true">
-  <div class="s-txt"><strong>Enrolment closes 31 August</strong>Cohort 10 begins Tue 1 Sep · 8PM WAT</div>
+  <div class="s-txt"><strong>Enrolment closes 30 August</strong>Cohort 10 begins Mon 31 Aug · 8PM WAT</div>
   <a href="register.html" class="btn-yes">Secure my place →</a>
 </div>
 
@@ -699,6 +803,25 @@
   window.addEventListener('scroll',update,{passive:true});
   window.addEventListener('resize',update);
   update();
+})();
+</script>
+<script src="erj-schema.js"></script>
+<div class="read-bar" id="readBar" aria-hidden="true"></div>
+<script>
+/* Reading progress. Cheap, passive, and it answers "how much is left?" —
+   the question that makes long pages feel longer than they are. */
+(function(){
+  var bar=document.getElementById('readBar'), raf=null;
+  if(!bar) return;
+  function paint(){
+    raf=null;
+    var d=document.documentElement,
+        max=(d.scrollHeight-d.clientHeight);
+    bar.style.width = (max>0 ? Math.min(100,(window.scrollY/max)*100) : 0) + '%';
+  }
+  addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(paint); },{passive:true});
+  addEventListener('resize',function(){ if(!raf) raf=requestAnimationFrame(paint); },{passive:true});
+  paint();
 })();
 </script>
 </body>

@@ -51,6 +51,7 @@
   + 'width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;'
   + 'padding:0.7rem clamp(1.1rem,4vw,2.2rem);background:var(--enPaper);'
   + 'border-bottom:1px solid var(--enLine);box-shadow:0 1px 0 var(--enLine),0 6px 24px -18px rgba(0,0,0,0.5);}'
+  + 'html{overflow-x:clip;}'
   + '.erj-nav *{box-sizing:border-box;}'
   + '.erj-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display,"Fraunces",Georgia,serif);'
   + 'font-weight:700;font-size:1rem;color:var(--enInk);letter-spacing:-0.3px;text-decoration:none;flex-shrink:0;}'
@@ -65,7 +66,7 @@
   + 'background:var(--enPaper);border-left:1px solid var(--enLine);box-shadow:-16px 0 50px rgba(0,0,0,0.22);'
   + 'padding:0;overflow-y:auto;transform:translateX(100%);transition:transform .32s cubic-bezier(0.22,1,0.36,1);'
   + 'display:flex;flex-direction:column;}'
-  + '.erj-panel.open{transform:translateX(0);}'
+  + '.erj-panel{visibility:hidden;}.erj-panel.open{transform:translateX(0);visibility:visible;}'
   + '.erj-panel-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;'
   + 'padding:1.1rem 1.3rem;border-bottom:1px solid var(--enLine);position:sticky;top:0;background:var(--enPaper);z-index:2;}'
   + '.erj-panel-title{font-size:0.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--enFaint);font-weight:500;}'
@@ -88,6 +89,12 @@
   + '.erj-sub a:hover{background:var(--enLine);color:var(--enAccent);}'
   + '.erj-scrim{position:fixed;inset:0;z-index:1090;background:rgba(0,0,0,0.42);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;}'
   + '.erj-scrim.open{opacity:1;visibility:visible;}'
+  + '.erj-item.is-here{color:var(--enAccent);}'
+  + '.f-stop.is-here .no{opacity:1;}.f-stop.is-here .lbl{color:var(--enAccent);}'
+  + '@media(max-width:400px){.erj-nav{gap:0.5rem;padding-left:0.85rem;padding-right:0.85rem;}'
+  + '.erj-brand{flex-shrink:1;min-width:0;font-size:0.9rem;gap:7px;overflow:hidden;white-space:nowrap;}'
+  + '.erj-brand img{width:26px;height:26px;}'
+  + '.erj-right{gap:0.3rem;}.erj-icon{width:36px;height:36px;}}'
   + '@media (prefers-reduced-motion:reduce){.erj-panel,.erj-scrim{transition:none;}}';
 
   var style = document.createElement('style');
@@ -171,8 +178,82 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
-  else mount();
+
+  /* ── in-page tour, rendered from the SAME onPage array as the drawer ──
+     Any page can drop <div data-erj-tour></div> and get a tour that can
+     never drift from the hamburger, because there is only one list. */
+  function mountTour(){
+    var hosts = document.querySelectorAll('[data-erj-tour]');
+    if(!hosts.length) return;
+    var stops = (window.ERJ_NAV && window.ERJ_NAV.onPage) || [];
+    if(!stops.length) return;
+    var title = (window.ERJ_NAV && window.ERJ_NAV.tourTitle) || 'On this page';
+    for(var h=0; h<hosts.length; h++){
+      var host = hosts[h];
+      var html = '<div class="f-tour-t">' + title + '</div><div class="f-stops">';
+      for(var i=0; i<stops.length; i++){
+        var st = stops[i];
+        var no = (i+1) < 10 ? '0'+(i+1) : ''+(i+1);
+        html += '<a class="f-stop" href="' + st.href + '" data-tour-target="' + st.href + '">'
+             +  '<span class="no">' + no + '</span>'
+             +  '<span class="lbl">' + st.label
+             +  (st.sub ? '<small>' + st.sub + '</small>' : '')
+             +  '</span><span class="go">\u2192</span></a>';
+      }
+      html += '</div>';
+      if(window.ERJ_NAV && window.ERJ_NAV.tourSkip){
+        html += '<a class="f-tour-skip" href="' + window.ERJ_NAV.tourSkip.href + '">'
+             +  window.ERJ_NAV.tourSkip.label + ' <span>\u2192</span></a>';
+      }
+      host.innerHTML = html;
+    }
+    spyTour();
+  }
+
+  /* Highlight the stop the reader is currently inside, in the tour and in
+     the drawer. Uses IntersectionObserver rather than scroll maths, because
+     the page's reveal animations change section heights AFTER a scroll event
+     fires, which leaves scroll-based maths pointing at the wrong section. */
+  function spyTour(){
+    var stops = (window.ERJ_NAV && window.ERJ_NAV.onPage) || [];
+    var els = [], seen = {};
+    for(var i=0;i<stops.length;i++){
+      var h = stops[i].href;
+      if(!h || h.charAt(0) !== '#' || seen[h]) continue;
+      var el = document.getElementById(h.slice(1));
+      if(el){ el.setAttribute('data-tour-id', h); els.push(el); seen[h] = 1; }
+    }
+    if(!els.length || !('IntersectionObserver' in window)) return;
+
+    var visible = {};
+    function paint(){
+      var cur = null;
+      for(var i=0;i<els.length;i++){
+        var h = els[i].getAttribute('data-tour-id');
+        if(visible[h]){ cur = h; break; }          /* topmost visible wins */
+      }
+      if(!cur) return;
+      var all = document.querySelectorAll('[data-tour-target],.erj-item');
+      for(var j=0;j<all.length;j++){
+        var a = all[j];
+        var href = a.getAttribute('data-tour-target') || a.getAttribute('href');
+        if(href === cur) a.classList.add('is-here'); else a.classList.remove('is-here');
+      }
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      for(var k=0;k<entries.length;k++){
+        visible[entries[k].target.getAttribute('data-tour-id')] = entries[k].isIntersecting;
+      }
+      paint();
+    }, { rootMargin: '-25% 0px -60% 0px', threshold: 0 });
+
+    for(var m=0;m<els.length;m++) io.observe(els[m]);
+  }
+
+  function mountAll(){ mount(); try{ mountTour(); }catch(e){} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mountAll);
+  else mountAll();
 })();
 
 /* ── Tour navigator: floating up/down arrows that step through

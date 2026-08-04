@@ -14,6 +14,8 @@ Disallow: /blog-admin.html
 Disallow: /login.html
 Disallow: /participant.html
 Disallow: /offline.html
+Disallow: /cvbuilder/
+Disallow: /erj-surge-console.html
 Disallow: /*?p=
 
 Sitemap: https://everythingremotejob.com/sitemap.xml

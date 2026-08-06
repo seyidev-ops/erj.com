@@ -70,6 +70,12 @@
     background:var(--paper);color:var(--ink);font-size:0.88rem;font-family:inherit;line-height:1.55;}
   input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);}
   textarea{resize:vertical;min-height:80px;}
+  .impdrop{border:2px dashed var(--line);border-radius:12px;padding:1.4rem 1rem;text-align:center;cursor:pointer;
+    transition:border-color .15s,background .15s;user-select:none;}
+  .impdrop:hover,.impdrop:focus-visible,.impdrop.over{border-color:var(--accent);background:rgba(255,87,34,0.05);outline:none;}
+  .impdrop-big{font-weight:700;font-size:0.95rem;}
+  .impdrop-big b{color:var(--accent);}
+  .impdrop-small{font-size:0.78rem;opacity:0.65;margin-top:0.3rem;}
   .row2{display:grid;grid-template-columns:1fr;gap:0 0.8rem;}
   @media(min-width:620px){.row2{grid-template-columns:1fr 1fr;}}
 
@@ -213,8 +219,18 @@
       <div class="step on" id="s1">
         <div class="panel">
           <h2>Start from what you already have</h2>
-          <p class="hint">Paste your current CV as plain text and the engine will pull it apart into fields you can edit. Nothing leaves your device — this page has no server and sends nothing anywhere. <b>Or skip this and fill the form by hand in step 2.</b></p>
-          <label for="pasteCv">Paste your existing CV</label>
+          <p class="hint">Upload your current CV — or paste it as text — and the engine will pull it apart into fields you can edit. Nothing leaves your device — this page has no server and sends nothing anywhere; Word and PDF files are read entirely inside your browser. <b>Or skip this and fill the form by hand in step 2.</b></p>
+
+          <label>Upload your CV file</label>
+          <div id="impDrop" class="impdrop" role="button" tabindex="0" aria-label="Upload your CV as a Word or PDF file">
+            <div class="impdrop-big">Drop your <b>.docx</b> or <b>.pdf</b> here</div>
+            <div class="impdrop-small">or tap to choose a file · read on this device only, never uploaded</div>
+          </div>
+          <input type="file" id="impFile" accept=".docx,.pdf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none;">
+          <div class="note" id="impStatus" style="display:none;margin-top:0.6rem;"></div>
+          <p class="hint" style="margin-top:0.6rem;"><b>One honest limit:</b> a scanned PDF — a photograph of a printed CV — has no text layer, so nothing can be read from it. If that is what you have, use the paste box instead.</p>
+
+          <label for="pasteCv" style="margin-top:1rem;">Or paste your existing CV</label>
           <textarea id="pasteCv" rows="12" placeholder="Copy everything out of your Word or PDF file and paste it here…"></textarea>
           <button class="addbtn" id="btnParse" style="border-style:solid;color:#fff;background:var(--accent);border-color:var(--accent);">Pull it apart into fields →</button>
           <div class="note" id="parseOut"><b>What the parser can and cannot do.</b> It reliably finds your contact details, section headings and bullet points. It cannot reliably split job titles from dates in every layout, so check step 2 before you trust it. Anything it gets wrong, you fix by hand — that is faster than starting from nothing.</div>
@@ -344,5 +360,6 @@
 <script src="../erj-passcode.js"></script>
 <script src="docx.js"></script>
 <script src="engine.js"></script>
+<script src="import.js"></script>
 </body>
 </html>

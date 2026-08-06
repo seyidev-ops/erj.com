@@ -218,6 +218,83 @@ a.pledge-ribbon:hover .pr-go{color:var(--accent);transform:translateX(3px);}
   .pledge-ribbon .pr-text{font-size:0.78rem;}}
 
 /* narrow-screen safety: never let a long word push a block past the edge */
-h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h{
+h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.jmap-t{
   overflow-wrap:break-word; word-break:break-word; hyphens:auto;
 }
+
+/* ── FOUR JOINTS · ONE LEAK ─────────────────────────────
+   The pipeline model from the campaign graphic: Supply →
+   Representation → Aim → Conversion. Full rows (.joints)
+   for the home page; compact 4-cell strip (.jmap) for the
+   product and register pages. */
+.joints{margin-top:1.8rem;}
+.joint{display:grid;grid-template-columns:96px 1fr;gap:0 1.4rem;
+  padding:1.6rem 0.2rem 1.6rem 1rem;border-top:1px solid var(--line);position:relative;}
+.joint:last-of-type{border-bottom:1px solid var(--line);}
+.joint::before{content:'';position:absolute;left:0;top:1.3rem;bottom:1.3rem;width:4px;
+  background:var(--accent);border-radius:2px;opacity:0;transition:opacity .25s var(--ease);}
+.joint:hover::before{opacity:1;}
+.joint-n{font-family:var(--font-display);font-size:clamp(2.3rem,6vw,3.4rem);font-weight:800;
+  line-height:1;color:var(--ink-faint);opacity:.55;letter-spacing:-0.02em;}
+.joint-t{font-family:var(--font-display);font-weight:800;letter-spacing:0.16em;
+  font-size:clamp(0.95rem,2.4vw,1.05rem);text-transform:uppercase;color:var(--ink);}
+.joint-law{color:var(--ink-soft);margin-top:0.3rem;font-size:0.95rem;}
+.joint-leak{margin-top:0.8rem;font-size:0.88rem;color:var(--ink-soft);line-height:1.6;}
+.joint-leak b{color:var(--ink);font-weight:600;}
+.joint-fix{margin-top:0.55rem;font-size:0.88rem;line-height:1.7;}
+.joint-fix .fx{color:var(--ink-faint);letter-spacing:0.1em;font-size:0.68rem;
+  text-transform:uppercase;font-weight:700;margin-right:0.45rem;}
+.joint-fix a{color:var(--accent);font-weight:600;text-decoration:none;
+  border-bottom:1px solid transparent;transition:border-color .15s;}
+.joint-fix a:hover{border-bottom-color:var(--accent);}
+.joints-close{margin-top:1.5rem;font-size:0.98rem;color:var(--ink-soft);line-height:1.7;}
+.joints-close b{color:var(--ink);}
+@media(max-width:560px){.joint{grid-template-columns:52px 1fr;gap:0 0.85rem;padding-left:0.8rem;}}
+
+.jmap{display:grid;grid-template-columns:repeat(4,1fr);gap:0.8rem;margin-top:1.4rem;}
+.jmap-cell{border:1px solid var(--line);border-radius:12px;padding:1rem 0.95rem;
+  background:var(--card);position:relative;overflow:hidden;transition:border-color .2s;}
+.jmap-cell::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent);opacity:0;transition:opacity .2s;}
+.jmap-cell:hover{border-color:var(--accent);}
+.jmap-cell:hover::before{opacity:1;}
+.jmap-n{font-family:var(--font-display);font-weight:800;font-size:0.7rem;
+  color:var(--accent);letter-spacing:0.12em;}
+.jmap-t{font-family:var(--font-display);font-weight:700;font-size:0.85rem;
+  letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem;color:var(--ink);}
+.jmap-d{font-size:0.8rem;color:var(--ink-soft);margin-top:0.45rem;line-height:1.55;}
+.jmap-d a{color:var(--accent);font-weight:600;text-decoration:none;}
+.jmap-d a:hover{text-decoration:underline;}
+@media(max-width:900px){.jmap{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.jmap{grid-template-columns:1fr;}}
+
+/* ── PROMISE MARQUEE ─────────────────────────────────────
+   One sentence in motion: enters from the right, holds at
+   centre, then continues left. Replaces the named pledge
+   ribbon everywhere. Reduced-motion users get it static. */
+.pledge-marq{display:flex;justify-content:center;align-items:center;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:0.8rem 0;background:var(--paper-2);text-decoration:none;}
+.pledge-marq span{display:inline-block;white-space:nowrap;will-change:transform;
+  font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em;
+  font-size:clamp(0.95rem,2.6vw,1.15rem);color:var(--ink);
+  animation:pmarq 11s cubic-bezier(0.22,1,0.36,1) infinite;}
+.pledge-marq em{font-style:normal;color:var(--accent);}
+@keyframes pmarq{
+  0%   {transform:translateX(100vw);}   /* enters from the right  */
+  34%  {transform:translateX(0);}       /* holds at the centre    */
+  66%  {transform:translateX(0);}
+  100% {transform:translateX(-100vw);}  /* continues off left     */
+}
+@media (prefers-reduced-motion:reduce){
+  .pledge-marq span{animation:none;}
+}
+
+/* ── PHOTO CARDS — lightweight WebP imagery that blends ── */
+.photo-card{display:block;width:100%;border-radius:16px;border:1px solid var(--line);
+  overflow:hidden;background:var(--card);margin-top:1.4rem;}
+.photo-card img{display:block;width:100%;height:auto;}
+.photo-card figcaption{padding:0.6rem 0.9rem;font-size:0.74rem;color:var(--ink-faint);
+  border-top:1px solid var(--line);letter-spacing:0.04em;}
+.photo-side{float:right;width:min(300px,42%);margin:0 0 0.9rem 1.2rem;}
+@media(max-width:640px){.photo-side{float:none;width:100%;margin:1.2rem 0 0;}}

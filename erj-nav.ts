@@ -181,8 +181,8 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
     '.erj-sub-item.is-current{color:var(--enAccent);font-weight:700;}',
     '.erj-sub-item.is-current::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;',
     'background:var(--enAccent);margin-right:0.45rem;vertical-align:middle;}',
-    '.erj-anchors{display:flex;flex-direction:column;padding:0.1rem 0 0.3rem 0.7rem;',
-    'margin:0.1rem 0 0.2rem;border-left:1px solid var(--enLine);}',
+    '.erj-anchors{display:flex;flex-direction:column;padding:0.1rem 0 0.3rem 0.2rem;margin:0;}',
+    '.erj-sub-item+.erj-anchors{padding-left:0.7rem;border-left:1px solid var(--enLine);margin:0.1rem 0 0.2rem;}',
     '.erj-anchors a{display:block;color:var(--enFaint);font-size:0.82rem;text-decoration:none;',
     'padding:0.4rem 0.6rem;border-radius:7px;transition:background .15s,color .15s;}',
     '.erj-anchors a:hover{background:var(--enLine);color:var(--enAccent);}',
@@ -227,14 +227,15 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
         '<a class="erj-bar-link" href="' + P(top.href || '#') + '"' +
         (selfCurrent ? ' aria-current="page"' : '') + '>' + esc(top.label) + '</a>';
       if (top.children) {
+        const drop = selfCurrent
+          ? anchorList('erj-drop-anchors')               /* on its own page: sections only */
+          : top.children.map(c =>
+              '<a href="' + P(c.href) + '"' + extAttr(c) +
+              (matches(c.keys) ? ' class="is-current" aria-current="page"' : '') + '>' +
+              esc(c.label) + '</a>').join('') +
+            (childCurrent ? anchorList('erj-drop-anchors') : '');
         html += '<button type="button" class="erj-bar-chev" aria-label="Open ' + esc(top.label) +
-          ' menu" aria-expanded="false">\u25BC</button><div class="erj-drop">' +
-          top.children.map(c =>
-            '<a href="' + P(c.href) + '"' + extAttr(c) +
-            (matches(c.keys) ? ' class="is-current" aria-current="page"' : '') + '>' +
-            esc(c.label) + '</a>').join('') +
-          (isCurrent ? anchorList('erj-drop-anchors') : '') +
-          '</div>';
+          ' menu" aria-expanded="false">\u25BC</button><div class="erj-drop">' + drop + '</div>';
       }
       return html + '</div>';
     }).join('');
@@ -288,13 +289,15 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
       /* Group: title links to its page, chevron opens the sub-menu.
          When the group's OWN page is current, its anchors sit directly
          under the title; when a child is current, they sit under that child. */
+      const kids = selfCurrent
+        ? anchorList('erj-anchors')                     /* on its own page: sections only */
+        : top.children.map(childRow).join('');          /* elsewhere: the child pages */
       return '<div class="erj-item' + (isCurrent ? ' open' : '') +
         (selfCurrent ? ' is-current' : '') + '" data-group="' + top.key + '">' +
         '<div class="erj-row">' + link +
         '<button type="button" class="erj-chev" aria-label="Open ' + esc(top.label) +
         ' menu" aria-expanded="' + (isCurrent ? 'true' : 'false') + '">\u25BC</button></div>' +
-        (selfCurrent ? anchorList('erj-anchors') : '') +
-        '<div class="erj-kids">' + top.children.map(childRow).join('') + '</div>' +
+        '<div class="erj-kids">' + kids + '</div>' +
         '</div>';
     }).join('');
   }

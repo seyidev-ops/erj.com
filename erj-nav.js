@@ -27,31 +27,34 @@
     const onPage = Array.isArray(cfg.onPage) ? cfg.onPage : [];
     const P = (href) => /^(https?:|mailto:|tel:|#|\/)/.test(href) ? href : base + href;
     const WA_CHANNEL = 'https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S';
-    /* ── The five items. Sub-menus carry everything else. ── */
+    /* ── The five items. Sub-menus carry titles only — the detail
+          lives on the Free For You and Your Starting Line pages. ── */
     const MENU = [
-        { key: 'home', label: 'Home', href: 'index.html', keys: ['home'] },
+        {
+            key: 'home', label: 'Home', keys: ['home'], children: [
+                { label: 'Home · Overview', href: 'index.html' },
+                { label: 'Meet Your Facilitator', href: 'index.html#facilitator' },
+                { label: 'Proof It Works', href: 'index.html#story' },
+                { label: 'Four Joints · One Leak', href: 'index.html#joints' },
+                { label: 'Our Promise', href: 'index.html#pledge' },
+                { label: 'FAQ', href: 'index.html#faq' }
+            ]
+        },
         {
             key: 'g-free', label: 'Free For You', children: [
-                { label: '10-Point CV Self-Scan', href: 'cvscan/', keys: ['cvscan'],
-                    desc: 'Score your CV for remote readiness — instant, on your device' },
-                { label: 'Free Live Masterclass', href: 'masterclass/', keys: ['masterclass'],
-                    desc: 'The Global Remote Job Blueprint, live on Zoom' },
-                { label: 'Remote Career Blog', href: 'blog.html', keys: ['blog'],
-                    desc: 'Plain-English guidance, published daily' },
-                { label: 'Global Job Board · WhatsApp', href: WA_CHANNEL, external: true,
-                    desc: 'Real, verified remote roles — free channel' }
+                { label: 'Free For You · Overview', href: 'free.html', keys: ['free'] },
+                { label: '10-Point CV Self-Scan', href: 'cvscan/', keys: ['cvscan'] },
+                { label: 'Free Live Masterclass', href: 'masterclass/', keys: ['masterclass'] },
+                { label: 'Remote Career Blog', href: 'blog.html', keys: ['blog'] },
+                { label: 'Global Job Board · WhatsApp', href: WA_CHANNEL, external: true }
             ]
         },
         {
             key: 'g-start', label: 'Your Starting Line', children: [
-                { label: 'Four Joints · One Leak', href: 'index.html#joints',
-                    desc: 'The model: Supply → Representation → Aim → Conversion. Find your leak.', learnMore: true },
-                { label: 'Mastery Training · Stages 1–4', href: 'masterytraining/', keys: ['mastery'],
-                    desc: '20 days, every asset built by you: CV, LinkedIn, portfolio, interviews', learnMore: true },
-                { label: 'Get A Remote Job · Done-For-You', href: 'getaremotejob/', keys: ['remote'],
-                    desc: 'Our team builds your assets and aims your applications in 7 days', learnMore: true },
-                { label: 'Inner Circle · Residency', href: 'innercircle/', keys: ['inner'],
-                    desc: 'Closest to the fire — held with you until the offer is signed', learnMore: true }
+                { label: 'Your Starting Line · Overview', href: 'starting-line.html', keys: ['startline'] },
+                { label: 'Mastery Training · Stages 1–4', href: 'masterytraining/', keys: ['mastery'] },
+                { label: 'Get A Remote Job · Done-For-You', href: 'getaremotejob/', keys: ['remote'] },
+                { label: 'Inner Circle · Residency', href: 'innercircle/', keys: ['inner'] }
             ]
         },
         { key: 'stories', label: 'Success Stories', href: 'testimonials.html', keys: ['stories', 'jobs'] },
@@ -170,10 +173,7 @@
             return hereBlock(c.label); // current page: anchors, not a duplicate link
         const ext = c.external ? ' target="_blank" rel="noopener"' : '';
         return '<a class="erj-sub-item" href="' + P(c.href) + '"' + ext + '>' +
-            '<span class="t">' + esc(c.label) + '</span>' +
-            (c.desc ? '<small>' + esc(c.desc) + '</small>' : '') +
-            (c.learnMore ? '<span class="lm">Learn more \u2192</span>' : '') +
-            '</a>';
+            '<span class="t">' + esc(c.label) + '</span></a>';
     }
     function buildItems() {
         if (IS_PORTAL) {
@@ -188,11 +188,13 @@
                 return '<div class="erj-item"><a class="erj-link" href="' + P(top.href || '#') + '">' +
                     esc(top.label) + '</a></div>';
             }
-            const containsActive = top.children.some(c => matches(c.keys));
+            const selfActive = matches(top.keys);
+            const containsActive = selfActive || top.children.some(c => matches(c.keys));
+            const kids = selfActive ? hereBlock(top.label) : top.children.map(childRow).join('');
             return '<div class="erj-group' + (containsActive ? ' open' : '') + '" data-group="' + top.key + '">' +
                 '<button type="button" class="erj-glabel" aria-expanded="' + (containsActive ? 'true' : 'false') + '">' +
                 esc(top.label) + '<span class="chev">\u25BC</span></button>' +
-                '<div class="erj-gkids">' + top.children.map(childRow).join('') + '</div>' +
+                '<div class="erj-gkids">' + kids + '</div>' +
                 '</div>';
         }).join('');
     }

@@ -298,3 +298,18 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
   border-top:1px solid var(--line);letter-spacing:0.04em;}
 .photo-side{float:right;width:min(300px,42%);margin:0 0 0.9rem 1.2rem;}
 @media(max-width:640px){.photo-side{float:none;width:100%;margin:1.2rem 0 0;}}
+
+/* ── HERO WITH IMAGE ────────────────────────────────────
+   Two-column hero: copy left, photo right; stacks on mobile
+   with the photo after the CTAs. */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);
+  gap:clamp(1.4rem,4vw,3rem);align-items:center;}
+.hero-photo{border-radius:18px;border:1px solid var(--line);overflow:hidden;
+  background:var(--card);align-self:center;}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/4.6;}
+.hero-photo figcaption{padding:0.55rem 0.85rem;font-size:0.72rem;color:var(--ink-faint);
+  border-top:1px solid var(--line);}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;}
+  .hero-photo{max-width:440px;}
+  .hero-photo img{aspect-ratio:16/10;}}
+.photo-card{margin-left:auto;margin-right:auto;}

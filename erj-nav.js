@@ -27,12 +27,12 @@
     const onPage = Array.isArray(cfg.onPage) ? cfg.onPage : [];
     const P = (href) => /^(https?:|mailto:|tel:|#|\/)/.test(href) ? href : base + href;
     const WA_CHANNEL = 'https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S';
-    /* ── The five items. Sub-menus carry titles only — the detail
-          lives on the Free For You and Your Starting Line pages. ── */
+    /* ── The five items. Each group's title is itself the link to its
+          page; the chevron opens the sub-menu. Titles only — detail lives
+          on the Free For You and Your Starting Line pages. ── */
     const MENU = [
         {
-            key: 'home', label: 'Home', keys: ['home'], children: [
-                { label: 'Home · Overview', href: 'index.html' },
+            key: 'home', label: 'Home', href: 'index.html', keys: ['home'], children: [
                 { label: 'Meet Your Facilitator', href: 'index.html#facilitator' },
                 { label: 'Proof It Works', href: 'index.html#story' },
                 { label: 'Four Joints · One Leak', href: 'index.html#joints' },
@@ -41,8 +41,7 @@
             ]
         },
         {
-            key: 'g-free', label: 'Free For You', children: [
-                { label: 'Free For You · Overview', href: 'free.html', keys: ['free'] },
+            key: 'g-free', label: 'Free For You', href: 'free.html', keys: ['free'], children: [
                 { label: '10-Point CV Self-Scan', href: 'cvscan/', keys: ['cvscan'] },
                 { label: 'Free Live Masterclass', href: 'masterclass/', keys: ['masterclass'] },
                 { label: 'Remote Career Blog', href: 'blog.html', keys: ['blog'] },
@@ -50,8 +49,7 @@
             ]
         },
         {
-            key: 'g-start', label: 'Your Starting Line', children: [
-                { label: 'Your Starting Line · Overview', href: 'starting-line.html', keys: ['startline'] },
+            key: 'g-start', label: 'Your Starting Line', href: 'starting-line.html', keys: ['startline'], children: [
                 { label: 'Mastery Training · Stages 1–4', href: 'masterytraining/', keys: ['mastery'] },
                 { label: 'Get A Remote Job · Done-For-You', href: 'getaremotejob/', keys: ['remote'] },
                 { label: 'Inner Circle · Residency', href: 'innercircle/', keys: ['inner'] }
@@ -95,6 +93,33 @@
         'transition:border-color .2s;line-height:1;}',
         '.erj-icon:hover{border-color:var(--enAccent);}',
         '.erj-burger svg{width:20px;height:20px;}',
+        /* ── DESKTOP BAR (>=980px): the five items spread across the header ── */
+        '.erj-bar{display:none;align-items:center;gap:0.15rem;margin-left:auto;margin-right:0.6rem;}',
+        '.erj-bar-item{position:relative;display:flex;align-items:center;}',
+        '.erj-bar-link{display:inline-flex;align-items:center;gap:0.3rem;color:var(--enInk);text-decoration:none;',
+        'font-size:0.88rem;font-weight:600;letter-spacing:-0.1px;padding:0.55rem 0.7rem;border-radius:8px;',
+        'white-space:nowrap;transition:background .15s,color .15s;}',
+        '.erj-bar-link:hover{background:var(--enLine);color:var(--enAccent);}',
+        '.erj-bar-item.is-current>.erj-bar-link{color:var(--enAccent);}',
+        '.erj-bar-item.is-current>.erj-bar-link::before{content:"";width:6px;height:6px;border-radius:50%;',
+        'background:var(--enAccent);margin-right:0.15rem;flex-shrink:0;}',
+        '.erj-bar-chev{background:transparent;border:0;color:var(--enFaint);cursor:pointer;font-size:0.6rem;',
+        'padding:0.55rem 0.4rem 0.55rem 0;line-height:1;transition:transform .22s,color .2s;}',
+        '.erj-bar-item.open .erj-bar-chev{transform:rotate(180deg);color:var(--enAccent);}',
+        '.erj-bar-item:hover .erj-bar-chev{color:var(--enAccent);}',
+        '.erj-drop{position:absolute;top:calc(100% + 0.55rem);left:0;min-width:250px;background:var(--enPaper);',
+        'border:1px solid var(--enLine);border-radius:12px;padding:0.4rem;z-index:1010;',
+        'box-shadow:0 18px 44px -20px rgba(0,0,0,0.75);display:none;}',
+        '.erj-bar-item.open .erj-drop{display:block;}',
+        '.erj-drop a{display:block;color:var(--enSoft);font-size:0.85rem;text-decoration:none;padding:0.55rem 0.7rem;',
+        'border-radius:8px;white-space:nowrap;transition:background .15s,color .15s;}',
+        '.erj-drop a:hover{background:var(--enLine);color:var(--enAccent);}',
+        '.erj-drop a.is-current{color:var(--enAccent);font-weight:700;}',
+        '.erj-drop a.is-current::before{content:"\u2022 ";}',
+        '.erj-drop .erj-drop-anchors{border-top:1px solid var(--enLine);margin-top:0.3rem;padding-top:0.3rem;}',
+        '.erj-drop .erj-drop-anchors a{font-size:0.8rem;color:var(--enFaint);}',
+        '@media(min-width:980px){.erj-bar{display:flex;}.erj-burger{display:none;}}',
+        /* ── MOBILE DRAWER (<980px) ── */
         '.erj-panel{position:fixed;top:0;right:0;bottom:0;width:min(86vw,380px);z-index:1100;',
         'background:var(--enPaper);border-left:1px solid var(--enLine);box-shadow:-16px 0 50px rgba(0,0,0,0.22);',
         'overflow-y:auto;transform:translateX(100%);transition:transform .32s cubic-bezier(0.22,1,0.36,1);',
@@ -106,31 +131,34 @@
         '.erj-panel-x{width:34px;height:34px;border-radius:8px;background:transparent;border:1px solid var(--enLine);',
         'color:var(--enInk);font-size:1.05rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}',
         '.erj-panel-x:hover{border-color:var(--enAccent);}',
-        '.erj-list{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0.6rem 0.8rem 1.5rem;}',
-        '.erj-link,.erj-glabel{display:flex;align-items:center;justify-content:space-between;gap:0.6rem;width:100%;',
-        'text-align:left;color:var(--enInk);font-family:var(--font-display,Georgia,serif);font-size:1.14rem;font-weight:600;',
-        'letter-spacing:-0.3px;text-decoration:none;padding:0.85rem 0.6rem;border-radius:8px;',
-        'background:transparent;border:0;cursor:pointer;transition:background .15s,color .15s;}',
-        '.erj-link:hover,.erj-glabel:hover{background:var(--enLine);}',
-        '.erj-glabel .chev{font-size:0.72rem;color:var(--enFaint);transition:transform .25s;}',
-        '.erj-group.open .erj-glabel .chev{transform:rotate(180deg);color:var(--enAccent);}',
-        '.erj-gkids{display:none;padding:0.1rem 0 0.5rem 0.55rem;margin-left:0.35rem;border-left:2px solid var(--enLine);}',
-        '.erj-group.open .erj-gkids{display:block;}',
-        '.erj-sub-item{display:block;text-decoration:none;padding:0.6rem 0.65rem;border-radius:8px;transition:background .15s;}',
-        '.erj-sub-item:hover{background:var(--enLine);}',
-        '.erj-sub-item .t{display:block;color:var(--enInk);font-size:0.92rem;font-weight:600;font-family:var(--font-body,sans-serif);}',
-        '.erj-sub-item small{display:block;color:var(--enFaint);font-size:0.76rem;line-height:1.5;margin-top:0.15rem;font-weight:400;}',
-        '.erj-sub-item .lm{display:inline-block;margin-top:0.35rem;font-size:0.72rem;font-weight:700;color:var(--enAccent);',
-        'letter-spacing:0.04em;}',
-        '.erj-sub-item:hover .lm{text-decoration:underline;}',
-        '.erj-here{padding:0.55rem 0.65rem 0.2rem;}',
-        '.erj-here-t{font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--enAccent);font-weight:700;}',
-        '.erj-here-l{display:block;color:var(--enInk);font-family:var(--font-display,Georgia,serif);font-size:1.02rem;font-weight:700;margin-top:0.15rem;}',
-        '.erj-anchors{display:flex;flex-direction:column;padding:0.2rem 0 0.4rem;}',
-        '.erj-anchors a{display:block;color:var(--enSoft);font-size:0.84rem;text-decoration:none;padding:0.42rem 0.65rem;',
-        'border-radius:7px;transition:background .15s,color .15s;}',
+        '.erj-list{display:flex;flex-direction:column;gap:0;margin:0;padding:0.6rem 0.8rem 1.5rem;}',
+        '.erj-row{display:flex;align-items:center;gap:0.2rem;}',
+        '.erj-link{flex:1;display:flex;align-items:center;gap:0.4rem;color:var(--enInk);',
+        'font-family:var(--font-display,Georgia,serif);font-size:1.14rem;font-weight:600;letter-spacing:-0.3px;',
+        'text-decoration:none;padding:0.85rem 0.6rem;border-radius:8px;transition:background .15s,color .15s;}',
+        '.erj-link:hover{background:var(--enLine);}',
+        /* the title itself IS the location marker */
+        '.erj-item.is-current>.erj-row>.erj-link,.erj-item.is-current>.erj-link{color:var(--enAccent);}',
+        '.erj-item.is-current>.erj-row>.erj-link::before,.erj-item.is-current>.erj-link::before{content:"";',
+        'width:7px;height:7px;border-radius:50%;background:var(--enAccent);flex-shrink:0;}',
+        '.erj-chev{background:transparent;border:0;color:var(--enFaint);cursor:pointer;font-size:0.7rem;',
+        'padding:0.9rem 0.7rem;line-height:1;border-radius:8px;transition:transform .25s,color .2s;}',
+        '.erj-chev:hover{color:var(--enAccent);background:var(--enLine);}',
+        '.erj-item.open .erj-chev{transform:rotate(180deg);color:var(--enAccent);}',
+        '.erj-kids{display:none;padding:0.1rem 0 0.5rem 0.55rem;margin-left:0.35rem;border-left:2px solid var(--enLine);}',
+        '.erj-item.open .erj-kids{display:block;}',
+        '.erj-sub-item{display:block;text-decoration:none;color:var(--enSoft);font-size:0.9rem;font-weight:500;',
+        'padding:0.55rem 0.65rem;border-radius:8px;transition:background .15s,color .15s;}',
+        '.erj-sub-item:hover{background:var(--enLine);color:var(--enAccent);}',
+        '.erj-sub-item.is-current{color:var(--enAccent);font-weight:700;}',
+        '.erj-sub-item.is-current::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;',
+        'background:var(--enAccent);margin-right:0.45rem;vertical-align:middle;}',
+        '.erj-anchors{display:flex;flex-direction:column;padding:0.1rem 0 0.3rem 0.7rem;',
+        'margin:0.1rem 0 0.2rem;border-left:1px solid var(--enLine);}',
+        '.erj-anchors a{display:block;color:var(--enFaint);font-size:0.82rem;text-decoration:none;',
+        'padding:0.4rem 0.6rem;border-radius:7px;transition:background .15s,color .15s;}',
         '.erj-anchors a:hover{background:var(--enLine);color:var(--enAccent);}',
-        '.erj-item.is-here>.erj-link,.erj-anchors a.is-here{color:var(--enAccent);}',
+        '.erj-anchors a.is-here{color:var(--enAccent);}',
         '.f-stop.is-here .no{opacity:1;}.f-stop.is-here .lbl{color:var(--enAccent);}',
         '.erj-scrim{position:fixed;inset:0;z-index:1090;background:rgba(0,0,0,0.42);opacity:0;visibility:hidden;',
         'transition:opacity .3s,visibility .3s;}',
@@ -138,63 +166,98 @@
         '@media(max-width:400px){.erj-nav{gap:0.5rem;padding-left:0.85rem;padding-right:0.85rem;}',
         '.erj-brand{flex-shrink:1;min-width:0;font-size:0.9rem;gap:7px;overflow:hidden;white-space:nowrap;}',
         '.erj-brand img{width:26px;height:26px;}.erj-right{gap:0.3rem;}.erj-icon{width:36px;height:36px;}}',
-        '@media(prefers-reduced-motion:reduce){.erj-panel,.erj-scrim,.erj-glabel .chev{transition:none;}}'
+        '@media(prefers-reduced-motion:reduce){.erj-panel,.erj-scrim,.erj-chev,.erj-bar-chev{transition:none;}}'
     ].join('');
     const style = document.createElement('style');
     style.id = 'erjNavCSS';
     style.textContent = css;
     document.head.appendChild(style);
+    /* ── render helpers ── */
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const extAttr = (c) => (c.external ? ' target="_blank" rel="noopener"' : '');
+    /* The page's own section anchors. Rendered UNDER whichever title is the
+       current location — the title itself is the "you are here", so there is
+       never a duplicate label repeating it. */
+    function anchorList(cls) {
+        if (!onPage.length)
+            return '';
+        return '<div class="' + cls + '">' +
+            onPage.map(a => '<a href="' + P(a.href) + '">' + esc(a.label) + '</a>').join('') +
+            '</div>';
+    }
+    /* ── DESKTOP BAR ── */
+    function buildBar() {
+        return MENU.map(top => {
+            const selfCurrent = matches(top.keys);
+            const childCurrent = !!top.children && top.children.some(c => matches(c.keys));
+            const isCurrent = selfCurrent || childCurrent;
+            let html = '<div class="erj-bar-item' + (isCurrent ? ' is-current' : '') +
+                '" data-bar="' + top.key + '">' +
+                '<a class="erj-bar-link" href="' + P(top.href || '#') + '"' +
+                (selfCurrent ? ' aria-current="page"' : '') + '>' + esc(top.label) + '</a>';
+            if (top.children) {
+                html += '<button type="button" class="erj-bar-chev" aria-label="Open ' + esc(top.label) +
+                    ' menu" aria-expanded="false">\u25BC</button><div class="erj-drop">' +
+                    top.children.map(c => '<a href="' + P(c.href) + '"' + extAttr(c) +
+                        (matches(c.keys) ? ' class="is-current" aria-current="page"' : '') + '>' +
+                        esc(c.label) + '</a>').join('') +
+                    (isCurrent ? anchorList('erj-drop-anchors') : '') +
+                    '</div>';
+            }
+            return html + '</div>';
+        }).join('');
+    }
     /* ── top bar ── */
     const nav = document.createElement('header');
     nav.className = 'erj-nav';
     nav.innerHTML =
         '<a href="' + P('index.html') + '" class="erj-brand"><img src="' + P('logo.png') + '" alt="ERJ">' +
             '<b>Everything</b><i>RemoteJob</i></a>' +
+            (IS_PORTAL ? '' : '<nav class="erj-bar" aria-label="Main menu">' + buildBar() + '</nav>') +
             '<div class="erj-right">' +
             '<button class="erj-icon" data-erj-theme-btn title="Toggle theme" aria-label="Toggle theme">\uD83C\uDF19</button>' +
             '<button class="erj-icon erj-burger" id="erjBurger" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">' +
             '<line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>' +
             '</button></div>';
-    /* ── drawer content ── */
-    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    function hereBlock(label) {
-        let h = '<div class="erj-here"><span class="erj-here-t">You are here</span>' +
-            '<span class="erj-here-l">' + esc(label) + '</span></div>';
-        if (onPage.length) {
-            h += '<div class="erj-anchors">' +
-                onPage.map(s => '<a href="' + P(s.href) + '">' + esc(s.label) + '</a>').join('') +
-                '</div>';
-        }
-        return h;
+    /* On portal pages the burger is the only menu at every width. */
+    if (IS_PORTAL) {
+        const pcss = document.createElement('style');
+        pcss.textContent = '@media(min-width:980px){.erj-burger{display:flex;}}';
+        document.head.appendChild(pcss);
     }
+    /* ── MOBILE DRAWER ── */
     function childRow(c) {
-        if (matches(c.keys))
-            return hereBlock(c.label); // current page: anchors, not a duplicate link
-        const ext = c.external ? ' target="_blank" rel="noopener"' : '';
-        return '<a class="erj-sub-item" href="' + P(c.href) + '"' + ext + '>' +
-            '<span class="t">' + esc(c.label) + '</span></a>';
+        const cur = matches(c.keys);
+        return '<a class="erj-sub-item' + (cur ? ' is-current' : '') + '" href="' + P(c.href) + '"' +
+            extAttr(c) + (cur ? ' aria-current="page"' : '') + '>' + esc(c.label) + '</a>' +
+            (cur ? anchorList('erj-anchors') : '');
     }
     function buildItems() {
         if (IS_PORTAL) {
-            return '<div class="erj-group open"><div class="erj-gkids" style="border:0;margin:0;padding-left:0;">' +
-                PORTAL_MENU.map(childRow).join('') + '</div></div>';
+            return PORTAL_MENU.map(c => '<div class="erj-item"><a class="erj-link" href="' + P(c.href) + '">' +
+                esc(c.label) + '</a></div>').join('');
         }
         return MENU.map(top => {
+            const selfCurrent = matches(top.keys);
+            const childCurrent = !!top.children && top.children.some(c => matches(c.keys));
+            const isCurrent = selfCurrent || childCurrent;
+            const link = '<a class="erj-link" href="' + P(top.href || '#') + '"' +
+                (selfCurrent ? ' aria-current="page"' : '') + '>' + esc(top.label) + '</a>';
             if (!top.children) {
-                if (matches(top.keys)) {
-                    return '<div class="erj-item is-here">' + hereBlock(top.label) + '</div>';
-                }
-                return '<div class="erj-item"><a class="erj-link" href="' + P(top.href || '#') + '">' +
-                    esc(top.label) + '</a></div>';
+                return '<div class="erj-item' + (selfCurrent ? ' is-current' : '') + '">' + link +
+                    (selfCurrent ? anchorList('erj-anchors') : '') + '</div>';
             }
-            const selfActive = matches(top.keys);
-            const containsActive = selfActive || top.children.some(c => matches(c.keys));
-            const kids = selfActive ? hereBlock(top.label) : top.children.map(childRow).join('');
-            return '<div class="erj-group' + (containsActive ? ' open' : '') + '" data-group="' + top.key + '">' +
-                '<button type="button" class="erj-glabel" aria-expanded="' + (containsActive ? 'true' : 'false') + '">' +
-                esc(top.label) + '<span class="chev">\u25BC</span></button>' +
-                '<div class="erj-gkids">' + kids + '</div>' +
+            /* Group: title links to its page, chevron opens the sub-menu.
+               When the group's OWN page is current, its anchors sit directly
+               under the title; when a child is current, they sit under that child. */
+            return '<div class="erj-item' + (isCurrent ? ' open' : '') +
+                (selfCurrent ? ' is-current' : '') + '" data-group="' + top.key + '">' +
+                '<div class="erj-row">' + link +
+                '<button type="button" class="erj-chev" aria-label="Open ' + esc(top.label) +
+                ' menu" aria-expanded="' + (isCurrent ? 'true' : 'false') + '">\u25BC</button></div>' +
+                (selfCurrent ? anchorList('erj-anchors') : '') +
+                '<div class="erj-kids">' + top.children.map(childRow).join('') + '</div>' +
                 '</div>';
         }).join('');
     }
@@ -239,17 +302,62 @@
             x.addEventListener('click', close);
         scrim.addEventListener('click', close);
         panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-        panel.querySelectorAll('.erj-glabel').forEach(btn => {
+        /* Drawer accordion: opening one group closes the others. */
+        const groups = panel.querySelectorAll('.erj-item[data-group]');
+        panel.querySelectorAll('.erj-chev').forEach(btn => {
             btn.addEventListener('click', () => {
-                const g = btn.parentElement;
+                const g = btn.closest('.erj-item');
                 if (!g)
                     return;
-                const on = g.classList.toggle('open');
-                btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+                const willOpen = !g.classList.contains('open');
+                groups.forEach(other => {
+                    other.classList.remove('open');
+                    const c = other.querySelector('.erj-chev');
+                    if (c)
+                        c.setAttribute('aria-expanded', 'false');
+                });
+                if (willOpen) {
+                    g.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
             });
         });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape')
-            close(); });
+        /* Desktop dropdowns: one at a time, close on outside click or Escape. */
+        const barItems = nav.querySelectorAll('.erj-bar-item');
+        const closeBar = () => {
+            barItems.forEach(it => {
+                it.classList.remove('open');
+                const c = it.querySelector('.erj-bar-chev');
+                if (c)
+                    c.setAttribute('aria-expanded', 'false');
+            });
+        };
+        nav.querySelectorAll('.erj-bar-chev').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                e.stopPropagation();
+                const it = btn.closest('.erj-bar-item');
+                if (!it)
+                    return;
+                const willOpen = !it.classList.contains('open');
+                closeBar();
+                if (willOpen) {
+                    it.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+        document.addEventListener('click', e => {
+            if (!nav.contains(e.target))
+                closeBar();
+        });
+        nav.querySelectorAll('.erj-drop a').forEach(a => a.addEventListener('click', closeBar));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                close();
+                closeBar();
+            }
+        });
     }
     function mount() {
         const slot = document.getElementById('erjNavMount');

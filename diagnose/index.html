@@ -27,6 +27,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../product.css">
+<style>
+  /* The pipeline diagram, moved here from starting-line.html — it explains
+     the model this page diagnoses, so it belongs with the questions. */
+  .pipe{border:1px solid var(--line);border-radius:16px;background:var(--card);
+    overflow:hidden;margin:1.6rem 0 0.4rem;}
+  .pipe svg{display:block;width:100%;height:auto;}
+</style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Find Your Leak","item":"https://everythingremotejob.com/diagnose/"}]}</script>
 </head>
@@ -70,6 +77,31 @@
   <div class="section-label"><span class="mark"></span>The model</div>
   <h2>Four points. <span>One leak.</span></h2>
   <p class="section-sub">A pipe does not usually burst along its length. It fails at a joint. Every remote job search runs on these same four, in this order &mdash; and when it is not producing offers, the fault is almost always at one of them.</p>
+
+  <div class="pipe" aria-hidden="true">
+    <svg viewBox="0 0 800 190" xmlns="http://www.w3.org/2000/svg" role="img">
+      <rect width="800" height="190" fill="#0d0d0d"/>
+      <line x1="70" y1="80" x2="730" y2="80" stroke="#2a2a2a" stroke-width="10" stroke-linecap="round"/>
+      <line x1="70" y1="80" x2="470" y2="80" stroke="#FF5722" stroke-width="10" stroke-linecap="round"/>
+      <g>
+      <circle cx="110" cy="80" r="22" fill="#161616" stroke="#FF5722" stroke-width="3"/>
+      <circle cx="310" cy="80" r="22" fill="#161616" stroke="#FF5722" stroke-width="3"/>
+      <circle cx="510" cy="80" r="22" fill="#161616" stroke="#3a3a3a" stroke-width="3"/>
+      <circle cx="710" cy="80" r="22" fill="#161616" stroke="#3a3a3a" stroke-width="3"/>
+      </g>
+      <g font-family="Space Grotesk,system-ui" font-weight="800" font-size="15" fill="#fff" text-anchor="middle">
+      <text x="110" y="86">01</text><text x="310" y="86">02</text>
+      <text x="510" y="86" fill="#6b6b6b">03</text><text x="710" y="86" fill="#6b6b6b">04</text>
+      </g>
+      <g font-family="Inter,system-ui" font-size="12" fill="#a1a1a1" text-anchor="middle" letter-spacing="1.5">
+      <text x="110" y="130">SUPPLY</text><text x="310" y="130">REPRESENTATION</text>
+      <text x="510" y="130">AIM</text><text x="710" y="130">CONVERSION</text>
+      </g>
+      <path d="M505 96 q5 16 -4 26 q12 -4 12 -18 q0 -5 -8 -8z" fill="#FF5722"/>
+      <text x="510" y="160" font-family="Inter,system-ui" font-size="11" fill="#FF5722" text-anchor="middle">the leak</text>
+    </svg>
+    </div>
+
 
   <div class="joints">
     <div class="joint reveal">

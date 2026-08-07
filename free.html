@@ -33,6 +33,11 @@
   .fi-go:hover{background:var(--accent-h);}
   .fi-art{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--card);}
   .fi-art img,.fi-art svg{display:block;width:100%;height:auto;}
+  /* portrait sources are cropped to landscape so every block keeps the same weight */
+  .fi-art.tall img{aspect-ratio:5/4;object-fit:cover;object-position:center 18%;}
+  /* captions were unstyled on this page — matched to .photo-card elsewhere */
+  .fi-art figcaption{padding:0.6rem 0.9rem;font-size:0.74rem;color:var(--ink-faint);
+    border-top:1px solid var(--line);line-height:1.5;}
   @media(max-width:760px){.free-item,.free-item.flip{grid-template-columns:1fr;}
     .free-item.flip .fi-copy{order:0;}.fi-art{max-width:420px;}}
 </style>
@@ -71,9 +76,9 @@
         </ul>
         <a class="fi-go" href="diagnose/">Find my leak <span>&rarr;</span></a>
       </div>
-      <figure class="fi-art" style="margin:0;">
-        <img src="photo-woman-laptop.webp" alt="A woman working through her job search at a laptop" width="626" height="417" loading="lazy" decoding="async">
-        <figcaption>Most people patch the wrong point. Check yours first.</figcaption>
+      <figure class="fi-art tall" style="margin:0;">
+        <img src="photo-facilitator-suit.webp" alt="Oluwaseyi Ashiru, who reads every diagnostic result personally" width="820" height="1230" loading="lazy" decoding="async">
+        <figcaption>Send me your result and I answer it myself — Oluwaseyi</figcaption>
       </figure>
     </div>
 
@@ -91,7 +96,7 @@
         <a class="fi-go" href="cvscan/">Scan my CV <span>→</span></a>
       </div>
       <figure class="fi-art" style="margin:0;">
-        <img src="photo-remote-win.webp" alt="A young Nigerian professional at his laptop after a remote offer" width="626" height="417" loading="lazy" decoding="async">
+        <img src="photo-remote-win-v2.webp" alt="A young Nigerian professional at his laptop after a remote offer" width="626" height="417" loading="lazy" decoding="async">
         <figcaption>Scan first — then apply with a CV that actually reads</figcaption>
       </figure>
     </div>

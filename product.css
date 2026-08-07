@@ -29,6 +29,12 @@ html[data-theme="day"]{
   --grid-dot:rgba(10,10,10,0.05);
 }
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+
+/* Shared accessibility primitive — was previously only defined in
+   cvscan/scan.css, so any other page using it showed a stray link. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent);color:#fff;
+  padding:0.7rem 1.1rem;font-size:0.85rem;font-weight:600;text-decoration:none;border-radius:0 0 2px 0;}
+.skip-link:focus{left:0;}
 body{
   background:var(--paper); color:var(--ink); font-family:var(--font-body); font-weight:300;
   line-height:1.7; min-height:100vh; overflow-x:hidden; transition:var(--transition);
@@ -313,3 +319,92 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
   .hero-photo{max-width:440px;}
   .hero-photo img{aspect-ratio:16/10;}}
 .photo-card{margin-left:auto;margin-right:auto;}
+
+/* ════════════════════════════════════════════════════════════════
+   CAPTURE LAYER
+   The shared components (.cap-btn, .cap-send, .cap-bridge,
+   .evergreen, .cap-bar, .cap-read) are NOT defined here on purpose.
+   blog.html and testimonials.html carry bespoke stylesheets and do
+   not load product.css, so erj-capture.js injects that CSS itself
+   and inherits whatever tokens the host page defines. One source,
+   every page. Only the /diagnose/ page styles live below.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── FIND YOUR LEAK · the diagnostic ─────────────────────────── */
+.dx{margin-top:2rem;background:var(--card);border:1px solid var(--card-line);border-radius:2px;
+  overflow:hidden;}
+.dx-progress{height:3px;background:var(--line-soft);}
+.dx-progress span{display:block;height:100%;background:var(--accent);
+  transition:width 0.45s var(--ease);}
+.dx-step{padding:clamp(1.6rem,4vw,2.6rem);}
+.dx-count{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:0.9rem;}
+.dx-q{font-family:var(--font-display);font-size:clamp(1.25rem,3vw,1.75rem);font-weight:800;
+  line-height:1.25;letter-spacing:-0.015em;color:var(--ink);margin-bottom:0.6rem;}
+.dx-why{font-size:0.85rem;line-height:1.65;color:var(--ink-faint);max-width:62ch;margin-bottom:1.5rem;}
+.dx-answers{display:grid;gap:0.6rem;}
+.dx-a{display:flex;align-items:center;gap:0.9rem;width:100%;text-align:left;
+  padding:1.05rem 1.2rem;background:transparent;color:var(--ink);
+  border:1px solid var(--line);border-radius:2px;cursor:pointer;font-family:var(--font-body);
+  transition:border-color 0.22s ease,background 0.22s ease,transform 0.22s var(--ease);}
+.dx-a:hover,.dx-a:focus-visible{border-color:var(--accent);background:var(--paper-2);
+  transform:translateX(3px);outline:none;}
+.dx-a-t{font-size:0.95rem;font-weight:500;line-height:1.45;}
+.dx-a-n{font-size:0.76rem;color:var(--ink-faint);margin-left:0.35rem;}
+.dx-a-x{margin-left:auto;color:var(--accent);opacity:0;transition:opacity 0.22s ease;flex:0 0 auto;}
+.dx-a:hover .dx-a-x,.dx-a:focus-visible .dx-a-x{opacity:1;}
+.dx-back{margin-top:1.3rem;background:none;border:none;cursor:pointer;padding:0;
+  font-family:var(--font-body);font-size:0.8rem;color:var(--ink-faint);
+  transition:color 0.2s ease;}
+.dx-back:hover{color:var(--accent);}
+@media(max-width:520px){.dx-a{flex-wrap:wrap;gap:0.3rem;}.dx-a-n{margin-left:0;width:100%;}}
+
+/* — the result — */
+.dx-result{margin-top:2rem;}
+.dxr-head{display:grid;grid-template-columns:auto 1fr;gap:0 1.4rem;align-items:start;
+  padding-bottom:1.4rem;border-bottom:1px solid var(--line);}
+.dxr-n{font-family:var(--font-display);font-size:clamp(3rem,9vw,4.6rem);font-weight:800;
+  line-height:0.9;color:var(--accent);}
+.dxr-name{font-family:var(--font-display);font-size:clamp(1.9rem,5vw,2.9rem);font-weight:800;
+  letter-spacing:-0.02em;line-height:1.05;color:var(--ink);margin:0;}
+.dxr-law{font-size:0.95rem;color:var(--ink-soft);margin-top:0.25rem;}
+.dxr-verdict{margin-top:1.5rem;font-size:1.02rem;line-height:1.75;color:var(--ink-soft);max-width:68ch;}
+.dxr-verdict::first-line{color:var(--ink);}
+
+.dxr-scores{margin-top:2rem;padding:1.4rem 1.5rem;background:var(--paper-2);
+  border:1px solid var(--line-soft);border-radius:2px;}
+.dxs-k{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:1rem;}
+.dxs-row{display:grid;grid-template-columns:8.5rem 1fr 3rem;align-items:center;gap:0.8rem;
+  margin-bottom:0.55rem;}
+.dxs-l{font-size:0.82rem;color:var(--ink-faint);}
+.dxs-t{height:6px;background:var(--line-soft);border-radius:3px;overflow:hidden;}
+.dxs-t span{display:block;height:100%;background:var(--ink-faint);border-radius:3px;
+  transition:width 0.7s var(--ease);}
+.dxs-p{font-size:0.76rem;color:var(--ink-faint);text-align:right;}
+.dxs-row.is-win .dxs-l{color:var(--ink);font-weight:600;}
+.dxs-row.is-win .dxs-t span{background:var(--accent);}
+.dxs-row.is-win .dxs-p{color:var(--accent);font-weight:600;}
+.dxs-note{margin-top:1rem;font-size:0.78rem;line-height:1.6;color:var(--ink-faint);max-width:60ch;}
+@media(max-width:520px){.dxs-row{grid-template-columns:6.5rem 1fr 2.6rem;gap:0.55rem;}}
+
+.dxr-tonight{margin-top:2rem;padding:1.5rem 1.6rem;border:1px solid var(--card-line);
+  border-left:3px solid var(--accent);border-radius:2px;background:var(--card);}
+.dxr-k{font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--ink);
+  margin-bottom:0.9rem;}
+.dxr-tonight ol{margin:0;padding-left:1.1rem;}
+.dxr-tonight li{font-size:0.9rem;line-height:1.7;color:var(--ink-soft);margin-bottom:0.6rem;
+  padding-left:0.35rem;}
+.dxr-tonight li::marker{color:var(--accent);font-weight:700;}
+
+.dxr-doors{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.4rem;}
+.dxr-door{padding:1.5rem 1.6rem;background:var(--card);border:1px solid var(--card-line);
+  border-radius:2px;transition:border-color 0.25s ease,transform 0.25s var(--ease);}
+.dxr-door:hover{border-color:var(--accent);transform:translateY(-3px);}
+.dxr-door-k{font-size:0.63rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:0.7rem;}
+.dxr-door p{font-size:0.87rem;line-height:1.7;color:var(--ink-soft);}
+.dxr-door .btn-more{margin-top:1.1rem;}
+@media(max-width:760px){.dxr-doors{grid-template-columns:1fr;}}
+
+.dxr-send{margin-top:1.4rem;}

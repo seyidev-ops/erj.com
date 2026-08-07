@@ -13,7 +13,7 @@
    Each page sets, BEFORE this script loads:
      window.ERJ_NAV = {
        active: 'home'|'mastery'|'remote'|'inner'|'pricing'|
-               'stories'|'blog'|'cvscan'|'masterclass'|'login'|…,
+               'stories'|'blog'|'cvscan'|'diagnose'|'masterclass'|'login'|…,
        base:   '' (root) | '../' (one folder deep),
        portal: true          // admin/instructor surfaces only
        onPage: [{label,href,sub?}, …]   // optional anchors
@@ -64,6 +64,7 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
     },
     {
       key: 'g-free', label: 'Free For You', href: 'free.html', keys: ['free'], children: [
+        { label: 'Find Your Leak · 4-point diagnostic', href: 'diagnose/', keys: ['diagnose'] },
         { label: '10-Point CV Self-Scan', href: 'cvscan/', keys: ['cvscan'] },
         { label: 'Free Live Masterclass', href: 'masterclass/', keys: ['masterclass'] },
         { label: 'Remote Career Blog', href: 'blog.html', keys: ['blog'] },

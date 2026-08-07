@@ -17,5 +17,6 @@ Disallow: /offline.html
 Disallow: /cvbuilder/
 Disallow: /erj-surge-console.html
 Disallow: /*?p=
+Disallow: /earlybird.html
 
 Sitemap: https://everythingremotejob.com/sitemap.xml

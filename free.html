@@ -37,6 +37,7 @@
     .free-item.flip .fi-copy{order:0;}.fi-art{max-width:420px;}}
 </style>
 <script>window.ERJ_NAV={active:'free',onPage:[
+  {label:'Find Your Leak',href:'#leak'},
   {label:'CV Self-Scan',href:'#scan'},
   {label:'Live Masterclass',href:'#class'},
   {label:'Remote Career Blog',href:'#blogfree'},
@@ -56,8 +57,28 @@
 
   <section class="wrap" style="padding-top:0;">
 
+
+    <!-- 0 · FIND YOUR LEAK — the diagnostic that routes everything else -->
+    <div class="free-item reveal" id="leak">
+      <div class="fi-copy">
+        <span class="fi-kind">00 &middot; Start here &middot; 90 seconds</span>
+        <h2 class="fi-title">Find Your <em>Leak</em></h2>
+        <p class="fi-desc">Four questions, and you will know which of the four points is actually breaking your job search &mdash; so you fix that one instead of patching all four for months. No email, no sign-up, nothing stored.</p>
+        <ul class="fi-list">
+          <li>Sorts your situation into Supply, Representation, Aim or Conversion</li>
+          <li>Gives you three things you can do <b>tonight</b>, free, for your point</li>
+          <li>Tells you which of everything else on this page to use first</li>
+        </ul>
+        <a class="fi-go" href="diagnose/">Find my leak <span>&rarr;</span></a>
+      </div>
+      <figure class="fi-art" style="margin:0;">
+        <img src="photo-woman-laptop.webp" alt="A woman working through her job search at a laptop" width="626" height="417" loading="lazy" decoding="async">
+        <figcaption>Most people patch the wrong point. Check yours first.</figcaption>
+      </figure>
+    </div>
+
     <!-- 1 · CV SELF-SCAN -->
-    <div class="free-item reveal" id="scan">
+    <div class="free-item flip reveal" id="scan">
       <div class="fi-copy">
         <span class="fi-kind">01 · Instant &amp; private</span>
         <h2 class="fi-title">10-Point CV <em>Self-Scan</em></h2>
@@ -76,7 +97,7 @@
     </div>
 
     <!-- 2 · MASTERCLASS -->
-    <div class="free-item flip reveal" id="class">
+    <div class="free-item reveal" id="class">
       <div class="fi-copy">
         <span class="fi-kind">02 · Live on Zoom · 100 seats</span>
         <h2 class="fi-title">The Global Remote Job <em>Blueprint</em></h2>
@@ -95,7 +116,7 @@
     </div>
 
     <!-- 3 · BLOG -->
-    <div class="free-item reveal" id="blogfree">
+    <div class="free-item flip reveal" id="blogfree">
       <div class="fi-copy">
         <span class="fi-kind">03 · Daily · no account</span>
         <h2 class="fi-title">The Remote Career <em>Blog</em></h2>
@@ -113,7 +134,7 @@
     </div>
 
     <!-- 4 · JOB BOARD -->
-    <div class="free-item flip reveal" id="board">
+    <div class="free-item reveal" id="board">
       <div class="fi-copy">
         <span class="fi-kind">04 · WhatsApp · open to all</span>
         <h2 class="fi-title">Global Remote <em>Job Board</em></h2>
@@ -147,6 +168,8 @@
 <script src="erj-theme.js"></script>
 <script src="erj-product.js"></script>
 <script src="erj-nav.js"></script>
+<script src="erj-config.js"></script>
+<script src="erj-capture.js"></script>
 <script src="erj-schema.js"></script>
 </body>
 </html>

@@ -93,6 +93,84 @@ No build step. No framework. Plain HTML/CSS/JS by design — fast on low-bandwid
 - Product pages canonically live in `products/`; top-level equivalents are redirect stubs only.
 - Pricing shown on any page must match `register.html` (single source of truth).
 
+
+## The capture layer (added v82)
+
+### Why it exists
+
+The two busiest free assets on this site produced **no reachable people**:
+
+- A WhatsApp **channel** is one-way broadcast. There is no member list, no
+  replies, no DMs. It grew an audience nobody could ever answer.
+- The **CV self-scan** runs entirely on-device and stores nothing — by design,
+  and that promise is worth keeping. But a stranger got a diagnosis and closed
+  the tab.
+
+Everything downstream — follow-up, ascension, the second and third touch where
+most sales actually happen — is impossible without a name and a number. That was
+the primary leak, and it sat at the **Aim** joint of our own pipeline.
+
+The fix does **not** break either promise. It adds one identified action the
+visitor *chooses* to take: a prefilled WhatsApp message they send themselves.
+They keep their privacy; we get a conversation.
+
+### Files
+
+| File | Role |
+| --- | --- |
+| `erj-config.js` | **Single source of truth.** WhatsApp number, channel URL, live capacity figures, the evergreen sentence, every message template. Edit here and nowhere else. |
+| `erj-capture.ts` → `erj-capture.js` | The layer itself. Compile: `tsc erj-capture.ts --target es2017 --strict --lib es2017,dom` |
+| `diagnose/index.html` + `dx.ts` → `dx.js` | "Find Your Leak" — the four-point diagnostic. |
+
+### What the layer does
+
+1. **Scan capture** — injects *"Send me my scored report"* into the CV scan
+   result, prefilled with the score and the failed point names. The scan
+   re-renders when the job description changes, so injection is driven by a
+   `MutationObserver`, not a one-shot call.
+2. **Channel bridge** — puts a reply route beside every one-way channel link.
+3. **Evergreen doors** — renders a door that opens *today* under every
+   `[data-deadline]` countdown. Opt out on a specific panel with
+   `data-no-evergreen`.
+4. **Honest capacity** — `data-erj-capacity="placement|innercircle"` renders a
+   live capacity bar from config. This scarcity is real: the placement promise
+   costs human hours per student. When it fills, the answer is a waitlist or a
+   higher price — **never a quieter promise**.
+5. **Reading CTA** — `data-erj-cta` renders one action (not a menu) at the end
+   of long-form reading. Used on every blog post.
+
+### Two things that will bite you if you forget them
+
+- **`blog.html` and `testimonials.html` do not load `product.css`.** They carry
+  bespoke stylesheets. That is why the capture components ship their **own CSS**,
+  injected by `erj-capture.js` and inheriting whatever tokens the host page
+  defines, with literal fallbacks. Do not "tidy" that CSS into `product.css` —
+  it will silently unstyle the two highest-traffic pages. Only the `/diagnose/`
+  page styles live in `product.css`.
+- **Script order matters.** `erj-config.js` must load *before* `erj-capture.js`,
+  and both *after* `erj-nav.js` (the layer reads `ERJ_NAV.base` to build correct
+  relative links from sub-folder pages). `validate.py` enforces this.
+
+### The diagnostic's tie-break rule
+
+When two joints score equally, the **earliest one in the pipe wins**. A leak
+upstream makes every downstream reading unreliable — someone who cannot find
+real, eligible roles has no meaningful conversion data yet. Fix upstream first.
+
+### Tooling
+
+```bash
+node erjwork/test-dx.js     # 29 checks — diagnostic scoring + capture behaviour
+python3 erjwork/validate.py # markup, dead links, sw precache, script order, CSS integrity
+```
+
+`validate.py` checks that **every `sw.js` SHELL path exists** — one missing entry
+rejects `addAll()` and aborts the *entire* precache, which has broken this site
+before.
+
+There is no jsdom in the build environment (registry blocked), so `test-dx.js`
+ships a small faithful DOM harness and exercises the real compiled files.
+
 ## About
 
 Built and maintained by **Oluwaseyi Ashiru** — Everything Remote Job, under Business Play Limited, Abuja, Nigeria.

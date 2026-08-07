@@ -1913,7 +1913,10 @@ function openPost(id){
       </div>
       <div class="art-content">${p.content}</div>
       <div class="art-tags">${(p.tags||[]).map(t=>`<span class="art-tag">#${t}</span>`).join('')}</div>
-      <a href="register.html" class="art-cta">📚 Join the Remote Job Mastery Training →</a>
+      <!-- ONE action, not a menu: a reader who finishes a post is warm for
+           about ten seconds. Spend them on a conversation, not navigation.
+           erj-capture.js fills this container (see data-erj-cta). -->
+      <div data-erj-cta></div>
 
       <!-- REACTIONS -->
       <div class="reactions">
@@ -1945,6 +1948,7 @@ function openPost(id){
     </div>`;
 
   renderCmts(p.id);
+  if(window.ERJ_CAPTURE&&window.ERJ_CAPTURE.refresh)window.ERJ_CAPTURE.refresh();
   const ov=document.getElementById('overlay');
   ov.classList.add('on');
   document.body.style.overflow='hidden';
@@ -2231,6 +2235,8 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <!-- ===== /Unified Theme Control ===== -->
 
 <script src="erj-nav.js"></script>
+<script src="erj-config.js"></script>
+<script src="erj-capture.js"></script>
 <script src="erj-schema.js"></script>
 </body>
 </html>

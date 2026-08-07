@@ -56,9 +56,9 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
     {
       key: 'home', label: 'Home', href: 'index.html', keys: ['home'], children: [
         { label: 'Meet Your Facilitator', href: 'index.html#facilitator' },
+        { label: 'Four Problem · Fix It', href: 'index.html#joints' },
         { label: 'Proof It Works', href: 'index.html#story' },
-        { label: 'Four Joints · One Leak', href: 'index.html#joints' },
-        { label: 'Our Promise', href: 'index.html#pledge' },
+        { label: 'The Promise', href: 'index.html#pledge' },
         { label: 'FAQ', href: 'index.html#faq' }
       ]
     },

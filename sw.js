@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v87';
+const CACHE   = 'erj-v88';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -57,13 +57,25 @@ const SHELL = [
 ];
 
 self.addEventListener('install', e => {
+  // First-ever install (no worker before us): take over straight away — there is
+  // no page mid-read to disturb. An UPDATE must NOT skipWaiting: doing so swaps
+  // the controller under a page someone is reading, which is what produced the
+  // white-out mid-scroll. The new worker activates the next time every tab of
+  // the site is closed. HTML is network-first anyway, so nobody sees stale copy.
+  const firstInstall = !self.registration.active;
   e.waitUntil(
     caches.open(CACHE)
       .then(c => Promise.all(
         SHELL.map(u => c.add(new Request(u, { cache: 'reload' })).catch(function(){ return null; }))
       ))
-      .then(() => self.skipWaiting())
+      .then(() => firstInstall ? self.skipWaiting() : undefined)
   );
+});
+
+// An explicit opt-in escape hatch: a page can ask for the update immediately
+// (e.g. behind a "new version — refresh" button) instead of it being forced.
+self.addEventListener('message', e => {
+  if (e.data === 'ERJ_SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
@@ -71,12 +83,10 @@ self.addEventListener('activate', e => {
     caches.keys()
       .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
-      // Self-heal: reload every open page so devices stuck on stale cached HTML
-      // immediately pick up fresh content served by this new worker.
-      .then(() => self.clients.matchAll({ type: 'window' }))
-      .then(clients => Promise.all(
-        clients.map(c => ('navigate' in c) ? c.navigate(c.url).catch(() => null) : null)
-      ))
+      // NOTE: the old clients.navigate() "self-heal" lived here and reloaded
+      // every open tab on activation — a 2-5s white screen for anyone mid-page.
+      // It was also redundant: the fetch handler below is network-first for
+      // HTML, so a published change is already live on the next page view.
   );
 });
 

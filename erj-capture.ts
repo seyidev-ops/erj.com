@@ -101,6 +101,13 @@ interface Window {
 .eg-lead{font-size:.9rem;line-height:1.65;color:var(--ink-soft,#a1a1a1);}
 .eg-lead b{color:var(--ink,#fff);font-weight:600;}
 .eg-doors{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:.9rem;}
+/* When the block sits inside a centred section (register hero, home countdown),
+   the kicker and lead already centre by inheritance — the flex row of doors did
+   not, which left it visibly tilted to the left. eg-center is set in JS from the
+   host's real computed text-align, so left-aligned pages are untouched. */
+.evergreen.eg-center{text-align:center;}
+.evergreen.eg-center .eg-lead{margin-left:auto;margin-right:auto;}
+.evergreen.eg-center .eg-doors{justify-content:center;}
 .eg-doors a{font-size:.82rem;font-weight:600;color:var(--accent,#FF5722);text-decoration:none;
  border-bottom:1px solid transparent;transition:border-color .2s ease;}
 .eg-doors a:hover{border-bottom-color:var(--accent,#FF5722);}
@@ -231,7 +238,17 @@ interface Window {
         .map(d => '<a href="' + base + d.href + '">' + d.label + ' <span class="arrow">\u2192</span></a>')
         .join('');
 
-      const box = el('div', 'evergreen reveal in');
+      /* Follow the host's alignment. A centred hero (register.html) or a
+         centred countdown section should centre the doors too; a left-aligned
+         page must stay left. Read it, never assume it. */
+      let centred = false;
+      try {
+        const ref = (panel.parentNode && panel.parentNode.nodeType === 1)
+          ? (panel.parentNode as Element) : panel;
+        centred = getComputedStyle(ref).textAlign === 'center';
+      } catch (e) { }
+
+      const box = el('div', 'evergreen reveal in' + (centred ? ' eg-center' : ''));
       box.innerHTML =
         '<div class="eg-k">Not waiting for a gate?</div>' +
         '<p class="eg-lead"><b>' + CFG!.evergreen.lead + '</b> ' + CFG!.evergreen.body + '</p>' +

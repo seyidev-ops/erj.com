@@ -11,7 +11,9 @@ Checks the things that have actually broken this site before:
 """
 import re, pathlib, sys, json
 
-ROOT = pathlib.Path("/home/claude/erjwork/erj.com-2-Early-bird")
+# Resolve against this file's own location so the validator runs from any
+# checkout — the previous absolute path only worked on one machine.
+ROOT = pathlib.Path(__file__).resolve().parent
 errors, warnings, notes = [], [], []
 
 HTML = sorted(p for p in ROOT.rglob("*.html") if "node_modules" not in str(p))

@@ -1448,20 +1448,20 @@ const SEEDS=[
    excerpt:'Every stalled remote job search is a pipeline leaking at exactly one of four joints. Find yours and you stop wasting months fixing the wrong thing.',
    content:`<p>Most people treat a stalled job search as one big undifferentiated failure. It is not. It is a pipeline, and pipelines fail at joints.</p>
 <p>There are four, and an offer only comes out when all four hold.</p>
-<h2>01 · Supply — someone must see the opportunity</h2>
+<h2>01 · Supply — you can't apply for a job you never saw</h2>
 <p>Before anything else, real openings have to reach your eyes. If you are refreshing the same three sites, seeing roles that closed weeks ago, or wading through offers that ask you to pay for training first, this is your leak.</p>
 <p>Nothing else you do matters while this joint is broken. You can have a perfect CV and aim it at nothing.</p>
 <p><strong>What fixing it looks like:</strong> a continuous, verified inflow of roles actually open to people applying from Africa. Our free WhatsApp job board exists for exactly this, and it costs nothing. Do not pay anyone to solve your supply problem before you have tried the free version.</p>
-<h2>02 · Representation — your signal must exist and be understood</h2>
+<h2>02 · Representation — if your CV can't be read, you were never really in the running</h2>
 <p>You apply and hear nothing back. Not a rejection, not an acknowledgement. Silence.</p>
 <p>That silence usually means one of three things: your CV cannot be read by the software that screens it, your CV can be read but does not say what you can actually do, or there is nothing outside the CV — no LinkedIn worth finding, no portfolio, no evidence.</p>
 <p>This is the most common leak, and the most misdiagnosed. People respond to silence by applying harder. Applying harder with a broken signal simply produces more silence, faster.</p>
 <p><strong>How to check in one minute:</strong> run the free 10-point CV self-scan. It scores the same ten things a screening system checks and names the specific failures. It runs on your own device and uploads nothing.</p>
-<h2>03 · Aim — the signal must reach the right target</h2>
+<h2>03 · Aim — applying everywhere isn't the same as applying where you'd get hired</h2>
 <p>You are applying. A lot. Fifty, a hundred, two hundred applications. Still nothing.</p>
 <p>Volume is not the problem here — direction is. The roles are wrong for your level, the companies do not hire from your region, or you are firing everything into portals where applications go to die rather than to the humans who make decisions.</p>
 <p>Aim is where effort and outcome separate most violently. Twenty well-aimed applications will beat two hundred scattered ones, every single time.</p>
-<h2>04 · Conversion — interest must become value</h2>
+<h2>04 · Conversion — interviews don't pay you, a signed offer does</h2>
 <p>The replies come. Sometimes the interviews come. The offers do not. Or one arrives and the money is wrong because nobody ever taught you what to say when the number is named.</p>
 <p>This is the last metre, and it is the one people prepare for least. They spend six weeks perfecting a CV and twenty minutes preparing for the conversation that decides the salary.</p>
 <h2>The diagnostic</h2>
@@ -1564,10 +1564,10 @@ const SEEDS=[
    content:`<p>A pipe does not usually burst along its length. It fails at a joint. Your job search works the same way, and this is the single most useful thing we teach, because almost everybody gets it wrong in the same direction.</p>
 <p>When nothing is working, it feels like everything is broken. So people rewrite the CV, and join more job groups, and read about interviews, and change their LinkedIn photo \u2014 all in the same fortnight. Then nothing changes, because the one thing that was actually broken got about a quarter of the attention, and the three things that were already fine got the rest.</p>
 <h2>The four points</h2>
-<p><strong>01 Supply \u2014 someone must see the opportunity.</strong> Are you seeing real, eligible roles at all? Eligible means the company can actually pay someone in your country, which is a different question from whether the advert says "remote".</p>
-<p><strong>02 Representation \u2014 your signal must exist and be understood.</strong> Can software and then a stranger read what you are? A CV that people call "nice" can still be unreadable to the system that screens it first.</p>
-<p><strong>03 Aim \u2014 the signal must reach the right target.</strong> Are your applications going to companies that could have hired you, in roles you could have won?</p>
-<p><strong>04 Conversion \u2014 interest must become value.</strong> Do conversations end in offers, or in silence? Does the money arrive right?</p>
+<p><strong>01 Supply \u2014 you can't apply for a job you never saw.</strong> Are you seeing real, eligible roles at all? Eligible means the company can actually pay someone in your country, which is a different question from whether the advert says "remote".</p>
+<p><strong>02 Representation \u2014 if your CV can't be read, you were never really in the running.</strong> Can software and then a stranger read what you are? A CV that people call "nice" can still be unreadable to the system that screens it first.</p>
+<p><strong>03 Aim \u2014 applying everywhere isn't the same as applying where you'd get hired.</strong> Are your applications going to companies that could have hired you, in roles you could have won?</p>
+<p><strong>04 Conversion \u2014 interviews don't pay you. A signed offer does.</strong> Do conversations end in offers, or in silence? Does the money arrive right?</p>
 <h2>Four questions</h2>
 <p>Answer these honestly, alone, with nobody watching.</p>
 <p><strong>One.</strong> In the last month, how many roles did you find that you were genuinely eligible for? If the answer is "almost none", stop reading about interviews. Your leak is Supply, and everything downstream is being judged on far too little evidence to mean anything.</p>
@@ -2174,10 +2174,6 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){reg.update();}).catch(function(){});
-    });
-    var swReloaded=false;
-    navigator.serviceWorker.addEventListener('controllerchange',function(){
-      if(swReloaded)return; swReloaded=true; window.location.reload();
     });
   }
   // Capture install prompt

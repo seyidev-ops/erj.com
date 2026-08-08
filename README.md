@@ -179,3 +179,73 @@ Built and maintained by **Oluwaseyi Ashiru** — Everything Remote Job, under Bu
 - ✉️ Enquiries via the site's WhatsApp channel
 
 > *"We won't let you go until you're hired."*
+
+---
+
+## v88 — 8 August 2026
+
+Three fixes. Cache version bumped `erj-v87` → `erj-v88`.
+
+### 1 · Evergreen doors block sat left of centre on register.html
+`.eg-doors` is a flex row, so it ignored the `text-align:center` that
+`.reg-hero` was passing down to the kicker and lead above it — the row alone
+stayed at `flex-start`.
+
+`erj-capture.js` / `.ts` now reads the host's *computed* `text-align` and adds
+`eg-center` only when the host is genuinely centred. Left-aligned hosts (the
+Inner Circle countdown) are untouched. Verified: 73.5px gap either side on
+register.html, 0.0px centre offset.
+
+Files: `erj-capture.js`, `erj-capture.ts`
+
+### 2 · Home page whited out for 2–5s mid-scroll
+Not a paint glitch — the page was reloading itself. Two mechanisms fired on
+every service-worker version change:
+
+* `sw.js` called `skipWaiting()` on install, then in `activate` looped every
+  open tab calling `client.navigate(c.url)` (the "self-heal" reload).
+* Every page listened for `controllerchange` and called `location.reload()`.
+
+Sequence: load → `reg.update()` → new worker installs (55 precached files —
+that is the 2–5s) → activates → both reload paths fire. The reload restores
+scroll position, which is why it always looked like it happened at "Read This
+First" — that is simply how far you had scrolled.
+
+The self-heal was also redundant: the fetch handler is already NETWORK-FIRST
+for HTML, so published changes are live on the next page view regardless.
+
+* `skipWaiting()` now runs only on a first-ever install (`!registration.active`)
+  — an update waits instead of seizing control of a page someone is reading.
+* The `clients.navigate()` loop is deleted.
+* The `controllerchange` reload listener is removed from all 16 pages.
+* A `message` handler (`'ERJ_SKIP_WAITING'`) is left in place so a polite
+  "new version — refresh" affordance can be added later if wanted.
+
+Transition is clean: existing visitors get no farewell flash, because the new
+worker waits rather than claiming control.
+
+Files: `sw.js` + 16 HTML pages
+
+### 3 · Four Points subtitles rewritten for the job seeker
+Kept the essence, said from the seeker's side of the desk:
+
+| | Old | New |
+|---|---|---|
+| 01 Supply | Someone must see the opportunity. | You can't apply for a job you never saw. |
+| 02 Representation | Your signal must exist and be understood. | If your CV can't be read, you were never really in the running. |
+| 03 Aim | The signal must reach the right target. | Applying everywhere isn't the same as applying where you'd get hired. |
+| 04 Conversion | Interest must become value. | Interviews don't pay you. A signed offer does. |
+
+Applied to all 24 occurrences: `index.html` (home cards), `diagnose/index.html`
+(cards under the diagnostic), `diagnose/dx.js` + `dx.ts` (verdict engine result
+cards), `blog.html` (two teaching articles — 4 `<h2>` headings, 4 bold leads).
+Zero instances of the old wording remain.
+
+### Also
+`validate.py` had a hard-coded absolute ROOT that only worked on one machine —
+now resolves against its own location. Runs clean: 0 errors.
+
+### Verification
+* `validate.py` — 0 errors, 0 warnings
+* Chromium across 9 pages at 390px: 0 horizontal overflow, 0 console errors,
+  0 pages still carrying a self-reload listener

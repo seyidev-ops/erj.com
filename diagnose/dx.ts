@@ -79,7 +79,7 @@ interface Window {
 
   const JOINTS: Record<JointKey, Joint> = {
     supply: {
-      n: '01', name: 'Supply', law: 'Someone must see the opportunity.',
+      n: '01', name: 'Supply', law: 'You can\u2019t apply for a job you never saw.',
       verdict: 'You are not seeing enough real, eligible roles to have a job search yet. Everything downstream \u2014 your CV, your aim, your interviews \u2014 is being judged on far too little evidence. Fix this one first and the rest becomes measurable.',
       free: {
         text: 'Join the free Global Remote Job Board on WhatsApp. Verified roles, open to Africans, posted continuously \u2014 and the blog\u2019s scam-check guides so you can tell a live listing from a fossil.',
@@ -96,7 +96,7 @@ interface Window {
       ]
     },
     representation: {
-      n: '02', name: 'Representation', law: 'Your signal must exist and be understood.',
+      n: '02', name: 'Representation', law: 'If your CV can\u2019t be read, you were never really in the running.',
       verdict: 'You are real and competent, and the document representing you is not readable \u2014 by software first, by a stranger second. Total silence almost always means you were never actually read. This is the fastest of the four to fix.',
       free: {
         text: 'Run the free 10-Point CV Self-Scan. It takes ninety seconds, runs entirely on your own device, and shows exactly which points you default on.',
@@ -113,7 +113,7 @@ interface Window {
       ]
     },
     aim: {
-      n: '03', name: 'Aim', law: 'The signal must reach the right target.',
+      n: '03', name: 'Aim', law: 'Applying everywhere isn\u2019t the same as applying where you\u2019d get hired.',
       verdict: 'Your effort is not the problem \u2014 your direction is. Applications sent is a measure of effort, not of aim, and a big number with no replies is evidence of a problem rather than proof of trying. There is no feedback loop in job hunting, so the lesson never arrives on its own.',
       free: {
         text: 'Start a one-page tracker tonight: date, company, role, source, whether they can hire across borders, what you tailored, what came back. After thirty rows, patterns appear that no advice could have given you.',
@@ -130,7 +130,7 @@ interface Window {
       ]
     },
     conversion: {
-      n: '04', name: 'Conversion', law: 'Interest must become value.',
+      n: '04', name: 'Conversion', law: 'Interviews don\u2019t pay you. A signed offer does.',
       verdict: 'Here is the good news hiding in your answers: your CV is working and your aim is close enough to get you into rooms. The hard joints are already fixed. What is leaking is the twenty minutes after the document \u2014 and that is the most learnable part of the whole process.',
       free: {
         text: 'Write your answer to the question that ends most remote interviews \u2014 \u201Chow do you work when nobody is watching?\u201D \u2014 as a description of your system, not a list of adjectives. Four sentences, tonight, before anyone asks.',

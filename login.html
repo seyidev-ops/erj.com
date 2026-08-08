@@ -918,10 +918,6 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
     window.addEventListener('load',function(){
       navigator.serviceWorker.register('sw.js').then(function(reg){reg.update();}).catch(function(){});
     });
-    var swReloaded=false;
-    navigator.serviceWorker.addEventListener('controllerchange',function(){
-      if(swReloaded)return; swReloaded=true; window.location.reload();
-    });
   }
   // Capture install prompt
   var deferred=null, btn=null;

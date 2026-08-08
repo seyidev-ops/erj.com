@@ -217,3 +217,19 @@ html[data-theme="day"]{
   .hero-cta{flex-direction:column;}
   .hero-cta .btn-yes,.hero-cta .btn-more{width:100%;justify-content:center;}
 }
+
+/* ── "After the score" value lists ───────────────────────────────
+   The three cards used to say only which page to visit. They now
+   explain what is actually bought at each depth, because the scan
+   measures ONE of the four points and the reader cannot be expected
+   to infer the rest. */
+.nx-list{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:0.62rem;}
+.nx-list li{position:relative;padding-left:1.05rem;font-size:0.86rem;line-height:1.62;
+  color:var(--ink-soft);}
+.nx-list li::before{content:"";position:absolute;left:0;top:0.62em;width:5px;height:5px;
+  border-radius:50%;background:var(--accent);}
+.nx-list b{color:var(--ink);font-weight:600;}
+.nx-why{margin-top:0.95rem;padding-top:0.85rem;border-top:1px solid var(--line-soft);
+  font-size:0.86rem;line-height:1.6;color:var(--ink);}
+/* three dense cards need more room than the default auto-fit minimum */
+#next .cards{grid-template-columns:repeat(auto-fit,minmax(310px,1fr));align-items:start;}

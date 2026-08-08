@@ -1106,6 +1106,11 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
         <div class="stages-list" id="stagesList"></div>
       </div>
 
+      <!-- Tier-aware next rung. Filled by erj-ascend.js from what this
+           participant already owns; empty while they are still inside
+           Stages 1–4, so nobody is sold something mid-journey. -->
+      <div id="ascendSlot"></div>
+
     </div>
 
     <!-- VIEW: PROGRESS OVERVIEW -->
@@ -1472,6 +1477,7 @@ let currentStageModal = null;
   populateUser();
   updateWelcome();
   renderStages();
+  renderAscend();
   renderOverview();
   renderCerts();
   updateStats();
@@ -1729,12 +1735,20 @@ function redeemCode() {
       '\u2705 Unlocked. Note: this code is from an earlier cohort, so your stages are open but the live sessions for that cohort have finished. Message us if you want to join the current one.'), 2600);
   }
 
-  setTimeout(() => { renderStages(); updateStats(); renderOverview(); }, 600);
+  setTimeout(() => { renderStages(); updateStats(); renderOverview(); renderAscend(); }, 600);
 }
 
 /* ════════════════════════════════════════
    RENDER STAGE CARDS
 ══════════════════════════════════════════ */
+function renderAscend() {
+  // Which stages does this participant actually hold? Unlocked, not merely
+  // visible — the upsell must never offer something already bought.
+  if (!window.ERJ_ASCEND) return;
+  const owned = STAGES.filter(s => progress[s.id]?.unlocked).map(s => s.num);
+  window.ERJ_ASCEND.render('ascendSlot', owned);
+}
+
 function renderStages() {
   const container = document.getElementById('stagesList');
   container.innerHTML = '';
@@ -1888,6 +1902,7 @@ function completeLesson(stageId, lessonId, btn) {
   saveProgress();
   updateStats();
   renderStages();
+  renderAscend();
   renderOverview();
   renderCerts();
 }

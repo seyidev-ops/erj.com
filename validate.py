@@ -133,6 +133,89 @@ if missing:
 else:
     notes.append(f"all {len(emitted)} capture classes carry their own CSS")
 
+
+# ── 10 · SEO integrity ────────────────────────────────────────────────
+PUBLIC_INDEXABLE = ["index.html","free.html","starting-line.html","register.html",
+    "testimonials.html","blog.html","diagnose/index.html","cvscan/index.html",
+    "masterclass/index.html","masterytraining/index.html","getaremotejob/index.html",
+    "innercircle/index.html"]
+
+for page in PUBLIC_INDEXABLE:
+    s2 = (ROOT / page).read_text(encoding="utf-8", errors="ignore")
+    if 'rel="canonical"' not in s2:
+        errors.append(f"SEO: {page} has no canonical")
+    if 'name="robots"' not in s2:
+        errors.append(f"SEO: {page} has no robots meta")
+    m = re.search(r'rel="canonical" href="([^"]+)"', s2)
+    if m and "#" in m.group(1):
+        errors.append(f"SEO: {page} canonical contains a fragment (Google discards it)")
+    m = re.search(r'og:image" content="([^"]+)"', s2)
+    if not m:
+        errors.append(f"SEO: {page} has no og:image")
+    else:
+        img = ROOT / m.group(1).replace("https://everythingremotejob.com/", "")
+        if not img.exists():
+            errors.append(f"SEO: {page} og:image points at a missing file ({img.name})")
+
+# every og:image must be unique — a shared preview makes pages look duplicate
+seen_imgs = {}
+for page in PUBLIC_INDEXABLE:
+    s2 = (ROOT / page).read_text(encoding="utf-8", errors="ignore")
+    m = re.search(r'og:image" content="([^"]+)"', s2)
+    if m:
+        seen_imgs.setdefault(m.group(1), []).append(page)
+for img, pages in seen_imgs.items():
+    if len(pages) > 1:
+        warnings.append(f"SEO: {len(pages)} pages share one og:image ({img.split('/')[-1]}): {pages}")
+
+# redirect stubs must be crawlable AND noindex, or they report as duplicates
+for stub in ROOT.rglob("*.html"):
+    txt = stub.read_text(encoding="utf-8", errors="ignore")
+    if "http-equiv=\"refresh\"" in txt:
+        rel = stub.relative_to(ROOT)
+        if 'content="noindex' not in txt:
+            errors.append(f"SEO: redirect stub {rel} is indexable (causes 'duplicate without canonical')")
+
+# sitemap must list only URLs that exist and are indexable
+sm = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+for loc in re.findall(r"<loc>https://everythingremotejob\.com/([^<]*)</loc>", sm):
+    target = ROOT / (loc if loc else "index.html")
+    if target.is_dir():
+        target = target / "index.html"
+    if not target.exists():
+        errors.append(f"SEO: sitemap lists /{loc} which does not exist")
+notes.append(f"sitemap: {len(re.findall(r'<loc>', sm))} URLs, all resolve")
+
+
+# ── 11 · retired URLs stay retired ────────────────────────────────────
+# The stubs are gone; 404.html is the single mechanism. Guard against a
+# future edit quietly reintroducing scattered redirect files.
+nf = ROOT / "404.html"
+if not nf.exists():
+    errors.append("404.html is missing — every retired URL now depends on it")
+else:
+    txt = nf.read_text(encoding="utf-8")
+    if 'content="noindex' not in txt:
+        errors.append("404.html must be noindex")
+    mapped = re.findall(r"'(/[^']*)':\s*'([^']*)'", txt)
+    notes.append(f"404 legacy map: {len(mapped)} retired URLs handled in one place")
+    for _, target in mapped:
+        t = ROOT / target.split("#")[0]
+        if t.is_dir():
+            t = t / "index.html"
+        if not t.exists():
+            errors.append(f"404 map points at {target}, which does not exist")
+
+for gone in ["products", "howtogetaremotejob"]:
+    if (ROOT / gone).exists():
+        errors.append(f"/{gone}/ was deleted on purpose — it is back")
+
+stubs = [f.relative_to(ROOT) for f in ROOT.rglob("*.html")
+         if 'http-equiv="refresh"' in f.read_text(encoding="utf-8", errors="ignore")]
+if stubs:
+    warnings.append("redirect stubs are back outside 404.html: "
+                    + ", ".join(str(x) for x in stubs))
+
 # ── report ────────────────────────────────────────────────────────────
 print("\n── NOTES ──")
 for n in notes:

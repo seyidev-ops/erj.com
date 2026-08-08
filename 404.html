@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<title>Page not found — Everything Remote Job</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="product.css">
+
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  ONE PLACE FOR EVERY RETIRED URL
+  ═══════════════════════════════════════════════════════════════════
+  This replaces the scattered redirect stubs that used to live at
+  /products/*, /howtogetaremotejob/, job-world-mastery.html, jobs.html
+  and inner-circle.html. Those were five separate near-identical files
+  that Google clustered as duplicates; now there is a single map below.
+
+  HONEST NOTE ON WHAT THIS DOES AND DOES NOT DO.
+  GitHub Pages cannot issue a real 301, so a retired URL now returns a
+  404 status and this page rescues the human with a client-side jump.
+  Google reads the 404 and drops the URL — which is the correct end
+  state for a page that no longer exists, and is why those entries will
+  reappear once in Search Console before clearing for good.
+  What a 404 does NOT do is pass ranking signal to the new page. If a
+  retired URL ever earns real external backlinks, the right answer is a
+  200-status stub for that ONE url, not an entry here.
+
+  To retire another URL: add one line to LEGACY. Nothing else changes.
+-->
+<script>
+(function () {
+  var LEGACY = {
+    // old product URLs, renamed
+    '/howtogetaremotejob/':            'getaremotejob/',
+    '/job-world-mastery.html':         'masterytraining/',
+    '/inner-circle.html':              'innercircle/',
+    '/jobs.html':                      'testimonials.html#jobboard',
+    // the old /products/ tree
+    '/products/remote-job/':           'getaremotejob/',
+    '/products/mastery-training/':     'masterytraining/',
+    '/products/inner-circle/':         'innercircle/'
+  };
+
+  var path = location.pathname.replace(/\/index\.html$/, '/');
+  var target = LEGACY[path];
+
+  // tolerate a missing or extra trailing slash on any mapped path
+  if (!target) {
+    var alt = path.slice(-1) === '/' ? path.slice(0, -1) : path + '/';
+    target = LEGACY[alt];
+  }
+
+  if (target) {
+    var hash = target.indexOf('#') > -1 ? '' : location.hash;
+    location.replace('/' + target + hash);
+  } else {
+    // no map entry: show the page below once the DOM is ready
+    document.documentElement.setAttribute('data-lost', 'true');
+  }
+})();
+</script>
+
+<style>
+  .nf{max-width:720px;margin:0 auto;padding:clamp(3rem,12vh,7rem) 0 4rem;}
+  .nf-code{font-family:var(--font-display);font-size:clamp(4rem,14vw,7rem);font-weight:800;
+    line-height:0.9;color:var(--accent);letter-spacing:-0.03em;}
+  .nf h1{font-family:var(--font-display);font-size:clamp(1.6rem,4.5vw,2.4rem);font-weight:800;
+    letter-spacing:-0.02em;margin:1.1rem 0 0.7rem;}
+  .nf p{font-size:1rem;line-height:1.75;color:var(--ink-soft);max-width:60ch;}
+  .nf-doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.9rem;
+    margin-top:2.2rem;}
+  .nf-door{padding:1.15rem 1.25rem;background:var(--card);border:1px solid var(--card-line);
+    border-radius:2px;text-decoration:none;display:block;
+    transition:border-color .25s ease,transform .25s var(--ease);}
+  .nf-door:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .nf-door b{display:block;font-family:var(--font-display);font-size:0.98rem;font-weight:700;
+    color:var(--ink);margin-bottom:0.25rem;}
+  .nf-door span{font-size:0.82rem;color:var(--ink-faint);line-height:1.55;}
+  .nf-note{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line-soft);
+    font-size:0.85rem;color:var(--ink-faint);}
+  /* stay blank while a mapped URL is jumping, so nothing flashes */
+  html:not([data-lost]) .nf{visibility:hidden;}
+</style>
+</head>
+<body>
+
+<div class="pledge-marq" aria-label="Our promise"><span>We will not let you go until you&rsquo;re hired.</span></div>
+
+<main class="wrap">
+  <section class="nf">
+    <div class="nf-code">404</div>
+    <h1>That page has moved on. <span style="color:var(--accent)">You don&rsquo;t have to.</span></h1>
+    <p>The link you followed points at something we&rsquo;ve renamed or retired. Nothing is lost &mdash; everything it used to hold is on one of these:</p>
+
+    <div class="nf-doors">
+      <a class="nf-door" href="index.html"><b>Home</b><span>What we do and who it&rsquo;s for</span></a>
+      <a class="nf-door" href="diagnose/"><b>Find Your Leak</b><span>Four questions, ninety seconds, free</span></a>
+      <a class="nf-door" href="free.html"><b>Free For You</b><span>CV scan, masterclass, blog, job board</span></a>
+      <a class="nf-door" href="starting-line.html"><b>Your Starting Line</b><span>The three routes, compared</span></a>
+      <a class="nf-door" href="register.html"><b>Register</b><span>Every option and price on one page</span></a>
+      <a class="nf-door" href="blog.html"><b>The Blog</b><span>Practical help, published weekly</span></a>
+    </div>
+
+    <p class="nf-note">Still stuck? Message us on WhatsApp at
+      <a href="https://wa.me/2348032925957" style="color:var(--accent)" target="_blank" rel="noopener">+234&nbsp;803&nbsp;292&nbsp;5957</a>
+      and tell us what you were looking for &mdash; we&rsquo;ll send the right link.</p>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  &copy; 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
+</footer>
+
+<script>window.ERJ_NAV={active:'',onPage:[]};</script>
+<script src="erj-theme.js"></script>
+<script src="erj-nav.js"></script>
+</body>
+</html>

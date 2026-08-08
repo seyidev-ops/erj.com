@@ -20,8 +20,8 @@
     { "src": "icon512maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "screenshots": [
-    { "src": "screenshotmobile.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Everything Remote Job" },
-    { "src": "screenshotwide.png", "sizes": "1920x1080", "type": "image/png", "form_factor": "wide", "label": "Everything Remote Job" }
+    { "src": "screenshot-mobile-v2.png", "sizes": "1080x1920", "type": "image/png", "form_factor": "narrow", "label": "Everything Remote Job" },
+    { "src": "screenshot-wide-v2.png", "sizes": "1920x1080", "type": "image/png", "form_factor": "wide", "label": "Everything Remote Job" }
   ],
   "shortcuts": [
     { "name": "Register", "short_name": "Register", "url": "/register.html", "icons": [{ "src": "icon192.png", "sizes": "192x192" }] },

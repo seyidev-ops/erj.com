@@ -249,3 +249,53 @@ now resolves against its own location. Runs clean: 0 errors.
 * `validate.py` — 0 errors, 0 warnings
 * Chromium across 9 pages at 390px: 0 horizontal overflow, 0 console errors,
   0 pages still carrying a self-reload listener
+
+---
+
+## v89 — 8 August 2026 · social preview rebuilt
+
+`preview-index-v3.jpg` (1200×630) replaces `preview-index-v2.jpg` as the Open
+Graph / Twitter card for the site. `-v2` is left on disk deliberately: links
+already shared point at that URL and would otherwise lose their image.
+
+**Real brand fonts.** v2 was set in DejaVu Sans — the generator could not reach
+Space Grotesk offline, so every share card used a typeface the site never uses.
+The genuine files now live in `og-fonts/` (SIL Open Font Licence, included).
+Re-fetch with `npm pack @fontsource/space-grotesk @fontsource/inter`, then
+convert the `.woff2` with fontTools (`f.flavor = None; f.save(...)`).
+
+**Other fixes in `make_preview_v3.py`:**
+* Negative tracking — the site sets `letter-spacing:-0.02em` on display
+  headings; Pillow has no tracking, so `track()` draws glyph by glyph.
+* Glyph safety — Space Grotesk has no U+2011 (the non-breaking hyphen the site
+  uses in "dollar‑paying"), which rendered a tofu box. `safe()` substitutes and
+  now **raises** on any missing glyph rather than shipping tofu to every share.
+* Safe area — Twitter re-crops to 2:1, shaving ~15px top and bottom. v2 put the
+  domain baseline at y=592, inside that shave. All text now sits in y=60..566.
+* Foot spacing — v2 stacked the promise (558) and domain (592) 34px apart at
+  21px/19px. Now separated by a hairline with real space either side.
+* A soft warm bloom low-right, so a pure-black card does not read as a failed
+  image in a crowded WhatsApp thread.
+
+**Also produced:** `github-social-preview.jpg` (1280×640) for the repository's
+own social preview card — GitHub **Settings → Social preview**. That is a
+separate surface from the site's OG image and takes a different size; it is not
+referenced by any page.
+
+Unchanged and deliberate: evergreen (no cohort number, no date), real logo
+composited never redrawn, new filename per revision.
+
+Also updated: `og:image:width/height/alt` and `twitter:image:alt` added;
+`sw.js` SHELL repointed; cache `erj-v88` → `erj-v89`.
+
+### Known limitation
+A square centre-crop (small chat thumbnails) cuts the logo and domain. That is
+inherent to any full-bleed 1.91:1 card; surviving it would mean centring
+everything small. The 2:1 crop and the 320px thumbnail were both checked and
+are clean.
+
+### Still open
+`index.html`'s `og:description` and `twitter:description` both end with
+"Cohort 10 begins 31 August 2026." Platforms cache OG metadata for months —
+this is the same trap as a cohort number baked into the image, and it will read
+as stale on every share made after 31 August.

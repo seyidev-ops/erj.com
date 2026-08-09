@@ -299,3 +299,46 @@ are clean.
 "Cohort 10 begins 31 August 2026." Platforms cache OG metadata for months —
 this is the same trap as a cohort number baked into the image, and it will read
 as stale on every share made after 31 August.
+
+---
+
+## v90 — 9 August 2026 · three class tracks on Mastery Training
+
+New `#tracks` section on `masterytraining/index.html`, placed immediately before
+`#pricing` — the schedule choice sits next to the payment decision. Added to the
+page's `ERJ_NAV.onPage` list as "Choose your class".
+
+| Track | When | Built for |
+|---|---|---|
+| 01 · Prospecting Class | Weekdays 7:00–8:00 PM WAT | Undergraduates, entry-level, not yet gainfully employed |
+| 02 · Executive Class | Weekdays 8:00–9:00 PM WAT | Typical 9–5 professionals who can train on weekdays |
+| 03 · Intensive Class | Weekends 7:00–8:30 PM WAT | 8 AM–8 PM professionals whose weekdays are unavailable |
+
+**Deliberately no "featured" card.** The `.price-card.feature` treatment was not
+reused here: the claim is that the tracks are equal and only the hour differs, so
+highlighting one would quietly contradict the copy. A `.parity` strip states what
+does not change — Stages 1–4, all 16 deliverables, same fee, same certificate, AI
+Fluency, LMS access, cohort resources.
+
+Each CTA is a prefilled WhatsApp message naming the chosen track, so enquiries
+arrive already segmented.
+
+### DERIVED — confirm before publishing
+The weekday tracks are 1 hour × 5 days; the weekend track is 1.5 hours × 2 days.
+Those are 5 h/week against 3 h/week, so "same modules" cannot also mean "same
+calendar length". The session counts on the cards were derived to hold contact
+hours roughly equal, NOT supplied:
+
+* Weekday tracks — 20 sessions × 60 min = **20 hours over 4 weeks** (matches the
+  existing "20 training days" claim).
+* Intensive — 14 sessions × 90 min = **21 hours over about 7 weekends**.
+
+If the real weekend plan is a different shape, `.track-meta` on card 03 is the
+only line to change.
+
+### Known conflict
+The hero still reads "hiring-ready in **20 days**" and the stat row still says
+"20 Training days". Both are true of the weekday tracks and false of the weekend
+one, which runs ~7 weekends. Either qualify the hero ("20 training days · weekend
+track runs across 7 weekends") or accept that the track card carries its own
+duration. Left unchanged pending a decision — it is hero copy, not a bug.

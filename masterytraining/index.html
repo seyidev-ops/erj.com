@@ -38,6 +38,34 @@
     body.sticky-on .wa-float{bottom:86px;}
   }
   @media (prefers-reduced-motion:reduce){.sticky-cta{transition:none;}}
+
+  /* ── class tracks ──
+     Three schedules, one programme. The cards are deliberately identical in
+     weight — no "feature" card, no recommended badge — because the whole
+     claim is that the tracks are equal and only the hour differs. Giving one
+     of them a highlight would quietly contradict the copy. */
+  .track-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;align-items:stretch;margin-top:1.8rem;}
+  .track-card{background:var(--card);border:1px solid var(--card-line);border-radius:18px;padding:2rem 1.7rem;
+    display:flex;flex-direction:column;transition:transform .35s var(--ease),border-color .35s var(--ease);}
+  .track-card:hover{transform:translateY(-3px);border-color:var(--accent);}
+  .track-num{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .track-name{font-family:var(--font-display);font-size:1.45rem;font-weight:800;letter-spacing:-0.02em;
+    color:var(--ink);margin:0.5rem 0 0.9rem;line-height:1.15;}
+  .track-when{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
+  .track-days{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:0.3rem;}
+  .track-rule{height:1px;background:var(--card-line);margin:1.2rem 0;}
+  .track-for{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.45rem;}
+  .track-who{font-size:0.95rem;color:var(--ink);font-weight:500;line-height:1.5;margin-bottom:0.7rem;}
+  .track-note{font-size:0.9rem;color:var(--ink-soft);font-weight:300;line-height:1.6;}
+  .track-meta{margin-top:auto;padding-top:1.3rem;font-size:0.78rem;color:var(--ink-faint);letter-spacing:0.04em;}
+  .track-card .btn-more{margin-top:1rem;}
+  /* the parity strip — states plainly what does NOT change between tracks */
+  .parity{margin-top:1.6rem;border:1px dashed var(--card-line);border-radius:14px;padding:1.2rem 1.5rem;
+    display:flex;flex-wrap:wrap;gap:0.5rem 1.6rem;align-items:center;justify-content:center;}
+  .parity b{font-family:var(--font-display);font-size:0.88rem;font-weight:700;color:var(--ink);}
+  .parity span{font-size:0.85rem;color:var(--ink-soft);font-weight:300;}
+  .parity em{color:var(--accent);font-style:normal;font-weight:600;}
+  @media (max-width:900px){.track-grid{grid-template-columns:1fr;}}
 </style>
   <link rel="canonical" href="https://everythingremotejob.com/masterytraining/">
   <meta property="og:locale" content="en_NG">
@@ -51,6 +79,7 @@
   {label:'What you build',href:'#assets'},
   {label:'Four Problem · Fix It',href:'#joints'},
   {label:'The 4 stages',href:'#stages'},
+  {label:'Choose your class',href:'#tracks'},
   {label:'Local vs global',href:'#roi'},
   {label:'Pricing',href:'#pricing'}
 ]};</script>
@@ -235,6 +264,68 @@
       <img src="cert-sample.jpg" alt="Sample — Remote Job Mastery Training Certificate of Completion" loading="lazy"
            style="width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.14);">
     </div>
+  </section>
+
+  <!-- CLASS TRACKS -->
+  <section class="section-line wrap reveal" id="tracks">
+    <p class="section-label">Choose your hour</p>
+    <h2>Three classes. <span>One programme.</span></h2>
+    <p class="section-sub">We have expanded to make you employable for that remote job — whatever your day already looks like. Same four stages, same modules, same fee, same certificate. The only thing that changes is when you sit down.</p>
+
+    <div class="track-grid">
+
+      <div class="track-card reveal">
+        <div class="track-num">Track 01</div>
+        <div class="track-name">Prospecting Class</div>
+        <div class="track-when">7:00 – 8:00 PM WAT</div>
+        <div class="track-days">Weekdays · Monday to Friday</div>
+        <div class="track-rule"></div>
+        <div class="track-for">Built for</div>
+        <p class="track-who">Undergraduates, entry-level, and anyone not gainfully employed yet.</p>
+        <p class="track-note">Your evenings are your own, so this track takes the earlier hour — done by eight, with the rest of the night for the sprint work. Starting without a job history is a position we build from, not around.</p>
+        <div class="track-meta">20 sessions × 60 minutes · 4 weeks</div>
+        <a href="https://wa.me/2348032925957?text=Hello%20ERJ%2C%20I%20want%20to%20join%20the%20Mastery%20Training%20on%20the%20Prospecting%20Class%2C%20weekdays%207-8%20PM.%20Please%20send%20me%20the%20next%20start%20date%20and%20how%20to%20enrol." class="btn-more btn-block" target="_blank" rel="noopener">Take the 7 PM class →</a>
+      </div>
+
+      <div class="track-card reveal">
+        <div class="track-num">Track 02</div>
+        <div class="track-name">Executive Class</div>
+        <div class="track-when">8:00 – 9:00 PM WAT</div>
+        <div class="track-days">Weekdays · Monday to Friday</div>
+        <div class="track-rule"></div>
+        <div class="track-for">Built for</div>
+        <p class="track-who">The typical nine-to-five professional who can train on weekdays.</p>
+        <p class="track-note">The later hour exists for one reason: Lagos traffic and a 6 PM close do not make a 7 PM class. This one starts after you are home, fed and sitting down.</p>
+        <div class="track-meta">20 sessions × 60 minutes · 4 weeks</div>
+        <a href="https://wa.me/2348032925957?text=Hello%20ERJ%2C%20I%20want%20to%20join%20the%20Mastery%20Training%20on%20the%20Executive%20Class%2C%20weekdays%208-9%20PM.%20Please%20send%20me%20the%20next%20start%20date%20and%20how%20to%20enrol." class="btn-more btn-block" target="_blank" rel="noopener">Take the 8 PM class →</a>
+      </div>
+
+      <div class="track-card reveal">
+        <div class="track-num">Track 03</div>
+        <div class="track-name">Intensive Class</div>
+        <div class="track-when">7:00 – 8:30 PM WAT</div>
+        <div class="track-days">Weekends · Saturday &amp; Sunday</div>
+        <div class="track-rule"></div>
+        <div class="track-for">Built for</div>
+        <p class="track-who">The 8 AM to 8 PM professional whose weekdays are simply not available.</p>
+        <p class="track-note">Longer sessions, fewer of them, across more calendar weeks — because a track you can actually attend beats a shorter one you keep missing. Nothing is cut; it is redistributed.</p>
+        <div class="track-meta">14 sessions × 90 minutes · about 7 weekends</div>
+        <a href="https://wa.me/2348032925957?text=Hello%20ERJ%2C%20I%20want%20to%20join%20the%20Mastery%20Training%20on%20the%20Intensive%20Class%2C%20weekends%207-8%3A30%20PM.%20Please%20send%20me%20the%20next%20start%20date%20and%20how%20to%20enrol." class="btn-more btn-block" target="_blank" rel="noopener">Take the weekend class →</a>
+      </div>
+
+    </div>
+
+    <div class="parity reveal">
+      <b>Identical across all three:</b>
+      <span>Stages <em>1–4</em></span>
+      <span>All <em>16</em> deliverables</span>
+      <span>Same <em>fee</em></span>
+      <span>Same <em>certificate</em></span>
+      <span>AI Fluency</span>
+      <span>Full LMS access</span>
+      <span>Same cohort resources</span>
+    </div>
+    <p class="note reveal">Pick the track you can genuinely keep for the whole programme — attendance, not ambition, is what separates the people who finish. Not sure which fits? <a href="https://wa.me/2348032925957" target="_blank" rel="noopener">Message us and we will place you →</a></p>
   </section>
 
   <section class="section-line wrap" id="pricing">

@@ -83,8 +83,8 @@
                 href: '../cvscan/', label: 'Score my CV free'
             },
             paid: {
-                text: 'Mastery Training rebuilds every asset with you \u2014 ATS-readable CV, searchable LinkedIn, proof of work, async writing \u2014 and you keep the skill for the rest of your career.',
-                href: '../masterytraining/', label: 'See Mastery Training'
+                text: 'Foundation Training rebuilds every asset with you \u2014 ATS-readable CV, searchable LinkedIn, proof of work, async writing \u2014 and you keep the skill for the rest of your career.',
+                href: '../foundationtraining/', label: 'See Foundation Training'
             },
             tonight: [
                 'Count how many bullets on your CV contain an actual number. Under half is the usual problem.',
@@ -100,8 +100,8 @@
                 href: '../blog.html', label: 'Read the targeting guides'
             },
             paid: {
-                text: 'Mastery Training installs a weekly targeting and application system. Or have the aiming carried entirely: the placement engine sources roles, tailors with you, and applies alongside you until an offer lands.',
-                href: '../getaremotejob/', label: 'See the placement engine'
+                text: 'Foundation Training installs a weekly targeting and application system. Or have the aiming carried entirely: the placement engine sources roles, tailors with you, and applies alongside you until an offer lands.',
+                href: '../masterysetup/', label: 'See the placement engine'
             },
             tonight: [
                 'Try ten aimed applications this week instead of forty hopeful ones. Each one checked, each one tailored.',
@@ -117,7 +117,7 @@
                 href: '../blog.html', label: 'Read the interview guides'
             },
             paid: {
-                text: 'Interview rehearsal and salary negotiation sit inside Mastery Training, and go furthest in the Inner Circle residency \u2014 where the room prepares with you in real time. One improved answer to the money question often outweighs the entire fee.',
+                text: 'Interview rehearsal and salary negotiation sit inside Foundation Training, and go furthest in the Inner Circle residency \u2014 where the room prepares with you in real time. One improved answer to the money question often outweighs the entire fee.',
                 href: '../innercircle/', label: 'See the Inner Circle'
             },
             tonight: [

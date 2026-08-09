@@ -166,11 +166,11 @@ PAGES = [
      "The Global Remote Job Blueprint.",
      ["Blueprint."], "One hour on where remote job searches actually break.", "LIVE · FREE"),
 
-    ("masterytraining", "You build it · Stages 1–4",
+    ("foundationtraining", "You build it · Stages 1–4",
      "Build every career asset yourself — and keep the skill for life.",
      ["yourself"], "Mindset, AI toolkit, async communication, global-ready assets.", "20 DAYS"),
 
-    ("getaremotejob", "Done with you · Stage 5",
+    ("masterysetup", "Done with you · Stage 5",
      "We source the roles, apply beside you, and prep every interview.",
      ["beside"], "We will not let you go until you're hired.", "UNTIL HIRED"),
 

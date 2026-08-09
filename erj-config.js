@@ -18,7 +18,7 @@
     /* ── Placement capacity. Real hours, not marketing scarcity.
           Update `taken` as engagements start and finish. ────────── */
     capacity: {
-      placementTotal: 8,     // Get A Remote Job engagements we can run at once
+      placementTotal: 8,     // Mastery Setup engagements we can run at once
       placementTaken: 5,
       innerCircleTotal: 12,  // Inner Circle residency seats per intake
       innerCircleTaken: 7
@@ -30,7 +30,7 @@
       lead: 'A cohort has a date. Your job hunt doesn\u2019t.',
       body: 'These doors open the day you walk through them \u2014 no gate, no waiting list.',
       doors: [
-        { label: 'Get A Remote Job \u2014 done with you, starts this week', href: 'getaremotejob/' },
+        { label: 'Mastery Setup \u2014 done with you, starts this week', href: 'masterysetup/' },
         { label: 'The free stack \u2014 CV scan, blog, job board, masterclass', href: 'free.html' }
       ]
     },

@@ -9,8 +9,8 @@
 <link rel="apple-touch-icon" href="appletouchicon.png">
 <meta name="theme-color" content="#000000" id="metaThemeColor">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Training Dashboard | Everything Remote Job Mastery</title>
-<meta name="description" content="Your 5-stage remote job mastery training portal. Track progress, access slides and earn certificates.">
+<title>Training Dashboard | Everything Remote Job</title>
+<meta name="description" content="Your 5-stage remote job foundation training portal. Track progress, access slides and earn certificates.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ERJ Training">
@@ -869,7 +869,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <meta property="og:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Everything Remote Job Mastery Training" />
+<meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
@@ -1422,7 +1422,7 @@ const STAGES = [
   },
   {
     id: 'stage5', num: 5,
-    title: 'Get A Remote Job — Placement Engine',
+    title: 'Mastery Setup — Placement Engine',
     sub: 'The Done-For-You Sourcing, Applying & Negotiation System (Stage 5 Add-On)',
     days: '7 Days · then until hired', type: 'Placement', icon: '🎯',
     locked: true, addon: true,
@@ -2060,7 +2060,7 @@ function drawCertificate(stage) {
 
   /* Programme line */
   x.fillStyle = ORANGE; x.font = '700 27px ' + D;
-  x.fillText('REMOTE JOB MASTERY TRAINING  ·  STAGE ' + stage.num + ' OF 5', 190, 380);
+  x.fillText('REMOTE JOB FOUNDATION TRAINING  ·  STAGE ' + stage.num + ' OF 5', 190, 380);
 
   /* Title */
   x.fillStyle = INK; x.font = '800 118px ' + D;
@@ -2086,7 +2086,7 @@ function drawCertificate(stage) {
 
   /* Body */
   x.fillStyle = INK; x.font = '300 33px Inter, Helvetica, Arial, sans-serif';
-  x.fillText('having satisfactorily completed Stage ' + stage.num + ' of the Remote Job Mastery Training,', 190, 960);
+  x.fillText('having satisfactorily completed Stage ' + stage.num + ' of the Remote Job Foundation Training Training,', 190, 960);
   x.font = '300 33px Inter, Helvetica, Arial, sans-serif';
   x.fillText('demonstrating proficiency in', 190, 1012);
   const profW = x.measureText('demonstrating proficiency in ').width;
@@ -2161,7 +2161,7 @@ function downloadCert(stageId) {
 /* If canvas is blocked, fall back to requesting a verified copy on WhatsApp. */
 function certFallback(stage) {
   const msg = encodeURIComponent(
-    `Hello ERJ, I have completed Stage ${stage.num} — ${stage.title} — of the Remote Job Mastery Training.\n` +
+    `Hello ERJ, I have completed Stage ${stage.num} — ${stage.title} — of the Remote Job Foundation Training Training.\n` +
     `Name: ${(session && session.name) || ''}\nEmail: ${(session && session.email) || ''}\n` +
     `Student No: ${erjStudentNo(stage)}\n\nPlease issue my certificate. Screenshot of my completed stage attached.`
   );

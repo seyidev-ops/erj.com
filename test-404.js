@@ -5,7 +5,7 @@ let pass = 0, fail = 0;
 const ok = (n, c, x) => c ? (pass++, console.log('  \u2713 ' + n))
                           : (fail++, console.log('  \u2717 ' + n + (x ? ' \u2014 ' + x : '')));
 
-const html = fs.readFileSync('erj.com-2-Early-bird/404.html', 'utf8');
+const html = fs.readFileSync(require('path').join(__dirname, '404.html'), 'utf8');
 const script = html.split('<script>')[1].split('</script>')[0];
 
 function visit(pathname, hash) {
@@ -23,14 +23,14 @@ function visit(pathname, hash) {
 
 console.log('\nLEGACY URL MAP');
 const cases = [
-  ['/howtogetaremotejob/',        '/getaremotejob/'],
-  ['/howtogetaremotejob/index.html', '/getaremotejob/'],
-  ['/howtogetaremotejob',         '/getaremotejob/'],       // no trailing slash
-  ['/products/remote-job/',       '/getaremotejob/'],
-  ['/products/mastery-training/', '/masterytraining/'],
+  ['/howtogetaremotejob/',        '/masterysetup/'],
+  ['/howtogetaremotejob/index.html', '/masterysetup/'],
+  ['/howtogetaremotejob',         '/masterysetup/'],       // no trailing slash
+  ['/products/remote-job/',       '/masterysetup/'],
+  ['/products/mastery-training/', '/foundationtraining/'],
   ['/products/inner-circle/',     '/innercircle/'],
   ['/products/inner-circle/index.html', '/innercircle/'],
-  ['/job-world-mastery.html',     '/masterytraining/'],
+  ['/job-world-mastery.html',     '/foundationtraining/'],
   ['/inner-circle.html',          '/innercircle/'],
   ['/jobs.html',                  '/testimonials.html#jobboard'],
 ];
@@ -43,7 +43,7 @@ console.log('\nBEHAVIOUR');
 ok('a genuinely unknown URL shows the page instead of looping',
    (() => { const r = visit('/no-such-page.html'); return r.replaced === null && r.lost; })());
 ok('the hash a visitor arrived with is preserved',
-   visit('/products/remote-job/', '#pricing').replaced === '/getaremotejob/#pricing');
+   visit('/products/remote-job/', '#pricing').replaced === '/masterysetup/#pricing');
 ok('a mapped target that already has its own hash is not double-hashed',
    visit('/jobs.html', '#top').replaced === '/testimonials.html#jobboard');
 

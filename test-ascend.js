@@ -14,7 +14,7 @@ const doc = {
 };
 let slot = { innerHTML: '' };
 new Function('window', 'document', fs.readFileSync(
-  'erj.com-2-Early-bird/erj-ascend.js', 'utf8'))(win, doc);
+  require('path').join(__dirname, 'erj-ascend.js'), 'utf8'))(win, doc);
 const A = win.ERJ_ASCEND;
 
 console.log('\nTIER DECISION');
@@ -50,7 +50,7 @@ ok('clears the slot when there is nothing to sell', slot.innerHTML === '');
 
 slot = { innerHTML: '' };
 A.render(slot, [1,2,3,4,5]);
-ok('waitlist rung offers no purchase link', !/href="[^"]*getaremotejob/.test(slot.innerHTML));
+ok('waitlist rung offers no purchase link', !/href="[^"]*masterysetup/.test(slot.innerHTML));
 ok('waitlist rung is labelled in development', /In development/.test(slot.innerHTML));
 
 slot = { innerHTML: '' };

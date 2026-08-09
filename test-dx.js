@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const ROOT = path.join(__dirname, 'erj.com-2-Early-bird');
+const ROOT = __dirname;   // the tests live inside the tree they test
 
 let pass = 0, fail = 0;
 function ok(name, cond, extra) {
@@ -290,7 +290,7 @@ function loadCapture(doc, extra) {
   loadCapture(doc);
   const eg = doc.querySelector('.evergreen');
   ok('countdown gets an evergreen door block', !!eg);
-  ok('evergreen names a door that is open today', eg && /getaremotejob/.test(eg._html));
+  ok('evergreen names a door that is open today', eg && /masterysetup/.test(eg._html));
 })();
 
 // capacity renders from config only

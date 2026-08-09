@@ -26,7 +26,7 @@ The programme it powers:
 | **2** | The Digital Toolkit | Zoom / Meet / Teams, Asana / Trello / ClickUp, Google Workspace, Loom, cloud recording & transcription |
 | **3** | Async Communication Mastery | Zero-Follow-Up email framework, Slack batch protocol, tone translation, the "Working With Me" manual |
 | **4** | Start Your Remote Career | Remote-first ATS CV, digital portfolio, video interview + STAR coaching |
-| **5** | How to Get a Remote Job | The Placement Engine — 30+ verified roles weekly, volume applications, accountability until hired |
+| **5** | How to Mastery Setup | The Placement Engine — 30+ verified roles weekly, volume applications, accountability until hired |
 | **6–12** | The Inner Circle | Private 1:1 mentorship from positioning audit to signed offer |
 
 ## Site architecture
@@ -39,7 +39,7 @@ The programme it powers:
 ├── blog.html · blog-admin.html # "Everything Remote" blog + admin
 ├── howtogetaremotejob/         # Stage 5 — the Placement Engine
 ├── innercircle/                # Inner Circle mentorship application
-├── masterytraining/            # Stages 1–4 programme page
+├── foundationtraining/            # Stages 1–4 programme page
 ├── products/                   # Canonical product pages
 │   ├── remote-job/
 │   ├── mastery-training/
@@ -302,9 +302,9 @@ as stale on every share made after 31 August.
 
 ---
 
-## v90 — 9 August 2026 · three class tracks on Mastery Training
+## v90 — 9 August 2026 · three class tracks on Foundation Training
 
-New `#tracks` section on `masterytraining/index.html`, placed immediately before
+New `#tracks` section on `foundationtraining/index.html`, placed immediately before
 `#pricing` — the schedule choice sits next to the payment decision. Added to the
 page's `ERJ_NAV.onPage` list as "Choose your class".
 
@@ -342,3 +342,124 @@ The hero still reads "hiring-ready in **20 days**" and the stat row still says
 one, which runs ~7 weekends. Either qualify the hero ("20 training days · weekend
 track runs across 7 weekends") or accept that the track card carries its own
 duration. Left unchanged pending a decision — it is hero copy, not a bug.
+
+---
+
+## v91 — 9 August 2026 · product rename
+
+| Was | Now |
+|---|---|
+| "Remote Job World Mastery Training" / "Remote Job World Mastery" | **Remote Job Foundation Training** |
+| "Mastery Training" | **Foundation Training** |
+| `masterytraining/` | `foundationtraining/` |
+| "Get A Remote Job" (Stage 5) | **Mastery Setup** |
+| `getaremotejob/` | `masterysetup/` |
+| `preview-masterytraining-v2.jpg` | `preview-foundationtraining-v2.jpg` |
+| `preview-getaremotejob-v2.jpg` | `preview-masterysetup-v2.jpg` |
+
+"World" was never part of the real name, and "Mastery" moved from the Stages 1–4
+bundle to the Stage 5 product — so the 1–4 product had to lose the word
+completely, or the site would carry two "Mastery" products.
+
+30 files, 121 lines, plus two folder renames and two image renames. Cache
+`erj-v89` → `erj-v91`.
+
+### Protected — contains "Mastery" but is not the product name
+Stage module titles were left alone: **Async / Asynchronous Communication
+Mastery** (Stage 3), **Global Job Search Mastery** and **Job Search Mastery**
+(Stage 4), **Digital Toolkit Mastery** (Stage 2), **Digital Brand (Building) &
+Time Zone Mastery**. A blanket replace would have renamed the curriculum.
+
+Paystack slugs (`rjmtstages1-4`, `gtdj-stage5`, …) were also left untouched —
+they are live product IDs on paystack.shop, so editing them here would break
+payment rather than naming.
+
+### Two judgement calls
+**1 · Platform brand normalised.** Twelve pages carried
+`og:site_name="Everything Remote Job Mastery Training"` and the portal pages
+(login, dashboard, admin, instructor, blog) titled themselves "… | Everything
+Remote Job Mastery". `index.html` has always used **Everything Remote Job**, so
+these were already inconsistent — and after this rename they read as though the
+whole platform were the Stage 5 product. All normalised to "Everything Remote
+Job". Revert if the longer form was deliberate.
+
+**2 · Two verb-phrase casualties repaired.** "Get A Remote Job" was the product
+name in 28 places and ordinary English in 2. The blanket replace produced
+"5+ Years of Experience to Mastery Setup" (blog.html) and "How to Mastery Setup"
+(manifest.json). Rewritten to "…to Land a Remote Role" and "Foundation Training,
+Mastery Setup, and the Inner Circle".
+
+### Old URLs still resolve
+You said not to worry about shared links, but the site already maintains a 404
+legacy map for exactly this, so `/masterytraining/` and `/getaremotejob/` were
+added to it — two lines. Delete them if you want the old paths to hard-404.
+
+### Also fixed
+`test-404.js`, `test-ascend.js` and `test-dx.js` all located the tree by assuming
+they sat one directory *above* it, so they only ran from one working directory —
+same defect as `validate.py` in v88. All three now resolve against `__dirname`.
+
+### Verification
+`validate.py` clean · 65/65 tests pass (16 + 20 + 29) · full-site crawl of 15
+pages found **0 broken internal links** · renamed pages render with correct
+titles, no console errors, no horizontal overflow.
+
+### Still open
+`dashboard.html` still says "Your 5-Stage Remote **Mastery** Journey", which now
+collides with the Stage 5 product name. Left alone — it is inside the frozen
+portal pages and describes all five stages, not one product.
+
+---
+
+## v92 — 9 August 2026
+
+Cache `erj-v91` → `erj-v92`.
+
+### 1 · Rename misses on the home and starting-line pages
+The v91 rename replaced plain strings, so it could not see a name broken across
+inline markup. Both product names were split by an `<em>`:
+
+* `index.html` — `Get A <em>Remote Job</em>` → `Mastery <em>Setup</em>`
+* `starting-line.html` — same pattern, same fix
+
+A tag-stripped sweep of every HTML file now confirms zero retired names remain
+anywhere in rendered text. Worth remembering for the next rename: **strip tags
+before auditing, or a split name reads as clean.**
+
+### 2 · Register page
+"Complete Remote Career Programme" → **"Complete Remote Foundation Programme"**
+(both the visible `p-title` and the JS product title behind it).
+
+### 3 · Foundation Training block on the starting line
+It was three generic bullets that never named a stage. Rewritten as a real brief
+on Stages 1–4 — each stage named with what it covers and what you walk out
+holding: the Remote Operating System, the Integrated Sprint and AI Fluency, the
+five communication assets, and the Global Ready Package. Content taken from the
+product page so the two cannot drift. Closes with certification plus a link into
+the three class tracks.
+
+### 4 · Two blog posts
+* **9 Aug — "New Names: Foundation Training, Mastery Setup, and Why We Changed
+  Them"** (Announcements, `published: true`). Explains what moved, that old links
+  redirect, that fee/modules/certificate are unchanged, and that "Mastery" has
+  shifted from Stages 1–4 to Stage 5 — so older workbooks and broadcasts using
+  the word mean the foundation stages.
+* **10 Aug — "Three Kinds of Company: Who Can Actually Hire and Pay You From
+  Here"** (Job Search, `published: false`). EOR vs contractor-friendly vs
+  domestic-only, and the ninety-second checks that tell them apart. This topic
+  had no coverage on the blog at all — zero prior mentions of employer-of-record.
+
+`SEED_VERSION` bumped to `2026-08-10-company-types` so cached visitors reconcile.
+
+**Tomorrow's post is a draft on purpose** — a post dated the 10th should not be
+live on the 9th. Flip `published:false` → `true` on `m6p07` tomorrow, or publish
+it from blog-admin.
+
+### Noticed, not changed
+`m6p04` (7 Aug) and `m6p05` (8 Aug) are both still `published:false`. If those
+were meant to go live, two flags need flipping.
+
+### Verification
+`validate.py` clean · 65/65 tests pass · full-site crawl: 0 broken internal links
+· SEEDS array parses to 100 posts, no duplicate ids, no incomplete records ·
+today's post renders on the blog and tomorrow's correctly does not.

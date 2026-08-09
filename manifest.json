@@ -1,7 +1,7 @@
 {
   "name": "Everything Remote Job",
   "short_name": "ERJ",
-  "description": "Land a dollar-backed remote role from Africa. Mastery Training, How to Get a Remote Job, and the Inner Circle 1:1 residency.",
+  "description": "Land a dollar-backed remote role from Africa. Foundation Training, Mastery Setup, and the Inner Circle 1:1 residency.",
   "start_url": "/index.html?source=pwa",
   "id": "/index.html",
   "display": "standalone",
@@ -25,7 +25,7 @@
   ],
   "shortcuts": [
     { "name": "Register", "short_name": "Register", "url": "/register.html", "icons": [{ "src": "icon192.png", "sizes": "192x192" }] },
-    { "name": "Mastery Training", "short_name": "Training", "url": "/masterytraining/", "icons": [{ "src": "icon192.png", "sizes": "192x192" }] },
+    { "name": "Foundation Training", "short_name": "Training", "url": "/foundationtraining/", "icons": [{ "src": "icon192.png", "sizes": "192x192" }] },
     { "name": "Inner Circle", "short_name": "Inner Circle", "url": "/innercircle/", "icons": [{ "src": "icon192.png", "sizes": "192x192" }] }
   ],
   "prefer_related_applications": false

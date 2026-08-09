@@ -139,7 +139,7 @@ else:
 # ── 10 · SEO integrity ────────────────────────────────────────────────
 PUBLIC_INDEXABLE = ["index.html","free.html","starting-line.html","register.html",
     "testimonials.html","blog.html","diagnose/index.html","cvscan/index.html",
-    "masterclass/index.html","masterytraining/index.html","getaremotejob/index.html",
+    "masterclass/index.html","foundationtraining/index.html","masterysetup/index.html",
     "innercircle/index.html"]
 
 for page in PUBLIC_INDEXABLE:

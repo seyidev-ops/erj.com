@@ -689,3 +689,30 @@ content freeze, and none should carry a public product nav.
 `validate.py` clean · 66/66 tests pass · full-site crawl: 0 broken internal links
 · all 14 footers render with identical link sets, 2 rows, centred · 0 horizontal
 overflow at 1280 and 390px · 4 rungs on the home ladder, numbered 01–04.
+
+---
+
+## v97 — 11 August 2026 · footer reduced to six links
+
+Cache `erj-v96` → `erj-v97`.
+
+The two-row footer from v96 is now a single row of six, on all fourteen public
+pages:
+
+**Home · Free For You · Your Starting Line · Blog · Register · Participant Login**
+
+The product row — Self-Learn Pack, Foundation Training, Mastery Setup, Inner
+Circle — is gone from the footer entirely. All four remain reachable from the top
+nav dropdown, from Your Starting Line (which is itself in the footer), and from
+the home ladder in section 05, so nothing has lost its route in.
+
+Pages: `index`, `free`, `register`, `testimonials`, `starting-line`, `blog`,
+`404`, `foundationtraining/`, `masterysetup/`, `innercircle/`, `selflearn/`,
+`cvscan/`, `diagnose/`, `masterclass/`. Portal, admin and utility pages remain
+untouched, as in v96.
+
+### Verification
+`validate.py` clean · 66/66 tests pass · full-site crawl: 0 broken internal links
+· all 14 pages return exactly one nav row with the same six labels in the same
+order · every footer link returns 200 from root, subfolder and 404 depths · 0
+horizontal overflow at 1280 and 390px, where the row wraps to two lines cleanly.

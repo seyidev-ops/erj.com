@@ -642,3 +642,50 @@ precache.
 · all four photo frames identical at 1280 / 1024 / 390px (419×314, 382×286,
 348×261) · 0 horizontal overflow · all four anchors resolve · every brief
 sentence ends in punctuation.
+
+---
+
+## v96 — 11 August 2026 · Self-Learn on the home ladder, one footer everywhere
+
+Cache `erj-v95` → `erj-v96`.
+
+### 1 · Section 05 · Your Starting Line
+The Self-Learn Pack is now rung **01** on `index.html`, ahead of Foundation
+Training — same reasoning as the starting-line page in v95: the ladder ascends by
+depth, and Self-Learn is the shallowest rung. Everything below renumbered
+(Foundation 02, Mastery Setup 03, Inner Circle 04), and the heading moved from
+"Three rungs" to "Four rungs" along with the lead paragraph and the on-page nav
+`sub`.
+
+**The "Most people start here" badge stayed on Foundation Training.** It marks the
+common starting point, not the first item in the list — moving it to the cheapest
+rung would have quietly changed what the page recommends.
+
+### 2 · One footer across every public page
+Fourteen pages carried five different footers: some had one nav row, some two,
+`testimonials.html` was missing `wrap`, `404.html` had no nav at all, and
+`blog.html` had entirely different markup with a `·`-separated inline list.
+
+All now use the home-page design — two nav rows, both carrying Self-Learn Pack:
+
+* Row 1 — Home · Self-Learn Pack · Foundation Training · Mastery Setup · Inner Circle
+* Row 2 — Your Starting Line · Free For You · Blog · Register · Participant Login
+
+Subfolder pages get `../` prefixes. Verified: all 10 links resolve with a 200 from
+root pages, subfolder pages and the 404 page alike.
+
+`blog.html` needed CSS as well as markup — it has a standalone stylesheet and does
+not load `product.css`, so the `.foot` rules were ported onto the variables that
+page actually defines. (First attempt referenced `--text2`, which does not exist
+there; corrected to `--muted`.)
+
+### Deliberately not touched
+`login`, `dashboard`, `admin*`, `instructor*`, `participant`, `blog-admin`,
+`erj-surge-console`, `offline`, `earlybird` and `cvbuilder`. Those are portal,
+admin and utility pages — most have no footer by design, four are inside the
+content freeze, and none should carry a public product nav.
+
+### Verification
+`validate.py` clean · 66/66 tests pass · full-site crawl: 0 broken internal links
+· all 14 footers render with identical link sets, 2 rows, centred · 0 horizontal
+overflow at 1280 and 390px · 4 rungs on the home ladder, numbered 01–04.

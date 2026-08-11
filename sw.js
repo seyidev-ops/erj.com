@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v94';
+const CACHE   = 'erj-v95';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -11,6 +11,7 @@ const SHELL = [
   '/foundationtraining/index.html',
   '/masterysetup/index.html',
   '/selflearn/index.html',
+  '/selflearn-box-wide.png',
   '/cvscan/index.html',
   '/masterclass/index.html',
   '/innercircle/index.html',

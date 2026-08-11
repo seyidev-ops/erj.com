@@ -597,3 +597,48 @@ Measured after the fix — all three frames identical at every width:
 links · 0 horizontal overflow at 1280 / 1024 / 390px · every brief sentence ends
 in punctuation (two full stops were dropped during word-count tuning and
 restored).
+
+---
+
+## v95 — 11 August 2026 · Self-Learn added to the starting line
+
+Cache `erj-v94` → `erj-v95`.
+
+The Self-Learn Pack now appears on `starting-line.html` as a full route block,
+built to the same standard as the other three: opening paragraph, four numbered
+items, closing line. **All four briefs are exactly 199 words.**
+
+Added to the page's on-page menu (`ERJ_NAV.onPage`) as "Self-Learn Pack" →
+`#r-selflearn`, and to the page footer nav.
+
+### It went in first, not last
+The page describes itself as "one ladder, in order", and the ladder ascends by
+depth. Self-Learn is the *shallowest* rung — the same Stages 1–4, worked alone —
+so appending it after the Inner Circle would have broken the page's own logic.
+
+It is now Route 1, and everything below renumbered: Foundation Training is
+Route 2 ("you build it with us"), Mastery Setup Route 3, Inner Circle Route 4.
+The hero moved from "Three routes" to "Four routes" and its four-depth
+description was rewritten to match. The closing "which comes first" paragraph now
+opens on the Self-Learn/Foundation distinction, which is the genuinely confusing
+one — same four stages, different delivery.
+
+The `.route.flip` alternation was also re-dealt so photos still alternate sides
+with an extra row in the run.
+
+### A dedicated 4:3 image
+`selflearn-box.png` is square (900×900). The starting-line frame is 4:3 with
+`object-fit:cover`, so a square source loses ~25% of its height — it clipped the
+top and bottom off the box.
+
+Rather than accept the crop or break the frame parity established in v94,
+`selflearn-box-wide.png` (1200×900) letterboxes the whole pack onto its own
+backdrop colour, sampled from the source (`#F3EDE7`), so `cover` has nothing left
+to crop. The square original stays in use on `/selflearn/`. Added to the `sw.js`
+precache.
+
+### Verification
+`validate.py` clean · 66/66 tests pass · full-site crawl: 0 broken internal links
+· all four photo frames identical at 1280 / 1024 / 390px (419×314, 382×286,
+348×261) · 0 horizontal overflow · all four anchors resolve · every brief
+sentence ends in punctuation.

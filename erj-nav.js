@@ -53,6 +53,7 @@
             key: 'g-start', label: 'Your Starting Line', href: 'starting-line.html', keys: ['startline'], children: [
                 { label: 'Foundation Training · Stages 1–4', href: 'foundationtraining/', keys: ['mastery'] },
                 { label: 'Mastery Setup · Done-For-You', href: 'masterysetup/', keys: ['remote'] },
+                { label: 'Self-Learn Pack · Stages 1\u20134', href: 'selflearn/', keys: ['selflearn'] },
                 { label: 'Inner Circle · Residency', href: 'innercircle/', keys: ['inner'] }
             ]
         },

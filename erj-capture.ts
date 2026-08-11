@@ -155,9 +155,17 @@ interface Window {
     const results = document.getElementById('results');
     if (!results) return;
 
+    /* The guard below must look where the node actually LANDS. The button is
+       inserted as a SIBLING before .results-actions, never inside it, so the old
+       check (actions.querySelector) could never find it. Every insertion
+       re-fired this observer, which injected again, forever — an infinite loop
+       that locked the main thread and produced Chrome's "Page Unresponsive"
+       dialog the moment a CV finished parsing. */
+    let mo: MutationObserver | null = null;
+
     const inject = (): void => {
       const actions = results.querySelector('.results-actions');
-      if (!actions || actions.querySelector('.cap-send')) return;
+      if (!actions || results.querySelector('.cap-send')) return;
 
       const dial = results.querySelector<HTMLElement>('.dial-num');
       const score = dial ? (dial.dataset.target || '0') : '0';
@@ -178,11 +186,15 @@ interface Window {
         '<b>number</b> and the point names, from your own WhatsApp, if you tap it. ' +
         'You get the fix list back personally.</p>';
 
+      // Stop watching while we mutate, so our own insertion cannot re-enter.
+      if (mo) mo.disconnect();
       actions.parentNode!.insertBefore(wrap, actions);
+      if (mo) mo.observe(results, { childList: true, subtree: true });
     };
 
+    mo = new MutationObserver(inject);
     inject();
-    new MutationObserver(inject).observe(results, { childList: true, subtree: true });
+    mo.observe(results, { childList: true, subtree: true });
   }
 
   /* ═══ 2 · CHANNEL BRIDGE ══════════════════════════════════

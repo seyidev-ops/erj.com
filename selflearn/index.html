@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="../manifest.json">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png">
+<link rel="apple-touch-icon" href="../appletouchicon.png">
+<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" id="metaThemeColor">
+<title>Remote Job Mastery Training (Self-Learn) — Stages 1–4, Start Today</title>
+<meta name="description" content="The self-paced edition of our live cohort training. Four stages, twenty sessions, four finished assets you keep. Instant download, ₦35,000.">
+<meta property="og:title" content="Remote Job Mastery Training (Self-Learn) — Stages 1–4">
+<meta property="og:description" content="Four stages. Twenty sessions. Four things you keep forever. The same rubrics and deliverables we run with paying cohorts — at your own speed, from today.">
+<meta property="og:image" content="https://everythingremotejob.com/preview-selflearn-v1.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://everythingremotejob.com/selflearn/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Remote Job Mastery Training (Self-Learn) — Stages 1–4">
+<meta name="twitter:description" content="Four stages. Twenty sessions. Four things you keep forever. Instant download, start today.">
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-selflearn-v1.jpg">
+<link rel="canonical" href="https://everythingremotejob.com/selflearn/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="../product.css">
+<style>
+  /* ── the box shot sits beside the hero ── */
+  /* The hero h1 is capped below the global clamp: this column is narrower than a
+     full-width hero, so the site-wide size wrapped it to four lines and pushed
+     the lede under the fold. */
+  .sl-hero h1{font-size:clamp(1.9rem,4vw,3rem);}
+  .sl-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.8fr);
+    gap:clamp(1.5rem,4vw,3rem);align-items:center;}
+  .sl-box{margin:0;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--card-line);}
+  .sl-box img{display:block;width:100%;height:auto;}
+  @media(max-width:860px){.sl-hero{grid-template-columns:1fr;}.sl-box{max-width:380px;margin:0 auto;}}
+
+  /* ── the four points strip ── */
+  .pts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1rem;margin-top:1.6rem;}
+  .pt{border:1px solid var(--card-line);background:var(--card);border-radius:14px;padding:1.3rem 1.4rem;}
+  .pt b{display:block;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+  .pt span{font-size:0.93rem;color:var(--ink);line-height:1.55;font-weight:500;}
+
+  /* ── stages ── */
+  .stg{border-top:1px solid var(--card-line);padding:1.7rem 0;display:grid;
+    grid-template-columns:auto minmax(0,1fr);gap:1.4rem;align-items:start;}
+  .stg:first-of-type{border-top:0;}
+  .stg-n{font-family:var(--font-display);font-size:2.6rem;font-weight:800;color:var(--card-line);line-height:1;letter-spacing:-0.03em;}
+  .stg h3{font-family:var(--font-display);font-size:1.2rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin:0 0 0.2rem;}
+  .stg-ses{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.7rem;}
+  .stg p{font-size:0.94rem;color:var(--ink-soft);line-height:1.7;font-weight:300;margin:0;}
+  .stg-out{margin-top:0.85rem;padding:0.7rem 1rem;border-left:2px solid var(--accent);background:var(--card);
+    font-size:0.9rem;color:var(--ink);}
+  .stg-out b{color:var(--accent);font-weight:700;}
+  @media(max-width:620px){.stg{grid-template-columns:1fr;gap:0.5rem;}.stg-n{font-size:1.8rem;}}
+
+  /* ── what is in the pack ── */
+  .pack{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem;}
+  .pk{border:1px solid var(--card-line);background:var(--card);border-radius:14px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;}
+  .pk b{font-family:var(--font-display);font-size:1.02rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;margin-bottom:0.45rem;}
+  .pk span{font-size:0.9rem;color:var(--ink-soft);line-height:1.6;font-weight:300;}
+  .pk em{font-style:normal;color:var(--accent);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-top:0.8rem;}
+
+  /* ── for / not for ── */
+  .fit{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:1.5rem;}
+  .fit-col{border:1px solid var(--card-line);border-radius:16px;padding:1.6rem 1.7rem;background:var(--card);}
+  .fit-col h3{font-family:var(--font-display);font-size:1.05rem;font-weight:800;letter-spacing:-0.01em;margin:0 0 1rem;color:var(--ink);}
+  .fit-col ul{list-style:none;margin:0;padding:0;}
+  .fit-col li{font-size:0.92rem;color:var(--ink-soft);line-height:1.6;font-weight:300;padding:0.45rem 0 0.45rem 1.5rem;position:relative;}
+  .fit-yes li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .fit-no li::before{content:'✕';position:absolute;left:0;color:var(--ink-faint);font-weight:700;}
+
+  /* ── the honest inclusion table ── */
+  .inc{margin-top:1.5rem;border:1px solid var(--card-line);border-radius:16px;overflow:hidden;}
+  .inc-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--card-line);}
+  .inc-row:first-child{border-top:0;}
+  .inc-cell{padding:1.3rem 1.5rem;}
+  .inc-cell:first-child{border-right:1px solid var(--card-line);}
+  .inc-cell b{display:block;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.6rem;}
+  .inc-in b{color:var(--accent);}
+  .inc-out b{color:var(--ink-faint);}
+  .inc-cell p{font-size:0.92rem;color:var(--ink-soft);line-height:1.65;font-weight:300;margin:0;}
+  @media(max-width:620px){.inc-row{grid-template-columns:1fr;}.inc-cell:first-child{border-right:0;border-bottom:1px solid var(--card-line);}}
+
+  /* ── price ── */
+  .buy{margin-top:1.8rem;border:1px solid var(--card-line);border-radius:20px;background:var(--card);
+    padding:clamp(1.8rem,4vw,2.6rem);text-align:center;}
+  .buy-amt{font-family:var(--font-display);font-size:clamp(2.6rem,7vw,3.8rem);font-weight:800;
+    letter-spacing:-0.03em;color:var(--ink);line-height:1;}
+  .buy-sub{font-size:0.9rem;color:var(--ink-soft);font-weight:300;margin-top:0.6rem;}
+  .buy-btns{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1.6rem;}
+  .buy-alt{margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--card-line);
+    font-size:0.88rem;color:var(--ink-soft);font-weight:300;line-height:1.7;}
+  .buy-alt b{color:var(--ink);font-weight:600;}
+
+  /* ── delivery steps ── */
+  .del{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:1.5rem;}
+  .del-i{border:1px solid var(--card-line);background:var(--card);border-radius:14px;padding:1.4rem 1.5rem;}
+  .del-i b{display:block;font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.4rem;}
+  .del-i span{font-size:0.9rem;color:var(--ink-soft);line-height:1.6;font-weight:300;}
+  .del-n{font-size:0.68rem;letter-spacing:0.16em;color:var(--accent);font-weight:600;display:block;margin-bottom:0.5rem;}
+</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Remote Job Mastery Training (Self-Learn) — Stages 1–4","description":"The self-paced edition of the Everything Remote Job cohort training. Four stages, twenty sessions, four finished deliverables. Instant download.","brand":{"@type":"Brand","name":"Everything Remote Job"},"offers":{"@type":"Offer","price":"35000","priceCurrency":"NGN","availability":"https://schema.org/InStock","url":"https://everythingremotejob.com/selflearn/"}}</script>
+</head>
+<body>
+<div id="erjNavMount"></div>
+<script>window.ERJ_NAV={active:'selflearn',base:'../',onPage:[
+  {label:'What you work through',href:'#stages'},
+  {label:'What is in the pack',href:'#pack'},
+  {label:'Who it is for',href:'#fit'},
+  {label:'Price',href:'#buy'},
+  {label:'How you get it',href:'#delivery'}
+]};</script>
+
+<main>
+<a class="pledge-marq" href="#buy" aria-label="Start today, at your own speed."><span>Start today — <em>at your own speed.</em></span></a>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="sl-hero">
+      <div>
+        <p class="section-label reveal"><span class="mark"></span>Self-paced edition · Instant download</p>
+        <h1 class="reveal">Four stages. Twenty sessions. <em>Four things you keep forever.</em></h1>
+        <p class="lede reveal">This is the self-paced edition of the training we run live with paying cohorts — the same four stages, the same rubrics, the same deliverables. The difference is that you start today, at your own speed, for a fraction of the cohort fee.</p>
+        <div class="hero-cta reveal">
+          <a href="#buy" class="btn-yes">Get the pack — ₦35,000 <span class="arrow">→</span></a>
+          <a href="#stages" class="btn-more">See the twenty sessions</a>
+        </div>
+      </div>
+      <figure class="sl-box reveal">
+        <img src="../selflearn-box.png" alt="Remote Job Mastery Training (Self-Learn) — Stages 1–4, boxed edition" width="900" height="900" loading="eager" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- THE FOUR POINTS -->
+  <section class="section-line wrap reveal" id="why">
+    <p class="section-label">Why searches stall</p>
+    <h2>It fails at one point. <span>Almost nobody knows which.</span></h2>
+    <p class="section-sub">Most remote job searches don't fail because the person isn't good enough. They fail at one of four points — and the months get spent repairing the other three.</p>
+    <div class="pts">
+      <div class="pt reveal"><b>01 Supply</b><span>You can't apply for a job you never saw.</span></div>
+      <div class="pt reveal"><b>02 Representation</b><span>If your CV can't be read, you were never really in the running.</span></div>
+      <div class="pt reveal"><b>03 Aim</b><span>Applying everywhere isn't the same as applying where you'd get hired.</span></div>
+      <div class="pt reveal"><b>04 Conversion</b><span>Interviews don't pay you. A signed offer does.</span></div>
+    </div>
+    <p class="note reveal">This training works all four, in order. By the end you won't just know more — you'll be holding four finished assets that a distributed employer is actually looking for.</p>
+  </section>
+
+  <!-- STAGES -->
+  <section class="section-line wrap" id="stages">
+    <p class="section-label reveal">What you work through</p>
+    <h2 class="reveal">Twenty sessions. <span>Four deliverables.</span></h2>
+
+    <div class="stg reveal">
+      <div class="stg-n">01</div>
+      <div>
+        <h3>Remote Mindset Blueprint</h3>
+        <div class="stg-ses">Sessions 1–5</div>
+        <p>Who can legally hire and pay you from where you are, and how to tell in sixty seconds. What remote work actually demands of you. How to diagnose which of the four points is costing you offers. How to turn your time zone from an apology into a number that wins interviews.</p>
+        <div class="stg-out"><b>You produce:</b> your Remote Operating System.</div>
+      </div>
+    </div>
+
+    <div class="stg reveal">
+      <div class="stg-n">02</div>
+      <div>
+        <h3>Digital Toolkit Mastery &amp; AI Fluency</h3>
+        <div class="stg-ses">Sessions 6–10</div>
+        <p>The tool stack employers assume you already have, and the four operations you must be able to perform in each. How to prove tool fluency when you've never held a remote job. And AI fluency at the level that gets you hired instead of caught: draft, attack, rewrite, ship what survives.</p>
+        <div class="stg-out"><b>You produce:</b> the Integrated Sprint — one real piece of work with a shareable evidence trail.</div>
+      </div>
+    </div>
+
+    <div class="stg reveal">
+      <div class="stg-n">03</div>
+      <div>
+        <h3>Asynchronous Communication Mastery</h3>
+        <div class="stg-ses">Sessions 11–15</div>
+        <p>On a distributed team, your writing isn't a report on your competence — it is your competence, as far as anyone can tell. Build the five artifacts that make your work visible, your absence survivable and your knowledge portable.</p>
+        <div class="stg-out"><b>You produce:</b> five communication assets under one index.</div>
+      </div>
+    </div>
+
+    <div class="stg reveal">
+      <div class="stg-n">04</div>
+      <div>
+        <h3>Global Job Search Mastery</h3>
+        <div class="stg-ses">Sessions 16–20</div>
+        <p>The full ten-point CV rubric, published — the same one our scanner scores against. The rebuild loop. LinkedIn, portfolio and the one-page proof of work. The five checks before you apply. The application ledger that turns a demoralising process into a diagnosable one. Interviews, written rounds, and what to say when they ask for your number first.</p>
+        <div class="stg-out"><b>You produce:</b> the Global Ready Package.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACK -->
+  <section class="section-line wrap" id="pack">
+    <p class="section-label reveal">What's in the pack</p>
+    <h2 class="reveal">One folder. <span>Six items.</span></h2>
+    <div class="pack">
+      <div class="pk reveal"><b>The Self-Learn Manual</b><span>Twenty guided sessions — the teaching, the exercises and the four deliverable specifications. This is the course.</span><em>56 pages</em></div>
+      <div class="pk reveal"><b>Stage Slides, Stages 1–4</b><span>The visual companion, in the same order. Skim before each stage, revise after.</span><em>Four decks</em></div>
+      <div class="pk reveal"><b>The Remote Job Seeker Kit</b><span>The templates, worksheets and checklists you fill in rather than read.</span><em>Fill-in</em></div>
+      <div class="pk reveal"><b>The Smart Remote Job Prompt Pack</b><span>The AI prompt library for CV bullets, decoding job descriptions, interview prep, outreach and negotiation — plus the five-part structure underneath it, so you can write your own once the pack runs out.</span><em>Prompt library</em></div>
+      <div class="pk reveal"><b>The Participant Guide (Legacy Cohort 5)</b><span>The real workbook we issued to a live cohort, so you can see how the material was actually run day by day.</span><em>Archive</em></div>
+      <div class="pk reveal"><b>Private Telegram community</b><span>Where you post a deliverable for a second pair of eyes, ask the question you're embarrassed by, and see what people at your stage are actually finding.</span><em>Included</em></div>
+    </div>
+  </section>
+
+  <!-- FIT -->
+  <section class="section-line wrap" id="fit">
+    <p class="section-label reveal">Honest fit</p>
+    <h2 class="reveal">Who this is for — <span>and who it isn't.</span></h2>
+    <div class="fit">
+      <div class="fit-col fit-yes reveal">
+        <h3>This is for you if</h3>
+        <ul>
+          <li>You're employed or job-seeking in Nigeria (or anywhere outside the US/EU) and you want a dollar-paying remote role.</li>
+          <li>You've been applying and hearing nothing, and you can't tell whether the problem is your CV, your targeting, or the companies you're choosing.</li>
+          <li>You have some real work experience — even one or two years — and no idea how to make it legible to a remote employer.</li>
+          <li>You'd take the live cohort if you could, but you want to start now and at your own pace.</li>
+        </ul>
+      </div>
+      <div class="fit-col fit-no reveal">
+        <h3>This is not for you if</h3>
+        <ul>
+          <li>You want a job handed to you. This isn't placement — it makes you hireable, it doesn't apply on your behalf.</li>
+          <li>You won't do work you're not being watched doing. Be honest with yourself; the live cohort exists precisely for this, and you should take that instead.</li>
+          <li>You want a certificate. This edition doesn't carry one. The live training does.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="section-label reveal" style="margin-top:2.4rem">Be clear on what this does and doesn't include</p>
+    <div class="inc reveal">
+      <div class="inc-row">
+        <div class="inc-cell inc-in"><b>Included</b><p>All four stages, all twenty sessions, every rubric and template, the six items above, and the community.</p></div>
+        <div class="inc-cell inc-out"><b>Not included</b><p>Live teaching, a facilitator's written verdict on your deliverables, a certificate, or placement support. Those live in our <a href="../foundationtraining/">Remote Job Foundation Training</a> (live cohort) and <a href="../masterysetup/">Mastery Setup</a> (Stage 5). Buyers of this edition can ask about the credit applied toward them.</p></div>
+      </div>
+    </div>
+    <p class="note reveal">No training controls the market or the timing. Some people are hired in six weeks; some take over a year. What this removes is the version where you spend that time without ever knowing which of the four points was failing.</p>
+  </section>
+
+  <!-- BUY -->
+  <section class="section-line wrap" id="buy">
+    <p class="section-label reveal">The price</p>
+    <h2 class="reveal">One payment. <span>Yours permanently.</span></h2>
+    <div class="buy reveal">
+      <div class="buy-amt">₦35,000</div>
+      <p class="buy-sub">One-time · instant download · no subscription, nothing to cancel</p>
+      <div class="buy-btns">
+        <a href="https://selar.com/77v230274x" class="btn-yes" target="_blank" rel="noopener">Buy on Selar <span class="arrow">→</span></a>
+        <a href="https://wa.me/2348032925957?text=Hello%20ERJ%2C%20I%20want%20to%20pay%20for%20the%20Remote%20Job%20Mastery%20Training%20(Self-Learn)%20by%20bank%20transfer.%20Please%20send%20me%20the%20Business%20Play%20account%20details." class="btn-more" target="_blank" rel="noopener">Pay by bank transfer</a>
+      </div>
+      <p class="buy-alt"><b>Paying by transfer?</b> Message our Registrar on WhatsApp for the Business Play account details, send ₦35,000, and reply with your receipt. Access goes out the same day. Card, bank transfer and USSD all work through Selar if you'd rather it be instant.</p>
+    </div>
+    <p class="note reveal">Already in a live cohort? You don't need this — you have all of it and more. This edition exists for the people who can't sit a cohort yet.</p>
+  </section>
+
+  <!-- DELIVERY -->
+  <section class="section-line wrap" id="delivery">
+    <p class="section-label reveal">How you get it</p>
+    <h2 class="reveal">Instant download. <span>Then thirty minutes.</span></h2>
+    <div class="del">
+      <div class="del-i reveal"><span class="del-n">Step 01</span><b>Pay</b><span>Selar delivers the folder the moment payment clears. By transfer, we send it the same day.</span></div>
+      <div class="del-i reveal"><span class="del-n">Step 02</span><b>Open 01_START_HERE first</b><span>It tells you exactly what to do in your first thirty minutes, so you don't stall at the folder.</span></div>
+      <div class="del-i reveal"><span class="del-n">Step 03</span><b>Join the Telegram</b><span>Your invite is in the folder. Post your first deliverable there when Stage 1 is done.</span></div>
+      <div class="del-i reveal"><span class="del-n">Step 04</span><b>Work one session at a time</b><span>Twenty sessions, each ending in something you keep. There is no clock and no cohort to keep up with.</span></div>
+    </div>
+    <p class="note reveal">Questions about access or payment: WhatsApp our Registrar on <a href="https://wa.me/2348032925957" target="_blank" rel="noopener">+234 803 292 5957</a> with your Selar order reference.</p>
+  </section>
+
+  <!-- CLOSE -->
+  <section class="section-line wrap reveal" id="close">
+    <h2>Start today, <span>at your own speed.</span></h2>
+    <p class="section-sub">Four stages, twenty sessions, four finished assets — and the honest map of which of the four points is actually costing you offers.</p>
+    <div class="hero-cta">
+      <a href="https://selar.com/77v230274x" class="btn-yes" target="_blank" rel="noopener">Get the pack — ₦35,000 <span class="arrow">→</span></a>
+      <a href="../diagnose/" class="btn-more">Not sure yet? Find your leak free</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  © 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
+  <nav class="foot-links"><a href="../index.html">Home</a><a href="../foundationtraining/">Foundation Training</a><a href="../masterysetup/">Mastery Setup</a><a href="../innercircle/">Inner Circle</a></nav>
+  <nav class="foot-links"><a href="../login.html">Participant Login</a><a href="../blog.html">Blog</a></nav>
+</footer>
+
+<a href="https://wa.me/2348032925957" class="wa-float" title="Chat on WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 016.993 2.898 9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="../erj-theme.js"></script>
+<script src="../erj-product.js"></script>
+<script src="../erj-nav.js"></script>
+<script src="../erj-config.js"></script>
+<script src="../erj-capture.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").then(function(reg){reg.update();}).catch(function(){});});}</script>
+<script src="../erj-schema.js"></script>
+</body>
+</html>

@@ -245,8 +245,17 @@ function loadCapture(doc, extra) {
   new Function('window', fs.readFileSync(path.join(ROOT, 'erj-config.js'), 'utf8'))(cfg);
   const win = Object.assign({ ERJ_CONFIG: cfg.ERJ_CONFIG, ERJ_NAV: { base: '' } }, extra || {});
   const code = fs.readFileSync(path.join(ROOT, 'erj-capture.js'), 'utf8');
+  // The double must carry the whole interface the code uses. It only had
+  // observe(), so when the capture layer started disconnecting around its own
+  // mutation the stub threw and four tests went red for the wrong reason.
+  // It also keeps the callback, so a test can re-fire the observer by hand.
+  win.__observerCallbacks = [];
   new Function('window', 'document', 'MutationObserver', code)(
-    win, doc, function () { this.observe = () => { }; }
+    win, doc, function (cb) {
+      win.__observerCallbacks.push(cb);
+      this.observe = () => { };
+      this.disconnect = () => { };
+    }
   );
   return win;
 }
@@ -260,9 +269,19 @@ function loadCapture(doc, extra) {
     '<ol class="default-list"><li><span>02</span>The "Remote-Ready" Summary</li>' +
     '<li><span>05</span>Quantifiable Metrics</li></ol>' +
     '<div class="results-actions"><button class="btn-yes"></button></div>';
-  loadCapture(doc);
+  const win = loadCapture(doc);
   const send = doc.querySelector('.cap-send');
   ok('CV scan gets a send-my-report block', !!send);
+
+  /* REGRESSION — the send block is inserted as a SIBLING before
+     .results-actions. The re-entry guard once looked for it INSIDE
+     .results-actions, where it can never be, so every insertion re-fired the
+     observer and injected again: an infinite loop that froze the page with
+     Chrome's "Page Unresponsive" dialog. Re-fire the observer by hand; the
+     count must not grow. */
+  win.__observerCallbacks.forEach(cb => { cb(); cb(); });
+  ok('re-firing the observer does not inject a second block',
+    doc.querySelectorAll('.cap-send').length === 1);
   const html = send ? send._html : '';
   ok('prefilled message carries the score', /4%2F10|4\/10/.test(decodeURIComponent(html)));
   ok('prefilled message names the failed points',

@@ -463,3 +463,85 @@ were meant to go live, two flags need flipping.
 `validate.py` clean · 65/65 tests pass · full-site crawl: 0 broken internal links
 · SEEDS array parses to 100 posts, no duplicate ids, no incomplete records ·
 today's post renders on the blog and tomorrow's correctly does not.
+
+---
+
+## v93 — 11 August 2026
+
+Cache `erj-v92` → `erj-v93`.
+
+### 1 · CV scan froze the browser — infinite MutationObserver loop
+`cvscan` locked the main thread on **every** upload — txt, docx, plain, table-based,
+900-line, all of them — producing Chrome's "Page Unresponsive" dialog. It looked
+like a parser hang because the status still read "Reading …CV.docx"; the thread
+was blocked so the DOM never repainted.
+
+The cause was in `erj-capture.js`, not in the scanner. The send-my-report block is
+inserted as a **sibling before** `.results-actions`:
+
+```js
+actions.parentNode.insertBefore(wrap, actions);
+```
+
+but the re-entry guard looked for it **inside** that element:
+
+```js
+if (!actions || actions.querySelector('.cap-send')) return;   // never true
+```
+
+So every insertion fired the observer, which injected again, forever. The score
+dial animates its own text for ~900ms, which fires the observer on every frame
+too, so it triggered instantly on any successful scan.
+
+Fixed by pointing the guard where the node actually lands (`results.querySelector`)
+and disconnecting the observer around our own mutation so it cannot re-enter.
+Applied to `erj-capture.js` and `erj-capture.ts`.
+
+Measured after the fix: 1.6s end-to-end, exactly one button, page responsive —
+across txt, plain docx, table-based docx, deeply-nested-table docx and a 900-line
+docx, plus the rescan and live-job-description paths.
+
+**Test fallout, both fixed.** `test-dx.js`'s `MutationObserver` double only
+implemented `observe()`, so four capture tests went red the moment the code
+started calling `disconnect()`. The double now carries the full interface and
+keeps the callback — which enabled a **regression test**: re-fire the observer by
+hand and assert the block count stays at one. That test fails against the old
+code.
+
+### 2 · New page — `/selflearn/`
+"Remote Job Mastery Training (Self-Learn)" — Stages 1–4, self-paced, ₦35,000.
+Selar checkout (`selar.com/77v230274x`) plus a bank-transfer route that opens a
+prefilled WhatsApp message to the Registrar. Box shot added as
+`selflearn-box.png` (resized 3375px → 900px). Wired into the nav dropdown
+(`erj-nav.js`/`.ts`), `sitemap.xml` (13 URLs) and the `sw.js` precache.
+
+The page keeps the source copy's honesty intact — the "not for you" column and
+the included/not-included split are load-bearing, not decoration.
+
+### 3 · Blog — backlog cleared, six days queued
+Published the three back-dated drafts: `m6p04` (7 Aug), `m6p05` (8 Aug),
+`m6p07` (10 Aug).
+
+New posts:
+
+| Date | Post | State |
+|---|---|---|
+| 11 Aug | The Self-Learn Pack Is Live | **live** |
+| 12 Aug | The Twenty Minutes After Someone Says Yes to a Call | draft |
+| 13 Aug | Your Time Zone Is Not an Apology | draft |
+| 14 Aug | The Application Ledger | draft |
+| 15 Aug | Proving Tool Fluency When You Have Never Held a Remote Job | draft |
+| 16 Aug | Using AI on Your CV Without Getting Caught | draft |
+| 17 Aug | Five Things That Make Your Work Visible on a Distributed Team | draft |
+
+Future-dated posts ship as drafts on purpose — flip `published` on the morning,
+or publish from blog-admin. `SEED_VERSION` → `2026-08-17-async-artifacts`.
+
+No manual `featured` flag was set: the blog already assigns the slot to the
+newest live post automatically, so 11 Aug takes it on its own.
+
+### Verification
+`validate.py` clean · **66/66 tests pass** (16 + 20 + 30) · full-site crawl: 0
+broken internal links · SEEDS parses to 107 posts, no duplicate ids, none
+incomplete · `/selflearn/` renders at 1280px and 390px with 0 overflow and no
+console errors.

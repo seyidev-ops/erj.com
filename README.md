@@ -545,3 +545,55 @@ newest live post automatically, so 11 Aug takes it on its own.
 broken internal links · SEEDS parses to 107 posts, no duplicate ids, none
 incomplete · `/selflearn/` renders at 1280px and 390px with 0 overflow and no
 console errors.
+
+---
+
+## v94 — 11 August 2026 · starting-line briefs and image parity
+
+Cache `erj-v93` → `erj-v94`.
+
+### 1 · All three routes now carry a full brief
+Route 1 had a real Stages 1–4 brief (added in v92); routes 2 and 3 still had
+three vague bullets each. Both now carry the same structure — an opening
+paragraph, four numbered items naming what is built and when, and a closing
+line — so the page can be read straight through without opening three product
+pages.
+
+Content is taken from the product pages themselves so the two cannot drift:
+
+* **Mastery Setup** — the four assets on their real build days: ATS-defeating CV
+  (days 1–2), LinkedIn outbound funnel (3–4), autonomous application engine
+  (5–6), multi-currency negotiation playbook (day 7).
+* **Inner Circle** — Stages 6–12 compressed into four items: Audit/Profile
+  (weeks 1–2), Outreach Engine (3), Interview Room + Negotiation Table (4–5),
+  Launch + Residency (6 onward).
+
+**Word counts are now identical: 199 words per route block.** Verified by
+stripping tags and counting; the check is re-runnable.
+
+### 2 · All three photos render at one size
+The source files are very different shapes — 626×417 landscape, 735×639
+near-square, 820×1230 portrait — and `height:auto` gave three different card
+heights down the page.
+
+Fixed with a shared `aspect-ratio:4/3` and `object-fit:cover`, which crops to a
+common frame rather than squashing. `object-position` is tuned per image so no
+face is cut — the facilitator portrait is pulled to `center 22%`.
+
+A second cause was hiding underneath: `.route.flip` moves the photo into grid
+column 2, which is the **wide** track (1fr), so the middle photo rendered 582px
+against 419px either side. Flipped rows now mirror the track widths.
+
+Measured after the fix — all three frames identical at every width:
+
+| Viewport | Frame |
+|---|---|
+| 1280px | 419 × 314 |
+| 1024px | 382 × 286 |
+| 390px | 348 × 261 |
+
+### Verification
+`validate.py` clean · 66/66 tests pass · full-site crawl: 0 broken internal
+links · 0 horizontal overflow at 1280 / 1024 / 390px · every brief sentence ends
+in punctuation (two full stops were dropped during word-count tuning and
+restored).

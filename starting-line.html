@@ -22,6 +22,11 @@
   .route{display:grid;grid-template-columns:minmax(0,0.72fr) minmax(0,1fr);gap:clamp(1.2rem,3.5vw,2.6rem);
     align-items:center;padding:clamp(1.8rem,4vw,2.8rem) 0;border-top:1px solid var(--line);}
   .route:last-of-type{border-bottom:1px solid var(--line);}
+  /* The flipped row moves the photo into grid column 2. That column is the wide
+     one (1fr), so the middle photo rendered 582px against 419px either side.
+     Mirror the track widths for flipped rows so the photo column stays 0.72fr
+     whichever side it sits on. */
+  .route.flip{grid-template-columns:minmax(0,1fr) minmax(0,0.72fr);}
   .route.flip .r-photo{order:2;}
   .r-kind{font-size:0.66rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);}
   .r-title{font-family:var(--font-display);font-size:clamp(1.4rem,3.4vw,2rem);font-weight:800;
@@ -34,8 +39,16 @@
   .r-go{display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;padding:0.75rem 1.3rem;border-radius:10px;
     background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;text-decoration:none;transition:background .2s;}
   .r-go:hover{background:var(--accent-h);}
-  .r-photo{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--card);margin:0;}
-  .r-photo img{display:block;width:100%;height:auto;}
+  /* All three photos render at one identical size. The source files are wildly
+     different shapes — 626x417 landscape, 735x639 near-square, 820x1230 portrait —
+     so height:auto gave three different card heights down the page. A fixed
+     aspect-ratio plus object-fit:cover crops them to a common frame instead of
+     squashing them; object-position is tuned per image so no face gets cut. */
+  .r-photo{border-radius:16px;border:1px solid var(--line);overflow:hidden;background:var(--card);margin:0;
+    aspect-ratio:4/3;}
+  .r-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;}
+  #r-inner .r-photo img{object-position:center 22%;}   /* portrait — keep the face */
+  #r-remote .r-photo img{object-position:center 38%;}
   /* Route 1 carries a fuller brief than the other two — it is the only route
      with four distinct stages to account for, so its list items name the stage
      and then what you walk out holding. */
@@ -74,14 +87,14 @@
       <div>
         <span class="r-kind">Route 1 · You build it · Stages 1–4</span>
         <h2 class="r-title">Foundation <em>Training</em></h2>
-        <p class="r-desc">Four five-day sprints. Twenty training days. Every single day ends with a real deliverable you keep — you build the assets yourself, and you learn the system underneath them, so you can rebuild them for any role in any year without coming back to us.</p>
+        <p class="r-desc">Four five-day sprints, twenty days, and every day ends with a real deliverable you keep. You build the assets yourself and learn the system underneath them, so you can rebuild them for any role later on.</p>
         <ul class="r-list">
-          <li><b>01 · Remote Mindset Blueprint</b> — two 90-minute deep-work blocks a day, the Pomodoro Protocol, three measurable KPIs each morning and a structured end-of-day report each evening. You leave with your own Remote Operating System.</li>
-          <li><b>02 · The Digital Toolkit</b> — Zoom, Meet and Teams run properly; cloud recordings with auto-transcription; a real project board in Asana, Trello or ClickUp; and AI Fluency — prompt craft, AI-assisted drafting, and knowing when <em>not</em> to use it.</li>
-          <li><b>03 · Async Communication Mastery</b> — Zero-Follow-Up emails that never trigger a clarifying reply, the Batch Message Protocol, warmth that survives plain text, and your own “Working With Me” manual. Five communication assets, deployable on day one.</li>
-          <li><b>04 · Start Your Remote Career</b> — a remote-first ATS-compliant CV, a LinkedIn Zone-1 summary, a curated two-to-three project portfolio with read-me briefs, and a two-minute STAR video. This is the Global Ready Package.</li>
+          <li><b>01 · Remote Mindset Blueprint</b> — two 90-minute deep-work blocks daily, the Pomodoro Protocol, three measurable KPIs each morning and a structured end-of-day report each evening. You leave holding your own Remote Operating System.</li>
+          <li><b>02 · The Digital Toolkit</b> — Zoom, Meet and Teams run properly, cloud recordings with auto-transcription, a real project board, and AI Fluency: prompt craft, AI-assisted drafting, and knowing when <em>not</em> to reach for it.</li>
+          <li><b>03 · Async Communication Mastery</b> — Zero-Follow-Up emails that never trigger a clarifying reply, the Batch Message Protocol, warmth that survives plain text, and your own Working With Me manual. Five communication assets.</li>
+          <li><b>04 · Start Your Remote Career</b> — a remote-first ATS-compliant CV, a LinkedIn Zone-1 summary, a curated two-to-three project portfolio with read-me briefs, and a two-minute STAR video answer. Together these are the Global Ready Package.</li>
         </ul>
-        <p class="r-foot">Finish certified. And choose the hour you can actually keep — <a href="foundationtraining/#tracks">weekdays 7 PM, weekdays 8 PM, or weekends</a>. Same modules, same fee, same certificate.</p>
+        <p class="r-foot">Finish certified, and choose the hour you can actually keep — <a href="foundationtraining/#tracks">weekdays 7 PM, weekdays 8 PM, or weekends</a>. Same modules, same fee, same certificate.</p>
         <a class="r-go" href="foundationtraining/">Learn more <span>→</span></a>
       </div>
     </div>
@@ -96,12 +109,14 @@
       <div>
         <span class="r-kind">Route 2 · We build it for you · 7 days</span>
         <h2 class="r-title">Mastery <em>Setup</em></h2>
-        <p class="r-desc">The done-for-you placement engine. Our team builds all four assets for you inside 7 days, then sources and aims applications at volume until an offer lands.</p>
+        <p class="r-desc">Four days of building, three of hunting, and almost none of it done by you. Our team builds every asset, installs the application engine, then works the pipeline beside you until an offer is signed.</p>
         <ul class="r-list">
-          <li>Every asset professionally built — you approve, you keep</li>
-          <li>30+ verified dollar-paying roles sourced weekly</li>
-          <li>Conversion coaching through interviews to the signed offer</li>
+          <li><b>01 · The ATS-Defeating Global CV</b> — written for you on days one and two. Your local experience translated into the terms global recruiters actually search for, in a structure built to survive the screening software.</li>
+          <li><b>02 · The LinkedIn Outbound Funnel</b> — rebuilt for you on days three and four with the exact recruiter-search keywords that make you findable, turning a dead profile into something that pulls invitations inward.</li>
+          <li><b>03 · The Autonomous Application Engine</b> — installed on days five and six. It sources and applies to 30+ pre-vetted global roles every week on your behalf, without the guesswork or the silence.</li>
+          <li><b>04 · The Multi-Currency Negotiation Playbook</b> — handed over on day seven. Word-for-word scripts for a final-round panel, so you can negotiate in USD, EUR or GBP while still keeping your cost advantage.</li>
         </ul>
+        <p class="r-foot">Every asset is yours permanently — you approve each one and then keep it, whether or not you ever work with us again. <a href="masterysetup/">See the seven days →</a></p>
         <a class="r-go" href="masterysetup/">Learn more <span>→</span></a>
       </div>
     </div>
@@ -116,12 +131,14 @@
       <div>
         <span class="r-kind">Route 3 · Worked with you, 1:1 · Stages 6–12</span>
         <h2 class="r-title">The Inner <em>Circle</em></h2>
-        <p class="r-desc">An invite-only 7-week residency. We co-apply, dry-run your interviews, and review negotiations live — one seat, one outcome: a signed international offer.</p>
+        <p class="r-desc">Seven weeks, one seat, one outcome. Not coaching and not a group chat — this is direct private consultancy, where we work your live search beside you, week by week, until an offer is signed.</p>
         <ul class="r-list">
-          <li>Real-time co-applying and application audits</li>
-          <li>Pre-interview dry-runs with direct feedback</li>
-          <li>Admission is verified before payment — application-first</li>
+          <li><b>01 · The Audit and The Profile</b> — weeks one and two tear down your current positioning and rebuild it. By the end you know exactly what you are selling and who needs to buy it.</li>
+          <li><b>02 · The Outreach Engine</b> — week three. We build your outreach system together and write your first ten messages live during the session, and you send every one of them before it ends.</li>
+          <li><b>03 · The Interview Room and Negotiation Table</b> — weeks four and five. Mock interviews using the consulting framework, so you stop auditioning and start diagnosing, then salary research, ROI anchoring and counter-offer strategy.</li>
+          <li><b>04 · The Launch and The Residency</b> — week six onward. Full support through live applications, responses and decisions, then the private community, the weekly accountability calls, and lifetime access to the 200+ alumni network.</li>
         </ul>
+        <p class="r-foot">Admission is verified before payment — you apply first, and we only take the seat if we can genuinely work it properly. <a href="innercircle/">Request admission →</a></p>
         <a class="r-go" href="innercircle/">Learn more <span>→</span></a>
       </div>
     </div>

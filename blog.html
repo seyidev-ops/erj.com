@@ -383,6 +383,15 @@ html[data-theme="day"] .s-tw{background:#1DA1F2 !important;border-color:#1DA1F2 
 .wa-btn:hover{transform:scale(1.08);}
 .wa-btn svg{width:21px;height:21px;fill:var(--bg);}
 footer{background:var(--bg2);border-top:1px solid var(--border2);padding:16px 16px calc(16px + var(--sab));text-align:center;font-size:.7rem;color:var(--muted);word-break:break-word;width:100%;box-sizing:border-box;}
+/* The site-wide footer lives in product.css, which this page does not load —
+   it has its own standalone stylesheet. These are the same rules, mapped onto
+   the variables this page actually defines, so the footer matches every other
+   page instead of being the one that looks different. */
+.foot{background:var(--bg2);border-top:1px solid var(--border2);padding:clamp(2rem,5vw,3rem) 1.25rem calc(1.5rem + var(--sab));font-size:.78rem;color:var(--muted);text-align:center;line-height:2;width:100%;box-sizing:border-box;}
+.foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;column-gap:1.1rem;row-gap:.15rem;margin-top:.45rem;}
+.foot .foot-links a{white-space:nowrap;}
+.foot a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border2);transition:color .3s;}
+.foot a:hover{color:var(--accent);}
 footer a{color:var(--glow);text-decoration:none;}
 .fade-in{opacity:0;transform:translateY(9px);transition:opacity .4s ease,transform .4s ease;}
 .fade-in.v{opacity:1;transform:none;}
@@ -548,11 +557,10 @@ h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!
 </a>
 <div class="toast-w" id="toastW"><div class="toast" id="toastEl"></div></div>
 
-<footer>
-  © 2026 Everything Remote Job. Built for <span class="accent">global career scale.</span> ·
-  <a href="index.html">Everything<span class="accent">RemoteJob</span></a> ·
-  <a href="login.html">Participant Login</a> ·
-  <a href="https://wa.me/2348032925957" target="_blank" rel="noopener">WhatsApp</a>
+<footer class="foot wrap">
+  &copy; 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
+  <nav class="foot-links"><a href="index.html">Home</a><a href="selflearn/">Self-Learn Pack</a><a href="foundationtraining/">Foundation Training</a><a href="masterysetup/">Mastery Setup</a><a href="innercircle/">Inner Circle</a></nav>
+  <nav class="foot-links"><a href="starting-line.html">Your Starting Line</a><a href="free.html">Free For You</a><a href="blog.html">Blog</a><a href="register.html">Register</a><a href="login.html">Participant Login</a></nav>
 </footer>
 
 <script>

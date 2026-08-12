@@ -1015,3 +1015,65 @@ Organization's incorporation. Two-line change; say which.
 `validate.py` clean · 66/66 tests · 0 broken links · JSON-LD parses to 3 graph
 nodes (Organization, Person, WebSite) · Person confirmed present in the rendered
 DOM with `sameAs` and `worksFor` resolving · `#about` resolves · 0 overflow.
+
+---
+
+## v103 — 12 August 2026 · comparison page findable, detailed thumbnail, footer parity
+
+Cache `erj-v102` → `erj-v103`.
+
+### 1 · Where the comparison page belongs — it stays standalone
+Merging it into `register.html` was considered and rejected. The page's entire
+value is that it answers a **comparison query** — "self-learn vs live training",
+"is the cheap version enough" — and those queries need their own URL with its own
+title, its own FAQ schema and its own inbound links. Folded into a section of the
+register page it would rank for nothing, because the register page is already
+competing for a different query.
+
+The problem was not the page. It was that nothing pointed at it. Now five things
+do, in the places the question is actually asked:
+
+* **Home FAQ — the primary entry.** Added as the *first* question: "Should I take
+  the self-paced pack or the live cohort?" It earns that slot on merit; it is the
+  most common pre-purchase question. Also added to the page's FAQPage schema, now
+  seven questions, so the markup and the visible page agree.
+* **`register.html`** — under the "Which door is mine?" chooser, which is exactly
+  where the money decision happens.
+* **`starting-line.html`** — attached to the sentence that already names the
+  Self-Learn vs Foundation distinction as the confusing one.
+* **`/selflearn/`** and **`/foundationtraining/`** — from v101, on both pages it
+  compares.
+
+That is the standard shape for a comparison asset: one canonical URL, linked from
+every page where the question arises.
+
+### 2 · Self-Learn thumbnail rebuilt with the pack in it
+`preview-selflearn-v1.jpg` still carried the retired headline "Four stages.
+Twenty sessions. Four things you keep forever." Replaced by
+**`preview-selflearn-v2.jpg`**, which composites the actual product shot onto its
+cream plate beside the text, and carries the current positioning plus the facts:
+20 sessions · 4 stages · 4 deliverables · 6 files · no certificate · ₦35,000.
+
+A boxed product is the most informative thing a share card for this page can
+show — it answers "what am I buying" before a word is read. `og:image` and
+`twitter:image` repointed on `/selflearn/` and the comparison page; `sw.js`
+precache updated. `-v1` stays on disk for already-shared links.
+
+### 3 · Footer parity — two pages were drifting, not one
+`testimonials.html` and `blog.html` both carry hand-copied `.foot` rules because
+neither loads `product.css`. The markup was already identical; the **CSS** had
+drifted: `.78rem` vs `.8rem`, the lighter `--border2` line instead of `--border`,
+no underline on links, and different padding.
+
+A real parser bug turned up on the way: `padding: clamp(...) 1.25rem
+calc(clamp(...) + var(--sab))` was being dropped entirely — a nested `clamp()`
+inside `calc()` inside the shorthand — so `padding-top` computed to **0**.
+Rewritten as longhand properties.
+
+Verified computed-identical across six pages (index, testimonials, blog, free,
+404, selflearn): font size, padding, border colour, link colour and link
+underline all match.
+
+### Verification
+`validate.py` clean · 66/66 tests · 0 broken links · home FAQ shows 7 items and
+the schema carries 7 · 0 overflow.

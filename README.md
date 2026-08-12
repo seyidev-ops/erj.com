@@ -864,3 +864,154 @@ That is valid, defensible, and it earns the stars rather than declaring them.
 
 If you want, I can add the `aggregateRating` block wired to a reviews array in
 the page, ready to go live the moment you have the first eight.
+
+---
+
+## v101 — 12 August 2026 · query cluster, comparison page, logo parity
+
+Cache `erj-v100` → `erj-v101`.
+
+### 1 · The v100 queries had a real flaw
+`/selflearn/` targeted "remote job training in Nigeria" and
+`/foundationtraining/` targeted "remote job training in Nigeria **with
+certificate**". Those share a head phrase, so the two pages compete for the same
+result — keyword cannibalisation, and Google picks one for you.
+
+Rebuilt as a **topic cluster**: one shared root, "getting a remote job", with a
+distinct delivery mode each. Shared roots build topical authority; distinct
+modes stop the pages fighting.
+
+| Page | Query | Delivery mode |
+|---|---|---|
+| /selflearn/ | remote job training in Nigeria (self-paced) | alone |
+| /foundationtraining/ | **foundations for getting a remote job** | taught + certificated |
+| /masterysetup/ | **getting a remote job, done for you** | done for you |
+| /innercircle/ | **getting a remote job with a personal coach** | 1:1 |
+
+Each appears once in the title and once in the opening prose.
+
+**Honest caveat:** the phrase is the smallest part of ranking. What actually
+moves these pages is the internal links (v100), the freshness, and the
+comparison page below. A perfect query on an unlinked page ranks for nothing.
+
+### 2 · Thumbnails re-cut to match
+`preview-foundationtraining-v3.jpg`, `preview-masterysetup-v3.jpg` and
+`preview-innercircle-v3.jpg` — new headlines carrying the new positioning, built
+with `make_preview_v3.py` so they use the real brand fonts. `og:image` and
+`twitter:image` repointed on all three; `sw.js` precache updated. The `-v2`
+files stay on disk so already-shared links keep their image.
+
+### 3 · New page — the honest comparison
+`/self-learn-vs-foundation-training.html`. Comparison queries carry the highest
+buying intent of any informational search, and almost nobody publishes one about
+their own two products.
+
+A fifteen-row table where the first four rows say **identical** — the stages,
+the sessions, the rubric and the deliverable specs are the same file. What
+₦215,000 buys is teaching, marking, certification, and someone noticing when you
+stop. Then two "take this one if" columns, and a closing section with three
+things a seller would rather not print, including "you might need neither this
+month — run the free diagnostic first."
+
+FAQPage schema attached. Linked from both product pages it compares, the
+sitemap, and the SW precache.
+
+### 4 · Blog logo — root cause was not the blog
+The injected nav declares `font-family:var(--font-display,Georgia,serif)`.
+Pages loading `product.css` define `--font-display` and got Space Grotesk;
+`blog.html` has a standalone stylesheet that names the same font `--fd`, so the
+variable was undefined there and **the serif fallback rendered**.
+
+Changing the blog's own `.nav-logo` rule (weight 800→700, size, tracking) was
+necessary but not sufficient — that rule styles dead markup, since `erj-nav.js`
+replaces the nav at runtime. The real fix is the fallback itself, now
+`var(--font-display,"Space Grotesk",system-ui,sans-serif)` in `erj-nav.js` and
+`.ts`. Verified identical on index, blog, selflearn, free and 404.
+
+### About page — checked, not built. See below.
+
+### The About page question — answered, and deliberately not built
+You asked whether one is needed, and to leave it alone unless the benefit was
+certain. **It is not certain, and one largely already exists.**
+
+`index.html` carries a founder block above the hero: a real photo, "Oluwaseyi
+Ashiru — Lead Facilitator, Everything Remote Job", three paragraphs of
+first-person text, a signature line naming Business Play Ltd, and "seven
+cohorts" stated. That is most of what an About page is for, sitting on the
+highest-authority page on the site. A separate `/about.html` would duplicate it
+onto a page with no inbound links and split the entity signal across two URLs —
+which is the opposite of the goal.
+
+**What was missing was not a page. It was machine-readable identity.** The
+founder block is prose; nothing in the markup told a search or answer engine
+that a Person named Oluwaseyi Ashiru is the author and founder of this
+organisation. That gap is worth closing and does not need a new page.
+
+Not done in this release — it needs two things only you can supply:
+
+1. **`sameAs` URLs.** A `Person` entity is only as strong as its corroboration:
+   your LinkedIn profile URL, and any other profile that plainly identifies you
+   (X, GitHub, a speaker page, a press mention). Send me those and the schema
+   goes in.
+2. **A "since" date.** "Since when" is the one thing the founder block does not
+   state. Seven cohorts implies a history but never dates it. One clause —
+   "training African professionals into global remote roles since 20XX" — is
+   worth more than a whole page of prose, because it is checkable.
+
+Send both and this is a fifteen-minute change: `Person` schema with `sameAs`,
+`jobTitle` and `worksFor`, an `#about` anchor on the existing block so it can be
+linked directly, and the founding year added to the signature. That upgrades what
+is already there rather than building a second, weaker version of it elsewhere.
+
+---
+
+## v102 — 12 August 2026 · the founder as a resolvable entity
+
+Cache `erj-v101` → `erj-v102`. This closes the About question from v101 without
+building an About page.
+
+### The founder was already a Person in the schema — and it was useless
+`erj-schema.js` nested a founder object inside Organization:
+
+```json
+"founder": { "@type": "Person", "name": "Oluwaseyi Ashiru", "jobTitle": "Lead Facilitator" }
+```
+
+That is a **blank node**: a name with no identifier and nothing to corroborate
+it. An answer engine cannot distinguish it from any other string, which is
+exactly the problem the entity was meant to solve.
+
+Rebuilt as a top-level Person with a stable `@id`, referenced from Organization
+by `@id` rather than repeated:
+
+* `@id` — `https://everythingremotejob.com/#oluwaseyi-ashiru`
+* `sameAs` — the LinkedIn profile
+* `worksFor` — `@id` reference back to the Organization node
+* `url` — `/#about`, `image` — the founder photo
+* `knowsAbout` — five topics, so the entity attaches to a subject area
+* Organization gains `foundingDate: "2013"`
+* WebSite gains an `author` reference, so every page asserts the entity
+
+### On-page corroboration
+`sameAs` is a claim; it is worth what it can be checked against. So the page
+now shows the same facts a human can verify:
+
+* An `#about` anchor. The section keeps `id="facilitator"` so existing links
+  still resolve — a second `id` on one element would be invalid.
+* The signature line now reads "… · Training professionals into global roles
+  **since 2013**".
+* A visible LinkedIn link with `rel="noopener me"` — `me` is the microformats
+  relation for "another profile of this same person", which is the on-page
+  counterpart of `sameAs`.
+
+### One thing to confirm
+**2013 is recorded as the Organization's `foundingDate` and as the year in the
+signature.** If 2013 is when *you* started this work rather than when Everything
+Remote Job (or Business Play Ltd) was founded, the signature is right and
+`foundingDate` should move — it would belong on the Person's career, not the
+Organization's incorporation. Two-line change; say which.
+
+### Verification
+`validate.py` clean · 66/66 tests · 0 broken links · JSON-LD parses to 3 graph
+nodes (Organization, Person, WebSite) · Person confirmed present in the rendered
+DOM with `sameAs` and `worksFor` resolving · `#about` resolves · 0 overflow.

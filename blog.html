@@ -389,7 +389,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:16px 16
    it has its own standalone stylesheet. These are the same rules, mapped onto
    the variables this page actually defines, so the footer matches every other
    page instead of being the one that looks different. */
-.foot{background:var(--bg2);border-top:1px solid var(--border2);padding:clamp(2rem,5vw,3rem) 1.25rem calc(1.5rem + var(--sab));font-size:.78rem;color:var(--muted);text-align:center;line-height:2;width:100%;box-sizing:border-box;}
+.foot{background:var(--bg2);border-top:1px solid var(--border);font-size:.78rem;color:var(--muted2);text-align:center;line-height:2;width:100%;box-sizing:border-box;padding-top:clamp(2.4rem,5vw,3.5rem);padding-left:1.25rem;padding-right:1.25rem;padding-bottom:calc(clamp(2.4rem,5vw,3.5rem) + var(--sab,0px));}
 .foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;column-gap:1.1rem;row-gap:.15rem;margin-top:.45rem;}
 .foot .foot-links a{white-space:nowrap;}
 .foot a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border2);transition:color .3s;}

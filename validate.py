@@ -91,6 +91,29 @@ for f in HTML + [ROOT / "erj-config.js", ROOT / "erj-capture.js"]:
     s = f.read_text(encoding="utf-8", errors="ignore")
     nums.update(re.findall(r"wa\.me/(\d+)", s))
     nums.update(re.findall(r"whatsapp\.com/send\?phone=(\d+)", s))
+# ── no service-worker auto-reload anywhere ──────────────────────────────
+# A controllerchange handler that calls location.reload() makes every page
+# white out for a few seconds when the worker takes control, and it looks
+# like a rendering glitch rather than a reload because scroll position is
+# restored. Removed from the HTML pages in v88 and from erj-product.js in
+# v104 — this guard stops it coming back in either place.
+for f in sorted(ROOT.rglob("*")):
+    if f.suffix not in {".js", ".html", ".ts"} or "node_modules" in f.parts:
+        continue
+    try:
+        t = f.read_text(encoding="utf-8")
+    except Exception:
+        continue
+    # Strip block comments first, or the comment explaining this bug trips it.
+    code = re.sub(r"/\*.*?\*/", "", t, flags=re.S)
+    for m in re.finditer(r"controllerchange", code):
+        window = code[m.start(): m.start() + 400]
+        if "location.reload" in window:
+            errors.append(
+                f"{f.relative_to(ROOT)}: service-worker controllerchange calls "
+                f"location.reload() \u2014 this is the mid-scroll white-out bug"
+            )
+
 if len(nums) > 1:
     errors.append(f"more than one WhatsApp number in use: {sorted(nums)}")
 else:

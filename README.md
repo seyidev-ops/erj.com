@@ -1077,3 +1077,51 @@ underline all match.
 ### Verification
 `validate.py` clean · 66/66 tests · 0 broken links · home FAQ shows 7 items and
 the schema carries 7 · 0 overflow.
+
+---
+
+## v104 — 12 August 2026 · the white-out, found properly
+
+Cache `erj-v103` → `erj-v104`.
+
+### The bug v88 did not actually fix
+v88 removed the `controllerchange` → `location.reload()` listener from all 16
+HTML pages and deleted the service worker's `clients.navigate()` self-heal. Both
+were real causes. **A third copy survived in `erj-product.js`**, a shared module
+loaded by twelve pages including the home page — so the bug kept firing and my
+earlier "fixed" was wrong.
+
+Reproduced deterministically this time rather than reasoned about. Scripted
+scroll on a 1440px viewport threw *"Execution context was destroyed, most likely
+because of a navigation"* mid-scroll. Isolating the service worker
+(`service_workers='block'` vs `'allow'`) gave 1 document versus 2, and
+`performance.getEntriesByType('navigation')[0].type` on the second document
+returned **`reload`** — proof of an actual reload rather than a paint problem.
+
+Why it reads as a rendering glitch: the reload restores scroll position, so the
+page whites out and comes back exactly where you were. It appears to happen "at
+Read This First" only because that is how far you had scrolled by the time the
+worker took control.
+
+Removed. Verified across `index`, `/selflearn/`, `register` and `starting-line`:
+one document each, navigation type `navigate`, no destroyed context.
+
+### A guard so it cannot return
+`validate.py` now fails if any `.js`, `.ts` or `.html` file has a
+`controllerchange` handler calling `location.reload()` within 400 characters.
+Block comments are stripped first, or the comment explaining the bug trips it.
+Tested by reintroducing the listener — the validator catches it — then reverting.
+
+`testimonials.html` also calls `location.reload()`, in `logOut()`. That is
+user-initiated and correct; left alone.
+
+### Comparison page gets its own thumbnail
+`preview-compare-v1.jpg` replaces the borrowed Self-Learn card. The design *is*
+the comparison: two columns, both priced, with the shared row in grey and the
+differing rows in white with an orange marker — so the card shows at a glance
+that the curriculum is identical and only the delivery differs. `og:image` and
+`twitter:image` repointed; added to the `sw.js` precache.
+
+### Verification
+`validate.py` clean (with the new guard) · 66/66 tests · 0 broken links · no
+reload on four pages under scripted scroll.

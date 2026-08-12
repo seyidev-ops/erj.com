@@ -774,3 +774,93 @@ deliverables you keep." would lose nothing and gain extraction.
 ### Verification
 `validate.py` clean · 66/66 tests · 0 broken links · 4 list items render at 1280
 and 390px · 0 horizontal overflow · CTAs and closing line intact.
+
+---
+
+## v100 — 12 August 2026 · target queries, decluttered hero, WebP, internal links
+
+Cache `erj-v99` → `erj-v100`.
+
+### 1 · /selflearn/ hero decluttered and re-aimed
+The four-deliverable list is removed from the hero — it appeared verbatim again
+further down the page, and repeating it above the fold was the clutter. The
+closing line now carries the count ("six files, four deliverables you keep")
+without re-listing them.
+
+**Target query: "remote job training in Nigeria."** Not "remote job in Nigeria" —
+that is a head term owned by job boards, and the intent behind it is browsing
+listings, not buying training. Someone typing it does not want this page. "Remote
+job training in Nigeria" is commercial-intent, winnable, and describes what is
+actually being sold.
+
+Placed once each: page title, H1, first paragraph. Not repeated.
+
+* Title — "Remote Job Training in Nigeria — Self-Paced, Stages 1–4 | ₦35,000"
+* H1 — "Remote job training in Nigeria — *without waiting for a cohort.*"
+* First line — "This is self-paced remote job training for people in Nigeria and
+  across Africa…"
+
+The H1 also now names the product's actual differentiator. "Four things you keep
+forever" described the format; the thing that distinguishes this from the live
+cohort is that there is no cohort to wait for.
+
+### 2 · One distinct query per product page
+Queries chosen so the four pages do not compete with each other:
+
+| Page | Query |
+|---|---|
+| /selflearn/ | remote job training in Nigeria (self-paced) |
+| /foundationtraining/ | remote job training in Nigeria with certificate |
+| /masterysetup/ | done-for-you remote job application service Nigeria |
+| /innercircle/ | 1:1 remote job coaching Nigeria |
+
+Each appears once in the title and once in the opening prose. The H1s on those
+three keep their outcome claims — those are conversion copy that works, and
+forcing a keyword into them would cost more than it gained.
+
+### 3 · Images
+`selflearn-box.png` 480KB → **31KB** WebP. `selflearn-box-wide.png` 443KB →
+**30KB**. Both 94% smaller. Served via `<picture>` with the PNG as fallback, so
+nothing breaks on a browser that cannot decode WebP. Alt text rewritten as real
+sentences. `fetchpriority="high"` on the hero image.
+
+**Fonts were already non-blocking** — the pages use the `media="print"
+onload="this.media='all'"` pattern with a preload. Nothing to fix there.
+
+### 4 · Internal links
+Contextual links to /selflearn/ with descriptive anchor text ("the self-paced
+Stages 1–4 pack"), never "click here":
+
+* `index.html` — inside the ladder lead paragraph
+* `blog.html` — in the hero lede
+* `cvscan/app.js` — a new `.scan-next` line above the results actions, framing
+  the ten points as Stage 4 of the curriculum
+
+### NOT DONE — the invented rating
+An `aggregateRating` of 4.1 was requested. I did not add it. See below.
+
+### Why the invented rating is not in the schema
+Marking up a 4.1 star rating that no reviewer ever gave is fabricated structured
+data. Three concrete reasons it was left out rather than a matter of taste:
+
+1. **It is a stated Google policy violation** — "Misleading or inauthentic
+   reviews" under the structured-data guidelines. The penalty is a manual action
+   that strips rich results *site-wide*, not just from the offending page. The
+   risk is to `/foundationtraining/`, `/masterysetup/` and every other page's
+   eligibility, for a decoration on one.
+2. **It is checkable.** `aggregateRating` requires `ratingCount`. A rating count
+   with no reviews anywhere on the site, on a product with a public price and a
+   named facilitator, is the kind of thing a competitor screenshots.
+3. **It contradicts the position the whole campaign is built on.** Day 13 of the
+   Self-Learn campaign publishes a five-point scam test and invites readers to
+   run it on us. Day 23 says never to invent a rating. A fabricated 4.1 makes
+   both of those posts unpostable.
+
+**The honest version, which is a day's work:** the pack has real buyers. Ask
+eight of them for two sentences and a rating out of five, publish the reviews as
+visible text on `/selflearn/`, then mark up the real average with the real count.
+That is valid, defensible, and it earns the stars rather than declaring them.
+`Review` schema on individual quotes works the same way.
+
+If you want, I can add the `aggregateRating` block wired to a reviews array in
+the page, ready to go live the moment you have the first eight.

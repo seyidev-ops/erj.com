@@ -716,3 +716,61 @@ untouched, as in v96.
 · all 14 pages return exactly one nav row with the same six labels in the same
 order · every footer link returns 200 from root, subfolder and 404 depths · 0
 horizontal overflow at 1280 and 390px, where the row wraps to two lines cleanly.
+
+---
+
+## v98 — 11 August 2026 · missing Self-Learn social preview
+
+Cache `erj-v97` → `erj-v98`.
+
+`selflearn/index.html` has pointed `og:image` and `twitter:image` at
+`preview-selflearn-v1.jpg` since v93 — **and that file was never created.**
+Every share of the product page since then has rendered with no image. Built now
+with `make_preview_v3.py` so it matches the rest of the set, and added to the
+`sw.js` precache.
+
+### A generator bug this exposed
+The `tag` string (bottom-right) was the one field never passed through `safe()`,
+the glyph checker added in v89. `₦` is not in the Inter latin subset, so it drew
+as a tofu box and shipped silently — the exact failure `safe()` exists to prevent.
+`build()` now checks the tag like every other string, and the card reads
+"NGN 35,000 · INSTANT".
+
+Also caught: `safe()` maps en-dash to em-dash, so "Stages 1–4" rendered as
+"1—4". Use a plain hyphen in kicker text.
+
+---
+
+## v99 — 11 August 2026 · Self-Learn opening rewritten for extraction
+
+Cache `erj-v98` → `erj-v99`. This is day 1 of the Self-Learn SEO campaign.
+
+The old opening was one 47-word paragraph that described the product by
+comparison — "the same four stages, the same rubrics, the same deliverables" —
+without naming a single stage, deliverable or fact. A summariser had nothing to
+lift; a first-time reader had nothing to evaluate.
+
+Replaced with a front-loaded block, **196 words including the H1**:
+
+* Paragraph 1 — what it is, who it is for, the price as text, how it is delivered.
+* Paragraph 2 — the four stages named, the relationship to the live cohort, and
+  what is **not** included (live teaching, marked verdict, certificate, placement).
+* A real `<ul>` of the four deliverables. Lists survive summarisation; prose does
+  not. Keep the list markup even if the styling changes.
+* One closing line naming the six files and the community.
+
+₦35,000 now appears as body text, not only inside a button — a price that exists
+only in a button graphic cannot be quoted in answer to "how much does X cost".
+
+New CSS: `.sl-lede-lead`, `.sl-lede-list`, `.sl-lede-foot`, plus tightened
+`.lede` spacing. No change to the H1, the CTAs or anything below the hero.
+
+### Not changed, worth a decision
+The H1 still ends "Four things you keep forever" — the least quotable phrase in
+the block, sitting in the most heavily weighted position on the page. Left alone
+because the brief was the first paragraph. "Four stages. Twenty sessions. Four
+deliverables you keep." would lose nothing and gain extraction.
+
+### Verification
+`validate.py` clean · 66/66 tests · 0 broken links · 4 list items render at 1280
+and 390px · 0 horizontal overflow · CTAs and closing line intact.

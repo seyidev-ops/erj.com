@@ -35,6 +35,19 @@
      full-width hero, so the site-wide size wrapped it to four lines and pushed
      the lede under the fold. */
   .sl-hero h1{font-size:clamp(1.9rem,4vw,3rem);}
+  /* The opening block is written to be extracted, not admired: plain sentences
+     that answer "what is this and what do I get" before anything else, and the
+     four deliverables as a real <ul> because lists survive summarisation and
+     prose does not. Keep the list markup even if the styling changes. */
+  .sl-hero .lede{margin-bottom:0.9rem;}
+  .sl-lede-lead{font-size:0.98rem;color:var(--ink);font-weight:600;margin:0 0 0.5rem;}
+  .sl-lede-list{list-style:none;margin:0 0 1rem;padding:0;}
+  .sl-lede-list li{position:relative;padding:0.3rem 0 0.3rem 1.35rem;font-size:0.95rem;
+    color:var(--ink-soft);font-weight:300;line-height:1.6;}
+  .sl-lede-list li::before{content:'';position:absolute;left:0;top:0.95rem;
+    width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  .sl-lede-list li b{color:var(--ink);font-weight:700;}
+  .sl-lede-foot{font-size:0.9rem;color:var(--ink-faint);font-weight:300;margin:0 0 0.4rem;}
   .sl-hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.8fr);
     gap:clamp(1.5rem,4vw,3rem);align-items:center;}
   .sl-box{margin:0;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--card-line);}
@@ -127,7 +140,16 @@
       <div>
         <p class="section-label reveal"><span class="mark"></span>Self-paced edition · Instant download</p>
         <h1 class="reveal">Four stages. Twenty sessions. <em>Four things you keep forever.</em></h1>
-        <p class="lede reveal">This is the self-paced edition of the training we run live with paying cohorts — the same four stages, the same rubrics, the same deliverables. The difference is that you start today, at your own speed, for a fraction of the cohort fee.</p>
+        <p class="lede reveal">Remote Job Mastery Training (Self-Learn) is a self-paced course for people in Nigeria and elsewhere outside the US and EU who want a dollar-paying remote job. It costs ₦35,000 as a single payment and downloads instantly.</p>
+        <p class="lede reveal">It covers four stages across twenty sessions: remote work mindset, the digital toolkit and AI fluency, asynchronous communication, and the global job search. The stages, rubrics and exercises are the same ones taught in the live cohorts. It does not include live teaching, a marked verdict on your work, a certificate, or placement support.</p>
+        <p class="sl-lede-lead reveal">You finish holding four deliverables:</p>
+        <ul class="sl-lede-list reveal">
+          <li><b>Your Remote Operating System</b> — a daily working structure with deep-work blocks, morning KPIs and an end-of-day report.</li>
+          <li><b>The Integrated Sprint</b> — one real piece of work with a shareable evidence trail across the tools employers assume you use.</li>
+          <li><b>Five communication assets</b> — the writing that makes your work visible on a distributed team, under one index.</li>
+          <li><b>The Global Ready Package</b> — a remote-first ATS CV, a LinkedIn summary, a portfolio with read-me briefs, and a two-minute STAR video.</li>
+        </ul>
+        <p class="sl-lede-foot reveal">The pack is six files plus an invite to the private Telegram community.</p>
         <div class="hero-cta reveal">
           <a href="#buy" class="btn-yes">Get the pack — ₦35,000 <span class="arrow">→</span></a>
           <a href="#stages" class="btn-more">See the twenty sessions</a>

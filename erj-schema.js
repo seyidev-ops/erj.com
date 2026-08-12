@@ -45,11 +45,34 @@
           "en"
         ]
       },
+      "foundingDate": "2013",
       "founder": {
-        "@type": "Person",
-        "name": "Oluwaseyi Ashiru",
-        "jobTitle": "Lead Facilitator"
+        "@id": "https://everythingremotejob.com/#oluwaseyi-ashiru"
       }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://everythingremotejob.com/#oluwaseyi-ashiru",
+      "name": "Oluwaseyi Ashiru",
+      "givenName": "Oluwaseyi",
+      "familyName": "Ashiru",
+      "jobTitle": "Lead Facilitator",
+      "description": "Founder and Lead Facilitator of Everything Remote Job. Has trained professionals into globally competitive remote roles since 2013.",
+      "url": "https://everythingremotejob.com/#about",
+      "image": "https://everythingremotejob.com/founder-oluwaseyi.jpg",
+      "worksFor": {
+        "@id": "https://everythingremotejob.com/#organization"
+      },
+      "knowsAbout": [
+        "Remote work",
+        "Global job search",
+        "CV and LinkedIn optimisation",
+        "Asynchronous communication",
+        "Salary negotiation"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/oluwaseyiashiru/"
+      ]
     },
     {
       "@type": "WebSite",
@@ -58,6 +81,9 @@
       "name": "Everything Remote Job",
       "publisher": {
         "@id": "https://everythingremotejob.com/#organization"
+      },
+      "author": {
+        "@id": "https://everythingremotejob.com/#oluwaseyi-ashiru"
       },
       "inLanguage": "en",
       "potentialAction": {

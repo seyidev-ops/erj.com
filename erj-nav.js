@@ -85,7 +85,7 @@
         'padding:0.7rem clamp(1.1rem,4vw,2.2rem);background:var(--enPaper);',
         'border-bottom:1px solid var(--enLine);box-shadow:0 1px 0 var(--enLine),0 6px 24px -18px rgba(0,0,0,0.5);}',
         '.erj-nav *{box-sizing:border-box;}',
-        '.erj-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display,Georgia,serif);',
+        '.erj-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display,"Space Grotesk",system-ui,sans-serif);',
         'font-weight:700;font-size:1rem;color:var(--enInk);letter-spacing:-0.3px;text-decoration:none;flex-shrink:0;}',
         '.erj-brand img{width:30px;height:30px;display:block;object-fit:contain;}',
         '.erj-brand b{font-weight:700;}.erj-brand i{font-style:italic;color:var(--enAccent);font-weight:700;margin-left:-0.08em;}',
@@ -136,7 +136,7 @@
         '.erj-list{display:flex;flex-direction:column;gap:0;margin:0;padding:0.6rem 0.8rem 1.5rem;}',
         '.erj-row{display:flex;align-items:center;gap:0.2rem;}',
         '.erj-link{flex:1;display:flex;align-items:center;gap:0.4rem;color:var(--enInk);',
-        'font-family:var(--font-display,Georgia,serif);font-size:1.14rem;font-weight:600;letter-spacing:-0.3px;',
+        'font-family:var(--font-display,"Space Grotesk",system-ui,sans-serif);font-size:1.14rem;font-weight:600;letter-spacing:-0.3px;',
         'text-decoration:none;padding:0.85rem 0.6rem;border-radius:8px;transition:background .15s,color .15s;}',
         '.erj-link:hover{background:var(--enLine);}',
         /* the title itself IS the location marker */
@@ -166,7 +166,7 @@
         'transition:opacity .3s,visibility .3s;}',
         '.erj-scrim.open{opacity:1;visibility:visible;}',
         '@media(max-width:400px){.erj-nav{gap:0.5rem;padding-left:0.85rem;padding-right:0.85rem;}',
-        '.erj-brand{flex-shrink:1;min-width:0;font-size:0.9rem;gap:7px;overflow:hidden;white-space:nowrap;}',
+        '.erj-brand{flex-shrink:1;min-width:0;font-size:0.9rem;gap:7px;overflow:hidden;white-space:nowrap;letter-spacing:-0.3px;}',
         '.erj-brand img{width:26px;height:26px;}.erj-right{gap:0.3rem;}.erj-icon{width:36px;height:36px;}}',
         '@media(prefers-reduced-motion:reduce){.erj-panel,.erj-scrim,.erj-chev,.erj-bar-chev{transition:none;}}'
     ].join('');

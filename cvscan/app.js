@@ -58,6 +58,8 @@
       ${o.map(ge).join("")}
     </div>
 
+    <p class="scan-next">These ten points are Stage 4 of the full curriculum. If you want the rubric plus the rebuild loop behind it, that is <a href="../selflearn/">the self-paced Stages 1\u20134 pack</a>.</p>
+
     <div class="results-actions">
       <button class="btn-yes" id="printBtn" type="button">Save this report as PDF <span class="arrow">\u2192</span></button>
       <button class="btn-more" id="rescanBtn" type="button">Scan another CV</button>

@@ -50,9 +50,14 @@
   /* PWA */
   if('serviceWorker' in navigator){
     window.addEventListener('load',function(){navigator.serviceWorker.register(base+'sw.js').then(function(reg){reg.update();}).catch(function(){});});
-    var swReloaded=false;
-    navigator.serviceWorker.addEventListener('controllerchange',function(){
-      if(swReloaded)return; swReloaded=true; window.location.reload();
-    });
+    /* NO controllerchange -> location.reload() HERE. That listener is what made
+       the home page white out for a few seconds mid-scroll: the worker takes
+       control shortly after first load, controllerchange fires, and the page
+       reloads under the reader — restoring scroll position, so it looks like a
+       rendering glitch at whatever section they had reached rather than a
+       reload. It was removed from all 16 HTML pages in v88, but this shared
+       module carried its own duplicate and kept firing on the 12 pages that
+       load it. The fetch handler is network-first for HTML, so a published
+       change is already live on the next page view without any reload. */
   }
 })();

@@ -172,8 +172,9 @@ def build(name, kicker, headline, emph, sub, tag, out_name=None, size=(W, H)):
     d.line([PAD, H - 110, W - PAD, H - 110], fill=RULE, width=1)
     track(d, PAD, H - 88, "everythingremotejob.com", F(BODY_MED, 19), DIM, 1.2)
     tf = F(BODY_MED, 19)
-    tw = track_len(d, tag.upper(), tf, 2.4)
-    track(d, W - PAD - tw, H - 88, tag.upper(), tf, ORANGE, 2.4)
+    tag_s = safe(tag.upper(), BODY_MED)   # never skip this — see the ₦ tofu bug
+    tw = track_len(d, tag_s, tf, 2.4)
+    track(d, W - PAD - tw, H - 88, tag_s, tf, ORANGE, 2.4)
 
     out = ROOT / (out_name or f"preview-{name}-v3.jpg")
     img.save(out, "JPEG", quality=92, optimize=True, subsampling=0)

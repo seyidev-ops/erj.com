@@ -527,7 +527,15 @@ function model() {
       return { title: j.title, co: j.co, dates: j.dates, loc: j.loc,
         bullets: (j.bul || '').split('\n').map(function (x) { return x.trim().replace(/^[\u2022\-\u2013*]\s*/, ''); }).filter(Boolean) };
     }),
-    skills: skills, tools: d.fTools,
+    /* skills is now BOTH: the raw string (kept for the 10-point checks and
+       for anything that still wants one line) and a split list, because
+       CORE COMPETENCIES renders as separate lines like EXPERIENCE. */
+    skills: skills,
+    /* Capitalised because these are now standalone lines, not items mid-sentence
+       in a comma run. "ticket triage" reads as a fragment on its own bullet. */
+    skillList: (skills || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean)
+      .map(function (x) { return x.charAt(0).toUpperCase() + x.slice(1); }),
+    tools: d.fTools,
     edu: (d.fEdu || '').split('\n').map(function (x) { return x.trim().replace(/^[\u2022\-\u2013*]\s*/, ''); }).filter(Boolean)
   };
 }
@@ -567,7 +575,7 @@ function render() {
      so what a participant sees is what the exported file contains. */
   var m = model();
   var T = (window.ERJDocx && window.ERJDocx.TEMPLATES[tpl]) || { heads: {
-    summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'SKILLS',
+    summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'CORE COMPETENCIES',
     tools:'TOOLS', edu:'EDUCATION & CERTIFICATIONS' }, showTitle: true };
   var H = T.heads;
   var html = '';
@@ -586,7 +594,8 @@ function render() {
       html += '</div>';
     });
   }
-  if (m.skills) html += '<h2>' + H.skills + '</h2><p>' + escHtml(m.skills) + '</p>';
+  if (m.skillList.length) html += '<h2>' + H.skills + '</h2><ul class="cv-comp">'
+    + m.skillList.map(function (x) { return '<li>' + escHtml(x) + '</li>'; }).join('') + '</ul>';
   if (m.tools)  html += '<h2>' + H.tools  + '</h2><p>' + escHtml(m.tools) + '</p>';
   if (m.edu.length) html += '<h2>' + H.edu + '</h2><ul>'
     + m.edu.map(function (x) { return '<li>' + escHtml(x) + '</li>'; }).join('') + '</ul>';
@@ -598,7 +607,8 @@ function render() {
 /* ─────────────────────── JD PANEL ─────────────────────── */
 function runJd() {
   var jd = val('fJd');
-  if (!jd) { $('jdPanel').style.display = 'none'; return; }
+  if (!jd) { $('jdPanel').style.display = 'none'; $('tailorPanel').style.display = 'none'; return; }
+  $('tailorPanel').style.display = '';
   var need = extractJd(jd);
   var txt = allText(snapshot());
   $('jdPanel').style.display = '';
@@ -620,19 +630,178 @@ function runJd() {
       if (have.indexOf(k) > -1) return;
       var i = jdPicked.indexOf(k);
       if (i > -1) jdPicked.splice(i, 1); else jdPicked.push(k);
-      runJd(); render(); save();
+      runJd(); render(); save(); tailorPreview();
     });
   });
+  tailorPreview();
   $('jdNote').innerHTML = '<b>' + have.length + ' of ' + need.length + '</b> of their terms already appear in your CV. '
     + 'Green ones are covered. Tap a grey chip only if you have genuinely done it \u2014 '
     + '<b>adding a tool you have never used is discovered in the interview, and it ends the process.</b>';
+}
+
+
+/* ─────────────────────── TAILOR TO THE ROLE ───────────────────────
+   Paste the vacancy, press one button, and the SAME facts are reordered so
+   the ones the employer asked for are read first. Nothing is invented, no
+   wording is changed and nothing is deleted — this only changes ORDER, plus
+   the target title if you accept it. That distinction is the whole ethic of
+   the tool: a recruiter reads the top third of a CV, so ordering is the one
+   honest lever there is.
+   tailorBackup holds the pre-tailor state so it is always reversible. */
+var tailorBackup = null;
+
+function jdTerms() {
+  var jd = val('fJd');
+  if (!jd) return [];
+  var t = extractJd(jd).slice(0, 40);
+  /* picked chips count too — the participant confirmed those by hand */
+  jdPicked.forEach(function (k) { if (t.indexOf(k) === -1) t.push(k); });
+  return t;
+}
+
+/* Word stems from the vacancy. Exact-phrase matching alone is far too strict:
+   a vacancy says "documentation" and the CV says "documented", it says
+   "ticket triage" and the CV says "tickets". Matching on a 5-character stem
+   catches those without the false positives a 3-character stem would give. */
+var jdStemCache = { src: null, stems: null };
+
+function stemsOf(text) {
+  var out = {};
+  (text || '').toLowerCase().replace(/[^a-z0-9\s+#.]/g, ' ').split(/\s+/).forEach(function (w) {
+    if (w.length < 4) return;
+    if (JD_STOP.indexOf(w) > -1) return;
+    out[w.slice(0, 5)] = 1;
+  });
+  return out;
+}
+
+function jdStems() {
+  var jd = val('fJd') || '';
+  if (jdStemCache.src === jd) return jdStemCache.stems;
+  jdStemCache = { src: jd, stems: stemsOf(jd) };
+  return jdStemCache.stems;
+}
+
+/* how strongly one line answers this vacancy */
+function relevance(line, terms) {
+  if (!line) return 0;
+  var low = ' ' + line.toLowerCase() + ' ';
+  var score = 0;
+
+  /* 1 · exact phrases and named tools carry the most weight */
+  terms.forEach(function (k) {
+    if (!k) return;
+    if (low.indexOf(k.toLowerCase()) > -1) score += (k.indexOf(' ') > -1 ? 4 : 3);
+  });
+
+  /* 2 · stem overlap — the part that makes this work on real CVs */
+  var stems = jdStems(), seen = {};
+  Object.keys(stemsOf(line)).forEach(function (st) {
+    if (stems[st] && !seen[st]) { seen[st] = 1; score += 1; }
+  });
+
+  /* 3 · a line carrying a number is evidence, and evidence outranks a keyword */
+  if (/\d/.test(line)) score += 2;
+  return score;
+}
+
+/* stable sort by score, descending — equal scores keep their original order,
+   which matters because chronology inside a role is meaningful */
+function byRelevance(arr, terms, get) {
+  return arr
+    .map(function (v, i) { return { v: v, i: i, s: relevance(get ? get(v) : v, terms) }; })
+    .sort(function (a, b) { return b.s - a.s || a.i - b.i; })
+    .map(function (o) { return o.v; });
+}
+
+function tailorPreview() {
+  var terms = jdTerms();
+  var box = $('tailorNote');
+  if (!box) return;
+  if (!terms.length) {
+    box.innerHTML = '<b>Paste the vacancy above first.</b> The engine needs the employer\u2019s own words before it can put yours in their order.';
+    $('tailorBtn').disabled = true;
+    return;
+  }
+  $('tailorBtn').disabled = false;
+  var d = snapshot();
+  var hitJobs = 0, hitBul = 0, totalBul = 0;
+  (d.jobs || []).forEach(function (j) {
+    var bl = (j.bul || '').split('\n').filter(function (x) { return x.trim(); });
+    totalBul += bl.length;
+    var h = bl.filter(function (b) { return relevance(b, terms) >= 3; }).length;
+    hitBul += h; if (h) hitJobs++;
+  });
+  box.innerHTML = '<b>' + terms.length + '</b> terms read from the vacancy. '
+    + '<b>' + hitBul + '</b> of your ' + totalBul + ' experience lines already answer at least one of them, across '
+    + hitJobs + ' role' + (hitJobs === 1 ? '' : 's') + '.<br><br>'
+    + 'Tailoring reorders your competencies and the bullets inside each role so those lines are read first. '
+    + '<b>It invents nothing, deletes nothing and rewords nothing</b> \u2014 your roles stay in date order and every line you wrote is still there.';
+}
+
+function applyTailor() {
+  var terms = jdTerms();
+  if (!terms.length) return;
+
+  /* snapshot for undo, before anything moves */
+  tailorBackup = {
+    skills: val('fSkills'),
+    title: val('fTitle'),
+    jobs: readJobs().map(function (j) { return { title: j.title, co: j.co, dates: j.dates, loc: j.loc, bul: j.bul }; })
+  };
+
+  /* 1 · competencies, most-asked-for first */
+  var sk = (val('fSkills') || '').split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+  if (sk.length) $('fSkills').value = byRelevance(sk, terms).join(', ');
+
+  /* 2 · bullets inside each role. Roles themselves are NOT reordered —
+         a CV out of date order reads as concealment. */
+  var wraps = jobsEl.querySelectorAll('.roleblk');
+  wraps.forEach(function (w) {
+    var ta = w.querySelector('.j-bul');
+    if (!ta) return;
+    var lines = (ta.value || '').split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
+    if (lines.length > 1) ta.value = byRelevance(lines, terms).join('\n');
+  });
+
+  /* 3 · the advertised title, if given and different. fJdRole was previously
+         collected and never used anywhere \u2014 this is what it is for. */
+  var adv = val('fJdRole');
+  var changedTitle = false;
+  if (adv && adv.toLowerCase() !== (val('fTitle') || '').toLowerCase()) {
+    $('fTitle').value = adv; changedTitle = true;
+  }
+
+  render(); save(); tailorPreview();
+  var box = $('tailorNote');
+  box.innerHTML = '<b>Reordered.</b> Competencies and the bullets inside each role now lead with what this employer asked for'
+    + (changedTitle ? ', and your target title now matches the advertised role' : '')
+    + '. Nothing was invented, deleted or reworded. <b>Check every line still reads as yours before you export.</b>';
+  $('untailorBtn').style.display = '';
+  $('tailorBtn').textContent = 'Re-run the reorder';
+}
+
+function undoTailor() {
+  if (!tailorBackup) return;
+  $('fSkills').value = tailorBackup.skills;
+  $('fTitle').value = tailorBackup.title;
+  var wraps = jobsEl.querySelectorAll('.roleblk');
+  wraps.forEach(function (w, i) {
+    var j = tailorBackup.jobs[i]; if (!j) return;
+    var ta = w.querySelector('.j-bul'); if (ta) ta.value = j.bul;
+  });
+  tailorBackup = null;
+  render(); save(); tailorPreview();
+  $('untailorBtn').style.display = 'none';
+  $('tailorBtn').textContent = 'Reorder my CV for this role';
+  $('tailorNote').innerHTML = '<b>Restored.</b> Your original order is back.';
 }
 
 /* ─────────────────────── EXPORT ─────────────────────── */
 function plainText() {
   var m = model();
   var T = (window.ERJDocx && window.ERJDocx.TEMPLATES[tpl]) || { heads: {
-    summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'SKILLS',
+    summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'CORE COMPETENCIES',
     tools:'TOOLS', edu:'EDUCATION & CERTIFICATIONS' }, showTitle: true };
   var H = T.heads, L = [];
   L.push(m.name || 'Your Name');
@@ -648,7 +817,7 @@ function plainText() {
       j.bullets.forEach(function (b) { L.push('- ' + b); });
     });
   }
-  if (m.skills) L.push('', H.skills, m.skills);
+  if (m.skillList.length) { L.push('', H.skills); m.skillList.forEach(function (x) { L.push('- ' + x); }); }
   if (m.tools)  L.push('', H.tools, m.tools);
   if (m.edu.length) { L.push('', H.edu); m.edu.forEach(function (e) { L.push('- ' + e); }); }
   return L.join('\n');
@@ -700,6 +869,8 @@ FIELDS.forEach(function (f) {
 $('btnAddJob').addEventListener('click', function () { addJob(); });
 $('btnParse').addEventListener('click', parseCv);
 $('btnJd').addEventListener('click', function () { runJd(); render(); save(); });
+$('tailorBtn').addEventListener('click', applyTailor);
+$('untailorBtn').addEventListener('click', undoTailor);
 $('btnPdf').addEventListener('click', function () { window.print(); });
 $('btnTxt').addEventListener('click', function () {
   navigator.clipboard.writeText(plainText()).then(

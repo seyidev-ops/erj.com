@@ -149,6 +149,9 @@
   #preview .cv-jt{font-weight:700;font-size:11pt;}
   #preview .cv-jm{font-size:9.8pt;color:#444;margin-bottom:3px;}
   #preview ul{margin:4px 0 0;padding-left:17px;}
+  /* CORE COMPETENCIES sits directly under its heading, so it needs the same
+     top margin the job bullets get from their .cv-job wrapper. */
+  #preview ul.cv-comp{margin-top:2px;}
   #preview li{margin-bottom:3px;}
   #preview p{margin:0 0 6px;}
   .pv-wrap{overflow-x:auto;}
@@ -178,7 +181,10 @@
     <div class="gate-k">Participants only</div>
     <h1 class="gate-h">The ERJ CV Engine</h1>
     <p class="gate-p">This tool is not public. Enter the access code from your enrolment — the same one that unlocks your stages in the portal.</p>
-    <input id="gateIn" class="gate-in" type="text" placeholder="ERJM-CORE-2026EL" autocomplete="off" spellcheck="false">
+    <!-- Placeholder stays generic. Never put a specimen code here, in a comment,
+         or in any inline script: comments ship to the browser and are readable in
+         view-source, so a "removed" code written into a comment is still published. -->
+    <input id="gateIn" class="gate-in" type="text" placeholder="Enter your access code" autocomplete="off" spellcheck="false" aria-label="Access code">
     <button class="gate-btn" id="gateGo">Unlock the engine</button>
     <div class="gate-msg" id="gateMsg"></div>
     <div class="gate-note">
@@ -303,6 +309,19 @@
           </div>
           <button class="addbtn" id="btnJd" style="border-style:solid;color:#fff;background:var(--accent);border-color:var(--accent);">Extract what they asked for →</button>
         </div>
+        <!-- TAILOR PANEL. The chips above tell you what is MISSING; this
+             reorders what you already have so the matching parts are read
+             first. Order is the only honest lever: nothing is invented. -->
+        <div class="panel" id="tailorPanel" style="display:none">
+          <h3>Arrange this CV for this role</h3>
+          <p class="hint">A recruiter reads the top third. This puts the parts of your CV that answer <b>this specific vacancy</b> at the top of each section — your competencies, and the bullets inside each role. <b>Your roles stay in date order, nothing is invented, nothing is deleted and nothing is reworded.</b> Only the order changes.</p>
+          <div class="note" id="tailorNote"></div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1rem;">
+            <button class="btn-yes" id="tailorBtn" type="button">Reorder my CV for this role</button>
+            <button class="btn-more" id="untailorBtn" type="button" style="display:none">Undo — restore my order</button>
+          </div>
+        </div>
+
         <div class="panel" id="jdPanel" style="display:none">
           <h2>What they asked for</h2>
           <p class="hint">Green means it already appears in your CV. Tap a grey chip to confirm you genuinely have it — confirmed items are added to your skills line in the employer's own words.</p>

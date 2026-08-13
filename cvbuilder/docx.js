@@ -27,7 +27,7 @@ var TEMPLATES = {
   intl: {
     name: 'International Standard',
     blurb: 'The safest default. Neutral section names understood everywhere, and the one to use when you do not know where the employer is.',
-    heads: { summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'SKILLS',
+    heads: { summary:'PROFESSIONAL SUMMARY', exp:'EXPERIENCE', skills:'CORE COMPETENCIES',
              tools:'TOOLS', edu:'EDUCATION & CERTIFICATIONS' },
     showTitle: true, rule: true, bodyPt: 11, namePt: 19, gapPt: 10
   },
@@ -200,7 +200,17 @@ function buildBody(d, tpl) {
     });
   }
 
-  if (d.skills) { heading(H.skills); body.push(para({ pt: T.bodyPt, after: 3, runs: [{ t: d.skills, pt: T.bodyPt }] })); }
+  /* CORE COMPETENCIES renders as separate bulleted lines, the same shape as
+     EXPERIENCE. A comma-run of fifteen terms on one line is technically
+     parseable but reads as filler to a human and is skipped. */
+  if (d.skillList && d.skillList.length) {
+    heading(H.skills);
+    d.skillList.forEach(function (sk) {
+      body.push(para({ pt: T.bodyPt, after: 1, bullet: true, style: 'ListParagraph', runs: [{ t: sk, pt: T.bodyPt }] }));
+    });
+  } else if (d.skills) {
+    heading(H.skills); body.push(para({ pt: T.bodyPt, after: 3, runs: [{ t: d.skills, pt: T.bodyPt }] }));
+  }
   if (d.tools)  { heading(H.tools);  body.push(para({ pt: T.bodyPt, after: 3, runs: [{ t: d.tools,  pt: T.bodyPt }] })); }
   if (d.edu && d.edu.length) {
     heading(H.edu);

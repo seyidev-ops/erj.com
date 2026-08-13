@@ -1055,7 +1055,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 
         <!-- Access code entry -->
         <div style="display:flex;gap:.5rem;margin:.9rem 0 .6rem;flex-wrap:wrap">
-          <input id="accessCodeInput" type="text" placeholder="Enter your access code, e.g. ERJM-FULL-2026EL"
+          <input id="accessCodeInput" type="text" placeholder="Enter your access code"
             style="flex:1;min-width:180px;padding:.65rem .9rem;border-radius:9px;border:1.5px solid rgba(217,119,6,.35);background:rgba(217,119,6,.07);color:inherit;font-size:.85rem;outline:none;font-family:inherit"
             onkeydown="if(event.key==='Enter') redeemCode()">
           <button onclick="redeemCode()" style="padding:.65rem 1.1rem;border-radius:9px;background:var(--accent2,#D97706);color:#fff;border:none;font-weight:700;font-size:.84rem;cursor:pointer;white-space:nowrap">Unlock →</button>
@@ -1663,10 +1663,10 @@ function updateStats() {
 /* ════════════════════════════════════════
    ACCESS CODE UNLOCK
 ══════════════════════════════════════════ */
-/* Codes now come from erj-passcode.js — one source of truth shared with the
-   admin panel. Format: ERJM-CORE-<YYYY><Hebrew month>  (Stages 1-4)
-                        ERJM-FULL-<YYYY><Hebrew month>  (Stages 1-5)
-   Legacy codes issued to earlier cohorts are still honoured there. */
+/* Codes come from erj-passcode.js — one source of truth shared with the admin
+   panel. The format is deliberately NOT written out here: this is an inline
+   script in a page a logged-out visitor can view-source, and a documented
+   format is most of a guessable code. Legacy codes are honoured there too. */
 
 function redeemCode() {
   const input = document.getElementById('accessCodeInput');

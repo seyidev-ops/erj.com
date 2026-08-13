@@ -1125,3 +1125,112 @@ that the curriculum is identical and only the delivery differs. `og:image` and
 ### Verification
 `validate.py` clean (with the new guard) · 66/66 tests · 0 broken links · no
 reload on four pages under scripted scroll.
+
+---
+
+## v105 — 13 August 2026 · CV Engine: tailoring, competencies, gate leak
+
+Cache `erj-v104` → `erj-v105`.
+
+### 1 · The gate was publishing its own key
+`cvbuilder/index.html` had `placeholder="ERJM-CORE-2026EL"` on the access-code
+input — a **real, working code format** shown to every stranger who reached the
+page. Replaced with a generic prompt. The same leak was in `dashboard.html`
+("e.g. ERJM-FULL-2026EL"); fixed there too.
+
+### 2 · Arrange this CV for this role — the new feature
+Paste the vacancy in step 3, press one button, and the same facts are reordered
+so the ones the employer asked for are read first:
+
+* **Competencies** sorted by how strongly each answers the vacancy.
+* **Bullets inside each role** sorted the same way. Roles themselves are never
+  reordered — a CV out of date order reads as concealment.
+* **The advertised title** applied to the CV's target title, if given.
+* **Undo** restores the original order exactly.
+
+Nothing is invented, deleted or reworded — only order changes, plus the title if
+accepted. That is stated in the panel, because order is the one honest lever
+there is: a recruiter reads the top third.
+
+**Matching is stemmed, not literal.** Exact-phrase matching alone scored almost
+every real CV at zero — a vacancy says "documentation" and the CV says
+"documented", it says "ticket triage" and the CV says "tickets". Scoring now
+combines exact phrase/tool hits (weight 3–4), 5-character stem overlap (1 each)
+and a bonus for lines carrying a number (2), since evidence outranks a keyword.
+Sorting is stable, so equal-scoring lines keep their original order.
+
+### 3 · Two dead features found and fixed
+**`fJdRole` and `fJdCo` were collected, saved and never read by anything.** The
+advertised role title now drives the target-title update.
+
+**The bullet reorder silently did nothing at first** because it queried
+`.job` — the wrapper class is `roleblk`, set in `addJob()`. An empty NodeList
+iterates without error, so it failed silently. Fixed in both places.
+
+### 4 · CORE COMPETENCIES now renders as separate lines
+It was one comma-run of fifteen terms on a single line — technically parseable,
+but read as filler and skipped. Now bulleted like EXPERIENCE, in the preview, the
+plain-text export and the .docx. Each line is capitalised, since these are now
+standalone lines rather than items mid-sentence.
+
+Verified in a generated .docx: `CORE COMPETENCIES` followed by five
+`ListParagraph` bullets.
+
+### 5 · Added to the comparison page
+New row: the CV Engine is included with Foundation Training and the Inner Circle,
+not with the self-paced pack. FAQ schema updated to match.
+
+### Verification
+`validate.py` clean · 66/66 tests · 0 broken links · tailoring reorders and undoes
+with nothing lost (`sorted(before) == sorted(after)`) · docx opens as a valid zip
+with correct headings · 0 console errors through the whole flow.
+
+---
+
+## v105 — 13 August 2026 · CV Engine audit, passcode leak, comparison page
+
+Cache `erj-v104` → `erj-v105`.
+
+### 1 · The passcode leak was in a comment
+The gate placeholder was already generic. The leak was an **HTML comment**
+explaining that a specimen code had been removed — which quoted the specimen
+code. Comments ship to the browser and are readable in view-source, so a
+"removed" code written into a comment is still published. `dashboard.html` had
+the same problem in an inline script comment documenting the code format.
+
+Both rewritten. Zero specimen codes now appear in any HTML file.
+
+### 2 · CV Engine — audited against the live tool, not the brief
+Tested end to end through the real gate with a generated cohort code, a full CV
+and a real job advert. **The target-role tailoring already works**, and works
+correctly:
+
+* JD paste → 9 employer terms extracted, shown as green/grey chips
+* Competencies reordered so the four the advert asked for read first
+* Bullets reordered inside the role; **roles kept in date order**
+* Target title updated to the advertised role
+* Undo restores the original order
+* Live 10-point score, `.docx` export (valid Office file), print path
+
+Nothing invented, deleted or reworded — verified by diffing the field values
+before and after.
+
+**The one real defect found:** the International Standard template — the default,
+and the one most people export — headed the section **SKILLS**. The US template
+already said CORE COMPETENCIES. Fixed in `docx.js` and in both engine fallbacks,
+verified by extracting the headings from a generated `.docx`:
+`PROFESSIONAL SUMMARY · EXPERIENCE · CORE COMPETENCIES · TOOLS`, with each
+competency on its own line, exactly like EXPERIENCE.
+
+Competencies were already rendering as separate lines in the preview (`<ul>`),
+the plain-text copy and the `.docx` — that part was not broken; only the heading
+name was wrong.
+
+### 3 · Comparison page
+New row: **The CV Engine** — "Not included, you get the rubric to score against
+by hand" versus "Included, participants only". Also added to the "take the live
+training if" column.
+
+### Verification
+`validate.py` clean · 66/66 tests · gate, tailoring, export and print all
+verified in-browser · 0 specimen codes in HTML.

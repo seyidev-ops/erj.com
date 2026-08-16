@@ -309,7 +309,7 @@ function loadCapture(doc, extra) {
   loadCapture(doc);
   const eg = doc.querySelector('.evergreen');
   ok('countdown gets an evergreen door block', !!eg);
-  ok('evergreen names a door that is open today', eg && /masterysetup/.test(eg._html));
+  ok('evergreen names a door that is open today', eg && /job-application-dfy/.test(eg._html));
 })();
 
 // capacity renders from config only

@@ -23,10 +23,11 @@ function visit(pathname, hash) {
 
 console.log('\nLEGACY URL MAP');
 const cases = [
-  ['/howtogetaremotejob/',        '/masterysetup/'],
-  ['/howtogetaremotejob/index.html', '/masterysetup/'],
-  ['/howtogetaremotejob',         '/masterysetup/'],       // no trailing slash
-  ['/products/remote-job/',       '/masterysetup/'],
+  ['/howtogetaremotejob/',        '/job-application-dfy/'],
+  ['/howtogetaremotejob/index.html', '/job-application-dfy/'],
+  ['/howtogetaremotejob',         '/job-application-dfy/'],       // no trailing slash
+  ['/products/remote-job/',       '/job-application-dfy/'],
+  ['/masterysetup/',              '/job-application-dfy/'],
   ['/products/mastery-training/', '/foundationtraining/'],
   ['/products/inner-circle/',     '/innercircle/'],
   ['/products/inner-circle/index.html', '/innercircle/'],
@@ -43,7 +44,7 @@ console.log('\nBEHAVIOUR');
 ok('a genuinely unknown URL shows the page instead of looping',
    (() => { const r = visit('/no-such-page.html'); return r.replaced === null && r.lost; })());
 ok('the hash a visitor arrived with is preserved',
-   visit('/products/remote-job/', '#pricing').replaced === '/masterysetup/#pricing');
+   visit('/products/remote-job/', '#pricing').replaced === '/job-application-dfy/#pricing');
 ok('a mapped target that already has its own hash is not double-hashed',
    visit('/jobs.html', '#top').replaced === '/testimonials.html#jobboard');
 

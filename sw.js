@@ -9,7 +9,7 @@ const SHELL = [
   '/index.html',
   '/register.html',
   '/foundationtraining/index.html',
-  '/masterysetup/index.html',
+  '/job-application-dfy/index.html',
   '/selflearn/index.html',
   '/self-learn-vs-foundation-training.html',
   '/preview-compare-v1.jpg',

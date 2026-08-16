@@ -40,7 +40,7 @@ console.log('\nRENDER');
 slot = { innerHTML: '' };
 A.render(slot, [1, 2, 3, 4]);
 ok('renders a card for a qualifying tier', /class="asc"/.test(slot.innerHTML));
-ok('card carries the price', slot.innerHTML.includes('150,000'));
+ok('card carries the price', slot.innerHTML.includes('300,000'));
 ok('card carries a WhatsApp fallback', /wa\.me\/2348032925957/.test(slot.innerHTML));
 ok('stylesheet injected once', head.children.length === 1);
 

@@ -1234,3 +1234,82 @@ training if" column.
 ### Verification
 `validate.py` clean · 66/66 tests · gate, tailoring, export and print all
 verified in-browser · 0 specimen codes in HTML.
+
+---
+
+## v106 — 16 August 2026 · reveal white-out on direct section jumps, masterysetup image leftover
+
+Cache `erj-v105` → `erj-v106`.
+
+### 1 · A second, different white-out — this one in `.reveal`, not the service worker
+Reported as a blank white gap on the home page at "Four Problem · Fix It",
+desktop only. Not the v104 bug: that one is guarded by `validate.py` and
+verified clean here too. Reproduced instead with a scripted 1440px viewport —
+navigating straight to `#joints` (exactly what the nav's "quick tour" link and
+every other in-page anchor on the site do) left the 3rd and 4th card at
+`opacity:0` indefinitely; `getComputedStyle` confirmed it.
+
+Cause: `.reveal` elements start hidden and fade in via `IntersectionObserver`
+as the reader scrolls to them. A same-page anchor jump moves the viewport in
+one instant frame, so the observer only ever sees whatever landed on-screen at
+that instant — anything further down a tall section is skipped and never
+triggers. On the night theme (the default) it reads as empty space and is easy
+to miss; on the day theme it is a plain blank white patch, which is what
+surfaced it.
+
+Fixed in `erj-product.js`: on load and on every `hashchange`, force-reveal the
+jump target's section and everything the reader has effectively skipped past
+above it, instantly and with no transition delay. Organic scrolling elsewhere
+on the site is untouched — the staggered fade-in still runs exactly as before.
+Verified: direct navigation to `#joints` now shows all four cards at full
+opacity immediately, on both themes, with no regression to scroll-triggered
+reveals elsewhere on the page.
+
+### 2 · The deleted redirect stubs were back — the real Search Console cause
+`validate.py` still had its v104-era guard for this and caught it immediately:
+`jobs.html`, `inner-circle.html`, and the whole `products/` tree
+(`products/remote-job/`, `products/mastery-training/`, `products/inner-circle/`)
+were present in this snapshot even though the project's own history records
+them as deleted on purpose — replaced by the single legacy map in `404.html`.
+
+These are meta-refresh stubs, each carrying its own `<link rel="canonical">`,
+indexable (no `noindex`), and two of them canonicalise to folders that no
+longer exist at all (`masterytraining/`, `getaremotejob/` — both renamed away
+in v91/v92). That combination — a crawlable page, a canonical Google can't
+resolve, near-duplicate content — is exactly what Search Console was
+reporting under "Alternative page with proper canonical tag" and "Duplicate
+without user-selected canonical" for this property. The `/masterysetup/`
+"Not found (404)" line is unrelated and correct: that's the 404 legacy map
+handling an old inbound link exactly as designed.
+
+Deleted all five files. `404.html` already carries a correct entry for every
+URL any of them handled (`/jobs.html`, `/inner-circle.html`,
+`/products/remote-job/`, `/products/mastery-training/`,
+`/products/inner-circle/`), and nothing in the site links to the stub paths
+directly — confirmed with a full-text search before deleting. Google will
+re-crawl the now-genuinely-404 URLs, read the 404.html legacy redirect, and
+the Search Console entries should clear on their own re-crawl.
+
+### 3 · `job-application-dfy` was still sharing the retired page's image
+The 9 → 16 August renames (`getaremotejob` → `masterysetup` → `job-application-dfy`)
+never got the page's own share card — `og:image` and `twitter:image` on
+`job-application-dfy/index.html` were still pointed at
+`preview-masterysetup-v3.jpg`. Built `preview-job-application-dfy-v3.jpg` with
+`make_preview_v3.py` (same copy the page already uses) and repointed both tags.
+The old `-v2`/`-v3` masterysetup files are left on disk, same rule as every
+other rename in this log — already-shared links keep resolving to an image
+that still exists. The stale `masterysetup` entry in the older `make_previews.py`
+generator was also renamed for consistency; that script is superseded by
+`make_preview_v3.py` and isn't run in normal operation.
+
+Everything else that could plausibly say "masterysetup" — the sitemap, every
+live internal link, the 404 legacy-redirect map — was already correct; the
+Search Console entries for `/masterysetup/` are that redirect map doing its
+job on an old inbound link, not a bug.
+
+### Verification
+`validate.py` clean (0 errors, down from 8 — the redirect-stub errors are what
+caught #2) · 67/67 tests · scripted hash-jump to `#joints` on a 1440px
+viewport, both themes: all four cards `opacity:1` with no wait · organic
+scroll reveal unaffected · `job-application-dfy/index.html`
+`og:image`/`twitter:image` now resolve to `preview-job-application-dfy-v3.jpg`.

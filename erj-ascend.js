@@ -40,7 +40,7 @@
         '<b>Interview and salary rehearsal</b> &mdash; including the two answers that quietly end most final rounds.',
         '<b>We do not let go until a real offer letter lands.</b>'
       ],
-      price: '&#8358;150,000',
+      price: '&#8358;300,000',
       priceNote: 'once &middot; no cohort to wait for &middot; starts the week you join',
       cta: 'See the placement engine',
       href: 'job-application-dfy/',

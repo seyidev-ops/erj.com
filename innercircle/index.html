@@ -41,6 +41,11 @@
   .ic-date{font-size:0.8rem;color:var(--ink-soft);font-weight:300;}
   .ic-date strong{color:var(--ink);font-weight:500;}
   @media (max-width:560px){.ic-count{width:100%;flex-direction:column;align-items:flex-start;gap:0.9rem;}}
+  /* the hero figure only takes room away from the headline above the 820px
+     grid breakpoint (see .hero-grid) — past that point the long dollar-range
+     token can break mid-word under the site-wide narrow-screen safety rule.
+     Below 820px the headline has the full width and never needs it. */
+  @media (min-width:821px){.hero h1 em{word-break:normal;overflow-wrap:normal;}}
 </style>
   <link rel="canonical" href="https://everythingremotejob.com/innercircle/">
   <meta property="og:locale" content="en_NG">

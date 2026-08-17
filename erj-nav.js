@@ -51,9 +51,9 @@
         },
         {
             key: 'g-start', label: 'Your Starting Line', href: 'starting-line.html', keys: ['startline'], children: [
+                { label: 'Self-Learn Pack · Stages 1\u20134', href: 'selflearn/', keys: ['selflearn'] },
                 { label: 'Foundation Training · Stages 1–4', href: 'foundationtraining/', keys: ['mastery'] },
                 { label: 'Job Application DFY · Done-For-You', href: 'job-application-dfy/', keys: ['remote'] },
-                { label: 'Self-Learn Pack · Stages 1\u20134', href: 'selflearn/', keys: ['selflearn'] },
                 { label: 'Inner Circle · Residency', href: 'innercircle/', keys: ['inner'] }
             ]
         },

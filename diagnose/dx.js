@@ -101,7 +101,7 @@
             },
             paid: {
                 text: 'Foundation Training installs a weekly targeting and application system. Or have the aiming carried entirely: the placement engine sources roles, tailors with you, and applies alongside you until an offer lands.',
-                href: '../masterysetup/', label: 'See the placement engine'
+                href: '../job-application-dfy/', label: 'See the placement engine'
             },
             tonight: [
                 'Try ten aimed applications this week instead of forty hopeful ones. Each one checked, each one tailored.',

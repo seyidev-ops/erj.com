@@ -134,11 +134,11 @@ h3{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em;color:
 .price-card.feature{border-color:var(--accent);position:relative;}
 .price-card.feature::before{content:'Lowest Total';position:absolute;top:-11px;left:1.8rem;background:var(--accent);color:#fff;
   font-size:0.58rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:4px 13px;border-radius:100px;}
-.price-tag{display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);
-  border:1px solid var(--accent);border-radius:100px;padding:3px 12px;margin-bottom:1.1rem;align-self:flex-start;}
+.price-tag{display:inline-block;font-size:0.56rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);
+  border:1px solid var(--accent);border-radius:100px;padding:3px 12px;margin-bottom:1.1rem;align-self:flex-start;white-space:nowrap;}
 .price-was{font-size:0.95rem;color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--accent);}
 .price-now{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3rem);font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1;margin:0.4rem 0 0.5rem;}
-.price-now small{font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--ink-soft);letter-spacing:0;}
+.price-now small{display:block;font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--ink-soft);letter-spacing:0;line-height:1.5;margin-top:0.6rem;}
 .price-split{font-size:0.85rem;color:var(--accent);margin-bottom:0.5rem;}
 .price-card .btn-yes,.price-card .btn-more{margin-top:auto;}
 
@@ -317,7 +317,7 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
   border-top:1px solid var(--line);}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr;}
   .hero-photo{max-width:440px;}
-  .hero-photo img{aspect-ratio:16/10;}}
+  .hero-photo img{aspect-ratio:16/10;object-position:50% 12%;}}
 .photo-card{margin-left:auto;margin-right:auto;}
 
 /* ════════════════════════════════════════════════════════════════

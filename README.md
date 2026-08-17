@@ -26,7 +26,7 @@ The programme it powers:
 | **2** | The Digital Toolkit | Zoom / Meet / Teams, Asana / Trello / ClickUp, Google Workspace, Loom, cloud recording & transcription |
 | **3** | Async Communication Mastery | Zero-Follow-Up email framework, Slack batch protocol, tone translation, the "Working With Me" manual |
 | **4** | Start Your Remote Career | Remote-first ATS CV, digital portfolio, video interview + STAR coaching |
-| **5** | How to Mastery Setup | The Placement Engine — 30+ verified roles weekly, volume applications, accountability until hired |
+| **5** | How to Job Application DFY | The Placement Engine — 30+ verified roles weekly, volume applications, accountability until hired |
 | **6–12** | The Inner Circle | Private 1:1 mentorship from positioning audit to signed offer |
 
 ## Site architecture
@@ -352,8 +352,8 @@ duration. Left unchanged pending a decision — it is hero copy, not a bug.
 | "Remote Job World Mastery Training" / "Remote Job World Mastery" | **Remote Job Foundation Training** |
 | "Mastery Training" | **Foundation Training** |
 | `masterytraining/` | `foundationtraining/` |
-| "Get A Remote Job" (Stage 5) | **Mastery Setup** |
-| `getaremotejob/` | `masterysetup/` |
+| "Get A Remote Job" (Stage 5) | **Job Application DFY** |
+| `getaremotejob/` | `job-application-dfy/` |
 | `preview-masterytraining-v2.jpg` | `preview-foundationtraining-v2.jpg` |
 | `preview-getaremotejob-v2.jpg` | `preview-masterysetup-v2.jpg` |
 
@@ -385,9 +385,9 @@ Job". Revert if the longer form was deliberate.
 
 **2 · Two verb-phrase casualties repaired.** "Get A Remote Job" was the product
 name in 28 places and ordinary English in 2. The blanket replace produced
-"5+ Years of Experience to Mastery Setup" (blog.html) and "How to Mastery Setup"
+"5+ Years of Experience to Job Application DFY" (blog.html) and "How to Job Application DFY"
 (manifest.json). Rewritten to "…to Land a Remote Role" and "Foundation Training,
-Mastery Setup, and the Inner Circle".
+Job Application DFY, and the Inner Circle".
 
 ### Old URLs still resolve
 You said not to worry about shared links, but the site already maintains a 404
@@ -439,7 +439,7 @@ product page so the two cannot drift. Closes with certification plus a link into
 the three class tracks.
 
 ### 4 · Two blog posts
-* **9 Aug — "New Names: Foundation Training, Mastery Setup, and Why We Changed
+* **9 Aug — "New Names: Foundation Training, Job Application DFY, and Why We Changed
   Them"** (Announcements, `published: true`). Explains what moved, that old links
   redirect, that fee/modules/certificate are unchanged, and that "Mastery" has
   shifted from Stages 1–4 to Stage 5 — so older workbooks and broadcasts using
@@ -561,7 +561,7 @@ pages.
 
 Content is taken from the product pages themselves so the two cannot drift:
 
-* **Mastery Setup** — the four assets on their real build days: ATS-defeating CV
+* **Job Application DFY** — the four assets on their real build days: ATS-defeating CV
   (days 1–2), LinkedIn outbound funnel (3–4), autonomous application engine
   (5–6), multi-currency negotiation playbook (day 7).
 * **Inner Circle** — Stages 6–12 compressed into four items: Audit/Profile
@@ -617,7 +617,7 @@ depth. Self-Learn is the *shallowest* rung — the same Stages 1–4, worked alo
 so appending it after the Inner Circle would have broken the page's own logic.
 
 It is now Route 1, and everything below renumbered: Foundation Training is
-Route 2 ("you build it with us"), Mastery Setup Route 3, Inner Circle Route 4.
+Route 2 ("you build it with us"), Job Application DFY Route 3, Inner Circle Route 4.
 The hero moved from "Three routes" to "Four routes" and its four-depth
 description was rewritten to match. The closing "which comes first" paragraph now
 opens on the Self-Learn/Foundation distinction, which is the genuinely confusing
@@ -653,7 +653,7 @@ Cache `erj-v95` → `erj-v96`.
 The Self-Learn Pack is now rung **01** on `index.html`, ahead of Foundation
 Training — same reasoning as the starting-line page in v95: the ladder ascends by
 depth, and Self-Learn is the shallowest rung. Everything below renumbered
-(Foundation 02, Mastery Setup 03, Inner Circle 04), and the heading moved from
+(Foundation 02, Job Application DFY 03, Inner Circle 04), and the heading moved from
 "Three rungs" to "Four rungs" along with the lead paragraph and the on-page nav
 `sub`.
 
@@ -668,7 +668,7 @@ Fourteen pages carried five different footers: some had one nav row, some two,
 
 All now use the home-page design — two nav rows, both carrying Self-Learn Pack:
 
-* Row 1 — Home · Self-Learn Pack · Foundation Training · Mastery Setup · Inner Circle
+* Row 1 — Home · Self-Learn Pack · Foundation Training · Job Application DFY · Inner Circle
 * Row 2 — Your Starting Line · Free For You · Blog · Register · Participant Login
 
 Subfolder pages get `../` prefixes. Verified: all 10 links resolve with a 200 from
@@ -701,13 +701,13 @@ pages:
 
 **Home · Free For You · Your Starting Line · Blog · Register · Participant Login**
 
-The product row — Self-Learn Pack, Foundation Training, Mastery Setup, Inner
+The product row — Self-Learn Pack, Foundation Training, Job Application DFY, Inner
 Circle — is gone from the footer entirely. All four remain reachable from the top
 nav dropdown, from Your Starting Line (which is itself in the footer), and from
 the home ladder in section 05, so nothing has lost its route in.
 
 Pages: `index`, `free`, `register`, `testimonials`, `starting-line`, `blog`,
-`404`, `foundationtraining/`, `masterysetup/`, `innercircle/`, `selflearn/`,
+`404`, `foundationtraining/`, `job-application-dfy/`, `innercircle/`, `selflearn/`,
 `cvscan/`, `diagnose/`, `masterclass/`. Portal, admin and utility pages remain
 untouched, as in v96.
 
@@ -811,7 +811,7 @@ Queries chosen so the four pages do not compete with each other:
 |---|---|
 | /selflearn/ | remote job training in Nigeria (self-paced) |
 | /foundationtraining/ | remote job training in Nigeria with certificate |
-| /masterysetup/ | done-for-you remote job application service Nigeria |
+| /job-application-dfy/ | done-for-you remote job application service Nigeria |
 | /innercircle/ | 1:1 remote job coaching Nigeria |
 
 Each appears once in the title and once in the opening prose. The H1s on those
@@ -846,7 +846,7 @@ data. Three concrete reasons it was left out rather than a matter of taste:
 1. **It is a stated Google policy violation** — "Misleading or inauthentic
    reviews" under the structured-data guidelines. The penalty is a manual action
    that strips rich results *site-wide*, not just from the offending page. The
-   risk is to `/foundationtraining/`, `/masterysetup/` and every other page's
+   risk is to `/foundationtraining/`, `/job-application-dfy/` and every other page's
    eligibility, for a decoration on one.
 2. **It is checkable.** `aggregateRating` requires `ratingCount`. A rating count
    with no reviews anywhere on the site, on a product with a public price and a
@@ -885,7 +885,7 @@ modes stop the pages fighting.
 |---|---|---|
 | /selflearn/ | remote job training in Nigeria (self-paced) | alone |
 | /foundationtraining/ | **foundations for getting a remote job** | taught + certificated |
-| /masterysetup/ | **getting a remote job, done for you** | done for you |
+| /job-application-dfy/ | **getting a remote job, done for you** | done for you |
 | /innercircle/ | **getting a remote job with a personal coach** | 1:1 |
 
 Each appears once in the title and once in the opening prose.
@@ -1234,3 +1234,82 @@ training if" column.
 ### Verification
 `validate.py` clean · 66/66 tests · gate, tailoring, export and print all
 verified in-browser · 0 specimen codes in HTML.
+
+---
+
+## v106 — 16 August 2026 · reveal white-out on direct section jumps, masterysetup image leftover
+
+Cache `erj-v105` → `erj-v106`.
+
+### 1 · A second, different white-out — this one in `.reveal`, not the service worker
+Reported as a blank white gap on the home page at "Four Problem · Fix It",
+desktop only. Not the v104 bug: that one is guarded by `validate.py` and
+verified clean here too. Reproduced instead with a scripted 1440px viewport —
+navigating straight to `#joints` (exactly what the nav's "quick tour" link and
+every other in-page anchor on the site do) left the 3rd and 4th card at
+`opacity:0` indefinitely; `getComputedStyle` confirmed it.
+
+Cause: `.reveal` elements start hidden and fade in via `IntersectionObserver`
+as the reader scrolls to them. A same-page anchor jump moves the viewport in
+one instant frame, so the observer only ever sees whatever landed on-screen at
+that instant — anything further down a tall section is skipped and never
+triggers. On the night theme (the default) it reads as empty space and is easy
+to miss; on the day theme it is a plain blank white patch, which is what
+surfaced it.
+
+Fixed in `erj-product.js`: on load and on every `hashchange`, force-reveal the
+jump target's section and everything the reader has effectively skipped past
+above it, instantly and with no transition delay. Organic scrolling elsewhere
+on the site is untouched — the staggered fade-in still runs exactly as before.
+Verified: direct navigation to `#joints` now shows all four cards at full
+opacity immediately, on both themes, with no regression to scroll-triggered
+reveals elsewhere on the page.
+
+### 2 · The deleted redirect stubs were back — the real Search Console cause
+`validate.py` still had its v104-era guard for this and caught it immediately:
+`jobs.html`, `inner-circle.html`, and the whole `products/` tree
+(`products/remote-job/`, `products/mastery-training/`, `products/inner-circle/`)
+were present in this snapshot even though the project's own history records
+them as deleted on purpose — replaced by the single legacy map in `404.html`.
+
+These are meta-refresh stubs, each carrying its own `<link rel="canonical">`,
+indexable (no `noindex`), and two of them canonicalise to folders that no
+longer exist at all (`masterytraining/`, `getaremotejob/` — both renamed away
+in v91/v92). That combination — a crawlable page, a canonical Google can't
+resolve, near-duplicate content — is exactly what Search Console was
+reporting under "Alternative page with proper canonical tag" and "Duplicate
+without user-selected canonical" for this property. The `/masterysetup/`
+"Not found (404)" line is unrelated and correct: that's the 404 legacy map
+handling an old inbound link exactly as designed.
+
+Deleted all five files. `404.html` already carries a correct entry for every
+URL any of them handled (`/jobs.html`, `/inner-circle.html`,
+`/products/remote-job/`, `/products/mastery-training/`,
+`/products/inner-circle/`), and nothing in the site links to the stub paths
+directly — confirmed with a full-text search before deleting. Google will
+re-crawl the now-genuinely-404 URLs, read the 404.html legacy redirect, and
+the Search Console entries should clear on their own re-crawl.
+
+### 3 · `job-application-dfy` was still sharing the retired page's image
+The 9 → 16 August renames (`getaremotejob` → `masterysetup` → `job-application-dfy`)
+never got the page's own share card — `og:image` and `twitter:image` on
+`job-application-dfy/index.html` were still pointed at
+`preview-masterysetup-v3.jpg`. Built `preview-job-application-dfy-v3.jpg` with
+`make_preview_v3.py` (same copy the page already uses) and repointed both tags.
+The old `-v2`/`-v3` masterysetup files are left on disk, same rule as every
+other rename in this log — already-shared links keep resolving to an image
+that still exists. The stale `masterysetup` entry in the older `make_previews.py`
+generator was also renamed for consistency; that script is superseded by
+`make_preview_v3.py` and isn't run in normal operation.
+
+Everything else that could plausibly say "masterysetup" — the sitemap, every
+live internal link, the 404 legacy-redirect map — was already correct; the
+Search Console entries for `/masterysetup/` are that redirect map doing its
+job on an old inbound link, not a bug.
+
+### Verification
+`validate.py` clean (0 errors, down from 8 — the redirect-stub errors are what
+caught #2) · 67/67 tests · scripted hash-jump to `#joints` on a 1440px
+viewport, both themes: all four cards `opacity:1` with no wait · organic
+scroll reveal unaffected · `job-application-dfy/index.html`
+`og:image`/`twitter:image` now resolve to `preview-job-application-dfy-v3.jpg`.

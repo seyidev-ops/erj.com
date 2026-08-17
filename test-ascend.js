@@ -40,7 +40,7 @@ console.log('\nRENDER');
 slot = { innerHTML: '' };
 A.render(slot, [1, 2, 3, 4]);
 ok('renders a card for a qualifying tier', /class="asc"/.test(slot.innerHTML));
-ok('card carries the price', slot.innerHTML.includes('150,000'));
+ok('card carries the price', slot.innerHTML.includes('300,000'));
 ok('card carries a WhatsApp fallback', /wa\.me\/2348032925957/.test(slot.innerHTML));
 ok('stylesheet injected once', head.children.length === 1);
 
@@ -50,7 +50,7 @@ ok('clears the slot when there is nothing to sell', slot.innerHTML === '');
 
 slot = { innerHTML: '' };
 A.render(slot, [1,2,3,4,5]);
-ok('waitlist rung offers no purchase link', !/href="[^"]*masterysetup/.test(slot.innerHTML));
+ok('waitlist rung offers no purchase link', !/href="[^"]*job-application-dfy/.test(slot.innerHTML));
 ok('waitlist rung is labelled in development', /In development/.test(slot.innerHTML));
 
 slot = { innerHTML: '' };

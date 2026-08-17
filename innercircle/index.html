@@ -41,6 +41,11 @@
   .ic-date{font-size:0.8rem;color:var(--ink-soft);font-weight:300;}
   .ic-date strong{color:var(--ink);font-weight:500;}
   @media (max-width:560px){.ic-count{width:100%;flex-direction:column;align-items:flex-start;gap:0.9rem;}}
+  /* the hero figure only takes room away from the headline above the 820px
+     grid breakpoint (see .hero-grid) — past that point the long dollar-range
+     token can break mid-word under the site-wide narrow-screen safety rule.
+     Below 820px the headline has the full width and never needs it. */
+  @media (min-width:821px){.hero h1 em{word-break:normal;overflow-wrap:normal;}}
 </style>
   <link rel="canonical" href="https://everythingremotejob.com/innercircle/">
   <meta property="og:locale" content="en_NG">
@@ -64,7 +69,7 @@
     <div class="hero-grid">
     <div>
     <p class="section-label"><span class="mark"></span> Inner Circle · Stages 6–12</p>
-    <h1>Deployed 1:1 into a <em>$1,000–$2,500/month</em> international role — in a 7-week residency.</h1>
+    <h1>Placed 1:1 into a <em>$1,000–$2,500/month</em> role — built and negotiated beside you.</h1>
     <p class="lede">Getting a remote job with a personal coach beside you — private 1:1, by application only. Not a digital school — an invite-only sprint: we co-build your profile, audit your applications in real time, and position you into international pathways — one seat, one outcome.</p>
     <div class="hero-cta">
       <a href="#apply" class="btn-yes">Request admission <span class="arrow">→</span></a>

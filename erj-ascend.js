@@ -28,7 +28,7 @@
     stage5: {
       key: 'stage5',
       badge: 'Your next rung',
-      kicker: 'Stage 5 · Mastery Setup',
+      kicker: 'Stage 5 · Job Application DFY',
       title: 'You built the assets. Now let us run the search with you.',
       lead: 'Stages 1&ndash;4 made you hireable. They did not, on their own, get you hired &mdash; ' +
             'that takes sourcing, aiming and following up every week, after work, for as long as it ' +
@@ -40,11 +40,11 @@
         '<b>Interview and salary rehearsal</b> &mdash; including the two answers that quietly end most final rounds.',
         '<b>We do not let go until a real offer letter lands.</b>'
       ],
-      price: '&#8358;150,000',
+      price: '&#8358;300,000',
       priceNote: 'once &middot; no cohort to wait for &middot; starts the week you join',
       cta: 'See the placement engine',
-      href: 'masterysetup/',
-      wa: 'Hello ERJ — I have completed Stages 1–4 and I want to add Stage 5 (Mastery Setup). Please send me the details.'
+      href: 'job-application-dfy/',
+      wa: 'Hello ERJ — I have completed Stages 1–4 and I want to add Stage 5 (Job Application DFY). Please send me the details.'
     },
 
     /* ── Rung two: they hold the full 1–5 ladder ─────────────────── */

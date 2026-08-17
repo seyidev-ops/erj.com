@@ -4,16 +4,46 @@
   var base=(window.ERJ_NAV&&typeof window.ERJ_NAV.base==='string')?window.ERJ_NAV.base:'';
   /* reveals */
   var els=document.querySelectorAll('.reveal');
+  var obs=null;
+  function showNow(e){
+    e.style.transitionDelay='0s';
+    e.classList.add('in');
+    if(obs)obs.unobserve(e);
+  }
   if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(es){es.forEach(function(e){
+    obs=new IntersectionObserver(function(es){es.forEach(function(e){
       if(e.isIntersecting){
         var sibs=[].slice.call(e.target.parentNode.querySelectorAll(':scope > .reveal'));
         var idx=sibs.indexOf(e.target);
         e.target.style.transitionDelay=(Math.max(0,idx)*0.05)+'s';
         e.target.classList.add('in'); obs.unobserve(e.target);
-      }});},{threshold:0.14});
+      }});},{threshold:0.14,rootMargin:'0px 0px 120px 0px'});
     els.forEach(function(e){obs.observe(e);});
   } else { els.forEach(function(e){e.classList.add('in');}); }
+  /* Jumping straight into a section — the nav's "quick tour" links, any
+     in-page anchor (#joints etc.), or a URL that already carries a #hash on
+     load — moves the viewport in a single instant frame. The observer above
+     only sees whatever is on-screen at that instant, so a card further down
+     a tall section (e.g. the 3rd/4th "Four Problem · Fix It" card) is left
+     sitting at opacity:0 until the reader scrolls again. On the night theme
+     that just reads as empty space; on the day theme it is a plain blank
+     white gap. Force-reveal the target section, and everything the reader
+     has effectively skipped past above it, the moment a hash is present. */
+  function revealThroughHash(){
+    var hash=location.hash;
+    if(!hash||hash.length<2)return;
+    var target=document.getElementById(hash.slice(1));
+    if(!target)return;
+    if(target.classList&&target.classList.contains('reveal'))showNow(target);
+    target.querySelectorAll&&target.querySelectorAll('.reveal').forEach(showNow);
+    document.querySelectorAll('.reveal').forEach(function(e){
+      if(e!==target&&(target.compareDocumentPosition(e)&Node.DOCUMENT_POSITION_PRECEDING)){
+        showNow(e);
+      }
+    });
+  }
+  revealThroughHash();
+  window.addEventListener('hashchange',revealThroughHash);
   /* countdown */
   var pad=function(n){return String(n).padStart(2,'0');};
   var panels=[].slice.call(document.querySelectorAll('[data-deadline]')).map(function(p){

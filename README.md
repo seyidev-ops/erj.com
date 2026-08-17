@@ -1313,3 +1313,49 @@ caught #2) · 67/67 tests · scripted hash-jump to `#joints` on a 1440px
 viewport, both themes: all four cards `opacity:1` with no wait · organic
 scroll reveal unaffected · `job-application-dfy/index.html`
 `og:image`/`twitter:image` now resolve to `preview-job-application-dfy-v3.jpg`.
+
+## v107 — 17 August 2026 · "Your Starting Line" dropdown reordered, white-out re-verified
+
+Cache `erj-v106` → `erj-v107`.
+
+### 1 · Nav dropdown order didn't match the site's own recommended path
+The "Your Starting Line" mega-menu (`erj-nav.js`, `erj-nav.ts`) listed its four
+children as Foundation Training → Job Application DFY → Self-Learn Pack →
+Inner Circle. `starting-line.html` and the home page's own ladder section
+already lead with Self-Learn Pack (since v96), so the nav was the one place
+still out of step. Reordered both nav sources to: Self-Learn Pack → Foundation
+Training → Job Application DFY → Inner Circle, matching the rest of the site.
+
+### 2 · Re-verified the "Four Problem · Fix It" white-out is still fixed
+Reported again as a blank white gap at that section, "on the system view."
+Re-tested against this snapshot with a scripted browser: direct `#joints`
+navigation, in-page anchor clicks, and browser back/forward, each on both the
+day and night themes, and with the theme set to `system` explicitly (the
+`system` setting is what resolves to the plain white day background —
+almost certainly what "system view" refers to). All four cards render at full
+opacity immediately in every case; no regression found. The two known causes
+of a home-page white-out (v104's service-worker reload, v106's skipped
+`IntersectionObserver` targets) are both still fixed and still guarded by
+`validate.py`. If it's still visible live, it's a stale service-worker cache
+on the visitor's device from before v106 — the `erj-v107` cache-name bump in
+this release forces every client to fetch the fixed files instead of serving
+old cached JS.
+
+### Verification
+`validate.py` clean · scripted repro across hash-jump / click / back-forward ×
+{day, night, system(light)} themes: all four `.joint` cards `opacity:1`
+immediately in every combination · nav dropdown order now matches
+`starting-line.html` and the home ladder in both `erj-nav.js` and `erj-nav.ts`.
+
+## v108 — 17 August 2026 · redirect stubs deleted again
+
+The five meta-refresh stubs flagged by `validate.py` in v107 — `jobs.html`,
+`inner-circle.html`, `products/remote-job/`, `products/mastery-training/`,
+`products/inner-circle/` — were confirmed unreferenced by any live page or
+script (only `404.html`'s legacy map and `test-404.js` mention their paths,
+both by design) and deleted, along with the now-empty `products/` directory.
+
+### Verification
+`validate.py`: 0 errors (down from 8) · `test-404.js`: 17/17 passed — all five
+retired URLs still redirect correctly via the `404.html` legacy map with the
+stub files gone.

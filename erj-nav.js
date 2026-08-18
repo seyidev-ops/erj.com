@@ -503,7 +503,11 @@
         const downBtn = box.children[1];
         const OFFSET = 84;
         const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-        const tops = () => stops.map(el => el.getBoundingClientRect().top + window.pageYOffset - OFFSET);
+        /* Cached: this ran getBoundingClientRect() for every stop on every scroll
+           frame, forcing a re-layout each time. Recompute on resize instead. */
+        let _tops = null;
+        const tops = () => (_tops || (_tops = stops.map(el => el.getBoundingClientRect().top + window.pageYOffset - OFFSET)));
+        window.addEventListener('resize', () => { _tops = null; }, { passive: true });
         const currentIndex = () => {
             const y = window.pageYOffset;
             const t = tops();

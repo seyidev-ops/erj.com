@@ -30,7 +30,7 @@
       lead: 'A cohort has a date. Your job hunt doesn\u2019t.',
       body: 'These doors open the day you walk through them \u2014 no gate, no waiting list.',
       doors: [
-        { label: 'Job Application DFY \u2014 done with you, starts this week', href: 'job-application-dfy/' },
+        { label: 'Job Application DFY \u2014 done with you, starts this week', href: 'jobapplication/' },
         { label: 'The free stack \u2014 CV scan, blog, job board, masterclass', href: 'free.html' }
       ]
     },

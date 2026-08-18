@@ -43,7 +43,7 @@
       price: '&#8358;300,000',
       priceNote: 'once &middot; no cohort to wait for &middot; starts the week you join',
       cta: 'See the placement engine',
-      href: 'job-application-dfy/',
+      href: 'jobapplication/',
       wa: 'Hello ERJ — I have completed Stages 1–4 and I want to add Stage 5 (Job Application DFY). Please send me the details.'
     },
 

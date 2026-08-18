@@ -170,7 +170,7 @@ PAGES = [
      "Build every career asset yourself — and keep the skill for life.",
      ["yourself"], "Mindset, AI toolkit, async communication, global-ready assets.", "20 DAYS"),
 
-    ("job-application-dfy", "Done for you · Stage 5",
+    ("jobapplication", "Done for you · Stage 5",
      "We source the roles, apply beside you, and prep every interview.",
      ["beside"], "We will not let you go until you're hired.", "UNTIL HIRED"),
 

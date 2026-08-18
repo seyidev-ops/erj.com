@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v108';
+const CACHE   = 'erj-v110';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -29,6 +29,7 @@ const SHELL = [
   '/starting-line.html',
   '/testimonials.html',
   '/erj-nav.js',
+  '/erj-track.js',
   '/erj-theme.js',
   '/erj-product.js',
   '/erj-passcode.js',
@@ -97,9 +98,25 @@ self.addEventListener('activate', e => {
   );
 });
 
+// Hosts that must always go straight to the network. Serving a cached
+// pixel script — or worse, a cached event beacon — silently breaks
+// reporting in a way that is very hard to notice.
+const NO_SW_HOSTS = [
+  'connect.facebook.net',
+  'facebook.com',
+  'googletagmanager.com',
+  'google-analytics.com',
+  'analytics.google.com',
+  'analytics.tiktok.com',
+  'doubleclick.net'
+];
+
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
+
+  // Analytics and pixels: bypass the service worker entirely.
+  if (NO_SW_HOSTS.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) return;
 
   if (url.hostname.includes('fonts.google') || url.hostname.includes('fonts.gstatic')) {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));

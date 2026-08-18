@@ -23,17 +23,17 @@ function visit(pathname, hash) {
 
 console.log('\nLEGACY URL MAP');
 const cases = [
-  ['/howtogetaremotejob/',        '/job-application-dfy/'],
-  ['/howtogetaremotejob/index.html', '/job-application-dfy/'],
-  ['/howtogetaremotejob',         '/job-application-dfy/'],       // no trailing slash
-  ['/products/remote-job/',       '/job-application-dfy/'],
-  ['/masterysetup/',              '/job-application-dfy/'],
+  ['/howtogetaremotejob/',        '/jobapplication/'],
+  ['/howtogetaremotejob/index.html', '/jobapplication/'],
+  ['/howtogetaremotejob',         '/jobapplication/'],       // no trailing slash
+  ['/products/remote-job/',       '/jobapplication/'],
+  ['/masterysetup/',              '/jobapplication/'],
   ['/products/mastery-training/', '/foundationtraining/'],
   ['/products/inner-circle/',     '/innercircle/'],
   ['/products/inner-circle/index.html', '/innercircle/'],
   ['/job-world-mastery.html',     '/foundationtraining/'],
   ['/inner-circle.html',          '/innercircle/'],
-  ['/jobs.html',                  '/testimonials.html#jobboard'],
+  ['/jobs.html',                  '/jobapplication/'],
 ];
 cases.forEach(([from, to]) => {
   const r = visit(from);
@@ -44,9 +44,9 @@ console.log('\nBEHAVIOUR');
 ok('a genuinely unknown URL shows the page instead of looping',
    (() => { const r = visit('/no-such-page.html'); return r.replaced === null && r.lost; })());
 ok('the hash a visitor arrived with is preserved',
-   visit('/products/remote-job/', '#pricing').replaced === '/job-application-dfy/#pricing');
-ok('a mapped target that already has its own hash is not double-hashed',
-   visit('/jobs.html', '#top').replaced === '/testimonials.html#jobboard');
+   visit('/products/remote-job/', '#pricing').replaced === '/jobapplication/#pricing');
+ok('the hash is carried onto a retired page mapping too',
+   visit('/jobs.html', '#top').replaced === '/jobapplication/#top');
 
 console.log('\nPAGE ITSELF');
 ok('404 page is noindex', /name="robots" content="noindex/.test(html));

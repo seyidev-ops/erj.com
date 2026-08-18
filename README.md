@@ -353,7 +353,7 @@ duration. Left unchanged pending a decision — it is hero copy, not a bug.
 | "Mastery Training" | **Foundation Training** |
 | `masterytraining/` | `foundationtraining/` |
 | "Get A Remote Job" (Stage 5) | **Job Application DFY** |
-| `getaremotejob/` | `job-application-dfy/` |
+| `getaremotejob/` | `jobapplication/` |
 | `preview-masterytraining-v2.jpg` | `preview-foundationtraining-v2.jpg` |
 | `preview-getaremotejob-v2.jpg` | `preview-masterysetup-v2.jpg` |
 
@@ -707,7 +707,7 @@ nav dropdown, from Your Starting Line (which is itself in the footer), and from
 the home ladder in section 05, so nothing has lost its route in.
 
 Pages: `index`, `free`, `register`, `testimonials`, `starting-line`, `blog`,
-`404`, `foundationtraining/`, `job-application-dfy/`, `innercircle/`, `selflearn/`,
+`404`, `foundationtraining/`, `jobapplication/`, `innercircle/`, `selflearn/`,
 `cvscan/`, `diagnose/`, `masterclass/`. Portal, admin and utility pages remain
 untouched, as in v96.
 
@@ -811,7 +811,7 @@ Queries chosen so the four pages do not compete with each other:
 |---|---|
 | /selflearn/ | remote job training in Nigeria (self-paced) |
 | /foundationtraining/ | remote job training in Nigeria with certificate |
-| /job-application-dfy/ | done-for-you remote job application service Nigeria |
+| /jobapplication/ | done-for-you remote job application service Nigeria |
 | /innercircle/ | 1:1 remote job coaching Nigeria |
 
 Each appears once in the title and once in the opening prose. The H1s on those
@@ -846,7 +846,7 @@ data. Three concrete reasons it was left out rather than a matter of taste:
 1. **It is a stated Google policy violation** — "Misleading or inauthentic
    reviews" under the structured-data guidelines. The penalty is a manual action
    that strips rich results *site-wide*, not just from the offending page. The
-   risk is to `/foundationtraining/`, `/job-application-dfy/` and every other page's
+   risk is to `/foundationtraining/`, `/jobapplication/` and every other page's
    eligibility, for a decoration on one.
 2. **It is checkable.** `aggregateRating` requires `ratingCount`. A rating count
    with no reviews anywhere on the site, on a product with a public price and a
@@ -885,7 +885,7 @@ modes stop the pages fighting.
 |---|---|---|
 | /selflearn/ | remote job training in Nigeria (self-paced) | alone |
 | /foundationtraining/ | **foundations for getting a remote job** | taught + certificated |
-| /job-application-dfy/ | **getting a remote job, done for you** | done for you |
+| /jobapplication/ | **getting a remote job, done for you** | done for you |
 | /innercircle/ | **getting a remote job with a personal coach** | 1:1 |
 
 Each appears once in the title and once in the opening prose.
@@ -1293,7 +1293,7 @@ the Search Console entries should clear on their own re-crawl.
 ### 3 · `job-application-dfy` was still sharing the retired page's image
 The 9 → 16 August renames (`getaremotejob` → `masterysetup` → `job-application-dfy`)
 never got the page's own share card — `og:image` and `twitter:image` on
-`job-application-dfy/index.html` were still pointed at
+`jobapplication/index.html` were still pointed at
 `preview-masterysetup-v3.jpg`. Built `preview-job-application-dfy-v3.jpg` with
 `make_preview_v3.py` (same copy the page already uses) and repointed both tags.
 The old `-v2`/`-v3` masterysetup files are left on disk, same rule as every
@@ -1311,7 +1311,7 @@ job on an old inbound link, not a bug.
 `validate.py` clean (0 errors, down from 8 — the redirect-stub errors are what
 caught #2) · 67/67 tests · scripted hash-jump to `#joints` on a 1440px
 viewport, both themes: all four cards `opacity:1` with no wait · organic
-scroll reveal unaffected · `job-application-dfy/index.html`
+scroll reveal unaffected · `jobapplication/index.html`
 `og:image`/`twitter:image` now resolve to `preview-job-application-dfy-v3.jpg`.
 
 ## v107 — 17 August 2026 · "Your Starting Line" dropdown reordered, white-out re-verified

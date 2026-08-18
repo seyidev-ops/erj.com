@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#000000" id="metaThemeColor">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Success Stories — Real People, Real Remote Offers | Everything Remote Job</title>
-<meta name="description" content="Chidi went from ₦480k/month to $54,000/year. Kemi went from teaching to a $58,000 technical writing role. Real, documented ERJ success stories — plus the Private Job Board.">
+<meta name="description" content="Chidi went from ₦480k/month to $54,000/year. Kemi went from teaching to a $58,000 technical writing role. Real, documented ERJ success stories — plus the Done-For-You 7-day job hunt.">
 <link rel="manifest" href="manifest.json">
 
 
@@ -65,30 +65,6 @@ html[data-theme="night"]{
 
 
 
-/* Day theme paywall overrides */
-html[data-theme="day"] #paywall{background:var(--bg);}
-html[data-theme="day"] .pw-wrap{background:transparent;}
-html[data-theme="day"] .pw-card{background:#fff;border-color:rgba(255,87,34,.2);box-shadow:0 4px 24px rgba(255,87,34,.1);}
-html[data-theme="day"] .pw-lock{filter:none;}
-html[data-theme="day"] .pw-title{color:#1A1814;}
-html[data-theme="day"] .pw-sub{color:#57524A;}
-html[data-theme="day"] .pw-price sub{color:#E8470F;}
-html[data-theme="day"] .pw-inp{background:#FAF8F4;border-color:rgba(255,87,34,.25);color:#1A1814;}
-html[data-theme="day"] .pw-inp:focus{background:#fff;border-color:#E8470F;}
-html[data-theme="day"] .btn-pay{background:#E8470F;}
-html[data-theme="day"] .pw-note{color:#A1A1A1;}
-html[data-theme="day"] .pw-err{background:rgba(239,68,68,.08);color:#DC2626;}
-html[data-theme="day"] #board{background:var(--bg);}
-html[data-theme="day"] .jb-hero{background:linear-gradient(135deg,#C9613020,#1A181408);}
-html[data-theme="day"] .jb-search input{background:#fff;color:#1A1814;}
-html[data-theme="day"] .jb-filter{background:#fff;color:#1A1814;}
-html[data-theme="day"] .job-card{background:#fff;border-color:rgba(255,87,34,.15);}
-html[data-theme="day"] .job-card:hover{border-color:rgba(255,87,34,.4);box-shadow:0 4px 20px rgba(255,87,34,.1);}
-html[data-theme="day"] .source-item{background:#fff;border-color:rgba(255,87,34,.12);}
-html[data-theme="day"] .source-item:hover{background:#FAF8F4;}
-html[data-theme="day"] .modal-card{background:#fff;}
-html[data-theme="day"] .modal-close{background:#FAF8F4;border-color:rgba(255,87,34,.15);}
-html[data-theme="day"] .pg{background:#fff;}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);min-height:100vh;overflow-x:hidden;}
 a{-webkit-tap-highlight-color:transparent;}
 button{-webkit-tap-highlight-color:transparent;}
@@ -105,180 +81,50 @@ button{-webkit-tap-highlight-color:transparent;}
 .nav-dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1.5px solid var(--nav-bg);display:none;}
 .nav-dot.on{display:block;}
 .badge{font-size:.55rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.25);border-radius:100px;padding:2px 8px;}
-.hamburger-jobs{display:none;width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer;color:var(--muted);align-items:center;justify-content:center;font-size:.88rem;transition:var(--tr);}
-.hamburger-jobs:hover{color:var(--electric);}
-.jobs-mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;z-index:290;background:var(--nav-bg);backdrop-filter:blur(22px);border-bottom:1px solid var(--border2);padding:.8rem 4%;flex-direction:column;gap:.3rem;}
-.jobs-mobile-menu.open{display:flex;}
-.jmm-item{display:flex;align-items:center;gap:10px;padding:.65rem .9rem;border-radius:9px;color:var(--muted);font-size:.86rem;font-weight:500;text-decoration:none;cursor:pointer;transition:var(--tr);}
-.jmm-item:hover{background:var(--bg3);color:var(--text);}
-@media(max-width:560px){.hamburger-jobs{display:flex;}}
 @media(max-width:479px){.nav-brand-full{display:none;}.nav-brand-short{display:inline;}}
 
-/* NEW JOB NOTIFICATION BAR */
-.job-notif-bar{position:fixed;top:56px;left:0;right:0;z-index:280;background:linear-gradient(90deg,var(--green),#963F12);color:#fff;display:none;align-items:center;gap:.6rem;padding:.6rem 1rem;font-size:.8rem;font-weight:600;animation:nbSlide .3s ease;cursor:pointer;}
-.job-notif-bar.show{display:flex;}
-@keyframes nbSlide{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.jnb-tag{background:rgba(255,255,255,.2);border-radius:100px;padding:1px 8px;font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
-.jnb-title{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.jnb-close{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.15);border:none;color:#fff;cursor:pointer;font-size:.72rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-
 /* ══════════════════════════════════════════
-   PAYWALL SCREEN
+   DONE-FOR-YOU · 7 DAYS OFFER
 ══════════════════════════════════════════ */
-#paywall{display:block;min-height:70vh;display:flex;align-items:center;justify-content:center;gap:1.6rem;padding:2rem 1rem;flex-wrap:wrap;}
-.pw-free{display:flex;flex-direction:column;align-items:flex-start;text-align:left;max-width:380px;width:100%;background:var(--card);border:1.5px solid var(--accent);border-radius:20px;padding:2rem;box-shadow:0 8px 30px rgba(255,87,34,.14);text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;}
-.pw-free:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(255,87,34,.22);}
-.pw-free-tag{display:inline-flex;align-items:center;gap:7px;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
-.pw-free-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:fgbpulse 1.6s infinite;}
-.pw-free-icon{font-size:2rem;margin-bottom:.6rem;}
-.pw-free-title{font-size:1.25rem;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:.7rem;}
-.pw-free-title span{color:var(--muted);font-weight:600;}
-.pw-free-sub{font-size:.86rem;color:var(--muted);line-height:1.6;margin-bottom:1.1rem;}
-.pw-free-features{list-style:none;padding:0;margin:0 0 1.4rem;display:flex;flex-direction:column;gap:.55rem;width:100%;}
-.pw-free-features li{font-size:.84rem;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.45;}
-.pw-free-features li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;}
-.pw-free-cta{display:block;width:100%;text-align:center;background:var(--accent);color:#fff;font-size:.9rem;font-weight:700;padding:.85rem 1rem;border-radius:10px;margin-top:auto;}
-.pw-wrap{max-width:480px;width:100%;text-align:center;}
-.pw-lock{font-size:3.5rem;margin-bottom:1.2rem;display:block;}
-.pw-title{font-family:var(--fd);font-size:1.7rem;font-weight:800;color:var(--text);letter-spacing:-.5px;margin-bottom:.6rem;}
-.pw-sub{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.8rem;}
-.pw-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;box-shadow:var(--sh2);backdrop-filter:blur(24px);margin-bottom:1.2rem;}
-.pw-price{font-family:var(--fd);font-size:2.4rem;font-weight:900;color:var(--text);margin-bottom:.2rem;}
-.pw-price sub{font-size:1rem;font-weight:500;color:var(--muted);vertical-align:middle;}
-.pw-period{font-size:.8rem;color:var(--muted2);margin-bottom:1.4rem;}
-.pw-features{list-style:none;text-align:left;margin-bottom:1.6rem;display:flex;flex-direction:column;gap:.6rem;}
-.pw-features li{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:.6rem;}
-.pw-features li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
-.btn-pay{display:block;width:100%;background:linear-gradient(135deg,var(--accent),#963F12);color:#fff;padding:.95rem;border-radius:10px;font-family:var(--fd);font-size:1rem;font-weight:800;text-decoration:none;transition:var(--tr);box-shadow:0 4px 20px rgba(255,87,34,.4);border:none;cursor:pointer;margin-bottom:.8rem;}
-.btn-pay:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,87,34,.5);}
-.pw-divider{display:flex;align-items:center;gap:.8rem;margin:.9rem 0;color:var(--muted2);font-size:.75rem;}
-.pw-divider::before,.pw-divider::after{content:'';flex:1;height:1px;background:var(--border2);}
-.pw-phone-form{display:flex;gap:.5rem;margin-top:.6rem;}
-.pw-inp{flex:1;padding:.7rem .9rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--fb);font-size:.88rem;outline:none;transition:var(--tr);}
-.pw-inp:focus{border-color:var(--accent);}
-.pw-inp::placeholder{color:var(--muted2);}
-.btn-verify{background:var(--bg3);color:var(--electric);border:1px solid var(--border);border-radius:8px;padding:.7rem 1rem;font-family:var(--fb);font-size:.82rem;font-weight:700;cursor:pointer;transition:var(--tr);white-space:nowrap;}
-.btn-verify:hover{background:rgba(255,87,34,.15);}
-.pw-err{font-size:.78rem;color:var(--red);margin-top:.5rem;display:none;}
-.pw-err.show{display:block;}
-.pw-note{font-size:.76rem;color:var(--muted2);line-height:1.6;margin-top:.9rem;}
-.pw-note a{color:var(--electric);text-decoration:none;}
-
-/* ══════════════════════════════════════════
-   JOB BOARD (unlocked)
-══════════════════════════════════════════ */
-#board{display:none;padding-bottom:calc(2rem + var(--sab));}
-
-/* Hero */
-.jb-hero{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-bottom:1px solid var(--border2);padding:1.6rem 4% 1.4rem;}
-.jb-hero-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.1rem;}
-.jb-title{font-family:var(--fd);font-size:1.4rem;font-weight:800;color:var(--text);}
-.jb-title span{color:var(--electric);}
-.jb-stats{display:flex;gap:1.2rem;flex-wrap:wrap;}
-.jb-stat{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:4px;}
-.jb-stat strong{color:var(--text);font-weight:700;}
-.jb-search-row{display:flex;gap:.5rem;flex-wrap:wrap;}
-.jb-search{flex:1;min-width:200px;position:relative;}
-.jb-search svg{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;pointer-events:none;}
-.jb-search input{width:100%;padding:.68rem .9rem .68rem 2.4rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--fb);font-size:.86rem;outline:none;transition:var(--tr);box-sizing:border-box;}
-.jb-search input:focus{border-color:var(--accent);}
-.jb-search input::placeholder{color:var(--muted2);}
-.jb-filter{padding:.68rem .9rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;appearance:none;cursor:pointer;white-space:nowrap;}
-.jb-filter:focus{border-color:var(--accent);}
-
-/* Main layout */
-.jb-main{max-width:1100px;margin:0 auto;padding:1.4rem 4%;display:grid;grid-template-columns:1fr;gap:1.4rem;}
-@media(min-width:900px){.jb-main{grid-template-columns:1fr 260px;align-items:start;}}
-
-/* Job cards */
-.jobs-list{display:flex;flex-direction:column;gap:.75rem;}
-.job-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:1.1rem 1.2rem;cursor:pointer;transition:var(--tr);position:relative;backdrop-filter:blur(12px);}
-.job-card:hover{border-color:var(--electric);box-shadow:var(--sh);}
-.job-card.is-new::before{content:'NEW';position:absolute;top:.8rem;right:.8rem;background:var(--green);color:#fff;font-size:.52rem;font-weight:700;letter-spacing:1.5px;padding:2px 7px;border-radius:100px;}
-.jc-top{display:flex;align-items:flex-start;gap:.85rem;margin-bottom:.6rem;}
-.jc-logo{width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#963F12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:1px solid var(--border2);}
-.jc-info{flex:1;min-width:0;}
-.jc-role{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.18rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.jc-company{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;}
-.jc-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.7rem;}
-.tag{font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap;}
-.tag-cat{background:rgba(255,87,34,.1);color:var(--electric);}
-.tag-loc{background:rgba(16,185,129,.08);color:var(--green);}
-.tag-type{background:rgba(245,158,11,.08);color:var(--amber);}
-.tag-sal{background:rgba(20,184,166,.08);color:var(--teal);}
-.tag-src{background:rgba(255,87,34,.1);color:#E8470F;}
-.jc-footer{display:flex;align-items:center;justify-content:space-between;font-size:.7rem;color:var(--muted2);}
-.btn-apply{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:.42rem .9rem;font-family:var(--fd);font-size:.76rem;font-weight:700;cursor:pointer;transition:var(--tr);text-decoration:none;display:inline-block;white-space:nowrap;}
-.btn-apply:hover{background:var(--accent2);}
-.micro1-card{border:2px solid rgba(20,184,166,.3);background:linear-gradient(135deg,rgba(20,184,166,.07),rgba(255,87,34,.05));}
-.micro1-card .jc-logo{background:linear-gradient(135deg,#C9613020,#1A181408);}
-
-/* Sidebar */
-.jb-sidebar{display:flex;flex-direction:column;gap:1rem;}
-.sb-card{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);padding:1rem;backdrop-filter:blur(12px);}
-.sb-title{font-family:var(--fd);font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:.8rem;display:flex;align-items:center;gap:5px;}
-.source-item{display:flex;align-items:center;gap:.6rem;padding:.48rem 0;border-bottom:1px solid var(--border2);cursor:pointer;transition:var(--tr);}
-.source-item:last-child{border:none;}
-.source-item:hover{color:var(--electric);}
-.src-icon{font-size:1.1rem;flex-shrink:0;}
-.src-name{font-size:.8rem;color:var(--muted);flex:1;}
-.src-count{font-size:.65rem;background:rgba(255,87,34,.1);color:var(--electric);padding:2px 6px;border-radius:100px;}
-.filter-chips{display:flex;flex-wrap:wrap;gap:.3rem;}
-.chip{font-size:.7rem;padding:.28rem .7rem;border-radius:100px;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);cursor:pointer;transition:var(--tr);}
-.chip.on,.chip:hover{border-color:var(--accent);color:var(--electric);background:rgba(255,87,34,.1);}
-.micro1-sb{background:linear-gradient(135deg,var(--teal),#963F12);border-radius:var(--r);padding:1rem;text-align:center;}
-.free-gb{display:block;background:var(--card);border:1.5px solid var(--accent);border-radius:var(--r);padding:1.2rem 1.1rem;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;}
-.free-gb:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(255,87,34,.18);}
-.free-gb-tag{display:inline-flex;align-items:center;gap:7px;font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
-.free-gb-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:fgbpulse 1.6s infinite;}
-@keyframes fgbpulse{0%{box-shadow:0 0 0 0 rgba(255,87,34,.5)}70%{box-shadow:0 0 0 6px rgba(255,87,34,0)}100%{box-shadow:0 0 0 0 rgba(255,87,34,0)}}
-.free-gb-title{font-size:.98rem;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:.5rem;}
-.free-gb-title span{color:var(--muted);font-weight:600;}
-.free-gb-desc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:.9rem;}
-.free-gb-cta{display:inline-block;background:var(--accent);color:#fff;font-size:.78rem;font-weight:700;padding:.55rem .9rem;border-radius:8px;}
-.micro1-sb h4{font-family:var(--fd);font-weight:800;color:#fff;font-size:.9rem;margin-bottom:.3rem;}
-.micro1-sb p{font-size:.74rem;color:rgba(255,255,255,.8);margin-bottom:.7rem;line-height:1.5;}
-.micro1-sb a{display:block;background:#fff;color:var(--teal);padding:.5rem;border-radius:7px;font-weight:700;font-size:.78rem;text-decoration:none;transition:var(--tr);}
-.micro1-sb a:hover{background:rgba(255,255,255,.85);}
-
-/* Job detail modal */
-.modal-bg{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.82);backdrop-filter:blur(5px);display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;}
-.modal-bg.open{display:flex;}
-.modal-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;max-width:640px;width:100%;box-shadow:var(--sh2);padding:1.8rem;position:relative;margin:auto;animation:mSlide .25s ease;}
-@keyframes mSlide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;}
-.modal-close:hover{color:var(--text);}
-.modal-logo{width:52px;height:52px;border-radius:4px;background:linear-gradient(135deg,var(--accent),#963F12);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;}
-.modal-role{font-family:var(--fd);font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:.3rem;}
-.modal-company{font-size:.85rem;color:var(--muted);margin-bottom:.9rem;}
-.modal-tags{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.2rem;}
-.modal-desc{font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1.3rem;}
-.modal-desc h4{font-family:var(--fd);font-size:.9rem;font-weight:700;color:var(--text);margin:1rem 0 .4rem;}
-.modal-desc ul{padding-left:1.1rem;}
-.modal-desc li{margin-bottom:.3rem;}
-.modal-actions{display:flex;gap:.7rem;flex-wrap:wrap;}
-.btn-modal-apply{flex:1;min-width:140px;background:var(--accent);color:#fff;border:none;border-radius:9px;padding:.7rem 1rem;font-family:var(--fd);font-size:.9rem;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:var(--tr);}
-.btn-modal-apply:hover{background:var(--accent2);}
-.btn-modal-save{background:var(--bg3);color:var(--muted);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1rem;font-family:var(--fb);font-size:.86rem;font-weight:600;cursor:pointer;transition:var(--tr);}
-.btn-modal-save:hover{color:var(--electric);border-color:var(--electric);}
-
-/* Pagination */
-.pagination{display:flex;gap:.4rem;justify-content:center;margin-top:1.2rem;flex-wrap:wrap;}
-.pg{min-width:34px;height:34px;padding:0 .4rem;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);cursor:pointer;font-size:.8rem;font-weight:600;transition:var(--tr);}
-.pg.on,.pg:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-
-/* Toast */
-.jb-toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);z-index:9999;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:.6rem 1.1rem;font-size:.8rem;color:var(--text);box-shadow:var(--sh2);opacity:0;pointer-events:none;transition:opacity .3s;max-width:calc(100vw - 2rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.jb-toast.on{opacity:1;}
-
-/* Responsive */
-@media(max-width:480px){
-  .jb-hero{padding:1.2rem 4% 1rem;}
-  .jb-title{font-size:1.15rem;}
-  .jb-main{padding:1rem 4%;}
-  .job-card{padding:.9rem 1rem;}
-  .jc-role{font-size:.88rem;}
-}
+.dfy-sec{padding:clamp(3rem,7vw,5rem) 0 clamp(3.5rem,8vw,6rem);border-top:1px solid var(--border2);}
+.dfy-label{display:inline-flex;align-items:center;gap:.7rem;font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;}
+.dfy-label .mark{width:16px;height:1px;background:var(--accent);}
+.dfy-h{font-family:var(--fd);font-size:clamp(1.7rem,4.4vw,2.7rem);font-weight:800;letter-spacing:-.02em;line-height:1.14;color:var(--text);margin-bottom:.9rem;}
+.dfy-h em{font-style:normal;color:var(--accent);}
+.dfy-sub{font-size:clamp(.95rem,1.6vw,1.05rem);color:var(--muted);line-height:1.75;max-width:640px;margin-bottom:2.6rem;}
+.dfy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;align-items:start;}
+@media(min-width:900px){.dfy-grid{grid-template-columns:1fr 1fr;}}
+.dfy-grid .cap-bridge{grid-column:1/-1;}
+.dfy-card{background:var(--card);border:1.5px solid var(--accent);border-radius:20px;padding:2rem;box-shadow:0 8px 30px rgba(255,87,34,.12);}
+.dfy-tag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,87,34,.3);border-radius:100px;padding:4px 11px;margin-bottom:1.2rem;}
+.dfy-price{font-family:var(--fd);font-size:2.4rem;font-weight:900;color:var(--text);line-height:1.05;margin-bottom:1.3rem;}
+.dfy-price small{display:block;font-family:var(--fb);font-size:.8rem;font-weight:400;color:var(--muted2);line-height:1.6;margin-top:.5rem;}
+.dfy-feat{list-style:none;padding:0;margin:0 0 1.6rem;display:flex;flex-direction:column;gap:.6rem;}
+.dfy-feat li{font-size:.87rem;color:var(--text);line-height:1.5;padding-left:1.5rem;position:relative;}
+.dfy-feat li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700;}
+.dfy-btn{display:block;width:100%;text-align:center;background:var(--accent);color:#fff;padding:.95rem 1rem;border-radius:10px;font-family:var(--fd);font-size:1rem;font-weight:800;text-decoration:none;transition:var(--tr);}
+.dfy-btn:hover{background:var(--accent2,#963F12);transform:translateY(-2px);}
+.dfy-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;font-size:.72rem;color:var(--muted2);margin-top:.85rem;}
+.dfy-note{font-size:.78rem;color:var(--muted);line-height:1.7;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--border2);}
+.dfy-note a{color:#25D366;font-weight:700;text-decoration:none;}
+.dfy-free{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;text-decoration:none;transition:transform .25s ease,border-color .25s ease;}
+.dfy-free:hover{transform:translateY(-4px);border-color:var(--accent);}
+.dfy-free-tag{display:inline-flex;align-items:center;gap:7px;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:1rem;}
+.dfy-free-dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+.dfy-free-title{font-family:var(--fd);font-size:1.25rem;font-weight:800;color:var(--text);line-height:1.25;margin-bottom:.7rem;}
+.dfy-free-title span{color:var(--muted);font-weight:600;}
+.dfy-free-sub{font-size:.86rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem;}
+.dfy-free-list{list-style:none;padding:0;margin:0 0 1.4rem;display:flex;flex-direction:column;gap:.55rem;width:100%;}
+.dfy-free-list li{font-size:.84rem;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.45;}
+.dfy-free-list li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700;}
+.dfy-free-cta{display:block;width:100%;text-align:center;background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-size:.9rem;font-weight:700;padding:.85rem 1rem;border-radius:10px;margin-top:auto;}
+.dfy-more{font-size:.88rem;color:var(--muted);line-height:1.75;margin-top:2rem;text-align:center;}
+.dfy-more a{color:var(--accent);font-weight:600;text-decoration:none;}
+.dfy-more a:hover{text-decoration:underline;}
+html[data-theme="day"] .dfy-card{background:#fff;border-color:rgba(255,87,34,.45);box-shadow:0 4px 24px rgba(255,87,34,.1);}
+html[data-theme="day"] .dfy-free{background:#fff;}
+html[data-theme="day"] .dfy-free-cta{background:#FAF8F4;}
+@media(max-width:480px){.dfy-card,.dfy-free{padding:1.5rem;}.dfy-price{font-size:2rem;}}
 
 /* ── Cohort 9 minimalist overrides ── */
 #particles,.radial-glow,.grid-overlay{display:none!important}
@@ -336,9 +182,6 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 .ts-cta-p{font-family:var(--fb);font-size:.88rem;color:var(--muted);font-weight:300;max-width:46ch;line-height:1.6;}
 .ts-cta-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:500;padding:.95rem 1.7rem;border-radius:100px;text-decoration:none;white-space:nowrap;transition:background .3s ease;}
 .ts-cta-btn:hover{background:var(--accent-h);}
-.jb-sec-head{padding:clamp(2.5rem,6vw,4rem) 0 0;text-align:center;}
-.jb-sec-label{display:inline-flex;align-items:center;gap:.7rem;font-size:.64rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
-.jb-sec-h{font-family:var(--fd);font-size:clamp(1.8rem,4.5vw,3rem);font-weight:800;letter-spacing:-.02em;color:var(--text);line-height:1.05;}
 /* ══ WHATSAPP TOGGLE ══ */
 .wa-fab{position:fixed;right:16px;bottom:calc(16px + var(--sab,0px));z-index:600;width:54px;height:54px;border-radius:50%;background:#25D366;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:transform .25s ease;}
 .wa-fab:hover{transform:scale(1.07);}
@@ -371,18 +214,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 
 <!-- NAV -->
 <div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'stories',onPage:[{label:'Success stories',href:'#stories'},{label:'Private Job Board',href:'#jobboard'},{label:'Register for Cohort 10',href:'register.html'}]};</script>
-
-<!-- NEW JOB NOTIFICATION BAR -->
-<div class="job-notif-bar" id="jobNotifBar">
-  <span class="jnb-tag">🆕 NEW JOB</span>
-  <span class="jnb-title" id="jobNotifTitle">New remote role added</span>
-  <span style="font-size:.72rem;opacity:.8;flex-shrink:0">View →</span>
-  <button class="jnb-close" onclick="dismissJobNotif(event)">✕</button>
-</div>
-
-<!-- TOAST -->
-<div class="jb-toast" id="jbToast"></div>
+<script>window.ERJ_NAV={active:'stories',onPage:[{label:'Success stories',href:'#stories'},{label:'Done For You in 7 Days',href:'#dfy7'},{label:'Register for Cohort 10',href:'register.html'}]};</script>
 
 
 <!-- ══ SUCCESS STORIES ══ -->
@@ -485,788 +317,45 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
   </div>
 </section>
 
-<!-- ══ PRIVATE JOB BOARD ══ -->
-<section id="jobboard" class="ts-wrap jb-sec-head">
-  <div class="jb-sec-label"><span class="mark" style="width:16px;height:1px;background:var(--accent)"></span>Members Only</div>
-  <h2 class="jb-sec-h">The Private Job Board</h2>
+<!-- ══ DONE-FOR-YOU · 7 DAYS ══ -->
+<section id="dfy7" class="ts-wrap dfy-sec">
+  <div class="dfy-label"><span class="mark"></span>Done For You · 7 Days</div>
+  <h2 class="dfy-h">Would rather not job hunt at all? <em>We'll run it for you.</em></h2>
+  <p class="dfy-sub">Every story above belongs to someone who did the searching themselves — and that is the part most people never find time for. So we took it off the table. You pick the field; we find the roles, tailor the CV to each one, and send the applications on your behalf. Three or more verified roles applied to within seven days.</p>
+
+  <div class="dfy-grid">
+
+    <div class="dfy-card">
+      <span class="dfy-tag">Job Hunt &amp; Application · Done For You</span>
+      <div class="dfy-price">₦50,000<small>One payment · your job hunt and application done for you in 7 days</small></div>
+      <ul class="dfy-feat">
+        <li>Job hunt for one field — local and foreign roles</li>
+        <li>A CV tailored to that field and to each company</li>
+        <li>Applications written and submitted for you</li>
+        <li>3+ verified roles sourced and applied within 7 days</li>
+        <li>A written record of everything sent, and where it went</li>
+      </ul>
+      <a href="https://paystack.shop/pay/dfy7days" class="dfy-btn">Start my job hunt <span>→</span></a>
+      <div class="dfy-trust"><span>Secure Paystack checkout</span><span>·</span><span>Your slot is booked within 24 hours</span></div>
+      <p class="dfy-note">After payment, send your receipt to <a href="https://wa.me/2348032925957" target="_blank" rel="noopener">+234 803 292 5957</a> on WhatsApp with the message <em>"DFY 7 DAYS"</em> and the field you want us to search. We'll confirm your slot and start the same week.</p>
+    </div>
+
+    <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" target="_blank" rel="noopener" class="dfy-free">
+      <span class="dfy-free-tag"><span class="dfy-free-dot"></span> 100% Free · No Payment</span>
+      <div class="dfy-free-title">Global Remote Job Board <span>(Africans)</span></div>
+      <p class="dfy-free-sub">Not ready to pay for anything? Get real, verified global remote roles open to Africans — shared free on our WhatsApp channel. No fees, no gatekeeping.</p>
+      <ul class="dfy-free-list">
+        <li>Verified global remote roles, regularly updated</li>
+        <li>Open to every African — no payment needed</li>
+        <li>Delivered straight to your WhatsApp</li>
+      </ul>
+      <span class="dfy-free-cta">Join free on WhatsApp →</span>
+    </a>
+
+  </div>
+
+  <p class="dfy-more">Want the full placement engine instead — all four career assets built in 7 days, then 30+ roles sourced and applied every week for a month until an offer letter lands? <a href="jobapplication/">See Job Application DFY →</a></p>
 </section>
-
-<!-- PAYWALL SCREEN -->
-<div id="paywall">
-  <div class="pw-wrap">
-    <span class="pw-lock">🔒</span>
-    <div class="pw-title">Private Job Board</div>
-    <p class="pw-sub">Exclusive curated remote jobs from global companies — updated regularly. Access requires a membership or admin approval.</p>
-
-    <!-- TABS -->
-    <div style="display:flex;background:rgba(8,14,38,.6);border:1px solid var(--border2);border-radius:10px;padding:4px;margin-bottom:1.5rem;gap:0;">
-      <button id="tabPay"    onclick="switchPwTab('pay')"    style="flex:1;padding:.6rem;border:none;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;background:var(--accent);color:#fff;transition:all .2s;">💳 Subscribe</button>
-      <button id="tabAccess" onclick="switchPwTab('access')" style="flex:1;padding:.6rem;border:none;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s;">✅ Have Access</button>
-      <button id="tabEnroll" onclick="switchPwTab('enroll')" style="flex:1;padding:.6rem;border:none;border-radius:7px;font-size:.82rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s;">🎓 Enrolled</button>
-    </div>
-
-    <!-- TAB: Pay -->
-    <div id="pwTabPay">
-      <div class="pw-card">
-        <div class="pw-price"><sub>₦</sub>50,000</div>
-        <div class="pw-period">per month · Cancel anytime</div>
-        <ul class="pw-features">
-          <li>Curated global remote jobs daily</li>
-          <li>Jobs from Ashby, Greenhouse, Lever, Pinpoint</li>
-          <li>micro1.ai AI-matched roles (worldwide)</li>
-          <li>Push notifications when new roles drop</li>
-          <li>Search, filter, and save favourites</li>
-          <li>Priority WhatsApp job alerts</li>
-        </ul>
-        <a href="register.html" class="btn-pay">
-          🔒 Pay ₦50,000/month to Unlock →
-        </a>
-        <div id="paidInstructions" style="display:none;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:.9rem;font-size:.8rem;color:var(--muted);text-align:left;line-height:1.7;margin-top:.6rem">
-          ✅ <strong style="color:var(--green)">After payment — 3 simple steps:</strong><br><br>
-          <strong style="color:var(--text)">Step 1:</strong> Screenshot your payment confirmation.<br>
-          <strong style="color:var(--text)">Step 2:</strong> Send to <a href="https://wa.me/2348032925957" target="_blank" style="color:#25D366;font-weight:700">+234 803 292 5957</a> on WhatsApp with the message: <em>"JOB BOARD ACCESS"</em> + your phone number.<br>
-          <strong style="color:var(--text)">Step 3:</strong> Admin will activate your phone number within 24 hours. You'll receive a WhatsApp confirmation — then come back here and click <strong>"✅ I Have Access"</strong> tab to unlock.
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB: Already have access -->
-    <div id="pwTabAccess" style="display:none">
-      <div class="pw-card" style="padding:1.8rem">
-        <div style="text-align:center;margin-bottom:1.5rem">
-          <div style="font-size:2rem;margin-bottom:.5rem">📱</div>
-          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:.3rem">Enter Your WhatsApp Number</div>
-          <div style="font-size:.83rem;color:var(--muted);line-height:1.6">Enter the exact WhatsApp number you used when requesting access. Admin must have approved it first.</div>
-        </div>
-        <div style="background:rgba(255,87,34,.06);border:1px solid rgba(255,87,34,.15);border-radius:10px;padding:1rem;margin-bottom:1.2rem;font-size:.8rem;color:var(--muted);line-height:1.7;">
-          📋 <strong style="color:var(--electric)">How access is granted:</strong><br>
-          1. You pay the ₦50,000/month subscription (or are granted free access by admin).<br>
-          2. You send your WhatsApp number to <strong style="color:#25D366">+234 803 292 5957</strong> with "JOB BOARD ACCESS".<br>
-          3. Admin adds your number to the approved list and confirms via WhatsApp.<br>
-          4. Return here and enter that same number to unlock the board.
-        </div>
-        <label style="display:block;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:.45rem">Your WhatsApp Number</label>
-        <div class="pw-phone-form">
-          <input class="pw-inp" id="phoneInput" type="tel" placeholder="Your WhatsApp number" inputmode="tel">
-          <button class="btn-verify" onclick="verifyPhone()">Unlock →</button>
-        </div>
-        <div class="pw-err" id="pwErr">Number not found. Make sure it matches exactly what admin approved. Need help? <a href="https://wa.me/2348032925957" target="_blank" style="color:var(--electric)">WhatsApp support →</a></div>
-        <p class="pw-note" style="margin-top:.9rem">Number format matters. Try it with the country code (+234…) and, if that fails, in the local format (0…).</p>
-      </div>
-
-      <div style="text-align:center;margin-top:1.2rem">
-        <p style="font-size:.8rem;color:var(--muted);margin-bottom:.6rem">Don't have access yet?</p>
-        <button onclick="switchPwTab('pay')" style="background:rgba(255,87,34,.1);color:var(--electric);border:1px solid rgba(255,87,34,.25);border-radius:8px;padding:.6rem 1.3rem;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .2s">💳 Subscribe for Access →</button>
-      </div>
-    </div>
-
-    <!-- TAB: Enrolled student -->
-    <div id="pwTabEnroll" style="display:none">
-      <div class="pw-card" style="padding:1.8rem">
-        <div style="text-align:center;margin-bottom:1.5rem">
-          <div style="font-size:2rem;margin-bottom:.5rem">🎓</div>
-          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:.3rem">Already Enrolled?</div>
-          <div style="font-size:.83rem;color:var(--muted);line-height:1.6">Registered students get <strong style="color:var(--electric)">60 days FREE</strong> access included with any stage. Log in to your training account to unlock the board automatically.</div>
-        </div>
-        <a href="login.html" style="display:block;background:var(--accent);color:#fff;text-align:center;padding:.85rem;border-radius:10px;font-family:var(--fd);font-weight:700;font-size:.92rem;text-decoration:none;margin-bottom:.9rem">🔐 Log In to Training Account →</a>
-        <div style="background:rgba(20,184,166,.07);border:1px solid rgba(20,184,166,.18);border-radius:10px;padding:.9rem;font-size:.8rem;color:var(--muted);line-height:1.7">
-          📋 <strong style="color:var(--electric)">How it works:</strong><br>
-          Once you log in, your 60-day Private Job Board access activates automatically — no code or phone number needed. Your access timer starts from the date you registered for any stage.
-        </div>
-        <div style="text-align:center;margin-top:1.2rem">
-          <p style="font-size:.8rem;color:var(--muted);margin-bottom:.6rem">Not enrolled yet?</p>
-          <a href="register.html" style="background:var(--green);color:#fff;border:none;border-radius:8px;padding:.6rem 1.3rem;font-size:.84rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block">🚀 Enroll Now — Get 60 Days Free →</a>
-        </div>
-      </div>
-    </div>
-
-    <p style="font-size:.75rem;color:var(--muted2);text-align:center;margin-top:1rem;line-height:1.6">
-      Questions? <a href="https://wa.me/2348032925957" target="_blank" style="color:var(--electric)">WhatsApp +234 803 292 5957</a>
-    </p>
-  </div>
-
-  <!-- FREE Global Remote Job Board (Africans) — side by side, free alternative -->
-  <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" target="_blank" rel="noopener" class="pw-free">
-    <span class="pw-free-tag"><span class="pw-free-dot"></span> 100% Free · No Membership</span>
-    <div class="pw-free-icon">🌍</div>
-    <div class="pw-free-title">Global Remote Job Board <span>(Africans)</span></div>
-    <p class="pw-free-sub">Can't subscribe right now? Get real, verified global remote roles open to Africans — shared completely free on our WhatsApp channel. No fees, no gatekeeping.</p>
-    <ul class="pw-free-features">
-      <li>Verified global remote roles, regularly updated</li>
-      <li>Open to all Africans — no payment needed</li>
-      <li>Delivered straight to WhatsApp</li>
-    </ul>
-    <span class="pw-free-cta">Join Free on WhatsApp →</span>
-  </a>
-</div>
-
-<!-- ══════════════════════════════════════════
-     JOB BOARD (unlocked)
-══════════════════════════════════════════ -->
-<div id="board">
-  <!-- Hero -->
-  <div class="jb-hero">
-    <div class="jb-hero-top">
-      <div>
-        <div class="jb-title">🌍 Private <span>Job Board</span></div>
-        <div class="jb-stats">
-          <div class="jb-stat">🟢 <strong id="liveCount">0</strong> live roles</div>
-          <div class="jb-stat">🆕 <strong id="newCount">0</strong> added this week</div>
-          <div class="jb-stat">🌐 <strong>Worldwide</strong> remote only</div>
-        </div>
-      </div>
-      <button onclick="logOut()" style="background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:.45rem .9rem;font-size:.76rem;font-weight:600;cursor:pointer">Sign Out</button>
-    </div>
-    <div class="jb-search-row">
-      <div class="jb-search">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="jbSearch" type="text" placeholder="Search roles, companies, skills…" oninput="renderJobs()">
-      </div>
-      <select class="jb-filter" id="catFilter" onchange="renderJobs()">
-        <option value="">All Categories</option>
-        <option>Engineering</option>
-        <option>Design</option>
-        <option>Marketing</option>
-        <option>Product</option>
-        <option>Customer Success</option>
-        <option>Operations</option>
-        <option>Finance</option>
-        <option>HR & People</option>
-        <option>Data & Analytics</option>
-        <option>Writing & Content</option>
-        <option>Sales</option>
-        <option>AI & Machine Learning</option>
-      </select>
-      <select class="jb-filter" id="srcFilter" onchange="renderJobs()">
-        <option value="">All Sources</option>
-        <option>micro1.ai</option>
-        <option>Ashby</option>
-        <option>Greenhouse</option>
-        <option>Lever</option>
-        <option>Pinpoint</option>
-        <option>Indeed</option>
-        <option>Remote.co</option>
-        <option>Himalayas</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="jb-main">
-    <!-- Jobs list -->
-    <div>
-      <div class="jobs-list" id="jobsList"></div>
-      <div class="pagination" id="pagination"></div>
-    </div>
-
-    <!-- Sidebar -->
-    <div class="jb-sidebar">
-      <!-- FREE Global Remote Job Board (Africans) -->
-      <a href="https://whatsapp.com/channel/0029Vaym4DE3mFY2wCrC713S" target="_blank" rel="noopener" class="free-gb">
-        <div class="free-gb-tag"><span class="free-gb-dot"></span> 100% FREE</div>
-        <h4 class="free-gb-title">🌍 Global Remote Job Board <span>(Africans)</span></h4>
-        <p class="free-gb-desc">Real, verified global remote roles open to Africans — shared free on WhatsApp, no fees, no gatekeeping.</p>
-        <span class="free-gb-cta">Join free on WhatsApp →</span>
-      </a>
-
-      <!-- micro1 featured -->
-      <div class="micro1-sb">
-        <h4>🤖 micro1.ai Jobs</h4>
-        <p>AI-matched worldwide remote roles — browse the full board via our referral link.</p>
-        <a href="https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26" target="_blank" rel="noopener">Browse micro1 Jobs →</a>
-      </div>
-
-      <!-- Sources -->
-      <div class="sb-card">
-        <div class="sb-title">📋 Job Sources</div>
-        <div id="sourceList">
-          <div class="source-item" onclick="filterBySource('Ashby')"><span class="src-icon">🔷</span><span class="src-name">jobs.ashbyhq.com</span><span class="src-count" id="c-Ashby">0</span></div>
-          <div class="source-item" onclick="filterBySource('Greenhouse')"><span class="src-icon">🟢</span><span class="src-name">boards.greenhouse.io</span><span class="src-count" id="c-Greenhouse">0</span></div>
-          <div class="source-item" onclick="filterBySource('Lever')"><span class="src-icon">🔵</span><span class="src-name">jobs.lever.co</span><span class="src-count" id="c-Lever">0</span></div>
-          <div class="source-item" onclick="filterBySource('Pinpoint')"><span class="src-icon">📌</span><span class="src-name">pinpointhq.com</span><span class="src-count" id="c-Pinpoint">0</span></div>
-          <div class="source-item" onclick="filterBySource('micro1.ai')"><span class="src-icon">🤖</span><span class="src-name">micro1.ai</span><span class="src-count" id="c-micro1.ai">0</span></div>
-          <div class="source-item" onclick="filterBySource('Indeed')"><span class="src-icon">🔍</span><span class="src-name">Indeed Remote</span><span class="src-count" id="c-Indeed">0</span></div>
-          <div class="source-item" onclick="filterBySource('Remote.co')"><span class="src-icon">🌐</span><span class="src-name">Remote.co</span><span class="src-count" id="c-Remote.co">0</span></div>
-          <div class="source-item" onclick="filterBySource('Himalayas')"><span class="src-icon">🏔️</span><span class="src-name">Himalayas.app</span><span class="src-count" id="c-Himalayas">0</span></div>
-        </div>
-      </div>
-
-      <!-- Salary filter -->
-      <div class="sb-card">
-        <div class="sb-title">💰 Salary Range</div>
-        <div class="filter-chips" id="salaryChips">
-          <span class="chip" onclick="filterSalary(this,'')">Any</span>
-          <span class="chip" onclick="filterSalary(this,'<40k')">Under $40k</span>
-          <span class="chip" onclick="filterSalary(this,'40-80k')">$40k–$80k</span>
-          <span class="chip" onclick="filterSalary(this,'80-120k')">$80k–$120k</span>
-          <span class="chip" onclick="filterSalary(this,'>120k')">$120k+</span>
-        </div>
-      </div>
-
-      <!-- Category chips -->
-      <div class="sb-card">
-        <div class="sb-title">🗂 Categories</div>
-        <div class="filter-chips">
-          <span class="chip" onclick="filterCat(this,'')">All</span>
-          <span class="chip" onclick="filterCat(this,'Engineering')">Engineering</span>
-          <span class="chip" onclick="filterCat(this,'Design')">Design</span>
-          <span class="chip" onclick="filterCat(this,'Marketing')">Marketing</span>
-          <span class="chip" onclick="filterCat(this,'Product')">Product</span>
-          <span class="chip" onclick="filterCat(this,'Customer Success')">CS</span>
-          <span class="chip" onclick="filterCat(this,'Writing & Content')">Content</span>
-          <span class="chip" onclick="filterCat(this,'Data & Analytics')">Data</span>
-          <span class="chip" onclick="filterCat(this,'AI & Machine Learning')">AI/ML</span>
-        </div>
-      </div>
-
-      <!-- Refresh note -->
-      <div style="text-align:center;font-size:.72rem;color:var(--muted2);padding:.5rem">
-        🔄 Board refreshed by admin.<br>Last check: <span id="lastUpdated">—</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- JOB DETAIL MODAL -->
-<div class="modal-bg" id="jobModal">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-
-<script>
-/* ════════════════════════════════════════
-   JOB DATA — Curated from global remote boards
-   Admin can add/update via admin.html
-══════════════════════════════════════════ */
-const JOBS_KEY   = 'erj_jobs';
-const NOTIF_KEY  = 'erj_jobs_notif_seen';
-const ACCESS_KEY = 'erj_jobs_access';
-const WLIST_KEY  = 'erj_jobs_whitelist';
-
-const SEED_JOBS = [
-  /* ═══ GLOBAL JOB BOARDS — direct worldwide remote listings ═══ */
-  {id:'m1',  src:'micro1.ai',      company:'micro1.ai',         emoji:'🤖', role:'100+ AI-Matched Remote Roles',             cat:'All Categories',   salary:'$40k–$200k',  type:'Various',    loc:'Worldwide — No Restrictions', tags:['AI-matched','Engineers','Designers','PMs'],
-   desc:'micro1.ai uses AI to match remote workers with top companies worldwide. 100+ live roles across engineering, design, data, and operations. Open to applicants from any country — no location restrictions.',
-   url:'https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26',
-   posted:'2026-05-27', featured:true, archived:false,
-   requirements:['Varies by role — browse all openings','Remote-ready mindset','Strong async communication'],
-   responsibilities:['Apply directly through micro1.ai — new roles added daily from top global companies']},
-
-  {id:'wwR1', src:'We Work Remotely', company:'We Work Remotely', emoji:'🌐', role:'4,000+ Remote Jobs — All Roles',           cat:'All Categories',   salary:'Varies',      type:'Various',    loc:'Worldwide — No Restrictions', tags:['All roles','Engineering','Design','Marketing'],
-   desc:'The largest dedicated remote job board with 4,000+ active listings. Every job on this board is 100% remote. Filter by role, salary, and experience level. Anyone anywhere can apply.',
-   url:'https://weworkremotely.com/',
-   posted:'2026-05-27', featured:true, archived:false,
-   requirements:['Role-specific — all levels available'],
-   responsibilities:['Search and apply directly on We Work Remotely — jobs added daily']},
-
-  {id:'rem2', src:'Remotive',        company:'Remotive',          emoji:'🚀', role:'Remote Jobs in Tech & Beyond',              cat:'All Categories',   salary:'Varies',      type:'Various',    loc:'Worldwide — No Restrictions', tags:['Tech','Remote','All levels'],
-   desc:'Remotive curates remote tech jobs from verified companies worldwide. All listings confirmed remote-friendly. Roles in engineering, product, design, customer success, and more.',
-   url:'https://remotive.com/remote-jobs',
-   posted:'2026-05-27', featured:true, archived:false,
-   requirements:['Role-specific — filter by experience level'],
-   responsibilities:['Apply directly to each company via Remotive listings']},
-
-  {id:'him1', src:'Himalayas',       company:'Himalayas.app',     emoji:'🏔️', role:'Remote Jobs with Salary Transparency',    cat:'All Categories',   salary:'Varies',      type:'Various',    loc:'Worldwide — No Restrictions', tags:['Transparent Salaries','Tech','Remote-first'],
-   desc:'Himalayas lists only 100% remote jobs with transparent salary ranges. Filter by role, salary, timezone, and tech stack. Every listing shows if the company is truly remote or remote-friendly.',
-   url:'https://himalayas.app/jobs',
-   posted:'2026-05-27', featured:false, archived:false,
-   requirements:['Role-specific'],
-   responsibilities:['Apply directly through each company\'s application on Himalayas']},
-
-  {id:'rco1', src:'Remote.co',       company:'Remote.co',         emoji:'📍', role:'Curated Remote Jobs — Hand-Screened',      cat:'All Categories',   salary:'Varies',      type:'Various',    loc:'Worldwide — No Restrictions', tags:['Hand-curated','Remote','All experience'],
-   desc:'Remote.co hand-screens every job listing for genuine remote work. Categories include tech, non-tech, customer service, writing, and more. All companies verified as remote-friendly.',
-   url:'https://remote.co/remote-jobs/',
-   posted:'2026-05-27', featured:false, archived:false,
-   requirements:['Role-specific — non-tech roles also available'],
-   responsibilities:['Apply directly to each employer through Remote.co']},
-
-  /* ═══ COMPANIES WITH VERIFIED WORLDWIDE REMOTE HIRING ═══ */
-  {id:'tur1', src:'Turing',          company:'Turing.com',        emoji:'💻', role:'Remote Software Engineer (All Levels)',    cat:'Engineering',      salary:'$40k–$150k',  type:'Full-time',  loc:'Worldwide — No Restrictions', tags:['AI-vetted','Engineers','All stacks'],
-   desc:'Turing AI-matches vetted remote engineers with top US companies. Apply once and get matched to multiple opportunities. All engineering stacks covered — open to developers in every country.',
-   url:'https://www.turing.com/jobs',
-   posted:'2026-05-26', featured:false, archived:false,
-   requirements:['Pass Turing skills assessment','English proficiency (B2+)','Software development experience'],
-   responsibilities:['Matched to full-time remote engineering roles at US companies through the Turing network']},
-
-  {id:'and1', src:'Andela',          company:'Andela',            emoji:'🦅', role:'Remote Tech Roles via Andela Network',     cat:'Engineering',      salary:'$40k–$120k',  type:'Full-time',  loc:'Worldwide — Africa & Global', tags:['Africa-focused','Engineers','Global'],
-   desc:'Andela connects skilled tech talent — especially in Africa — with leading global companies. Join the talent network for full-time and contract remote engineering, product, and design roles.',
-   url:'https://andela.com/talent-network/',
-   posted:'2026-05-26', featured:false, archived:false,
-   requirements:['Technical skills assessment','English communication','2+ years experience preferred'],
-   responsibilities:['Get matched to global companies through Andela\'s talent placement network']},
-
-  {id:'top1', src:'Toptal',          company:'Toptal',            emoji:'🌟', role:'Freelance Remote Expert (Top 3%)',         cat:'Engineering',      salary:'$60k–$200k',  type:'Freelance',  loc:'Worldwide — No Restrictions', tags:['Top 3% only','Freelance','All disciplines'],
-   desc:'Toptal screens for the top 3% of global freelance talent and connects them with Fortune 500 companies and fast-growing startups. Open to engineers, designers, PMs, finance experts, and consultants worldwide.',
-   url:'https://www.toptal.com/talent/apply',
-   posted:'2026-05-26', featured:false, archived:false,
-   requirements:['Pass rigorous multi-stage screening','Proven professional track record','Excellent English communication'],
-   responsibilities:['Freelance engagements with top companies after passing Toptal\'s screening process']},
-
-  {id:'cros1',src:'Crossover',       company:'Crossover for Work',emoji:'🎯', role:'Full-time Remote Tech Roles',              cat:'Engineering',      salary:'$30k–$100k',  type:'Full-time',  loc:'Worldwide — Emerging Markets Welcome', tags:['Remote','Africa','Asia','Latin America'],
-   desc:'Crossover connects talent in Africa, Asia, and Latin America with US tech companies for full-time remote roles. Structured hiring process with skills assessments. No location restrictions.',
-   url:'https://www.crossover.com/jobs',
-   posted:'2026-05-25', featured:false, archived:false,
-   requirements:['Pass Crossover skills assessment','Strong English proficiency','Technical expertise in your field'],
-   responsibilities:['Full-time remote work for US tech companies — apply directly on Crossover']},
-
-  {id:'git1', src:'GitLab',          company:'GitLab (100% Remote)',emoji:'🦊',role:'All Open Roles — 65+ Countries',          cat:'Engineering',      salary:'$80k–$200k',  type:'Full-time',  loc:'Worldwide — 65+ Countries',   tags:['100% Remote','Engineering','Product','Marketing'],
-   desc:'GitLab is one of the world\'s largest all-remote companies with team members in 65+ countries. Browse all open roles across engineering, product, design, marketing, sales, and operations.',
-   url:'https://about.gitlab.com/jobs/all-jobs/',
-   posted:'2026-05-25', featured:false, archived:false,
-   requirements:['Role-specific — see individual listings','Remote-first mindset','Excellent written communication'],
-   responsibilities:['See specific job listing — GitLab publishes detailed JDs for every open role']},
-
-  {id:'zap1', src:'Zapier',          company:'Zapier',            emoji:'⚡', role:'All Open Roles — 38+ Countries',          cat:'Engineering',      salary:'$60k–$175k',  type:'Full-time',  loc:'Worldwide — 38+ Countries',   tags:['Automation','SaaS','Remote-first'],
-   desc:'Zapier has been 100% remote since founding — no offices ever. Team across 38+ countries. Browse current openings in engineering, product, design, marketing, and customer success.',
-   url:'https://zapier.com/jobs',
-   posted:'2026-05-25', featured:false, archived:false,
-   requirements:['Role-specific','Strong written English','Self-directed work style'],
-   responsibilities:['Apply directly on Zapier\'s careers page — each listing has a direct application form']},
-
-  {id:'aut1', src:'Automattic',      company:'Automattic',        emoji:'🅰️', role:'Happiness Engineer & Developer Roles',    cat:'Engineering',      salary:'$65k–$170k',  type:'Full-time',  loc:'Worldwide — 97 Countries',    tags:['WordPress','Remote since 2005','All roles'],
-   desc:'Automattic (makers of WordPress.com, WooCommerce, and Jetpack) has been fully remote since 2005 with team members in 97 countries. Apply directly — no cover letter required.',
-   url:'https://automattic.com/work-with-us/',
-   posted:'2026-05-24', featured:false, archived:false,
-   requirements:['WordPress or open source experience helpful','Excellent written English','Self-motivated remote worker'],
-   responsibilities:['Apply via Automattic\'s work-with-us page — each role has its own detailed listing']},
-
-  {id:'doi1', src:'Doist',           company:'Doist (Todoist)',   emoji:'✅', role:'Engineering, Design & Product Roles',     cat:'Product',          salary:'$70k–$150k',  type:'Full-time',  loc:'Worldwide — 35+ Countries',   tags:['Async-first','Todoist','No meetings'],
-   desc:'Doist makes Todoist — used by 30 million people globally. Fully async and remote. Team members span 35+ countries. Apply directly for engineering, design, product, and marketing roles.',
-   url:'https://doist.com/jobs/',
-   posted:'2026-05-24', featured:false, archived:false,
-   requirements:['Strong async written communication','Self-directed','Role-specific skills'],
-   responsibilities:['Apply directly via Doist\'s jobs page — each listing includes full role details and how to apply']},
-
-  {id:'rem1', src:'Remote.com',      company:'Remote.com',        emoji:'🌍', role:'All Open Roles — 80+ Countries',          cat:'Operations',       salary:'$60k–$160k',  type:'Full-time',  loc:'Worldwide — 80+ Countries',   tags:['Global HR','EOR','Remote-first'],
-   desc:'Remote.com helps companies hire globally — and hires globally itself. Team across 80+ countries. Browse current openings in engineering, operations, HR, legal, finance, and customer success.',
-   url:'https://remote.com/careers',
-   posted:'2026-05-23', featured:false, archived:false,
-   requirements:['Role-specific — international background often helpful','Strong English communication'],
-   responsibilities:['Apply directly on Remote.com careers page — each role links to an application form']},
-
-  {id:'dee1', src:'Deel',            company:'Deel',              emoji:'💸', role:'All Open Roles — 100+ Countries',         cat:'Finance',          salary:'$60k–$180k',  type:'Full-time',  loc:'Worldwide — 100+ Countries',  tags:['Global Payroll','HR Tech','Remote-first'],
-   desc:'Deel powers global payroll and compliance for 15,000+ companies. Fully distributed team across 100+ countries. Browse roles in engineering, sales, customer success, finance, and legal.',
-   url:'https://www.deel.com/careers',
-   posted:'2026-05-23', featured:false, archived:false,
-   requirements:['Role-specific','Strong English','International experience beneficial'],
-   responsibilities:['Apply directly on Deel\'s careers page — jobs list with specific requirements and application links']},
-
-  {id:'hel1', src:'Help Scout',      company:'Help Scout',        emoji:'🔭', role:'All Open Roles — 80+ Countries',          cat:'Customer Success', salary:'$55k–$140k',  type:'Full-time',  loc:'Worldwide — 80+ Countries',   tags:['Customer Support SaaS','Remote since day one'],
-   desc:'Help Scout has been fully remote since day one — team in 80+ countries. Roles in engineering, design, marketing, customer success, and product. Apply directly from their careers page.',
-   url:'https://www.helpscout.com/company/careers/',
-   posted:'2026-05-22', featured:false, archived:false,
-   requirements:['Role-specific','Remote-first mindset','Clear written communication'],
-   responsibilities:['Apply directly on Help Scout\'s careers page with a direct application form for each role']},
-];
-
-/* ── ARCHIVED JOBS — never deleted, closed roles kept for history ── */
-const ARCHIVED_JOBS = [
-  {id:'arc1', archived:true, company:'Buffer',       emoji:'📱', role:'Content Writer',          cat:'Writing',          salary:'$55k–$70k',  loc:'Worldwide', desc:'Role closed — Buffer moved off Greenhouse. Visit buffer.com/journey for current openings.',    url:'https://buffer.com/journey',           posted:'2026-04-20'},
-  {id:'arc2', archived:true, company:'Arc (YC W16)', emoji:'⚡', role:'Senior Software Engineer', cat:'Engineering',      salary:'$120k–$165k',loc:'Worldwide', desc:'Role closed — check Arc\'s current board for new openings.',                                  url:'https://jobs.ashbyhq.com/arc',         posted:'2026-04-01'},
-  {id:'arc3', archived:true, company:'Mercury',      emoji:'🏦', role:'Product Designer',         cat:'Design',           salary:'$130k–$175k',loc:'Worldwide', desc:'Role closed — check Mercury careers for current openings.',                                    url:'https://jobs.ashbyhq.com/mercury',     posted:'2026-04-05'},
-  {id:'arc4', archived:true, company:'GitLab',       emoji:'🦊', role:'Senior Marketing Manager', cat:'Marketing',        salary:'$100k–$140k',loc:'Worldwide', desc:'Role closed — see GitLab all-jobs page for current openings.',                                 url:'https://about.gitlab.com/jobs/',       posted:'2026-04-15'},
-  {id:'arc5', archived:true, company:'Zapier',       emoji:'⚡', role:'Technical Writer',         cat:'Writing',          salary:'$80k–$110k', loc:'Worldwide', desc:'Role closed — see Zapier jobs page for current openings.',                                     url:'https://zapier.com/jobs',              posted:'2026-04-10'},
-  {id:'arc6', archived:true, company:'InVision',     emoji:'🎨', role:'UX Researcher',            cat:'Design',           salary:'$100k–$130k',loc:'Worldwide', desc:'Role closed — InVision wound down consumer product. Check other design roles.',               url:'https://weworkremotely.com/',          posted:'2026-03-20'},
-  {id:'arc7', archived:true, company:'Auth0 (Okta)', emoji:'🔐', role:'Customer Success Manager', cat:'Customer Success', salary:'$85k–$115k', loc:'Worldwide', desc:'Role closed — check Okta careers for current openings.',                                       url:'https://www.okta.com/company/careers/',posted:'2026-04-05'},
-  {id:'arc8', archived:true, company:'Doist',        emoji:'✅', role:'Product Manager',          cat:'Product',          salary:'$90k–$120k', loc:'Worldwide', desc:'Role closed — see doist.com/jobs for current openings.',                                       url:'https://doist.com/jobs/',              posted:'2026-04-12'},
-];
-
-/* ════════════════════════════════════════
-   ACCESS CONTROL
-══════════════════════════════════════════ */
-function getAccess() {
-  try { return JSON.parse(localStorage.getItem(ACCESS_KEY) || 'null'); } catch { return null; }
-}
-function hasAccess() {
-  // 1. Existing access token — must have a real, non-expired expiresAt
-  const a = getAccess();
-  if (a && a.expiresAt && a.expiresAt > Date.now()) return true;
-  if (a) localStorage.removeItem(ACCESS_KEY); // clear stale/expired token
-
-  // 2. Logged-in session — check proof of payment (stage access OR admin-granted email expiry)
-  try {
-    const sess = JSON.parse(localStorage.getItem('rjm_session') || 'null');
-    if (sess && sess.email) {
-      // 2a. Admin/dashboard explicitly set an email-level expiry
-      const expStr = localStorage.getItem(`rjm_jb_expiry_${sess.email}`);
-      if (expStr) {
-        const exp = new Date(expStr);
-        if (!isNaN(exp.getTime()) && exp > new Date()) {
-          // Issue a bounded token matching the remaining days
-          const daysLeft = Math.ceil((exp - new Date()) / 86400000);
-          grantAccessWithDays(sess.email, 'training', daysLeft);
-          return true;
-        }
-      }
-      // 2b. Admin email-access map (set when admin grants any stage)
-      const map = JSON.parse(localStorage.getItem('rjm_jb_email_access') || '{}');
-      if (map[sess.email]) {
-        const exp = new Date(map[sess.email]);
-        if (!isNaN(exp.getTime()) && exp > new Date()) {
-          const daysLeft = Math.ceil((exp - new Date()) / 86400000);
-          grantAccessWithDays(sess.email, 'training', daysLeft);
-          return true;
-        }
-      }
-      // 2c. Student has at least one stage unlocked (registered = 60-day offer)
-      const prog = JSON.parse(localStorage.getItem(`rjm_progress_${sess.email}`) || 'null');
-      const hasStage = prog && (prog.stage1?.unlocked || prog.stage2?.unlocked ||
-                                prog.stage3?.unlocked || prog.stage4?.unlocked || prog.stage5?.unlocked);
-      if (hasStage) {
-        // Only grant if no expiry recorded yet (first visit) or if previously set
-        const existing = localStorage.getItem(`rjm_jb_expiry_${sess.email}`);
-        if (!existing) {
-          const expiry = new Date(); expiry.setDate(expiry.getDate() + 60);
-          localStorage.setItem(`rjm_jb_expiry_${sess.email}`, expiry.toISOString());
-        }
-        const checkExp = new Date(localStorage.getItem(`rjm_jb_expiry_${sess.email}`));
-        if (checkExp > new Date()) {
-          const daysLeft = Math.ceil((checkExp - new Date()) / 86400000);
-          grantAccessWithDays(sess.email, 'training', daysLeft);
-          return true;
-        }
-        // 60-day offer has expired for this user — do NOT grant access
-      }
-    }
-  } catch {}
-
-  return false;
-}
-
-// Helper: grant token with an explicit day count
-function grantAccessWithDays(identifier, type, days) {
-  localStorage.setItem(ACCESS_KEY, JSON.stringify({
-    type, identifier,
-    grantedAt: Date.now(),
-    expiresAt: Date.now() + Math.max(1, days) * 24 * 60 * 60 * 1000
-  }));
-}
-function grantAccess(identifier, type='admin') {
-  const days = type === 'training' ? 60 : 30;  // 60 days for enrolled students, 30 for paid/phone
-  const expiresAt = Date.now() + days * 24 * 60 * 60 * 1000;
-  localStorage.setItem(ACCESS_KEY, JSON.stringify({
-    type, identifier, grantedAt: Date.now(), expiresAt
-  }));
-}
-
-function getWhitelist() {
-  try { return JSON.parse(localStorage.getItem(WLIST_KEY) || '[]'); } catch { return []; }
-}
-function normalisePhone(p) {
-  // Strip spaces, dashes, parens
-  let n = p.replace(/[\s\-\(\)\.]/g, '');
-  // Nigerian local format 0xxx → +234xxx
-  if (/^0[7-9][0-1]\d{8}$/.test(n)) n = '+234' + n.slice(1);
-  // Add + if missing but has country code (11+ digits starting with non-zero)
-  if (/^\d{11,}$/.test(n) && !n.startsWith('0')) n = '+' + n;
-  // Normalise 234xxx (without +)
-  if (/^234\d{10}$/.test(n)) n = '+' + n;
-  return n;
-}
-
-function verifyPhone() {
-  const raw   = document.getElementById('phoneInput').value.trim();
-  if (!raw) { document.getElementById('pwErr').classList.add('show'); return; }
-  const phone = normalisePhone(raw);
-  // Try multiple normalisations for maximum match chance
-  const variants = new Set([phone, raw, raw.replace(/\D/g,''), '+' + raw.replace(/\D/g,'')]);
-  const wl = getWhitelist();
-  const match = wl.find(e => {
-    const wp = normalisePhone(e.phone || e);
-    return [...variants].some(v => normalisePhone(v) === wp || v === wp);
-  });
-  if (match) {
-    grantAccess(phone, match.type || 'admin');
-    showBoard();
-  } else {
-    document.getElementById('pwErr').classList.add('show');
-  }
-}
-
-function showPaidInstructions() {
-  document.getElementById('paidInstructions').style.display = 'block';
-}
-
-function switchPwTab(tab) {
-  const tabs = ['pay','access','enroll'];
-  tabs.forEach(t => {
-    const panel = document.getElementById('pwTab' + t.charAt(0).toUpperCase() + t.slice(1));
-    const btn   = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
-    if (panel) panel.style.display = t === tab ? 'block' : 'none';
-    if (btn) {
-      btn.style.background = t === tab ? 'var(--accent)' : 'transparent';
-      btn.style.color      = t === tab ? '#fff' : 'var(--muted)';
-    }
-  });
-  if (tab === 'access') setTimeout(() => document.getElementById('phoneInput')?.focus(), 100);
-}
-
-document.getElementById('phoneInput').addEventListener('keydown', e => { if(e.key==='Enter') verifyPhone(); });
-
-function showBoard() {
-  document.getElementById('paywall').style.display   = 'none';
-  document.getElementById('board').style.display     = 'block';
-  initBoard();
-}
-
-function logOut() {
-  if (!confirm('Sign out of the job board?')) return;
-  localStorage.removeItem(ACCESS_KEY);
-  location.reload();
-}
-
-/* ════════════════════════════════════════
-   JOB DATA
-══════════════════════════════════════════ */
-function getJobs() {
-  try {
-    const custom = JSON.parse(localStorage.getItem(JOBS_KEY) || '[]');
-    const merged = [...SEED_JOBS];
-    custom.forEach(j => {
-      const idx = merged.findIndex(x => x.id === j.id);
-      if (idx >= 0) merged[idx] = j; else merged.unshift(j);
-    });
-    return merged.sort((a,b) => new Date(b.posted) - new Date(a.posted));
-  } catch { return SEED_JOBS; }
-}
-function isNew(posted) {
-  return (Date.now() - new Date(posted).getTime()) < 7 * 24 * 60 * 60 * 1000;
-}
-
-/* ════════════════════════════════════════
-   RENDER JOBS
-══════════════════════════════════════════ */
-const PER_PAGE = 10;
-let curPage = 1, salFilter = '', srcActive = '';
-
-function getFiltered() {
-  const q   = (document.getElementById('jbSearch')?.value || '').toLowerCase();
-  const cat = document.getElementById('catFilter')?.value || '';
-  const src = document.getElementById('srcFilter')?.value || srcActive || '';
-  return getJobs().filter(j => {
-    if (cat && j.cat !== cat) return false;
-    if (src && j.src !== src) return false;
-    if (salFilter) {
-      const s = (j.salary || '').replace(/[^0-9k\-]/gi,'').toLowerCase();
-      if (salFilter === '<40k'   && !s.match(/^[0-3]?[0-9]k/)) return false;
-      if (salFilter === '>120k'  && !s.match(/1[2-9][0-9]k|[2-9][0-9]{2}k/)) return false;
-    }
-    if (!q) return true;
-    return (j.role+j.company+j.cat+(j.tags||[]).join(' ')).toLowerCase().includes(q);
-  });
-}
-
-function renderJobs() {
-  const jobs    = getFiltered();
-  const total   = jobs.length;
-  const start   = (curPage-1)*PER_PAGE;
-  const paged   = jobs.slice(start, start+PER_PAGE);
-  const list    = document.getElementById('jobsList');
-
-  // Stats
-  const allJobs = getJobs();
-  document.getElementById('liveCount').textContent = allJobs.length;
-  document.getElementById('newCount').textContent  = allJobs.filter(j=>isNew(j.posted)).length;
-
-  // Source counts
-  ['Ashby','Greenhouse','Lever','Pinpoint','micro1.ai','Indeed','Remote.co','Himalayas'].forEach(s => {
-    const el = document.getElementById('c-'+s);
-    if (el) el.textContent = allJobs.filter(j=>j.src===s).length;
-  });
-
-  // Last updated
-  const last = allJobs[0]?.posted;
-  if (last) document.getElementById('lastUpdated').textContent = new Date(last).toLocaleDateString();
-
-  if (!paged.length) {
-    list.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--muted)"><div style="font-size:2.5rem;margin-bottom:.8rem">🔍</div><div>No jobs match your filters. Try adjusting the search or category.</div></div>`;
-    document.getElementById('pagination').innerHTML = '';
-    return;
-  }
-
-  list.innerHTML = paged.map(j => `
-    <div class="job-card ${j.src==='micro1.ai'?'micro1-card':''} ${isNew(j.posted)?'is-new':''}" onclick="openJob('${j.id}')">
-      <div class="jc-top">
-        <div class="jc-logo">${j.emoji||'🌐'}</div>
-        <div class="jc-info">
-          <div class="jc-role">${j.role}</div>
-          <div class="jc-company">${j.company} <span style="opacity:.5">·</span> ${j.src}</div>
-        </div>
-      </div>
-      <div class="jc-tags">
-        <span class="tag tag-cat">${j.cat}</span>
-        <span class="tag tag-loc">🌐 ${j.loc}</span>
-        <span class="tag tag-type">${j.type}</span>
-        ${j.salary?`<span class="tag tag-sal">💰 ${j.salary}</span>`:''}
-        ${(j.tags||[]).slice(0,2).map(t=>`<span class="tag tag-src">${t}</span>`).join('')}
-      </div>
-      <div class="jc-footer">
-        <span>📅 ${new Date(j.posted).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}</span>
-        <a href="${j.url}" target="_blank" rel="noopener" class="btn-apply" onclick="event.stopPropagation()">Apply →</a>
-      </div>
-    </div>`).join('');
-
-  // Pagination
-  const pages = Math.ceil(total/PER_PAGE);
-  let pg = '';
-  for(let i=1;i<=pages;i++) pg += `<button class="pg ${i===curPage?'on':''}" onclick="goPage(${i})">${i}</button>`;
-  document.getElementById('pagination').innerHTML = pg;
-}
-
-function goPage(p) { curPage=p; renderJobs(); window.scrollTo({top:0,behavior:'smooth'}); }
-function filterBySource(s) { srcActive=srcActive===s?'':s; document.getElementById('srcFilter').value=''; renderJobs(); }
-function filterSalary(el,v) { salFilter=v; document.querySelectorAll('#salaryChips .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); renderJobs(); }
-function filterCat(el,v) { document.getElementById('catFilter').value=v; document.querySelectorAll('.sb-card .chip').forEach(c=>c.classList.remove('on')); el.classList.add('on'); curPage=1; renderJobs(); }
-
-/* ════════════════════════════════════════
-   JOB DETAIL MODAL
-══════════════════════════════════════════ */
-function openJob(id) {
-  const j = getJobs().find(x=>x.id===id);
-  if (!j) return;
-  const reqs = (j.requirements||[]).map(r=>`<li>${r}</li>`).join('');
-  const resp = (j.responsibilities||[]).map(r=>`<li>${r}</li>`).join('');
-  document.getElementById('modalContent').innerHTML = `
-    <div class="modal-logo" style="background:linear-gradient(135deg,var(--accent),#963F12)">${j.emoji||'🌐'}</div>
-    <div class="modal-role">${j.role}</div>
-    <div class="modal-company">${j.company} · <span style="color:var(--electric)">${j.src}</span> · ${j.loc}</div>
-    <div class="modal-tags">
-      <span class="tag tag-cat">${j.cat}</span>
-      <span class="tag tag-type">${j.type}</span>
-      ${j.salary?`<span class="tag tag-sal">💰 ${j.salary}</span>`:''}
-      ${isNew(j.posted)?'<span class="tag" style="background:rgba(16,185,129,.1);color:var(--green)">🆕 New</span>':''}
-      ${(j.tags||[]).map(t=>`<span class="tag tag-src">${t}</span>`).join('')}
-    </div>
-    <div class="modal-desc">
-      <p>${j.desc||''}</p>
-      ${reqs?`<h4>Requirements</h4><ul>${reqs}</ul>`:''}
-      ${resp?`<h4>Responsibilities</h4><ul>${resp}</ul>`:''}
-      <p style="font-size:.75rem;color:var(--muted2);margin-top:.8rem">📅 Posted: ${new Date(j.posted).toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'})} · Source: ${j.src}</p>
-    </div>
-    <div class="modal-actions">
-      <a href="${j.url}" target="_blank" rel="noopener" class="btn-modal-apply">🚀 Apply Now</a>
-      <button class="btn-modal-save" onclick="saveJob('${j.id}')">💾 Save Job</button>
-      <button class="btn-modal-save" onclick="copyJobLink('${j.url}')">🔗 Copy Link</button>
-    </div>`;
-  document.getElementById('jobModal').classList.add('open');
-}
-function closeModal() { document.getElementById('jobModal').classList.remove('open'); }
-document.getElementById('jobModal').addEventListener('click', e => { if(e.target===document.getElementById('jobModal')) closeModal(); });
-
-function saveJob(id) {
-  const saved = JSON.parse(localStorage.getItem('erj_saved_jobs')||'[]');
-  if (!saved.includes(id)) { saved.push(id); localStorage.setItem('erj_saved_jobs',JSON.stringify(saved)); jbToast('💾 Job saved!'); }
-  else jbToast('Already saved.');
-}
-function copyJobLink(url) {
-  navigator.clipboard.writeText(url).then(()=>jbToast('🔗 Link copied!')).catch(()=>jbToast(url));
-}
-
-/* ════════════════════════════════════════
-   NOTIFICATIONS (new jobs)
-══════════════════════════════════════════ */
-let _newJobId = null;
-const JOBS_SEEN_KEY = 'erj_jobs_notif_seen';
-
-function getUnseenNewJob() {
-  const seen = JSON.parse(localStorage.getItem(JOBS_SEEN_KEY)||'[]');
-  return getJobs().find(j => isNew(j.posted) && !seen.includes(j.id));
-}
-
-async function handleJobBell() {
-  const nj = getUnseenNewJob();
-  if (nj) { showJobNotif(nj); return; }
-  if (!('Notification' in window)) { jbToast('Push notifications not supported.'); return; }
-  if (Notification.permission === 'granted') { jbToast('✅ You\'re subscribed to new job alerts!'); return; }
-  if (Notification.permission === 'denied') { jbToast('⚠ Enable notifications in your browser settings.'); return; }
-  const r = await Notification.requestPermission();
-  if (r === 'granted') {
-    new Notification('Everything Remote Job', { body:'🌍 You\'ll be notified when new remote roles are added!', icon:'/icon192.png' });
-    jbToast('🔔 Subscribed to new job alerts!');
-  }
-}
-
-function showJobNotif(job) {
-  _newJobId = job.id;
-  document.getElementById('jobNotifTitle').textContent = job.role + ' @ ' + job.company;
-  document.getElementById('jobNotifBar').classList.add('show');
-  document.getElementById('bellDot')?.classList.add('on');
-  setTimeout(() => dismissJobNotif(), 10000);
-  if (Notification.permission === 'granted') {
-    try { new Notification('🌍 New Remote Job', { body: job.role + ' at ' + job.company + ' — ' + job.salary, icon:'/icon192.png', tag:'erj-job-'+job.id }); } catch {}
-  }
-}
-function dismissJobNotif(e) {
-  if (e) { e.stopPropagation(); e.preventDefault(); }
-  document.getElementById('jobNotifBar').classList.remove('show');
-  if (_newJobId) {
-    const seen = JSON.parse(localStorage.getItem(JOBS_SEEN_KEY)||'[]');
-    seen.push(_newJobId); localStorage.setItem(JOBS_SEEN_KEY,JSON.stringify(seen));
-    _newJobId = null;
-  }
-  if (!getUnseenNewJob()) document.getElementById('bellDot')?.classList.remove('on');
-}
-document.getElementById('jobNotifBar').addEventListener('click', e => {
-  if (e.target.closest('.jnb-close')) return;
-  if (_newJobId) { openJob(_newJobId); dismissJobNotif(); }
-});
-
-/* ════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════ */
-let _toastT;
-function jbToast(msg) {
-  const t = document.getElementById('jbToast');
-  t.textContent = msg; t.classList.add('on');
-  clearTimeout(_toastT);
-  _toastT = setTimeout(()=>t.classList.remove('on'), 3000);
-}
-
-/* ════════════════════════════════════════
-   THEME
-══════════════════════════════════════════ */
-function toggleTheme() {
-  const t = document.documentElement.getAttribute('data-theme')==='day'?'night':'day';
-  document.documentElement.setAttribute('data-theme',t);
-  document.getElementById('themeBtn').textContent = t==='day'?'🌙':'☀️';
-  localStorage.setItem('rjt-theme',t);
-}
-
-function toggleJobsMenu() {
-  document.getElementById('jobsMobileMenu').classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  const menu = document.getElementById('jobsMobileMenu');
-  const btn  = document.getElementById('jobsHamburger');
-  if (menu && menu.classList.contains('open') && !menu.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-    menu.classList.remove('open');
-  }
-});
-(function(){ var t=localStorage.getItem('rjt-theme')||'night'; if(t!=='day'&&t!=='night'){t='night';} document.documentElement.setAttribute('data-theme',t); var b=document.getElementById('themeBtn'); if(b){ b.textContent=t==='day'?'🌙':'☀️'; } })();
-
-/* ════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
-function initBoard() {
-  renderJobs();
-  const nj = getUnseenNewJob();
-  if (nj) { document.getElementById('bellDot')?.classList.add('on'); setTimeout(()=>showJobNotif(nj), 2000); }
-  // Poll every 60s for new jobs added by admin (localStorage update)
-  setInterval(() => { renderJobs(); }, 60000);
-}
-
-// Route on load
-(function init() {
-  // Apply saved theme before anything renders
-  const savedTheme = localStorage.getItem('rjt-theme') || 'night';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  const tb = document.getElementById('themeBtn');
-  if (tb) tb.textContent = savedTheme === 'day' ? '🌙' : '☀️';
-
-  if (hasAccess()) showBoard();
-})();
-</script>
 <script id="erjPWA">
 (function(){
   // Register service worker (enables offline + install criteria)

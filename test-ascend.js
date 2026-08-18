@@ -50,7 +50,7 @@ ok('clears the slot when there is nothing to sell', slot.innerHTML === '');
 
 slot = { innerHTML: '' };
 A.render(slot, [1,2,3,4,5]);
-ok('waitlist rung offers no purchase link', !/href="[^"]*job-application-dfy/.test(slot.innerHTML));
+ok('waitlist rung offers no purchase link', !/href="[^"]*jobapplication/.test(slot.innerHTML));
 ok('waitlist rung is labelled in development', /In development/.test(slot.innerHTML));
 
 slot = { innerHTML: '' };

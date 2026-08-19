@@ -69,11 +69,15 @@ notes.append(f"service worker cache: {cache.group(1) if cache else '??'}")
 # ── 4 · capture layer script order ────────────────────────────────────
 for f in HTML:
     s = f.read_text(encoding="utf-8", errors="ignore")
-    if "erj-capture.js" not in s:
-        continue
     def tag_pos(name):
         m = re.search(r'<script[^>]+src="[^"]*%s"' % re.escape(name), s)
         return m.start() if m else -1
+
+    # Look for a real <script src="…erj-capture.js"> tag, not the bare string.
+    # product.css is inlined into several pages now, and its comments mention
+    # erj-capture.js by name — a plain substring test read those as script tags.
+    if tag_pos("erj-capture.js") == -1:
+        continue
     i_cfg = tag_pos("erj-config.js")
     i_cap = tag_pos("erj-capture.js")
     i_nav = tag_pos("erj-nav.js")

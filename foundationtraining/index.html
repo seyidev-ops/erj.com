@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- Meta Pixel + Google Tag Manager -->
-<script src="../erj-track.js"></script>
+<script src="../erj-track.js" async></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="../manifest.json">
 <link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png">
@@ -31,10 +31,13 @@
     background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease);}
   html[data-theme="day"] .sticky-cta{background:rgba(250,250,248,0.92);}
-  .sticky-cta.show{transform:translateY(0);}
+  /* visibility:hidden removes the links from the tab order while the bar is
+     off-screen — aria-hidden alone left them focusable. */
+  .sticky-cta{visibility:hidden;}
+  .sticky-cta.show{transform:translateY(0);visibility:visible;}
   .sticky-cta .s-txt{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;}
   .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.86rem;letter-spacing:0;text-transform:none;}
-  .sticky-cta .btn-yes{padding:0.75rem 1.3rem;font-size:0.86rem;white-space:nowrap;flex-shrink:0;}
+  .sticky-cta .btn-yes{padding:0.72rem 1.2rem;font-size:1.18rem;font-weight:700;white-space:nowrap;flex-shrink:0;}
   @media (max-width:740px){
     .sticky-cta{display:flex;}
     body.sticky-on .wa-float{bottom:86px;}
@@ -74,6 +77,7 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Remote Job Foundation Training — Stages 1–4","description":"A four-stage, twenty-training-day accelerator that takes an African professional from unrepresented to hireable: remote work discipline, the digital toolkit, async communication mastery and a complete Global Ready Package (CV, portfolio, LinkedIn and recorded interview). AI fluency is built into every stage.","url":"https://everythingremotejob.com/foundationtraining/","provider":{"@type":"Organization","name":"Everything Remote Job","url":"https://everythingremotejob.com/","@id":"https://everythingremotejob.com/#organization"},"inLanguage":"en","educationalLevel":"Beginner to Intermediate","teaches":["Remote job search","CV and portfolio for global employers","Async communication","Remote work tools","AI fluency for work"],"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"P4W","name":"Cohort 10","startDate":"2026-08-31","endDate":"2026-09-26","location":{"@type":"VirtualLocation","url":"https://everythingremotejob.com/foundationtraining/"},"instructor":{"@type":"Person","name":"Oluwaseyi Ashiru"},"offers":{"@type":"Offer","price":"250000","priceCurrency":"NGN","availability":"https://schema.org/LimitedAvailability","url":"https://paystack.shop/pay/rjmtstages1-4","validThrough":"2026-08-30T20:00:00+01:00","category":"Paid"}}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Remote Job Foundation Training","item":"https://everythingremotejob.com/foundationtraining/"}]}</script>
+  <style id="erjNavReserve">body{padding-top:59px}@media(min-width:900px){body{padding-top:65px}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -368,7 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 </main>
 
-<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+<div class="sticky-cta" id="stickyCta" aria-hidden="true" inert>
   <div class="s-txt"><strong>Enrolment closes 30 August</strong>Cohort 10 begins Mon 31 Aug · 8PM WAT</div>
   <a href="../register.html" class="btn-yes">Secure my place →</a>
 </div>
@@ -392,17 +396,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
   var bar=document.getElementById('stickyCta'),hero=document.querySelector('.hero'),final=document.getElementById('pricing');
   if(!bar||!hero)return;
-  var update=function(){
-    var past=window.scrollY>(hero.offsetTop+hero.offsetHeight);
-    var atEnd=final?(window.scrollY+window.innerHeight>final.offsetTop+80):false;
-    var show=past&&!atEnd;
+  /* Cache the layout reads — measuring inside the scroll handler forced a
+     synchronous re-layout on every frame. Invalidate on resize only. */
+  var heroEnd=0, finalTop=Infinity, shown=null, ticking=false;
+  function measure(){
+    heroEnd = hero.offsetTop + hero.offsetHeight;
+    finalTop = final ? final.offsetTop + 80 : Infinity;
+  }
+  function apply(){
+    ticking=false;
+    var y=window.scrollY;
+    var show = y>heroEnd && !(y+window.innerHeight>finalTop);
+    if(show===shown) return;
+    shown=show;
     bar.classList.toggle('show',show);
     bar.setAttribute('aria-hidden',show?'false':'true');
+    if(show){bar.removeAttribute('inert');}else{bar.setAttribute('inert','');}
     document.body.classList.toggle('sticky-on',show);
-  };
-  window.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update);
-  update();
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(apply); } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){ measure(); onScroll(); });
+  window.addEventListener('load',function(){ measure(); apply(); });
+  measure(); apply();
 })();
 </script>
 <script src="../erj-schema.js"></script>

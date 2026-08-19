@@ -9,7 +9,10 @@
 User-agent: *
 Allow: /
 
-# Query-string permutations of the blog reader (same content, infinite URLs)
+# Query-string permutations of the blog reader (same content, infinite URLs).
+# Every post now ALSO has a real, static, crawlable URL at /blog/<slug>/ — those
+# are the canonical ones and they are all listed in the sitemap. This rule only
+# blocks the duplicate query form, not the content.
 Disallow: /*?p=
 
 Sitemap: https://everythingremotejob.com/sitemap.xml

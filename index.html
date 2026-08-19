@@ -2,8 +2,19 @@
 <html lang="en" data-theme="night">
 <head>
 <meta charset="UTF-8">
+<link rel="preload" as="image" href="founder-oluwaseyi.webp" type="image/webp" fetchpriority="high">
+<!-- ─────────────────────────────────────────────────────────────
+     META DOMAIN VERIFICATION — needed before you can run ads.
+     Business Manager → Business settings → Brand safety → Domains
+     → Add everythingremotejob.com → choose "Meta-tag verification".
+     Copy the content value it gives you, paste it below, UNCOMMENT
+     the line, publish, then click Verify.
+     (DNS TXT verification also works and is more durable — use that
+      instead if you control the domain's DNS.)
+<meta name="facebook-domain-verification" content="PASTE_THE_CODE_HERE">
+───────────────────────────────────────────────────────────── -->
 <!-- Meta Pixel + Google Tag Manager -->
-<script src="erj-track.js"></script>
+<script src="erj-track.js" async></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
@@ -125,8 +136,8 @@
   .fb-title em{font-style:normal;color:var(--accent);}
   .fb-title .fb-sub{color:var(--ink-faint);font-size:0.66em;font-weight:500;}
   .fb-desc{font-size:0.9rem;color:var(--ink-soft);font-weight:300;line-height:1.6;max-width:50ch;}
-  .fb-cta{display:inline-flex;align-items:center;gap:0.5rem;flex-shrink:0;background:var(--accent);color:#fff;
-    font-size:0.86rem;font-weight:500;padding:0.85rem 1.5rem;border-radius:100px;transition:background .3s var(--ease);white-space:nowrap;}
+  .fb-cta{display:inline-flex;align-items:center;gap:0.5rem;flex-shrink:0;background:var(--accent-btn,#FF5722);color:#fff;
+    font-size:1.18rem;font-weight:700;padding:0.85rem 1.5rem;border-radius:100px;transition:background .3s var(--ease);white-space:nowrap;}
   .fb-arrow{transition:transform .3s var(--ease);}
   .free-board:hover .fb-cta{background:var(--accent-h);}
   .free-board:hover .fb-arrow{transform:translateX(4px);}
@@ -350,8 +361,8 @@
     letter-spacing:-0.01em;color:var(--ink);line-height:1.3;margin-bottom:1.4rem;}
   .story-quote .hl{color:var(--accent);}
   .story-meta{display:flex;align-items:center;gap:0.9rem;}
-  .story-ava{width:46px;height:46px;border-radius:50%;background:var(--accent);color:#fff;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1rem;}
+  .story-ava{width:46px;height:46px;border-radius:50%;background:var(--accent-btn,#FF5722);color:#14110E;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:1.0rem;}
   .story-name{font-weight:600;color:var(--ink);font-size:0.95rem;}
   .story-role{font-size:0.84rem;color:var(--ink-soft);font-weight:300;}
   .story-stats{display:flex;flex-direction:column;gap:1.1rem;border-left:1px solid var(--card-line);padding-left:clamp(1.5rem,4vw,3rem);}
@@ -411,10 +422,13 @@
     background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease);}
   html[data-theme="day"] .sticky-cta{background:rgba(250,250,248,0.92);}
-  .sticky-cta.show{transform:translateY(0);}
+  /* visibility:hidden removes the links from the tab order while the bar is
+     off-screen — aria-hidden alone left them focusable. */
+  .sticky-cta{visibility:hidden;}
+  .sticky-cta.show{transform:translateY(0);visibility:visible;}
   .sticky-cta .s-txt{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;}
   .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.86rem;letter-spacing:0;text-transform:none;}
-  .sticky-cta .btn-yes{padding:0.75rem 1.3rem;font-size:0.86rem;white-space:nowrap;flex-shrink:0;}
+  .sticky-cta .btn-yes{padding:0.72rem 1.2rem;font-size:1.18rem;font-weight:700;white-space:nowrap;flex-shrink:0;}
   @media (max-width:740px){
     .sticky-cta{display:flex;}
     body.sticky-on .wa-float{bottom:86px;}
@@ -504,6 +518,7 @@
   <meta property="og:locale" content="en_NG">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I take the self-paced Self-Learn Pack or the live Foundation Training?", "acceptedAnswer": {"@type": "Answer", "text": "They cover the same four stages, the same rubrics and the same four deliverables. The live Foundation Training adds taught sessions, a marked verdict on your work, a certificate and a cohort keeping pace; the ₦35,000 self-paced pack has none of those. Choose the self-paced pack if you will do work nobody is watching you do, and the live cohort if you need a deadline, marking or a certificate."}}, {"@type": "Question", "name": "I've applied to hundreds of jobs with no reply. How is this actually different?", "acceptedAnswer": {"@type": "Answer", "text": "Public job boards put you against 500–800 applicants and an ATS bot that rejects in seconds. We flip that: global-standard positioning first (CV, portfolio, video presence), then 30+ verified pipelines sourced weekly and applied at volume with you — with accountability check-ins until the offer lands. You stop spraying; you start targeting companies already willing to hire you."}}, {"@type": "Question", "name": "I don't have \"tech skills.\" Can this still work for me?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Remote roles span operations, customer success, virtual assistance, sales, admin, writing, project coordination and more. Stages 1–4 build the remote work skills every global employer screens for — async communication, digital tools, deliverable discipline — on top of the experience you already have."}}, {"@type": "Question", "name": "How much time do I need each week?", "acceptedAnswer": {"@type": "Answer", "text": "Members have landed roles while juggling exams, full-time work and ministry. Plan for roughly 90 focused minutes a day. The system is built for busy professionals — everything is structured, templated and guided so no minute is wasted."}}, {"@type": "Question", "name": "What does \"we don't let you go until you're hired\" really mean?", "acceptedAnswer": {"@type": "Answer", "text": "It's our promise: your enrolment doesn't expire when the training ends. You keep the community, the weekly verified job listings and the accountability structure until you're hired — and the support to keep the job after you land it."}}, {"@type": "Question", "name": "How do payments work? Is it safe?", "acceptedAnswer": {"@type": "Answer", "text": "All payments run through Paystack — cards, bank transfer and USSD, fully encrypted and PCI-DSS compliant. Flexible options exist too: you can take the programme one stage at a time from ₦70,000, and the Inner Circle across 2 milestones. See every option on one page →"}}, {"@type": "Question", "name": "I'm not sure which path fits me. Where do I start?", "acceptedAnswer": {"@type": "Answer", "text": "If you're unsure, start with the Remote Job Foundation Training (Stages 1–4). It builds the foundation everything else stands on — and we'll guide your next step from inside. Already global-ready? Go straight to Stage 5 or apply for the Inner Circle."}}]}</script>
+  <style id="erjNavReserve">body{padding-top:59px}@media(min-width:900px){body{padding-top:65px}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -525,7 +540,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="f-frame reveal">
         <span class="f-tick tl"></span><span class="f-tick br"></span>
         <div class="f-photo">
-          <img src="founder-oluwaseyi.jpg" alt="Oluwaseyi Ashiru — Lead Facilitator, Everything Remote Job" width="760" height="1064" loading="eager" fetchpriority="high">
+          <picture>
+            <source srcset="founder-oluwaseyi.webp" type="image/webp">
+            <img src="founder-oluwaseyi.jpg" alt="Oluwaseyi Ashiru — Lead Facilitator, Everything Remote Job" width="640" height="896" loading="eager" decoding="async" fetchpriority="high">
+          </picture>
         </div>
         <div class="f-plate">
           <div class="n">Oluwaseyi Ashiru</div>
@@ -876,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </main>
 
-<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+<div class="sticky-cta" id="stickyCta" aria-hidden="true" inert>
   <div class="s-txt"><strong>Enrolment closes 30 August</strong>Cohort 10 begins Mon 31 Aug · 8PM WAT</div>
   <a href="register.html" class="btn-yes">Secure my place →</a>
 </div>
@@ -900,17 +918,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
   var bar=document.getElementById('stickyCta'),hero=document.querySelector('.home-hero'),final=document.getElementById('enrol');
   if(!bar||!hero)return;
-  var update=function(){
-    var past=window.scrollY>(hero.offsetTop+hero.offsetHeight);
-    var atEnd=final?(window.scrollY+window.innerHeight>final.offsetTop+80):false;
-    var show=past&&!atEnd;
+  /* Layout positions are static between resizes. Reading offsetTop/offsetHeight
+     inside the scroll handler forced a synchronous re-layout on every frame —
+     measured at 175 ms of forced reflow. Measure once, cache, invalidate on resize. */
+  var heroEnd=0, finalTop=Infinity, shown=null, ticking=false;
+  function measure(){
+    heroEnd = hero.offsetTop + hero.offsetHeight;
+    finalTop = final ? final.offsetTop + 80 : Infinity;
+  }
+  function apply(){
+    ticking=false;
+    var y=window.scrollY;
+    var show = y>heroEnd && !(y+window.innerHeight>finalTop);
+    if(show===shown) return;            /* nothing changed — touch no DOM */
+    shown=show;
     bar.classList.toggle('show',show);
     bar.setAttribute('aria-hidden',show?'false':'true');
+    if(show){bar.removeAttribute('inert');}else{bar.setAttribute('inert','');}
     document.body.classList.toggle('sticky-on',show);
-  };
-  window.addEventListener('scroll',update,{passive:true});
-  window.addEventListener('resize',update);
-  update();
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(apply); } }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',function(){ measure(); onScroll(); });
+  window.addEventListener('load',function(){ measure(); apply(); });
+  measure(); apply();
 })();
 </script>
 <script src="erj-schema.js"></script>

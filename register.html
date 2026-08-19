@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- Meta Pixel + Google Tag Manager -->
-<script src="erj-track.js"></script>
+<script src="erj-track.js" async></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
@@ -75,7 +75,7 @@
     transition:border-color .3s var(--ease),transform .3s var(--ease);}
   .pcard:hover{border-color:rgba(255,87,34,0.45);transform:translateY(-3px);}
   .pcard.feature{border-color:var(--accent);position:relative;}
-  .pcard.feature::before{content:'BEST VALUE';position:absolute;top:-10px;left:1.8rem;background:var(--accent);color:#fff;
+  .pcard.feature::before{content:'BEST VALUE';position:absolute;top:-10px;left:1.8rem;background:var(--accent-btn,#FF5722);color:#fff;
     font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:4px 12px;border-radius:100px;}
   .p-stage{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
   .p-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:0.9rem;line-height:1.15;}
@@ -86,8 +86,8 @@
   .p-feat{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin:0.4rem 0 1.7rem;flex:1;}
   .p-feat li{font-size:0.84rem;color:var(--ink-soft);font-weight:300;display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
   .p-feat li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.5rem;}
-  .btn-pay{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--accent);color:#fff;
-    text-decoration:none;padding:0.9rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:0.88rem;font-weight:500;
+  .btn-pay{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--accent-btn,#FF5722);color:#fff;
+    text-decoration:none;padding:0.9rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;
     border:1px solid var(--accent);transition:all 0.28s var(--ease);margin-top:auto;}
   .btn-pay .arrow{transition:transform 0.28s var(--ease);}
   .btn-pay:hover{background:var(--accent-h);border-color:var(--accent-h);transform:translateY(-2px);}
@@ -102,7 +102,7 @@
   .pay-actions{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1.5rem;}
   .pay-actions a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.84rem;font-weight:500;text-decoration:none;
     padding:0.75rem 1.5rem;border-radius:100px;transition:all 0.28s var(--ease);}
-  .pa-primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
+  .pa-primary{background:var(--accent-btn,#FF5722);color:#fff;border:1px solid var(--accent);font-size:1.18rem;font-weight:700;}
   .pa-primary:hover{background:var(--accent-h);border-color:var(--accent-h);}
   .pa-quiet{color:var(--ink-soft);border:1px solid var(--line);}
   .pa-quiet:hover{color:var(--ink);border-color:var(--ink);}
@@ -171,6 +171,7 @@
   <meta property="og:locale" content="en_NG">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Register","item":"https://everythingremotejob.com/register.html"}]}</script>
+  <style id="erjNavReserve">body{padding-top:59px}@media(min-width:900px){body{padding-top:65px}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

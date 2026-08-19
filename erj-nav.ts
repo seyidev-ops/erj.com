@@ -508,8 +508,12 @@ interface Window { ERJ_NAV?: ErjNavCfg; erjApplyTheme?: (t: string) => void }
     const OFFSET = 84;
     const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
+    /* Cached: this ran getBoundingClientRect() for every stop on every scroll
+       frame, forcing a re-layout each time. Recompute on resize instead. */
+    let _tops: number[] | null = null;
     const tops = (): number[] =>
-      stops.map(el => el.getBoundingClientRect().top + window.pageYOffset - OFFSET);
+      (_tops || (_tops = stops.map(el => el.getBoundingClientRect().top + window.pageYOffset - OFFSET)));
+    window.addEventListener('resize', () => { _tops = null; }, { passive: true });
     const currentIndex = (): number => {
       const y = window.pageYOffset; const t = tops(); let idx = -1;
       for (let i = 0; i < t.length; i++) if (y >= t[i] - 4) idx = i;

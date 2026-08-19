@@ -21,7 +21,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{--paper:#000000;--ink:#FFFFFF;--ink-soft:#A1A1A1;--ink-faint:#858585;--accent:#FF5722;--line:rgba(255,255,255,0.10);}
-html[data-theme="day"]{--paper:#FAFAF8;--ink:#0A0A0A;--ink-soft:#52514C;--ink-faint:#6E6C65;--accent:#AD350A;--accent-text:#AD350A;--line:rgba(10,10,10,0.12);}
+html[data-theme="day"]{--paper:#FAFAF8;--ink:#0A0A0A;--ink-soft:#52514C;--ink-faint:#6E6C65;--accent:#AD350A;--accent-btn:#E8470F;--accent-text:#AD350A;--line:rgba(10,10,10,0.12);}
 body{background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-weight:300;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;-webkit-font-smoothing:antialiased;transition:background .4s ease,color .3s ease;}
 .wrap{max-width:420px;}
 .badge{display:inline-flex;align-items:center;gap:9px;font-size:0.7rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;}
@@ -68,7 +68,7 @@ p{color:var(--ink-soft);font-size:0.95rem;line-height:1.7;margin-bottom:2rem;}
     btn=document.createElement('button');
     btn.id='erjInstallBtn';
     btn.textContent='⤓ Install App';
-    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;align-items:center;gap:7px;background:var(--accent-btn,#C9400E);color:#fff;border:none;border-radius:10px;padding:9px 14px;font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);';
+    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;align-items:center;gap:7px;background:var(--accent-btn,#FF5722);color:#14110E;border:none;border-radius:10px;padding:9px 14px;font-weight:700;font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);';
     btn.addEventListener('click',async function(){
       if(!deferred) return;
       deferred.prompt();

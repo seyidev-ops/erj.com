@@ -11,9 +11,11 @@
   --paper:#000000; --paper-2:#0b0b0b; --bg2:#111111; --card:#0d0d0d;
   --ink:#FFFFFF; --ink-soft:#A1A1A1; --ink-faint:#858585;
   --accent:#FF5722;
-  /* Solid buttons with white text: #FF5722 is only 3.16:1 against white,
-     below the 4.5:1 minimum for small text. This darker burnt orange is 4.97:1. */
-  --accent-btn:#C9400E; --accent-h:#ff6f43; --accent2:#FF5722;
+  /* Solid CTA buttons keep the full brand orange. White text on #FF5722 is
+     3.16:1 — fine for LARGE text (WCAG needs only 3:1 there), which is why
+     .btn-yes / .btn-pay are set at 18.7px/700 below. Small orange chips use
+     near-black text instead, see the end of this file. */
+  --accent-btn:#FF5722; --accent-h:#ff6f43; --accent2:#FF5722;
   --line:rgba(255,255,255,0.10); --line-soft:rgba(255,255,255,0.055);
   --card-line:rgba(255,255,255,0.10); --wa:#FF5722; --wa-ink:#ffffff;
   --grid-dot:transparent;
@@ -26,7 +28,7 @@ html[data-theme="day"]{
   /* DAY — clean light counterpart. Keeps RocketAir character. */
   --paper:#FAFAF8; --paper-2:#F2F1ED; --bg2:#FFFFFF; --card:#FFFFFF;
   --ink:#0A0A0A; --ink-soft:#52514C; --ink-faint:#6E6C65;
-  --accent:#AD350A; --accent-h:#C53A0B; --accent2:#E8470F;
+  --accent:#AD350A;--accent-btn:#E8470F; --accent-h:#C53A0B; --accent2:#E8470F;
   --line:rgba(10,10,10,0.12); --line-soft:rgba(10,10,10,0.06);
   --card-line:rgba(10,10,10,0.10); --wa:#E8470F; --wa-ink:#ffffff;
   --grid-dot:rgba(10,10,10,0.05);
@@ -80,9 +82,9 @@ h3{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em;color:
 .stat-lbl{font-size:0.76rem;color:var(--ink-soft);margin-top:0.45rem;letter-spacing:0.02em;}
 
 /* buttons — pill, RocketAir */
-.btn-yes{display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent-btn,#C9400E);color:#fff;text-decoration:none;
-  padding:0.95rem 1.9rem;border-radius:100px;font-family:var(--font-body);font-size:0.98rem;font-weight:500;letter-spacing:0.01em;
-  border:1px solid var(--accent-btn,#C9400E);transition:all 0.28s var(--ease);}
+.btn-yes{display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent-btn,#FF5722);color:#fff;text-decoration:none;
+  padding:0.95rem 1.9rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;letter-spacing:0.01em;
+  border:1px solid var(--accent-btn,#FF5722);transition:all 0.28s var(--ease);}
 .btn-yes .arrow{transition:transform 0.28s var(--ease);}
 .btn-yes:hover{background:var(--accent-h);border-color:var(--accent-h);color:#fff;transform:translateY(-2px);}
 .btn-yes:hover .arrow{transform:translateX(4px);}

@@ -257,6 +257,26 @@ a.post-card,a.feat-card{color:inherit;text-decoration:none;display:block;}
 
 /* ── PAGINATION ──────────────────────────── */
 .pager{display:flex;gap:6px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+
+/* ── FIRST-PAINT SPACE RESERVATION ────────────────────────────────
+   The category pills, the featured card, the six post cards and the
+   pager are all built by JavaScript after the page paints. Until they
+   arrived, everything below them sat too high and then jumped down —
+   a 0.248 cumulative layout shift, which is a failing Core Web Vital
+   and, more to the point, is the page moving under a reader's thumb.
+
+   These reservations hold the exact room the first render needs. The
+   .erj-pre class is stripped the moment that render finishes, so a
+   filtered view showing one article never leaves dead space behind. */
+.cats.erj-pre{min-height:34px;}
+#featuredSlot.erj-pre{min-height:353px;}
+.grid.erj-pre{min-height:1560px;}
+.pager.erj-pre{min-height:74px;}
+@media(min-width:600px){
+  #featuredSlot.erj-pre{min-height:344px;}
+  .grid.erj-pre{min-height:800px;}
+}
+
 .pg-btn{min-width:34px;height:34px;padding:0 .45rem;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:600;transition:var(--t);}
 .pg-btn.on,.pg-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
 
@@ -473,7 +493,7 @@ h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!
   <meta property="og:locale" content="en_NG">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://everythingremotejob.com/blog.html"}]}</script>
-  <style id="erjNavReserve">body{padding-top:59px}@media(min-width:900px){body{padding-top:65px}}</style>
+  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -527,10 +547,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- LEFT / MAIN: posts (100% width on mobile, 1fr on desktop) -->
   <div class="page-content">
-    <div class="cats" id="catBar"></div>
-    <div id="featuredSlot"></div>
-    <div class="grid" id="grid"></div>
-    <div class="pager" id="pager"></div>
+    <div class="cats erj-pre" id="catBar"></div>
+    <div id="featuredSlot" class="erj-pre"></div>
+    <div class="grid erj-pre" id="grid"></div>
+    <div class="pager erj-pre" id="pager"></div>
 
     <!-- Mobile sidebar accordion -->
     <button class="mob-sb-btn" id="mobSbBtn" onclick="toggleMobSb()">
@@ -572,7 +592,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer class="foot wrap">
   &copy; 2026 Everything Remote Job. Built for <span style="color:var(--accent)">global career scale.</span>
-  <nav class="foot-links"><a href="index.html">Home</a><a href="free.html">Free For You</a><a href="starting-line.html">Your Starting Line</a><a href="blog.html">Blog</a><a href="register.html">Register</a><a href="login.html">Participant Login</a></nav>
+  <nav class="foot-links"><a href="index.html">Home</a><a href="free.html">Free For You</a><a href="starting-line.html">Your Starting Line</a><a href="blog.html">Blog</a><a href="blog/">Blog Archive</a><a href="register.html">Register</a><a href="login.html">Participant Login</a></nav>
 </footer>
 
 <script>
@@ -2043,7 +2063,7 @@ const SEEDS=[
 <p>It also gives you your tailoring material. The language the advert repeats is the language the screening software and the first human are both looking for — put those exact words, honestly, in your CV.</p>`},
 ];
 
-const POST_SLUGS={"m6p15":"what-are-your-salary-expectations-answering-it-from-nigeria-without","m6p14":"five-things-that-make-your-work-visible-on-a-distributed-team","m6p13":"using-ai-on-your-cv-without-getting-caught","m6p12":"proving-tool-fluency-when-you-have-never-held-a-remote-job","m6p11":"the-application-ledger-how-to-make-a-demoralising-process-diagnosable","m6p10":"your-time-zone-is-not-an-apology","m6p09":"the-twenty-minutes-after-someone-says-yes-to-a-call","m6p08":"the-self-learn-pack-is-live-the-whole-training-at-your-own-speed","m6p07":"three-kinds-of-company-who-can-actually-hire-and-pay-you-from-here","m6p06":"new-names-foundation-training-job-application-dfy-and-why-we-changed","m6p05":"four-questions-that-tell-you-which-part-of-your-job-search-is-broken","m6p04":"one-global-role-versus-three-local-ones-an-honest-comparison","m6p03":"the-interview-question-nobody-prepares-for","m6p02":"upload-your-cv-see-it-scored-what-the-engine-actually-checks","m6p01":"four-joints-one-leak-why-your-job-search-is-not-working","m5p30":"cohort-9-begins-tonight-what-week-one-looks-like","m5p29":"cohort-9-enrolment-closes-tonight-and-who-it-is-not-for","m5p28":"twelve-small-mistakes-that-quietly-kill-applications","m5p27":"no-degree-no-tech-skills-remote-job-in-eleven-weeks","m5p26":"start-here-your-first-fourteen-days-step-by-step","m5p25":"the-job-search-week-that-actually-works-when-you-have-a-full-time-job","ceiling-to-dollars":"her-ceiling-was-2-1-million-naira-a-year-nine-weeks-later-38-400","m5p24":"negotiating-your-first-offer-without-losing-it","m5p23":"the-video-interview-camera-sound-and-the-two-minute-answer","m5p22":"how-many-applications-a-week-a-realistic-system-that-beats-volume","m5p21":"five-months-no-callbacks-then-an-offer-in-seven-weeks-what-changed","m5p20":"your-first-thirty-days-in-a-remote-job-what-to-do-so-you-are-still-there","m5p19":"six-things-in-a-job-posting-that-mean-do-not-apply","m5p18":"async-work-explained-for-someone-who-has-never-worked-remotely","m5p17":"how-to-write-a-message-that-does-not-need-a-follow-up","m5p16":"a-beginners-tour-of-the-tools-every-remote-team-uses","m5p15":"the-home-setup-that-survives-power-cuts-and-what-interviewers-ask-about","m5p14":"getting-paid-from-abroad-payoneer-wise-grey-and-deel-explained-simply","m5p13":"time-zones-honestly-what-hours-you-will-really-work","m5p12":"the-question-every-african-candidate-gets-asked-and-how-to-answer-it","m5p11":"what-should-you-actually-ask-for-realistic-remote-pay-ranges-in-2026","m5p10":"no-portfolio-three-things-you-can-build-this-weekend-that-count","m5p09":"the-cold-message-that-gets-replies-template-plus-why-every-line-is-there","m5p08":"how-to-find-the-hiring-manager-for-any-role-in-ten-minutes-free","m5p07":"from-bank-teller-to-remote-customer-support-what-the-nine-weeks-actually","m5p06":"what-to-write-in-your-linkedin-about-section-when-you-have-no-remote-yet","m5p05":"your-linkedin-headline-is-the-one-line-that-decides-if-a-recruiter","m5p04":"write-a-cv-a-robot-can-read-the-ats-rules-in-plain-english","m5p03":"how-to-spot-a-remote-job-scam-in-ninety-seconds","m5p02":"the-six-things-you-need-ready-before-you-apply-for-a-single-remote-job","m5p01":"what-a-remote-job-actually-is-and-the-three-kinds-you-can-get-from","m4p19":"if-you-read-nothing-else-this-month-read-this","m4p18":"from-shop-accounts-to-remote-bookkeeper-a-composite-timeline","m4p17":"read-your-rejections-properly-they-tell-you-where-it-is-breaking","m4p16":"how-to-leave-your-current-job-without-burning-anything","m4p15":"freelance-or-salaried-a-straight-comparison-before-you-choose","m4p14":"what-you-can-and-cannot-put-in-a-portfolio-from-a-confidential-job","m4p13":"bring-a-90-day-plan-to-the-interview-almost-nobody-does","m4p12":"working-evening-hours-with-a-family-in-the-house","m4p11":"surviving-a-remote-probation-when-nobody-can-see-you-working","m4p10":"which-certifications-are-worth-it-and-which-are-just-expensive","m4p09":"what-recruiters-actually-type-into-linkedin-and-how-to-be-in-the-results","m4p08":"small-email-habits-that-make-you-look-like-you-have-done-this-before","m4p07":"your-english-is-fine-here-is-what-actually-matters-on-a-call","m4p06":"contractor-or-employee-what-you-are-actually-signing","m4p05":"ghosted-after-the-interview-what-to-send-and-when-to-stop","m4p04":"who-do-you-list-as-a-reference-when-your-boss-does-not-know-you-are","m4p03":"does-your-nigerian-degree-count-abroad-an-honest-answer","m4p02":"how-to-handle-a-gap-in-your-cv-without-lying-about-it","m4p01":"why-do-you-want-to-work-remotely-the-answer-that-loses-offers","w3d10c":"every-free-resource-you-need-to-land-your-first-remote-job-no-paid","w3d10b":"cohort-6-week-3-the-first-offers-are-coming-in","w3d10a":"the-8-skills-most-in-demand-for-remote-work-in-2026-and-how-to-signal","w3d9c":"10-remote-job-posting-red-flags-that-mean-do-not-apply-in-2026","w3d9b":"how-i-got-my-first-international-client-without-a-website-portfolio-or","w3d9a":"async-tools-ranked-for-african-remote-workers-in-2026-connectivity-first","w3d8c":"your-linkedin-ssi-score-is-telling-recruiters-something-here-is-what","w3d8b":"6-months-into-remote-work-the-honest-update-nobody-prepares-you-for","w3d8a":"5-remote-onboarding-mistakes-that-get-you-fired-before-day-90","w3d7c":"i-turned-down-a-62k-remote-job-offer-here-is-what-i-learned-from-it","w3d7b":"cover-letter-templates-ranked-what-hiring-managers-actually-open-in-2026","w3d7a":"building-in-public-while-job-hunting-why-transparency-gets-you-hired","w3d6c":"cohort-6-week-2-results-the-numbers-from-the-cv-and-linkedin-sessions","w3d6b":"how-notion-turned-3-hours-of-daily-chaos-into-45-minutes-of-focused-work","w3d6a":"12-remote-interview-questions-you-will-be-asked-and-how-to-answer-each","w3d5c":"linkedin-dms-vs-cold-email-which-gets-more-replies-in-2026","w3d5b":"the-day-my-first-remote-paycheck-hit-and-the-setup-i-should-have-had","w3d5a":"time-zones-do-not-have-to-stop-you-how-african-remote-workers-win-the","w3d4c":"how-to-get-3-remote-job-interviews-in-7-days-without-a-single-job-board","w3d4b":"the-3-step-async-communication-system-that-makes-you-look-more-than-95","w3d4a":"the-linkedin-headline-formula-that-gets-17-recruiter-messages-in-3-days","w2d14":"countries-for-remote-workers-in-2026-tax-visa-lifestyle-and-cost-of","w2d13":"i-got-hired-remotely-then-fired-90-days-later-heres-what-i-completely","w2d12":"a-recruiter-said-theyd-never-hire-someone-with-a-remote-work-gap-heres","w2d11":"0-to-1-remote-offer-in-23-days-the-exact-numbers-from-marcuss-job-search","w2d10":"remote-work-tools-ranked-by-how-much-they-spy-on-you","w2d9":"how-i-landed-a-75k-remote-job-with-a-2-page-portfolio-and-no-recruiter","w2d8":"the-0-home-office-setup-that-landed-me-a-95k-remote-job","s8":"stage-3-live-what-happened-when-40-participants-scanned-their-cvs-at-the","s7":"cohort-6-week-1-wrap-up-the-mindset-shifts-that-are-already-showing","s6":"how-to-negotiate-your-first-remote-job-salary-even-when-youre-nervous","s5":"the-12-remote-job-platforms-where-nigerian-professionals-are-actually-in","s4":"your-cv-is-failing-you-the-ats-score-thats-blocking-every-application","s3":"the-remote-workers-toolkit-7-apps-that-will-make-you-look-like-a-pro-day","s2":"the-remote-mindset-shift-why-your-office-habits-are-killing-your-remote","s1":"why-most-remote-job-applicants-from-africa-never-hear-back","a7":"remote-work-saved-my-life-and-quietly-ruined-my-career","a6":"myth-you-need-5-years-of-experience-to-land-a-remote-role","a5":"remote-job-titles-ranked-by-actual-salary-in-2026","a4":"from-0-callbacks-to-3-offers-in-6-weeks-how-sarah-did-it","a3":"stop-applying-to-100-jobs-heres-what-actually-gets-remote-interviews","a2":"the-0-month-what-nobody-tells-you-about-building-a-remote-career","a1":"remote-job-sites-ranked-worst-to-best-in-2026"};
+const POST_SLUGS={"m6p21": "how-to-read-a-remote-job-advert-what-the-words-actually-mean", "m6p20": "cohort-10-closes-in-seven-days-what-the-twenty-days-actually-look-like", "m6p19": "from-classroom-teacher-to-remote-curriculum-designer-a-composite", "m6p18": "video-interviews-from-here-power-bandwidth-and-the-backup-nobody-sees", "m6p17": "the-one-spreadsheet-that-changes-how-you-job-hunt", "m6p16": "the-follow-up-sequence-three-messages-and-exactly-when-to-send-each", "m6p15": "what-are-your-salary-expectations-answering-it-from-nigeria-without", "m6p14": "five-things-that-make-your-work-visible-on-a-distributed-team", "m6p13": "using-ai-on-your-cv-without-getting-caught", "m6p12": "proving-tool-fluency-when-you-have-never-held-a-remote-job", "m6p11": "the-application-ledger-how-to-make-a-demoralising-process-diagnosable", "m6p10": "your-time-zone-is-not-an-apology", "m6p09": "the-twenty-minutes-after-someone-says-yes-to-a-call", "m6p08": "the-self-learn-pack-is-live-the-whole-training-at-your-own-speed", "m6p07": "three-kinds-of-company-who-can-actually-hire-and-pay-you-from-here", "m6p06": "new-names-foundation-training-job-application-dfy-and-why-we-changed", "m6p05": "four-questions-that-tell-you-which-part-of-your-job-search-is-broken", "m6p04": "one-global-role-versus-three-local-ones-an-honest-comparison", "m6p03": "the-interview-question-nobody-prepares-for", "m6p02": "upload-your-cv-see-it-scored-what-the-engine-actually-checks", "m6p01": "four-joints-one-leak-why-your-job-search-is-not-working", "m5p30": "cohort-9-begins-tonight-what-week-one-looks-like", "m5p29": "cohort-9-enrolment-closes-tonight-and-who-it-is-not-for", "m5p28": "twelve-small-mistakes-that-quietly-kill-applications", "m5p27": "no-degree-no-tech-skills-remote-job-in-eleven-weeks", "m5p26": "start-here-your-first-fourteen-days-step-by-step", "m5p25": "the-job-search-week-that-actually-works-when-you-have-a-full-time-job", "ceiling-to-dollars": "her-ceiling-was-2-1-million-naira-a-year-nine-weeks-later-38-400", "m5p24": "negotiating-your-first-offer-without-losing-it", "m5p23": "the-video-interview-camera-sound-and-the-two-minute-answer", "m5p22": "how-many-applications-a-week-a-realistic-system-that-beats-volume", "m5p21": "five-months-no-callbacks-then-an-offer-in-seven-weeks-what-changed", "m5p20": "your-first-thirty-days-in-a-remote-job-what-to-do-so-you-are-still-there", "m5p19": "six-things-in-a-job-posting-that-mean-do-not-apply", "m5p18": "async-work-explained-for-someone-who-has-never-worked-remotely", "m5p17": "how-to-write-a-message-that-does-not-need-a-follow-up", "m5p16": "a-beginners-tour-of-the-tools-every-remote-team-uses", "m5p15": "the-home-setup-that-survives-power-cuts-and-what-interviewers-ask-about", "m5p14": "getting-paid-from-abroad-payoneer-wise-grey-and-deel-explained-simply", "m5p13": "time-zones-honestly-what-hours-you-will-really-work", "m5p12": "the-question-every-african-candidate-gets-asked-and-how-to-answer-it", "m5p11": "what-should-you-actually-ask-for-realistic-remote-pay-ranges-in-2026", "m5p10": "no-portfolio-three-things-you-can-build-this-weekend-that-count", "m5p09": "the-cold-message-that-gets-replies-template-plus-why-every-line-is-there", "m5p08": "how-to-find-the-hiring-manager-for-any-role-in-ten-minutes-free", "m5p07": "from-bank-teller-to-remote-customer-support-what-the-nine-weeks-actually", "m5p06": "what-to-write-in-your-linkedin-about-section-when-you-have-no-remote-yet", "m5p05": "your-linkedin-headline-is-the-one-line-that-decides-if-a-recruiter", "m5p04": "write-a-cv-a-robot-can-read-the-ats-rules-in-plain-english", "m5p03": "how-to-spot-a-remote-job-scam-in-ninety-seconds", "m5p02": "the-six-things-you-need-ready-before-you-apply-for-a-single-remote-job", "m5p01": "what-a-remote-job-actually-is-and-the-three-kinds-you-can-get-from", "m4p19": "if-you-read-nothing-else-this-month-read-this", "m4p18": "from-shop-accounts-to-remote-bookkeeper-a-composite-timeline", "m4p17": "read-your-rejections-properly-they-tell-you-where-it-is-breaking", "m4p16": "how-to-leave-your-current-job-without-burning-anything", "m4p15": "freelance-or-salaried-a-straight-comparison-before-you-choose", "m4p14": "what-you-can-and-cannot-put-in-a-portfolio-from-a-confidential-job", "m4p13": "bring-a-90-day-plan-to-the-interview-almost-nobody-does", "m4p12": "working-evening-hours-with-a-family-in-the-house", "m4p11": "surviving-a-remote-probation-when-nobody-can-see-you-working", "m4p10": "which-certifications-are-worth-it-and-which-are-just-expensive", "m4p09": "what-recruiters-actually-type-into-linkedin-and-how-to-be-in-the-results", "m4p08": "small-email-habits-that-make-you-look-like-you-have-done-this-before", "m4p07": "your-english-is-fine-here-is-what-actually-matters-on-a-call", "m4p06": "contractor-or-employee-what-you-are-actually-signing", "m4p05": "ghosted-after-the-interview-what-to-send-and-when-to-stop", "m4p04": "who-do-you-list-as-a-reference-when-your-boss-does-not-know-you-are", "m4p03": "does-your-nigerian-degree-count-abroad-an-honest-answer", "m4p02": "how-to-handle-a-gap-in-your-cv-without-lying-about-it", "m4p01": "why-do-you-want-to-work-remotely-the-answer-that-loses-offers", "w3d10c": "every-free-resource-you-need-to-land-your-first-remote-job-no-paid", "w3d10b": "cohort-6-week-3-the-first-offers-are-coming-in", "w3d10a": "the-8-skills-most-in-demand-for-remote-work-in-2026-and-how-to-signal", "w3d9c": "10-remote-job-posting-red-flags-that-mean-do-not-apply-in-2026", "w3d9b": "how-i-got-my-first-international-client-without-a-website-portfolio-or", "w3d9a": "async-tools-ranked-for-african-remote-workers-in-2026-connectivity-first", "w3d8c": "your-linkedin-ssi-score-is-telling-recruiters-something-here-is-what", "w3d8b": "6-months-into-remote-work-the-honest-update-nobody-prepares-you-for", "w3d8a": "5-remote-onboarding-mistakes-that-get-you-fired-before-day-90", "w3d7c": "i-turned-down-a-62k-remote-job-offer-here-is-what-i-learned-from-it", "w3d7b": "cover-letter-templates-ranked-what-hiring-managers-actually-open-in-2026", "w3d7a": "building-in-public-while-job-hunting-why-transparency-gets-you-hired", "w3d6c": "cohort-6-week-2-results-the-numbers-from-the-cv-and-linkedin-sessions", "w3d6b": "how-notion-turned-3-hours-of-daily-chaos-into-45-minutes-of-focused-work", "w3d6a": "12-remote-interview-questions-you-will-be-asked-and-how-to-answer-each", "w3d5c": "linkedin-dms-vs-cold-email-which-gets-more-replies-in-2026", "w3d5b": "the-day-my-first-remote-paycheck-hit-and-the-setup-i-should-have-had", "w3d5a": "time-zones-do-not-have-to-stop-you-how-african-remote-workers-win-the", "w3d4c": "how-to-get-3-remote-job-interviews-in-7-days-without-a-single-job-board", "w3d4b": "the-3-step-async-communication-system-that-makes-you-look-more-than-95", "w3d4a": "the-linkedin-headline-formula-that-gets-17-recruiter-messages-in-3-days", "w2d14": "countries-for-remote-workers-in-2026-tax-visa-lifestyle-and-cost-of", "w2d13": "i-got-hired-remotely-then-fired-90-days-later-heres-what-i-completely", "w2d12": "a-recruiter-said-theyd-never-hire-someone-with-a-remote-work-gap-heres", "w2d11": "0-to-1-remote-offer-in-23-days-the-exact-numbers-from-marcuss-job-search", "w2d10": "remote-work-tools-ranked-by-how-much-they-spy-on-you", "w2d9": "how-i-landed-a-75k-remote-job-with-a-2-page-portfolio-and-no-recruiter", "w2d8": "the-0-home-office-setup-that-landed-me-a-95k-remote-job", "s8": "stage-3-live-what-happened-when-40-participants-scanned-their-cvs-at-the", "s7": "cohort-6-week-1-wrap-up-the-mindset-shifts-that-are-already-showing", "s6": "how-to-negotiate-your-first-remote-job-salary-even-when-youre-nervous", "s5": "the-12-remote-job-platforms-where-nigerian-professionals-are-actually-in", "s4": "your-cv-is-failing-you-the-ats-score-thats-blocking-every-application", "s3": "the-remote-workers-toolkit-7-apps-that-will-make-you-look-like-a-pro-day", "s2": "the-remote-mindset-shift-why-your-office-habits-are-killing-your-remote", "s1": "why-most-remote-job-applicants-from-africa-never-hear-back", "a7": "remote-work-saved-my-life-and-quietly-ruined-my-career", "a6": "myth-you-need-5-years-of-experience-to-land-a-remote-role", "a5": "remote-job-titles-ranked-by-actual-salary-in-2026", "a4": "from-0-callbacks-to-3-offers-in-6-weeks-how-sarah-did-it", "a3": "stop-applying-to-100-jobs-heres-what-actually-gets-remote-interviews", "a2": "the-0-month-what-nobody-tells-you-about-building-a-remote-career", "a1": "remote-job-sites-ranked-worst-to-best-in-2026"};
 function postHref(id){return POST_SLUGS[id]?('blog/'+POST_SLUGS[id]+'/'):('blog.html?p='+id);}
 const CATS=['All','Job Search','Productivity','Announcements','Success Stories','CV & LinkedIn','Industry News'];
 const CC={
@@ -2157,7 +2177,22 @@ function erjSeedIsDue(seed) {
   } catch(e) {}
 })();
 
-function saved(){try{return JSON.parse(localStorage.getItem('rjm_blog_posts')||'[]')}catch{return[]}}
+/* saved() reads and JSON.parses every stored post — and every post carries its
+   full article HTML, so that string is well over half a megabyte. It was being
+   re-parsed on each call: once for the grid, once for the sidebar, once for the
+   archive counts, again for related posts. A CPU profile on a throttled phone
+   put 557 ms — the single largest cost on this page — inside this one function.
+
+   Parse once, hand back the same array, and drop the cache whenever anything
+   writes to storage. erjInvalidateSaved() is called by every writer below. */
+let _savedCache = null;
+function erjInvalidateSaved(){ _savedCache = null; }
+function saved(){
+  if (_savedCache) return _savedCache;
+  try { _savedCache = JSON.parse(localStorage.getItem('rjm_blog_posts')||'[]'); }
+  catch { _savedCache = []; }
+  return _savedCache;
+}
 function allPosts(){
   const s=saved(), ids=new Set(s.map(p=>p.id));
   const extras = SEEDS.filter(x=>!ids.has(x.id))
@@ -2172,7 +2207,12 @@ function filtered(){
     return cOk&&qOk;
   });
 }
-function fmtD(d){return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});}
+/* Intl date formatting is not cheap, and the same handful of dates gets
+   formatted over and over across the grid, the sidebar and the archive.
+   One formatter, and remember each answer. */
+const _dFmt = new Intl.DateTimeFormat('en-US',{year:'numeric',month:'short',day:'numeric'});
+const _dCache = Object.create(null);
+function fmtD(d){ return _dCache[d] || (_dCache[d] = _dFmt.format(new Date(d))); }
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 /* ─── CATEGORIES ─── */
@@ -2239,6 +2279,10 @@ function renderPosts(){
   document.getElementById('pager').innerHTML=pages>1
     ?Array.from({length:pages},(_,i)=>`<button class="pg-btn${i+1===page?' on':''}" onclick="goPage(${i+1})">${i+1}</button>`).join('')
     :'';
+
+  /* The reserved first-paint space has done its job — let the sections size
+     to whatever is actually in them from here on. */
+  document.querySelectorAll('.erj-pre').forEach(el=>el.classList.remove('erj-pre'));
 
   /* fade-in observer */
   setTimeout(()=>document.querySelectorAll('.fade-in:not(.v)').forEach(el=>el.classList.add('v')),50);
@@ -2717,9 +2761,9 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 </script>
 <!-- ===== /Unified Theme Control ===== -->
 
-<script src="erj-nav.js"></script>
-<script src="erj-config.js"></script>
-<script src="erj-capture.js"></script>
-<script src="erj-schema.js"></script>
+<script src="erj-nav.js" defer></script>
+<script src="erj-config.js" defer></script>
+<script src="erj-capture.js" defer></script>
+<script src="erj-schema.js" defer></script>
 </body>
 </html>

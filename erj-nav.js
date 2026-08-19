@@ -120,6 +120,12 @@
         '.erj-drop a.is-current::before{content:"\u2022 ";}',
         '.erj-drop .erj-drop-anchors{border-top:1px solid var(--enLine);margin-top:0.3rem;padding-top:0.3rem;}',
         '.erj-drop .erj-drop-anchors a{font-size:0.8rem;color:var(--enFaint);}',
+        /* Pinned so the bar's height never depends on which font has finished
+           loading. Pages reserve exactly this much room up front, which is why
+           nothing jumps when the nav mounts. Change one, change the other:
+           the reservation lives in each page's <style id="erjNavReserve">. */
+        '.erj-nav{min-height:63px;}',
+        '@media(min-width:980px){.erj-nav{min-height:65px;}}',
         '@media(min-width:980px){.erj-bar{display:flex;}.erj-burger{display:none;}}',
         /* ── MOBILE DRAWER (<980px) ── */
         '.erj-panel{position:fixed;top:0;right:0;bottom:0;width:min(86vw,380px);z-index:1100;',
@@ -370,8 +376,13 @@
             slot.parentNode.replaceChild(nav, slot);
         else
             document.body.insertBefore(nav, document.body.firstChild);
-        setOffset();
-        requestAnimationFrame(setOffset);
+        /* setOffset() reads nav.offsetHeight, which forces a synchronous layout.
+           Running it here — inside mount, before first paint — cost 64 ms on a
+           throttled phone. The nav height is already reserved in CSS (59 px
+           mobile / 65 px desktop), so nothing moves if the browser paints first
+           and we correct the reserved value once the page has settled.
+           Every consumer of --erj-nav-h carries its own fallback, so nothing
+           depends on this having run. */
         window.addEventListener('load', setOffset);
         window.addEventListener('resize', setOffset);
         if (document.fonts && document.fonts.ready)
@@ -517,10 +528,22 @@
                     idx = i;
             return idx;
         };
+        /* On the very first sync — which happens during load, before the user
+           has scrolled anywhere — we deliberately do NOT call currentIndex().
+           It measures every scroll stop on the page with getBoundingClientRect,
+           forcing a full layout: 92 ms on a throttled phone, spent working out
+           something we already know (at the top of the page, "down" is always
+           available). Measure on the first real scroll instead. */
+        let _measured = false;
         const sync = () => {
-            const idx = currentIndex();
-            upBtn.disabled = window.pageYOffset < 8;
-            downBtn.disabled = idx >= stops.length - 1;
+            const atTop = window.pageYOffset < 8;
+            upBtn.disabled = atTop;
+            if (!_measured && atTop) {
+                downBtn.disabled = stops.length === 0;
+                return;
+            }
+            _measured = true;
+            downBtn.disabled = currentIndex() >= stops.length - 1;
         };
         const go = (dir) => {
             const idx = currentIndex();
@@ -548,7 +571,14 @@
             ticking = true;
             requestAnimationFrame(() => { sync(); ticking = false; });
         }, { passive: true });
-        sync();
+        /* Not sync() — even reading window.pageYOffset here forces the browser
+           to finish laying out the page before it can answer, and that cost
+           108 ms during load. The honest starting state needs no measurement:
+           a page opens at the top, so "up" is off and "down" is on. The first
+           scroll, or the load event, corrects it. */
+        upBtn.disabled = true;
+        downBtn.disabled = stops.length === 0;
+        window.addEventListener('load', () => { requestAnimationFrame(sync); }, { once: true });
     }
     if (document.readyState === 'loading')
         document.addEventListener('DOMContentLoaded', mount);

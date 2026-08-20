@@ -145,13 +145,16 @@
      three months out and the thirty-day window is the binding limit for
      every honest buyer, while a determined one gets months, not years.
 
-     WHY THERE IS AN ISSUED LIST
-     This runs in the browser, so anyone who opens developer tools can
-     read the format and mint a code that passes the checksum. The ISSUED
-     list is what closes that: if it has anything in it, only codes on it
-     are accepted. Generate a batch in the admin panel, paste it in here,
-     deploy once, then sell the batch one code at a time. That is the
-     difference between a lock and a sign saying "please do not enter".
+     WHY THERE IS AN ISSUED LIST — AND WHAT IT DOES NOT DO
+     This runs in the browser, so anyone who opens developer tools can read
+     the format and mint a code that passes the checksum. The ISSUED list
+     closes that: with anything in it, only codes on it are accepted.
+
+     Be clear about the limit. This file is served to every visitor, so a
+     person who views source can also READ the list and try an unsold code.
+     What you have is a finite, revocable set of keys — not a vault. Delete
+     a line to kill that code instantly, and do it the moment you suspect
+     one. If this ever needs to be real, validation moves to a server.
 
      ALPHABET  No I, O, 0 or 1 — those are the characters people get wrong
      when they retype a code from a WhatsApp message.
@@ -363,13 +366,17 @@
       for (var i = 0; i < COHORTS.length; i++) {
         var c = COHORTS[i];
         if (c.year === year && c.hm === hm) {
-          var today = new Date().toISOString().slice(0, 10);
+          /* Named `iso`, not `today` — there is a today() helper at module
+             level and a `var today` here would shadow it for this whole
+             function, so the next person to call today() inside validate()
+             would get "today is not a function". */
+          var iso = today();
           return {
             ok: true, code: code, tier: tier,
             stages: TIERS[tier].stages.slice(),
             label: TIERS[tier].label,
             cohort: c, legacy: false,
-            expired: today > c.ends
+            expired: iso > c.ends
           };
         }
       }

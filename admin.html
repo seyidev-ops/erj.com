@@ -610,6 +610,8 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
       </div>
       <!-- Cohort passcodes -->
       <div id="passcodePanel" style="margin-bottom:1.5rem"></div>
+      <!-- CV Engine passes: the standalone ₦5,000 30-day product -->
+      <div id="cvPassPanel" style="margin-bottom:1.5rem"></div>
 
       <!-- Search -->
       <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap">
@@ -1625,8 +1627,104 @@ function copyCode(c) {
   );
 }
 
+/* ── CV ENGINE PASSES ──────────────────────────────────────────────
+   The ₦5,000 standalone product: thirty days of the CV Engine, counted
+   from the buyer's first use.
+
+   HOW SELLING ONE ACTUALLY WORKS
+   1. Generate a batch here.
+   2. Paste the batch into CV_ISSUED in erj-passcode.js and deploy ONCE.
+   3. Sell them one at a time — send a buyer one line from the batch.
+
+   Step 2 is the part that matters. Until a batch is in CV_ISSUED, the
+   only thing standing between a stranger and free access is a checksum
+   they can read in the page source. With the batch in, a code has to be
+   one you actually issued.
+─────────────────────────────────────────────────────────────────── */
+let _cvBatch = [];
+
+function renderCvPassPanel() {
+  const el = document.getElementById('cvPassPanel');
+  if (!el) return;
+  const P = window.ERJPasscode;
+  if (!P || !P.cvIssueBatch) {
+    el.innerHTML = '<div style="padding:1rem;border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:.82rem">Passcode module did not load \u2014 refresh the page.</div>';
+    return;
+  }
+  const issued = (P.CV_ISSUED || []).length;
+  const warn = issued === 0;
+
+  el.innerHTML = `
+    <div style="border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem">
+      <div style="font-weight:700;margin-bottom:.25rem">🎫 CV Engine passes \u00b7 \u20a65,000 \u00b7 30 days</div>
+      <div style="color:var(--muted);font-size:.8rem;margin-bottom:.9rem;line-height:1.6">
+        The thirty days start the first time the buyer uses the code, not the day they pay.
+        Each code also carries a hard expiry month so a cleared browser cannot reset the clock.
+      </div>
+
+      ${warn ? `<div style="padding:.7rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
+                    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.4)">
+          <b>The issued list is empty.</b> Right now any code that passes the checksum will open the
+          engine \u2014 and the checksum is readable in the page source. Generate a batch below, paste it
+          into <code>CV_ISSUED</code> in <code>erj-passcode.js</code>, and deploy. Then only codes you
+          issued will work.
+        </div>`
+      : `<div style="padding:.7rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
+                    background:rgba(63,185,80,.09);border:1px solid rgba(63,185,80,.35)">
+          <b>${issued} pass${issued === 1 ? '' : 'es'} issued and live.</b> Only these codes open the engine.
+          Delete a line from <code>CV_ISSUED</code> to kill that pass immediately, even mid-month.
+        </div>`}
+
+      <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:.9rem">
+        <label style="font-size:.8rem;color:var(--muted)">How many</label>
+        <input id="cvBatchN" type="number" min="1" max="200" value="25"
+               style="width:5.5rem;padding:.42rem .6rem;border-radius:8px;border:1px solid var(--border);
+                      background:transparent;color:inherit;font:inherit;font-size:.85rem">
+        <label style="font-size:.8rem;color:var(--muted)">Hard expiry</label>
+        <select id="cvBatchM" style="padding:.42rem .6rem;border-radius:8px;border:1px solid var(--border);
+                      background:transparent;color:inherit;font:inherit;font-size:.85rem">
+          <option value="2">in 2 months</option>
+          <option value="3" selected>in 3 months</option>
+          <option value="4">in 4 months</option>
+          <option value="6">in 6 months</option>
+        </select>
+        <button onclick="generateCvBatch()" class="btn"
+                style="padding:.45rem .95rem;border-radius:8px;border:none;cursor:pointer;font:inherit;
+                       font-size:.83rem;font-weight:600;background:var(--accent,#FF5722);color:#fff">Generate batch</button>
+        <button onclick="copyCvBatch()" style="padding:.45rem .95rem;border-radius:8px;cursor:pointer;font:inherit;
+                       font-size:.83rem;background:transparent;border:1px solid var(--border);color:inherit">Copy for erj-passcode.js</button>
+      </div>
+
+      <textarea id="cvBatchOut" readonly placeholder="Generated codes appear here."
+        style="width:100%;min-height:8.5rem;padding:.7rem .8rem;border-radius:9px;border:1px solid var(--border);
+               background:transparent;color:inherit;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;
+               line-height:1.7;resize:vertical"></textarea>
+
+      <div style="color:var(--muted);font-size:.75rem;margin-top:.8rem;line-height:1.6">
+        Buyer message: <em>"Your CV Engine pass is CODE. Go to everythingremotejob.com/cvbuilder/ and enter it.
+        Your thirty days start the moment you do \u2014 not today."</em>
+      </div>
+    </div>`;
+}
+
+function generateCvBatch() {
+  const P = window.ERJPasscode;
+  const n = Math.max(1, Math.min(200, parseInt(document.getElementById('cvBatchN').value, 10) || 25));
+  const m = parseInt(document.getElementById('cvBatchM').value, 10) || 3;
+  _cvBatch = P.cvIssueBatch(n, m);
+  document.getElementById('cvBatchOut').value = _cvBatch.join('\n');
+  showToast('🎫 ' + _cvBatch.length + ' passes generated', 'success');
+}
+
+function copyCvBatch() {
+  if (!_cvBatch.length) { showToast('Generate a batch first', 'error'); return; }
+  const block = _cvBatch.map(c => "    '" + c + "',").join('\n');
+  copyCode(block);
+}
+
 function renderAccessGrid() {
   renderPasscodePanel();
+  renderCvPassPanel();
   const q = (document.getElementById('accessSearch')?.value || '').toLowerCase();
   const learners = getUsers().filter(u =>
     (u.role === 'student' || u.role === 'instructor') &&

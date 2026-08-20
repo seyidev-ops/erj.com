@@ -30,6 +30,30 @@ function openApp() {
   if (!jobsEl.children.length) addJob(true);   /* only seed a blank role if none were restored */
   render();
 }
+function fmtDay(iso) {
+  if (!iso) return '';
+  var M = ['January','February','March','April','May','June',
+           'July','August','September','October','November','December'];
+  var p = iso.split('-');
+  return parseInt(p[2], 10) + ' ' + M[parseInt(p[1], 10) - 1] + ' ' + p[0];
+}
+
+/* A CV Engine pass is a rented month, so the person renting it should be
+   able to see how much of it is left without having to work it out. */
+function showPassBanner(r) {
+  var el = $('passBar');
+  if (!el) return;
+  if (!r || r.tier !== 'CVPASS') { el.style.display = 'none'; return; }
+  var urgent = r.daysLeft <= 5;
+  el.style.display = '';
+  el.className = 'passbar' + (urgent ? ' passbar-soon' : '');
+  el.innerHTML = '<span><b>' + r.daysLeft + ' day' + (r.daysLeft === 1 ? '' : 's') +
+    '</b> left on your CV Engine pass \u00b7 ends ' + fmtDay(r.ends) + '</span>' +
+    (urgent
+      ? '<a href="https://paystack.shop/pay/erj-cvpass" target="_blank" rel="noopener">Renew for \u20a65,000</a>'
+      : '<a href="../register.html">See the full programme</a>');
+}
+
 function tryGate(code, quiet) {
   if (!window.ERJPasscode) {
     if (!quiet) msg('#F87171', 'Code checker did not load. Refresh and try again.');
@@ -37,16 +61,35 @@ function tryGate(code, quiet) {
   }
   var r = window.ERJPasscode.validate(code);
   if (!r.ok) {
-    if (!quiet) {
-      msg('#F87171', ({
-        'empty': 'Enter your access code.',
-        'bad-month': 'The last two letters are not a month we recognise.',
-        'unknown-cohort': 'That code is not for a cohort we run. Check it against your receipt.'
-      }[r.reason]) || 'That code is not valid. Check it, or message us on WhatsApp.');
+    /* An expired or dead CV pass is always explained, even on the silent
+       auto-unlock attempt. Someone whose month has just run out deserves to
+       be told that, not shown a login box with no reason given. */
+    var loud = !quiet ||
+               r.reason === 'cv-expired' || r.reason === 'cv-dead' || r.reason === 'cv-not-issued';
+    if (loud) {
+      if (r.reason === 'cv-expired') {
+        msg('#F59E0B', 'That pass has finished its thirty days \u2014 it started on ' +
+            fmtDay(r.activated) + ' and ended on ' + fmtDay(r.ends) +
+            '. Buy another pass, or enrol for a stage and get a code that does not expire.');
+        try { localStorage.removeItem(LSGATE); } catch (e) {}
+      } else if (r.reason === 'cv-dead') {
+        msg('#F59E0B', 'That pass is past its expiry date. Message us on WhatsApp and we will sort it out.');
+        try { localStorage.removeItem(LSGATE); } catch (e) {}
+      } else {
+        msg('#F87171', ({
+          'empty':          'Enter your access code.',
+          'bad-month':      'The last two letters are not a month we recognise.',
+          'unknown-cohort': 'That code is not for a cohort we run. Check it against your receipt.',
+          'cv-bad-check':   'That pass code is not quite right \u2014 check it character by character.',
+          'cv-bad-month':   'That pass code is not quite right \u2014 check it character by character.',
+          'cv-not-issued':  'That pass has not been issued. Send us your payment receipt on WhatsApp and we will send your code.'
+        }[r.reason]) || 'That code is not valid. Check it, or message us on WhatsApp.');
+      }
     }
     return false;
   }
   try { localStorage.setItem(LSGATE, r.code); } catch (e) {}
+  showPassBanner(r);
   openApp();
   return true;
 }

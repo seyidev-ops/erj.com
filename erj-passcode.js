@@ -166,7 +166,31 @@
      Remove a code to kill it immediately, even mid-month.
   ─────────────────────────────────────────────────────────────────── */
   var CV_ISSUED = [
-    /* e.g. 'ERJCV-2611-K4P9', */
+    'ERJCV-2611-3NXBSYJC',
+    'ERJCV-2611-GH3864BG',
+    'ERJCV-2611-RQF956SQ',
+    'ERJCV-2611-896UFXRZ',
+    'ERJCV-2611-F7NXZ5V2',
+    'ERJCV-2611-HMPACH2K',
+    'ERJCV-2611-J6B4LL5H',
+    'ERJCV-2611-YBEJHZ76',
+    'ERJCV-2611-SD32JV3U',
+    'ERJCV-2611-269CCW9R',
+    'ERJCV-2611-UYSKHH3W',
+    'ERJCV-2611-XJA8L8UT',
+    'ERJCV-2611-M3F7273Q',
+    'ERJCV-2611-ESCM4RVX',
+    'ERJCV-2611-57KVSG83',
+    'ERJCV-2611-6ZCDR9K7',
+    'ERJCV-2611-HBZATS7D',
+    'ERJCV-2611-TCQ2H76T',
+    'ERJCV-2611-PLHGULRC',
+    'ERJCV-2611-9R5QTJJM',
+    'ERJCV-2611-BBFBQU7F',
+    'ERJCV-2611-E6R9Y3R9',
+    'ERJCV-2611-9NZ8D28L',
+    'ERJCV-2611-DSVS5QF8',
+    'ERJCV-2611-ZX36A4TV',
   ];
 
   /* Deterministic two-character check over the code body. Not security —

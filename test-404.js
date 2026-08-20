@@ -1,59 +1,43 @@
-/* The 404 legacy map is now the ONLY thing standing between an old
-   inbound link and a dead end, so it gets its own tests. */
+/* The 404 page used to carry a map of retired URLs and jump visitors from an
+   old address to the new one. That machinery is gone on purpose: the renamed
+   pages are treated as if they never existed, so an old address is simply an
+   address the site does not have.
+
+   What is left to test is that the page still does its one job well — it says
+   what happened, it is readable without JavaScript, and it offers real ways
+   forward instead of a dead end. Plus one guard so the redirect machinery
+   cannot quietly come back. */
 const fs = require('fs');
+const path = require('path');
 let pass = 0, fail = 0;
-const ok = (n, c, x) => c ? (pass++, console.log('  \u2713 ' + n))
-                          : (fail++, console.log('  \u2717 ' + n + (x ? ' \u2014 ' + x : '')));
+const ok = (n, c, x) => c ? (pass++, console.log('  ✓ ' + n))
+                          : (fail++, console.log('  ✗ ' + n + (x ? ' — ' + x : '')));
 
-const html = fs.readFileSync(require('path').join(__dirname, '404.html'), 'utf8');
-const script = html.split('<script>')[1].split('</script>')[0];
+const html = fs.readFileSync(path.join(__dirname, '404.html'), 'utf8');
 
-function visit(pathname, hash) {
-  let replaced = null, lost = false;
-  const location = {
-    pathname, hash: hash || '',
-    replace: u => { replaced = u; },
-  };
-  const document = {
-    documentElement: { setAttribute: (k, v) => { if (k === 'data-lost') lost = true; } },
-  };
-  new Function('location', 'document', script)(location, document);
-  return { replaced, lost };
-}
-
-console.log('\nLEGACY URL MAP');
-const cases = [
-  ['/howtogetaremotejob/',        '/jobapplication/'],
-  ['/howtogetaremotejob/index.html', '/jobapplication/'],
-  ['/howtogetaremotejob',         '/jobapplication/'],       // no trailing slash
-  ['/products/remote-job/',       '/jobapplication/'],
-  ['/masterysetup/',              '/jobapplication/'],
-  ['/products/mastery-training/', '/foundationtraining/'],
-  ['/products/inner-circle/',     '/innercircle/'],
-  ['/products/inner-circle/index.html', '/innercircle/'],
-  ['/job-world-mastery.html',     '/foundationtraining/'],
-  ['/inner-circle.html',          '/innercircle/'],
-  ['/jobs.html',                  '/jobapplication/'],
-];
-cases.forEach(([from, to]) => {
-  const r = visit(from);
-  ok(`${from} \u2192 ${to}`, r.replaced === to, 'got ' + r.replaced);
-});
-
-console.log('\nBEHAVIOUR');
-ok('a genuinely unknown URL shows the page instead of looping',
-   (() => { const r = visit('/no-such-page.html'); return r.replaced === null && r.lost; })());
-ok('the hash a visitor arrived with is preserved',
-   visit('/products/remote-job/', '#pricing').replaced === '/jobapplication/#pricing');
-ok('the hash is carried onto a retired page mapping too',
-   visit('/jobs.html', '#top').replaced === '/jobapplication/#top');
-
-console.log('\nPAGE ITSELF');
+console.log('\nTHE PAGE ITSELF');
 ok('404 page is noindex', /name="robots" content="noindex/.test(html));
-ok('404 page stays blank while a mapped URL jumps',
-   /html:not\(\[data-lost\]\) \.nf\{visibility:hidden/.test(html));
-ok('404 page offers real doors for unmapped URLs',
+ok('404 page offers real doors forward',
    (html.match(/class="nf-door"/g) || []).length >= 5);
+ok('404 content is visible without JavaScript — nothing hides it first',
+   !/visibility:hidden/.test(html.replace(/style="display:none;visibility:hidden"/g, '')));
+ok('404 page carries the site navigation', /erj-nav\.js/.test(html));
+
+console.log('\nNO REDIRECT MACHINERY');
+ok('no legacy URL map', !/LEGACY/.test(html));
+ok('no location.replace jump', !/location\.replace/.test(html));
+ok('no data-lost visibility gate', !/data-lost/.test(html));
+ok('no meta refresh', !/http-equiv="refresh"/i.test(html));
+
+console.log('\nRETIRED PATHS STAY GONE');
+const gone = ['products', 'howtogetaremotejob', 'getaremotejob', 'masterytraining',
+              'masterysetup', 'job-application-dfy', 'jobs.html', 'inner-circle.html',
+              'job-world-mastery.html'];
+gone.forEach(p => ok(`/${p} does not exist`, !fs.existsSync(path.join(__dirname, p))));
+
+console.log('\nTHE PAGES THEY WERE RENAMED TO ARE LIVE');
+['jobapplication', 'foundationtraining', 'innercircle', 'selflearn'].forEach(p =>
+  ok(`/${p}/ is live`, fs.existsSync(path.join(__dirname, p, 'index.html'))));
 
 console.log('\n' + pass + ' passed, ' + fail + ' failed\n');
 process.exit(fail ? 1 : 0);

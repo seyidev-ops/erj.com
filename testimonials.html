@@ -120,6 +120,37 @@ button{-webkit-tap-highlight-color:transparent;}
 .dfy-free-list li{font-size:.84rem;color:var(--text);padding-left:1.4rem;position:relative;line-height:1.45;}
 .dfy-free-list li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700;}
 .dfy-free-cta{display:block;width:100%;text-align:center;background:var(--bg3);color:var(--text);border:1px solid var(--border2);font-size:.9rem;font-weight:700;padding:.85rem 1rem;border-radius:10px;margin-top:auto;}
+
+/* ── CV ENGINE PASS · the ₦5,000 rented month ─────────────────────────
+   Sits full-width under the free job board card, because it is the rung
+   between "free" and "₦35,000": the cheapest thing on the site that is
+   still a real tool, for the person whose only broken joint is the CV. */
+.cvp{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.9rem;}
+@media(min-width:820px){.cvp{grid-template-columns:1.55fr 1fr;gap:2.4rem;padding:2.1rem 2.3rem;}}
+.cvp-tag{display:inline-flex;align-items:center;gap:.45rem;font-size:.62rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,87,34,.3);border-radius:100px;
+  padding:4px 11px;margin-bottom:1rem;}
+.cvp-h{font-family:var(--fd);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:800;line-height:1.2;
+  letter-spacing:-.02em;color:var(--text);margin:0 0 .7rem;}
+.cvp-h em{font-style:normal;color:var(--accent);}
+.cvp-sub{font-size:.9rem;color:var(--muted);line-height:1.72;margin:0 0 1.1rem;}
+.cvp-feat{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem;}
+.cvp-feat li{font-size:.85rem;color:var(--text);line-height:1.55;padding-left:1.5rem;position:relative;}
+.cvp-feat li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700;}
+.cvp-buy{border-left:0;padding-left:0;}
+@media(min-width:820px){.cvp-buy{border-left:1px solid var(--border2);padding-left:2.2rem;}}
+.cvp-price{font-family:var(--fd);font-size:2.4rem;font-weight:900;color:var(--text);line-height:1.05;margin-bottom:.45rem;}
+.cvp-price small{display:block;font-family:var(--fb);font-size:.8rem;font-weight:400;color:var(--muted2);
+  line-height:1.6;margin-top:.5rem;}
+.cvp-btn{display:block;width:100%;text-align:center;background:var(--accent-btn,#FF5722);color:#fff;
+  padding:.95rem 1rem;border-radius:10px;font-family:var(--fd);font-size:1.18rem;font-weight:800;
+  text-decoration:none;transition:var(--tr);margin-top:1.1rem;}
+.cvp-btn:hover{background:var(--accent2,#963F12);transform:translateY(-2px);}
+.cvp-note{font-size:.74rem;color:var(--muted2);line-height:1.65;margin-top:.85rem;}
+.cvp-note a{color:var(--accent);text-decoration:none;}
+html[data-theme="day"] .cvp{background:#fff;}
+
 .dfy-more{font-size:.88rem;color:var(--muted);line-height:1.75;margin-top:2rem;text-align:center;}
 .dfy-more a{color:var(--accent);font-weight:600;text-decoration:none;}
 .dfy-more a:hover{text-decoration:underline;}
@@ -371,6 +402,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
       <span class="dfy-free-cta">Join free on WhatsApp →</span>
     </a>
+
+    <!-- ══ CV ENGINE PASS · ₦5,000 · 30 days ══ -->
+    <div class="cvp" id="cvpass">
+      <div>
+        <span class="cvp-tag"><span class="mark"></span>New · 30-day pass</span>
+        <h3 class="cvp-h">Only your CV is broken? <em>Rent the engine for a month.</em></h3>
+        <p class="cvp-sub">The same CV Engine our participants use — the one built against the ten-point ATS scan — for thirty days, on its own. No cohort, no training, no stages. You get an access code, and the thirty days start the first time you use it, not the day you pay.</p>
+        <ul class="cvp-feat">
+          <li>Build and rebuild as many versions as you want for thirty days</li>
+          <li>Export to .docx and PDF — formatting a parser can actually read</li>
+          <li>Scored against the same ten points that decide if a human ever sees it</li>
+          <li>Tailor a fresh version per application instead of sending one CV everywhere</li>
+        </ul>
+      </div>
+      <div class="cvp-buy">
+        <div class="cvp-price">₦5,000<small>One payment · thirty days from first use · no auto-renewal, ever</small></div>
+        <a href="https://paystack.shop/pay/erj-cvpass" class="cvp-btn">Get my 30-day pass <span>→</span></a>
+        <p class="cvp-note">After payment, send your receipt to <a href="https://wa.me/2348032925957" target="_blank" rel="noopener">+234 803 292 5957</a> with the message <em>"CV PASS"</em> and we send your code the same day. Want to see what it scores first? The <a href="cvscan/">CV self-scan is free</a>.</p>
+      </div>
+    </div>
 
   </div>
 

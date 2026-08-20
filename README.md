@@ -35,28 +35,30 @@ The programme it powers:
 /
 ├── index.html                  # Home — Cohort 10 conversion page
 ├── register.html               # Evergreen enrolment & pricing page
-├── testimonials.html           # Social proof + Private Job Board
+├── testimonials.html           # Success stories + Done-For-You in 7 Days
 ├── blog.html · blog-admin.html # "Everything Remote" blog + admin
-├── howtogetaremotejob/         # Stage 5 — the Placement Engine
-├── innercircle/                # Inner Circle mentorship application
-├── foundationtraining/            # Stages 1–4 programme page
-├── products/                   # Canonical product pages
-│   ├── remote-job/
-│   ├── mastery-training/
-│   └── inner-circle/
+├── blog/                       # 114 static article pages + /blog/ archive index
+├── selflearn/                  # Stages 1–4, self-paced
+├── foundationtraining/         # Stages 1–4 live cohort programme
+├── jobapplication/             # Stage 5 — the Placement Engine
+├── innercircle/                # Stages 6–12 · private residency application
+├── cvbuilder/ · cvscan/        # CV Engine (gated) and public CV self-scan
+├── diagnose/                   # The four-joints diagnostic
 ├── login.html · dashboard.html # Participant LMS portal
 ├── instructor.html             # Instructor portal
 ├── admin.html                  # Admin panel
-├── jobs.html                   # → redirects to testimonials (Private Job Board)
-├── job-world-mastery.html      # → redirect stub (legacy URL)
-├── erj-nav.js · erj-theme.js · erj-product.js
-├── product.css
+├── erj-nav.js · erj-theme.js · erj-product.js · erj-track.js
+├── product.css                 # source of truth — inlined by inline-css.py
 ├── sw.js                       # Service worker (cache-versioned)
 ├── manifest.json               # PWA manifest
 └── CNAME                       # everythingremotejob.com
 ```
 
-Legacy URLs are preserved as redirect stubs so old links, indexed pages, and shared WhatsApp messages never break.
+There is no redirect layer. Product pages live at one address each and that
+address is the only one that has ever been correct as far as the site is
+concerned. Earlier names were retired outright — no stubs, no legacy map, no
+client-side jump. `validate.py` and `test-404.js` both fail if any of it
+returns.
 
 ## Design system — "RocketAir"
 
@@ -90,7 +92,7 @@ No build step. No framework. Plain HTML/CSS/JS by design — fast on low-bandwid
 
 - Keep the accent colour usage disciplined — orange is for the single most important action per screen.
 - All new pages must load `erj-nav.js` and respect `scroll-padding-top` (nav overlap regression protection).
-- Product pages canonically live in `products/`; top-level equivalents are redirect stubs only.
+- Each product page lives at exactly one address. Renaming a page means renaming it — do not leave a stub or a redirect behind.
 - Pricing shown on any page must match `register.html` (single source of truth).
 
 

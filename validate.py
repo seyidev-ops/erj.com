@@ -216,34 +216,38 @@ for loc in re.findall(r"<loc>https://everythingremotejob\.com/([^<]*)</loc>", sm
 notes.append(f"sitemap: {len(re.findall(r'<loc>', sm))} URLs, all resolve")
 
 
-# ── 11 · retired URLs stay retired ────────────────────────────────────
-# The stubs are gone; 404.html is the single mechanism. Guard against a
-# future edit quietly reintroducing scattered redirect files.
+# ── 11 · the renamed pages are gone, and stay gone ────────────────────
+# There is no redirect layer any more — no stubs, no legacy map on the 404
+# page. A retired address is simply an address this site does not have.
+# These checks stop any of it creeping back in.
+RETIRED = [
+    "products", "howtogetaremotejob", "getaremotejob", "masterytraining",
+    "masterysetup", "job-application-dfy", "jobs.html", "inner-circle.html",
+    "job-world-mastery.html",
+]
+back = [p for p in RETIRED if (ROOT / p).exists()]
+if back:
+    errors.append("retired paths are back: " + ", ".join("/" + p for p in back))
+else:
+    notes.append(f"{len(RETIRED)} retired paths absent, as intended")
+
 nf = ROOT / "404.html"
 if not nf.exists():
-    errors.append("404.html is missing — every retired URL now depends on it")
+    errors.append("404.html is missing")
 else:
     txt = nf.read_text(encoding="utf-8")
     if 'content="noindex' not in txt:
         errors.append("404.html must be noindex")
-    mapped = re.findall(r"'(/[^']*)':\s*'([^']*)'", txt)
-    notes.append(f"404 legacy map: {len(mapped)} retired URLs handled in one place")
-    for _, target in mapped:
-        t = ROOT / target.split("#")[0]
-        if t.is_dir():
-            t = t / "index.html"
-        if not t.exists():
-            errors.append(f"404 map points at {target}, which does not exist")
-
-for gone in ["products", "howtogetaremotejob"]:
-    if (ROOT / gone).exists():
-        errors.append(f"/{gone}/ was deleted on purpose — it is back")
+    for junk, what in [("LEGACY", "a legacy URL map"),
+                       ("location.replace", "a client-side redirect"),
+                       ("data-lost", "the old visibility gate")]:
+        if junk in txt:
+            errors.append(f"404.html still carries {what} — the redirect layer was removed")
 
 stubs = [f.relative_to(ROOT) for f in ROOT.rglob("*.html")
          if 'http-equiv="refresh"' in f.read_text(encoding="utf-8", errors="ignore")]
 if stubs:
-    warnings.append("redirect stubs are back outside 404.html: "
-                    + ", ".join(str(x) for x in stubs))
+    errors.append("redirect stubs are back: " + ", ".join(str(x) for x in stubs))
 
 # ── report ────────────────────────────────────────────────────────────
 print("\n── NOTES ──")

@@ -15,6 +15,12 @@
                ERJM-CORE-2026AV   same cohort, Stages 1–4 only
                ERJM-FULL-2026EL   cohort of 31 Aug – 26 Sept 2026 (Elul)
 
+   THERE IS A SECOND FORMAT   ERJCV-<YYMM>-<SSSS><CC>
+   The standalone ₦5,000 CV Engine pass: thirty days from first use, and
+   nothing else — no stages, no portal. YYMM is a hard backstop month
+   baked into the code; SSSS is the serial; CC is a check. Full
+   explanation sits above cvValidate() further down this file.
+
    THE RULE FOR ADDING A COHORT
    Take the date the cohort begins, find the Hebrew month that date falls
    in, use its abbreviation, and pair it with the Gregorian year of that
@@ -119,12 +125,171 @@
     return COHORTS[COHORTS.length - 1];
   }
 
+  /* ═════════════════════════════════════════════════════════════════
+     CV ENGINE PASS  ·  ERJCV-<YYMM>-<SSSS><CC>
+     ═════════════════════════════════════════════════════════════════
+     A standalone ₦5,000 product: thirty days of access to the CV Engine
+     for someone who is not in a cohort and does not want the training.
+
+     THE THIRTY DAYS RUN FROM FIRST USE, NOT FROM PURCHASE. Someone who
+     buys on a Friday and does not open it until the following Thursday
+     still gets their full month. The activation date is stamped in the
+     browser the first time the code is accepted.
+
+     WHY THE CODE ALSO CARRIES ITS OWN EXPIRY MONTH
+     That activation stamp lives in localStorage, and localStorage can be
+     cleared — which would hand back a fresh thirty days. So every code
+     also carries a backstop month (YYMM) baked into it at the moment it
+     is issued. Past the last day of that month the code is dead however
+     many times storage is wiped. Issue codes with a backstop roughly
+     three months out and the thirty-day window is the binding limit for
+     every honest buyer, while a determined one gets months, not years.
+
+     WHY THERE IS AN ISSUED LIST
+     This runs in the browser, so anyone who opens developer tools can
+     read the format and mint a code that passes the checksum. The ISSUED
+     list is what closes that: if it has anything in it, only codes on it
+     are accepted. Generate a batch in the admin panel, paste it in here,
+     deploy once, then sell the batch one code at a time. That is the
+     difference between a lock and a sign saying "please do not enter".
+
+     ALPHABET  No I, O, 0 or 1 — those are the characters people get wrong
+     when they retype a code from a WhatsApp message.
+  ═════════════════════════════════════════════════════════════════ */
+  var CV_ALPHABET = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+  var CV_DAYS = 30;
+
+  /* ── ISSUED CV PASSES ─────────────────────────────────────────────
+     Paste generated codes here, one per line, then deploy. An empty
+     list means checksum-only validation, which is far weaker — the
+     admin panel warns about it.
+     Remove a code to kill it immediately, even mid-month.
+  ─────────────────────────────────────────────────────────────────── */
+  var CV_ISSUED = [
+    /* e.g. 'ERJCV-2611-K4P9', */
+  ];
+
+  /* Deterministic two-character check over the code body. Not security —
+     it only stops a typo or an idle guess from being accepted. */
+  function cvCheck(body) {
+    var h = 7;
+    for (var i = 0; i < body.length; i++) {
+      h = (h * 31 + body.charCodeAt(i)) % 1024;
+    }
+    return CV_ALPHABET.charAt(h % 32) + CV_ALPHABET.charAt(Math.floor(h / 32) % 32);
+  }
+
+  /* Last calendar day of the YYMM a code carries, as ISO. */
+  function cvBackstop(yymm) {
+    var y = 2000 + parseInt(yymm.slice(0, 2), 10);
+    var m = parseInt(yymm.slice(2), 10);
+    if (!(m >= 1 && m <= 12)) return null;
+    var d = new Date(Date.UTC(y, m, 0));            /* day 0 of next month = last of this */
+    return d.toISOString().slice(0, 10);
+  }
+
+  function today() { return new Date().toISOString().slice(0, 10); }
+
+  function addDays(iso, n) {
+    var d = new Date(iso + 'T00:00:00Z');
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+
+  /* Mint a code. `monthsAhead` sets how far out the backstop sits —
+     three months is the sensible default: long enough that nobody's
+     thirty days is ever cut short, short enough that a code found in a
+     screenshot next year is worthless. */
+  function cvIssue(monthsAhead) {
+    var now = new Date();
+    var b = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + (monthsAhead || 3), 1));
+    var yymm = String(b.getUTCFullYear()).slice(2) +
+               ('0' + (b.getUTCMonth() + 1)).slice(-2);
+    var serial = '';
+    for (var i = 0; i < 4; i++) {
+      serial += CV_ALPHABET.charAt(Math.floor(Math.random() * 32));
+    }
+    var body = 'ERJCV-' + yymm + '-' + serial;
+    return body + cvCheck(body);
+  }
+
+  /* A batch, all distinct, ready to paste into CV_ISSUED and to sell. */
+  function cvIssueBatch(n, monthsAhead) {
+    var out = [], seen = {};
+    var guard = 0;
+    while (out.length < (n || 25) && guard++ < 5000) {
+      var c = cvIssue(monthsAhead);
+      if (!seen[c]) { seen[c] = 1; out.push(c); }
+    }
+    return out;
+  }
+
+  /* The stored activation record, if there is one. */
+  var CV_LS = 'erj_cvpass_v1';
+  function cvRecord() {
+    try { return JSON.parse(localStorage.getItem(CV_LS) || 'null'); } catch (e) { return null; }
+  }
+  function cvActivate(code) {
+    var r = cvRecord();
+    if (r && r.code === code && r.activated) return r;      /* already running — do not restart */
+    r = { code: code, activated: today() };
+    try { localStorage.setItem(CV_LS, JSON.stringify(r)); } catch (e) {}
+    return r;
+  }
+
+  function cvValidate(code) {
+    /* Accept it with the hyphens missing or spaced, which is what happens
+       when it is retyped from a screenshot. normalise() has already
+       upper-cased and squeezed the whitespace. */
+    var m = code.match(/^ERJCV-(\d{4})-([23456789A-HJ-NP-Z]{6})$/) ||
+            code.replace(/[^A-Z0-9]/g, '')
+                .match(/^ERJCV(\d{4})([23456789A-HJ-NP-Z]{6})$/);
+    if (!m) return null;                                    /* not a CV pass at all */
+    var yymm = m[1], rest = m[2];
+    code = 'ERJCV-' + yymm + '-' + rest;                    /* canonical form */
+    var body = 'ERJCV-' + yymm + '-' + rest.slice(0, 4);
+    if (cvCheck(body) !== rest.slice(4)) {
+      return { ok: false, reason: 'cv-bad-check' };
+    }
+    var backstop = cvBackstop(yymm);
+    if (!backstop) return { ok: false, reason: 'cv-bad-month' };
+    if (CV_ISSUED.length && CV_ISSUED.indexOf(code) === -1) {
+      return { ok: false, reason: 'cv-not-issued' };
+    }
+    var t = today();
+    if (t > backstop) {
+      return { ok: false, reason: 'cv-dead', backstop: backstop };
+    }
+    var rec = cvActivate(code);
+    var ends = addDays(rec.activated, CV_DAYS - 1);
+    if (ends > backstop) ends = backstop;                   /* the backstop always wins */
+    var left = Math.round(
+      (new Date(ends + 'T00:00:00Z') - new Date(t + 'T00:00:00Z')) / 86400000
+    ) + 1;
+    if (t > ends) {
+      return { ok: false, reason: 'cv-expired', activated: rec.activated, ends: ends };
+    }
+    return {
+      ok: true, code: code, tier: 'CVPASS',
+      stages: [],                                           /* buys the tool, not the training */
+      cvEngine: true,
+      label: 'CV Engine pass · ' + left + ' day' + (left === 1 ? '' : 's') + ' left',
+      cohort: null, legacy: false, expired: false,
+      activated: rec.activated, ends: ends, daysLeft: left, backstop: backstop
+    };
+  }
+
   /* Validate a typed code.
      → { ok:true, tier, stages, cohort, code, legacy, expired }
      → { ok:false, reason } */
   function validate(raw) {
     var code = normalise(raw);
     if (!code) return { ok: false, reason: 'empty' };
+
+    /* CV Engine passes are checked first — they are their own format and
+       must never fall through to the cohort matcher. */
+    var cv = cvValidate(code);
+    if (cv) return cv;
 
     /* current-format codes. Also accept the code with the hyphens missing
        or replaced by spaces, which is what happens when it is pasted out of
@@ -178,6 +343,17 @@
     currentCohort: currentCohort,
     cohortByNumber: cohortByNumber,
     validate: validate,
+    /* CV Engine pass (₦5,000 · 30 days from first use) */
+    CV_DAYS: CV_DAYS,
+    CV_ISSUED: CV_ISSUED,
+    cvIssue: cvIssue,
+    cvIssueBatch: cvIssueBatch,
+    cvRecord: cvRecord,
+    cvCheck: cvCheck,
+    cvBackstop: cvBackstop,
+    /* Wipe the local activation stamp — for support, when someone has to
+       be moved to a new device and you have decided to allow it. */
+    cvReset: function () { try { localStorage.removeItem(CV_LS); } catch (e) {} },
     /* Both codes for a cohort, ready to display or send. */
     codesFor: function (cohort) {
       var c = (typeof cohort === 'number') ? cohortByNumber(cohort) : (cohort || currentCohort());

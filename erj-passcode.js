@@ -15,11 +15,11 @@
                ERJM-CORE-2026AV   same cohort, Stages 1–4 only
                ERJM-FULL-2026EL   cohort of 31 Aug – 26 Sept 2026 (Elul)
 
-   THERE IS A SECOND FORMAT   ERJCV-<YYMM>-<SSSS><CC>
+   THERE IS A SECOND FORMAT   ERJCV-<YYMM>-<SSSSSS><CC>
    The standalone ₦5,000 CV Engine pass: thirty days from first use, and
    nothing else — no stages, no portal. YYMM is a hard backstop month
-   baked into the code; SSSS is the serial; CC is a check. Full
-   explanation sits above cvValidate() further down this file.
+   baked into the code; SSSSSS is a cryptographically random serial;
+   CC is a typo check. Full explanation sits above cvValidate() below.
 
    THE RULE FOR ADDING A COHORT
    Take the date the cohort begins, find the Hebrew month that date falls
@@ -126,7 +126,7 @@
   }
 
   /* ═════════════════════════════════════════════════════════════════
-     CV ENGINE PASS  ·  ERJCV-<YYMM>-<SSSS><CC>
+     CV ENGINE PASS  ·  ERJCV-<YYMM>-<SSSSSS><CC>
      ═════════════════════════════════════════════════════════════════
      A standalone ₦5,000 product: thirty days of access to the CV Engine
      for someone who is not in a cohort and does not want the training.
@@ -200,16 +200,53 @@
      three months is the sensible default: long enough that nobody's
      thirty days is ever cut short, short enough that a code found in a
      screenshot next year is worthless. */
+  /* ── WHERE THE RANDOMNESS COMES FROM ──────────────────────────────
+     crypto.getRandomValues, not Math.random. Math.random is a plain
+     pseudo-random generator: see enough of its output and the next
+     value is predictable, which is exactly the wrong property for a
+     thing people pay for.
+
+     The rejection loop matters too. The alphabet has 32 characters and
+     a byte holds 256 values, so 256 divides evenly by 32 and there is
+     no bias here — but the loop is kept anyway so that changing the
+     alphabet length later cannot silently make some characters more
+     likely than others.
+
+     NOTHING IN A CODE IS DERIVED FROM THE BUYER. Not their name, their
+     email, their phone number, the order they bought in, or the time
+     they paid. Two codes issued a second apart share nothing but the
+     backstop month. Knowing one code tells you nothing about the next.
+  ─────────────────────────────────────────────────────────────────── */
+  var CV_SERIAL_LEN = 6;                 /* 32^6 = 1,073,741,824 serials */
+
+  function cvRandomChars(n) {
+    var out = '';
+    var g = (typeof crypto !== 'undefined' && crypto.getRandomValues)
+              ? crypto : null;
+    if (!g) {
+      /* No Web Crypto — refuse rather than quietly issue weak codes. */
+      throw new Error('This browser has no crypto.getRandomValues, so codes ' +
+                      'cannot be generated securely here. Use a current ' +
+                      'Chrome, Safari, Firefox or Edge.');
+    }
+    var buf = new Uint8Array(n * 2);
+    while (out.length < n) {
+      g.getRandomValues(buf);
+      for (var i = 0; i < buf.length && out.length < n; i++) {
+        var v = buf[i];
+        if (v >= 256 - (256 % CV_ALPHABET.length)) continue;   /* reject bias */
+        out += CV_ALPHABET.charAt(v % CV_ALPHABET.length);
+      }
+    }
+    return out;
+  }
+
   function cvIssue(monthsAhead) {
     var now = new Date();
     var b = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + (monthsAhead || 3), 1));
     var yymm = String(b.getUTCFullYear()).slice(2) +
                ('0' + (b.getUTCMonth() + 1)).slice(-2);
-    var serial = '';
-    for (var i = 0; i < 4; i++) {
-      serial += CV_ALPHABET.charAt(Math.floor(Math.random() * 32));
-    }
-    var body = 'ERJCV-' + yymm + '-' + serial;
+    var body = 'ERJCV-' + yymm + '-' + cvRandomChars(CV_SERIAL_LEN);
     return body + cvCheck(body);
   }
 
@@ -241,14 +278,14 @@
     /* Accept it with the hyphens missing or spaced, which is what happens
        when it is retyped from a screenshot. normalise() has already
        upper-cased and squeezed the whitespace. */
-    var m = code.match(/^ERJCV-(\d{4})-([23456789A-HJ-NP-Z]{6})$/) ||
+    var m = code.match(/^ERJCV-(\d{4})-([23456789A-HJ-NP-Z]{8})$/) ||
             code.replace(/[^A-Z0-9]/g, '')
-                .match(/^ERJCV(\d{4})([23456789A-HJ-NP-Z]{6})$/);
+                .match(/^ERJCV(\d{4})([23456789A-HJ-NP-Z]{8})$/);
     if (!m) return null;                                    /* not a CV pass at all */
     var yymm = m[1], rest = m[2];
     code = 'ERJCV-' + yymm + '-' + rest;                    /* canonical form */
-    var body = 'ERJCV-' + yymm + '-' + rest.slice(0, 4);
-    if (cvCheck(body) !== rest.slice(4)) {
+    var body = 'ERJCV-' + yymm + '-' + rest.slice(0, CV_SERIAL_LEN);
+    if (cvCheck(body) !== rest.slice(CV_SERIAL_LEN)) {
       return { ok: false, reason: 'cv-bad-check' };
     }
     var backstop = cvBackstop(yymm);
@@ -346,6 +383,7 @@
     /* CV Engine pass (₦5,000 · 30 days from first use) */
     CV_DAYS: CV_DAYS,
     CV_ISSUED: CV_ISSUED,
+    CV_SERIAL_LEN: CV_SERIAL_LEN,
     cvIssue: cvIssue,
     cvIssueBatch: cvIssueBatch,
     cvRecord: cvRecord,

@@ -88,6 +88,16 @@
         '.erj-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display,"Space Grotesk",system-ui,sans-serif);',
         'font-weight:700;font-size:1rem;color:var(--enInk);letter-spacing:-0.3px;text-decoration:none;flex-shrink:0;}',
         '.erj-brand img{width:30px;height:30px;display:block;object-fit:contain;}',
+        /* Default is night, which is what <html data-theme="night"> ships as,
+           so the light mark stays hidden until the theme actually changes.
+
+           These selectors are scoped to .erj-brand deliberately. A bare
+           '.erj-mark-day' is specificity (0,1,0) and loses to the
+           '.erj-brand img' rule above at (0,1,1) — which showed BOTH marks
+           side by side in night theme. Matching the specificity fixes it. */
+        '.erj-brand .erj-mark-day{display:none;}',
+        'html[data-theme="day"] .erj-brand .erj-mark-night{display:none;}',
+        'html[data-theme="day"] .erj-brand .erj-mark-day{display:block;}',
         '.erj-brand b{font-weight:700;}.erj-brand i{font-style:italic;color:var(--enAccent);font-weight:700;margin-left:-0.08em;}',
         '.erj-right{display:flex;align-items:center;gap:0.55rem;flex-shrink:0;}',
         '.erj-icon{width:40px;height:40px;flex-shrink:0;border-radius:9px;background:transparent;border:1px solid var(--enLine);',
@@ -220,7 +230,13 @@
     const nav = document.createElement('header');
     nav.className = 'erj-nav';
     nav.innerHTML =
-        '<a href="' + P('index.html') + '" class="erj-brand"><img src="' + P('logo.png') + '" alt="ERJ">' +
+        '<a href="' + P('index.html') + '" class="erj-brand">' +
+            /* Both marks ship; CSS shows one. Swapping an img src on the theme
+               toggle means a network fetch mid-click and a blink where the logo
+               used to be — this way the correct one is already decoded and the
+               switch is instant. Same geometry, so nothing shifts. */
+            '<img class="erj-mark erj-mark-night" src="' + P('logo-dark.png') + '" alt="ERJ" width="30" height="30">' +
+            '<img class="erj-mark erj-mark-day" src="' + P('logo-light.png') + '" alt="" aria-hidden="true" width="30" height="30">' +
             '<b>Everything</b><i>RemoteJob</i></a>' +
             (IS_PORTAL ? '' : '<nav class="erj-bar" aria-label="Main menu">' + buildBar() + '</nav>') +
             '<div class="erj-right">' +

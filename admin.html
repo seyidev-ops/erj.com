@@ -5,7 +5,9 @@
 
 
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png">
 
 
 <link rel="apple-touch-icon" href="appletouchicon.png">
@@ -421,11 +423,11 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<meta property="og:image" content="https://everythingremotejob.com/preview-admin.jpg" />
+<meta property="og:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://everythingremotejob.com/preview-admin.jpg" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
 <style id="erjPortalNavOffset">.erj-nav{z-index:600 !important;}</style>
   <meta name="robots" content="noindex,nofollow">
@@ -1651,8 +1653,21 @@ function renderCvPassPanel() {
     el.innerHTML = '<div style="padding:1rem;border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:.82rem">Passcode module did not load \u2014 refresh the page.</div>';
     return;
   }
-  const issued = (P.CV_ISSUED || []).length;
+  const list = P.CV_ISSUED || [];
+  const issued = list.length;
   const warn = issued === 0;
+
+  /* Every code in CV_ISSUED is re-validated against the loaded rules before
+     this panel will call the list healthy. This exists because of a real
+     mistake: a batch was generated from a cached copy of erj-passcode.js
+     while the deployed copy expected a different serial length, so twenty-five
+     perfectly reasonable-looking codes would all have been rejected at the
+     gate — and the first person to find out would have been a paying buyer. */
+  const rejected = list.filter(c => {
+    const r = P.validate(c);
+    return !r.ok && r.reason !== 'cv-expired';   /* expired is fine; malformed is not */
+  });
+  const serialLen = P.CV_SERIAL_LEN;
 
   el.innerHTML = `
     <div style="border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem">
@@ -1662,6 +1677,18 @@ function renderCvPassPanel() {
         Each code also carries a hard expiry month so a cleared browser cannot reset the clock.
       </div>
 
+      ${rejected.length ? `<div style="padding:.75rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
+                    background:rgba(229,72,77,.12);border:1px solid rgba(229,72,77,.5)">
+          <b>${rejected.length} of the ${issued} codes in CV_ISSUED will be rejected at the gate.</b>
+          They do not match the rules this page has loaded — most often because the batch was
+          generated before the current <code>erj-passcode.js</code> was deployed, or from a cached
+          copy of it. This page expects a ${serialLen}-character serial plus a 2-character check,
+          e.g. <code>${P.cvIssue(3)}</code>.
+          <br><br>
+          <b>Fix:</b> hard-refresh this page (Cmd/Ctrl + Shift + R), generate a fresh batch below,
+          and replace the whole list. First rejected code: <code>${rejected[0]}</code>.
+        </div>` : ''}
+
       ${warn ? `<div style="padding:.7rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
                     background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.4)">
           <b>The issued list is empty.</b> Right now any code that passes the checksum will open the
@@ -1669,11 +1696,19 @@ function renderCvPassPanel() {
           into <code>CV_ISSUED</code> in <code>erj-passcode.js</code>, and deploy. Then only codes you
           issued will work.
         </div>`
-      : `<div style="padding:.7rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
+      : (rejected.length ? '' : `<div style="padding:.7rem .85rem;border-radius:9px;margin-bottom:.9rem;font-size:.79rem;line-height:1.6;
                     background:rgba(63,185,80,.09);border:1px solid rgba(63,185,80,.35)">
-          <b>${issued} pass${issued === 1 ? '' : 'es'} issued and live.</b> Only these codes open the engine.
+          <b>${issued} pass${issued === 1 ? '' : 'es'} issued, all valid.</b> Only these codes open the engine.
           Delete a line from <code>CV_ISSUED</code> to kill that pass immediately, even mid-month.
-        </div>`}
+        </div>`)}
+
+      <ol style="margin:0 0 1.1rem;padding-left:1.15rem;font-size:.81rem;line-height:1.75;color:var(--muted)">
+        <li><b style="color:var(--text)">Generate a batch below.</b> Twenty-five is a sensible first run \u2014 you can always make more.</li>
+        <li><b style="color:var(--text)">Press "Copy for erj-passcode.js".</b> That copies the batch already formatted as code lines.</li>
+        <li><b style="color:var(--text)">Open <code>erj-passcode.js</code> on GitHub</b> and press the pencil to edit. Find <code>var CV_ISSUED = [</code> near the middle of the file.</li>
+        <li><b style="color:var(--text)">Paste between the square brackets</b>, replacing the <code>/* e.g. ... */</code> line. Commit.</li>
+        <li><b style="color:var(--text)">Press "Save a copy" too</b> \u2014 that is your sales record. Tick each code off as you sell it so no code goes out twice.</li>
+      </ol>
 
       <div style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:.9rem">
         <label style="font-size:.8rem;color:var(--muted)">How many</label>
@@ -1693,6 +1728,8 @@ function renderCvPassPanel() {
                        font-size:.83rem;font-weight:600;background:var(--accent,#FF5722);color:#fff">Generate batch</button>
         <button onclick="copyCvBatch()" style="padding:.45rem .95rem;border-radius:8px;cursor:pointer;font:inherit;
                        font-size:.83rem;background:transparent;border:1px solid var(--border);color:inherit">Copy for erj-passcode.js</button>
+        <button onclick="saveCvBatch()" style="padding:.45rem .95rem;border-radius:8px;cursor:pointer;font:inherit;
+                       font-size:.83rem;background:transparent;border:1px solid var(--border);color:inherit">Save a copy (.txt)</button>
       </div>
 
       <textarea id="cvBatchOut" readonly placeholder="Generated codes appear here."
@@ -1700,9 +1737,24 @@ function renderCvPassPanel() {
                background:transparent;color:inherit;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;
                line-height:1.7;resize:vertical"></textarea>
 
-      <div style="color:var(--muted);font-size:.75rem;margin-top:.8rem;line-height:1.6">
-        Buyer message: <em>"Your CV Engine pass is CODE. Go to everythingremotejob.com/cvbuilder/ and enter it.
+      <div style="color:var(--muted);font-size:.75rem;margin-top:.9rem;line-height:1.65;
+                  padding-top:.8rem;border-top:1px solid var(--border)">
+        <b style="color:var(--text)">Message to send a buyer:</b><br>
+        <em>"Your CV Engine pass is CODE. Go to everythingremotejob.com/cvbuilder/ and enter it.
         Your thirty days start the moment you do \u2014 not today."</em>
+        <br><br>
+        <b style="color:var(--text)">What the issued list does and does not stop.</b> It stops someone
+        <i>minting</i> a code — a made-up code is rejected even with a correct checksum. It does not stop
+        someone <i>reading</i> one: <code>erj-passcode.js</code> is served to every visitor's browser, so
+        anyone who opens developer tools can see this list and try an unsold code. Treat it as a finite,
+        revocable set of keys rather than a vault, and remove a code the moment you suspect it.
+        <br><br>
+        <b style="color:var(--text)">How these are made:</b> each serial is six characters drawn from
+        <code>crypto.getRandomValues</code> \u2014 the browser's cryptographic random source, not
+        <code>Math.random</code>. That is 1,073,741,824 possible serials, and
+        <b style="color:var(--text)">nothing in a code comes from the buyer</b> \u2014 not their name, phone,
+        email, or the order they bought in. Two codes made a second apart share nothing but the
+        expiry month. Seeing one code tells you nothing about any other.
       </div>
     </div>`;
 }
@@ -1711,9 +1763,39 @@ function generateCvBatch() {
   const P = window.ERJPasscode;
   const n = Math.max(1, Math.min(200, parseInt(document.getElementById('cvBatchN').value, 10) || 25));
   const m = parseInt(document.getElementById('cvBatchM').value, 10) || 3;
-  _cvBatch = P.cvIssueBatch(n, m);
+  try {
+    _cvBatch = P.cvIssueBatch(n, m);
+  } catch (e) {
+    /* cvRandomChars refuses to fall back to Math.random. Better to stop here
+       than to hand someone a batch that only looks random. */
+    document.getElementById('cvBatchOut').value = '';
+    showToast('⚠️ ' + e.message, 'error');
+    return;
+  }
   document.getElementById('cvBatchOut').value = _cvBatch.join('\n');
   showToast('🎫 ' + _cvBatch.length + ' passes generated', 'success');
+}
+
+/* A plain text file of the batch — this is the sales record. Tick a code off
+   here as you send it, so the same code never goes to two people. */
+function saveCvBatch() {
+  if (!_cvBatch.length) { showToast('Generate a batch first', 'error'); return; }
+  const stamp = new Date().toISOString().slice(0, 10);
+  const body = [
+    'ERJ CV Engine passes — batch of ' + _cvBatch.length,
+    'Generated ' + stamp,
+    'Hard expiry: end of 20' + _cvBatch[0].slice(6, 8) + '-' + _cvBatch[0].slice(8, 10),
+    '',
+    'Sold to (write the buyer beside each code as you send it):',
+    ''
+  ].concat(_cvBatch.map(c => c + '   ................................')).join('\n');
+  const url = URL.createObjectURL(new Blob([body], {type: 'text/plain'}));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'erj-cv-passes-' + stamp + '.txt';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+  showToast('💾 Batch saved', 'success');
 }
 
 function copyCvBatch() {

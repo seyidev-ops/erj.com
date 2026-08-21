@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png">
 
 
 <link rel="apple-touch-icon" href="appletouchicon.png">
@@ -867,11 +869,11 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<meta property="og:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
+<meta property="og:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://everythingremotejob.com/preview-dashboard.jpg" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
 <style id="erjPortalShell">
 /* ── Portal app-shell topbar: the single header for logged-in views ── */
@@ -907,6 +909,8 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 }
 </style>
   <meta name="robots" content="noindex,nofollow">
+<style>html[data-theme="day"] .erj-mark-night{display:none!important;}
+html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
 </head>
 <body>
 <!-- Portal app shell: this topbar + the sidebar are the ONLY navigation here.
@@ -914,7 +918,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <header class="portal-topbar">
   <button class="pt-toggle" id="sidebarToggle" title="Menu" aria-label="Open menu">☰</button>
   <a class="pt-brand" href="dashboard.html">
-    <img class="pt-logo" src="logo.png" alt="" width="26" height="26">
+    <img class="pt-logo erj-mark-night" src="logo-dark.png" alt="" width="26" height="26"><img class="pt-logo erj-mark-day" src="logo-light.png" alt="" width="26" height="26" style="display:none">
     <span class="pt-name">Everything <span>RemoteJob</span></span>
   </a>
   <span class="pt-tag">Participant Portal</span>

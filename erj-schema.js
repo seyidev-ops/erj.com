@@ -13,7 +13,7 @@
       "url": "https://everythingremotejob.com/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://everythingremotejob.com/logo.png",
+        "url": "https://everythingremotejob.com/icon512.png",
         "width": 512,
         "height": 512
       },

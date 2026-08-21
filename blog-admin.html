@@ -5,7 +5,9 @@
 
 
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png">
 
 
 <link rel="apple-touch-icon" href="appletouchicon.png">
@@ -219,14 +221,17 @@ h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<meta property="og:image" content="https://everythingremotejob.com/preview-blog-admin.jpg" />
+<meta property="og:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://everythingremotejob.com/preview-blog-admin.jpg" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-portal-v4.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
 <style id="erjPortalNavOffset">.topnav{top:61px !important;} .erj-nav{z-index:600 !important;}</style>
   <meta name="robots" content="noindex,nofollow">
+<style>/* the nav mark follows the theme toggle, same rule as every other page */
+html[data-theme="day"] .erj-mark-night{display:none!important;}
+html[data-theme="day"] .erj-mark-day{display:block!important;}</style>
 </head>
 <body>
 <div id="erjNavMount"></div>
@@ -235,7 +240,7 @@ h1 strong,h1 em{ -webkit-text-fill-color:currentColor!important;background:none!
 
 <nav class="topnav">
   <div style="display:flex;align-items:center;gap:.8rem;">
-    <span class="nav-brand" style="display:inline-flex;align-items:center;gap:8px"><img src="logo.png" alt="ERJ" style="width:30px;height:30px;border-radius:7px;flex-shrink:0;display:block;">Everything<span class="hi">RemoteJob</span></span>
+    <span class="nav-brand" style="display:inline-flex;align-items:center;gap:8px"><img class="erj-mark erj-mark-night" src="logo-dark.png" alt="ERJ" width="30" height="30" style="width:30px;height:30px;flex-shrink:0;display:block;"><img class="erj-mark erj-mark-day" src="logo-light.png" alt="" aria-hidden="true" width="30" height="30" style="width:30px;height:30px;flex-shrink:0;display:none;">Everything<span class="hi">RemoteJob</span></span>
     <span class="nav-badge">BLOG MANAGER</span>
   </div>
   <div class="nav-right">

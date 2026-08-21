@@ -8,7 +8,7 @@
 <link rel="manifest" href="../manifest.json">
 <link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="64x64" href="../favicon32-dark.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="64x64" href="../favicon32-dark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png">
 <link rel="apple-touch-icon" href="../appletouchicon.png">
 <meta name="theme-color" content="#000000" id="metaThemeColor">
 <title>Free Live Masterclass — The Global Remote Job Blueprint | Everything Remote Job</title>
@@ -97,7 +97,15 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationEvent","name":"The Global Remote Job Blueprint — free live masterclass","description":"A free live masterclass walking the whole remote-job path end to end: what a remote job actually is, which doors are open to candidates in Africa, what to prepare, and how hiring really works.","url":"https://everythingremotejob.com/masterclass/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","startDate":"2026-08-15T19:00:00+01:00","endDate":"2026-08-15T20:30:00+01:00","location":{"@type":"VirtualLocation","url":"https://everythingremotejob.com/masterclass/"},"organizer":{"@type":"Organization","name":"Everything Remote Job","url":"https://everythingremotejob.com/","@id":"https://everythingremotejob.com/#organization"},"inLanguage":"en","maximumAttendeeCapacity":100,"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"NGN","availability":"https://schema.org/InStock","url":"https://everythingremotejob.com/masterclass/","validFrom":"2026-08-03T00:00:00+01:00"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Free Masterclass","item":"https://everythingremotejob.com/masterclass/"}]}</script>
-  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}</style>
+  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}
+/* Button labels stay on one line. The type size is NOT reduced to make them
+   fit — white on #FF5722 is 3.16:1, which passes WCAG only as LARGE text
+   (18.66px bold), and the buttons sit at 18.88px. Shrinking the font would
+   quietly make every CTA non-compliant. Fit is bought with shorter labels
+   and tighter padding instead. */
+.btn-yes,.btn-pay,.btn-block,.fi-go,.r-go,.dfy-btn,.cvp-btn,.ts-cta-btn{white-space:nowrap;}
+@media(max-width:520px){.btn-yes,.btn-pay{padding-left:1.25rem;padding-right:1.25rem;gap:0.45rem;}}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -250,7 +258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="cta-h">Reserve your <em>free seat.</em></h2>
       <p class="cta-p">Send us one WhatsApp message and your seat is booked — we'll reply with the Zoom link and send you a reminder before we go live at 7:00 PM WAT.</p>
       <div class="hero-cta" style="justify-content:center;">
-        <a href="https://wa.me/2348032925957?text=I%20want%20to%20reserve%20my%20FREE%20seat%20for%20The%20Global%20Remote%20Job%20Blueprint%20masterclass.%20Please%20send%20me%20the%20Zoom%20link." target="_blank" rel="noopener" class="btn-yes">Reserve my free seat on WhatsApp <span class="arrow">→</span></a>
+        <a href="https://wa.me/2348032925957?text=I%20want%20to%20reserve%20my%20FREE%20seat%20for%20The%20Global%20Remote%20Job%20Blueprint%20masterclass.%20Please%20send%20me%20the%20Zoom%20link." target="_blank" rel="noopener" class="btn-yes">Reserve my seat <span class="arrow">→</span></a>
       </div>
       <p class="cta-how">Or save and message <strong>+234 803 292 5957</strong> directly.<br>
       <strong>Saturday 15 August 2026</strong> &middot; repeat session <strong>Saturday 29 August 2026</strong> &middot; 7:00 PM WAT &middot; Live on Zoom &middot; Free.</p>

@@ -17,7 +17,7 @@
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
 <link rel="apple-touch-icon" href="appletouchicon.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#000000">
@@ -55,7 +55,11 @@ html[data-theme="day"]{
   /* DAY — clean light counterpart. Keeps RocketAir character. */
   --paper:#FAFAF8; --paper-2:#F2F1ED; --bg2:#FFFFFF; --card:#FFFFFF;
   --ink:#0A0A0A; --ink-soft:#52514C; --ink-faint:#6E6C65;
-  --accent:#AD350A;--accent-btn:#E8470F; --accent-h:#C53A0B; --accent2:#E8470F;
+  /* Day theme keeps the darker #AD350A for small accent TEXT on paper, but the
+     BUTTON fill is the same bright #FF5722 as night. One orange on every
+     button, on every page, in both themes — a button that shifts hue with the
+     theme reads as two different brands. */
+  --accent:#AD350A;--accent-btn:#FF5722; --accent-h:#ff6f43; --accent2:#FF5722;
   --line:rgba(10,10,10,0.12); --line-soft:rgba(10,10,10,0.06);
   --card-line:rgba(10,10,10,0.10); --wa:#E8470F; --wa-ink:#ffffff;
   --grid-dot:rgba(10,10,10,0.05);
@@ -110,17 +114,24 @@ h3{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em;color:
 
 /* buttons — pill, RocketAir */
 .btn-yes{display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent-btn,#FF5722);color:#fff;text-decoration:none;
-  padding:0.95rem 1.9rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;letter-spacing:0.01em;
+  padding:0.8rem 1.6rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;letter-spacing:0.01em;
   border:1px solid var(--accent-btn,#FF5722);transition:all 0.28s var(--ease);}
 .btn-yes .arrow{transition:transform 0.28s var(--ease);}
 .btn-yes:hover{background:var(--accent-h);border-color:var(--accent-h);color:#fff;transform:translateY(-2px);}
 .btn-yes:hover .arrow{transform:translateX(4px);}
 .btn-more{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:var(--ink);text-decoration:none;
-  padding:0.95rem 1.7rem;border-radius:100px;font-family:var(--font-body);font-size:0.98rem;font-weight:500;letter-spacing:0.01em;
+  padding:0.8rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:0.98rem;font-weight:500;letter-spacing:0.01em;
   border:1px solid var(--line);cursor:pointer;transition:all 0.28s var(--ease);}
 .btn-more:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-2px);}
 .btn-block{width:100%;justify-content:center;white-space:nowrap;}
-@media(max-width:600px){.btn-block{font-size:clamp(0.78rem,3.8vw,0.98rem);padding-left:1.1rem;padding-right:1.1rem;gap:0.45rem;}}
+/* The old rule here shrank full-width buttons to as little as 0.78rem on a
+   phone. White on #FF5722 measures 3.16:1, which clears WCAG only as LARGE
+   text — 18.66px bold. At 0.78rem those buttons were white-on-orange at
+   12.5px, needing 4.5:1 and delivering 3.16:1. Nineteen of them across the
+   site, all invisible to anyone not measuring.
+   The type now holds 1.18rem and the fit is bought from the padding. */
+@media(max-width:600px){.btn-block{padding-left:1rem;padding-right:1rem;gap:0.4rem;}}
+@media(max-width:380px){.btn-block{padding-left:0.7rem;padding-right:0.7rem;}}
 
 /* deliverables / asset grid */
 .deliverables-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:0.9rem;}
@@ -440,6 +451,35 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
 @media(max-width:760px){.dxr-doors{grid-template-columns:1fr;}}
 
 .dxr-send{margin-top:1.4rem;}
+
+/* ── BUTTON LABELS STAY ON ONE LINE ───────────────────────────────────
+   A CTA that wraps reads as an accident, and it makes the button a
+   different height from every sibling in the same row.
+
+   Note what is NOT done here: the font is not shrunk to make things fit.
+   White on #FF5722 measures 3.16:1, which clears WCAG's 3:1 bar for LARGE
+   text (18.66px bold) and fails the 4.5:1 bar for anything smaller. The
+   button type is 1.18rem/700 — 18.88px — which is 0.22px above that line.
+   Take a hair off the size and the button becomes non-compliant.
+
+   So the size is fixed and the fit is bought elsewhere: shorter labels,
+   and tighter horizontal padding on narrow screens. If a future label is
+   still too long, shorten the label. ── */
+.btn-yes,.btn-pay,.btn-block,.fi-go,.r-go,.dfy-btn,.cvp-btn,.ts-cta-btn{white-space:nowrap;}
+@media(max-width:520px){
+  .btn-yes,.btn-pay{padding-left:1.25rem;padding-right:1.25rem;gap:0.45rem;}
+}
+
+/* ── WHITE INK ON ORANGE HAS A SIZE FLOOR ─────────────────────────────
+   White on #FF5722 is 3.16:1. That passes WCAG AA for LARGE text only —
+   18.66px bold, or 24px regular. Any solid-orange control carrying white
+   text therefore sits at 1.18rem/700 (18.88px) and no smaller.
+
+   If something genuinely cannot be that big, it does not get white ink:
+   it takes near-black #14110E, which measures 5.95:1 and passes at any
+   size. That is the whole rule, and it is why the orange never darkens. */
+.btn-yes,.btn-pay,.btn-block,.dfy-btn,.cvp-btn,.ts-cta-btn,.fi-go,.r-go{
+  font-size:1.18rem;font-weight:700;color:#fff;}
 </style>
 <!-- END product.css -->
 <style>
@@ -490,7 +530,17 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
   {label:'Inner Circle',href:'#r-inner'},
   {label:'Which comes first?',href:'#order'}
 ]};</script>
-  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}</style>
+  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}
+/* A skip link is white on orange and only ever seen on keyboard focus.
+   Sized to clear the large-text bar so it is compliant while it is visible. */
+.skip-link{font-size:1.18rem;font-weight:700;}
+
+/* Too small to carry white on orange compliantly, so it does not carry a
+   solid orange fill at all — an orange outline reads with the same weight
+   and passes contrast at any size. */
+.cap-btn.small{background:transparent;color:var(--accent);border:1.5px solid var(--accent);font-weight:700;}
+.cap-btn.small:hover{background:var(--accent);color:#fff;}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->

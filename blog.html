@@ -411,9 +411,17 @@ html[data-theme="day"] .s-tw{background:#1DA1F2 !important;border-color:#1DA1F2 
 .cm-empty{text-align:center;padding:20px;color:var(--muted2);font-size:.78rem;}
 
 /* ── UTILITIES ───────────────────────────── */
-.wa-btn{position:fixed;bottom:calc(14px + var(--sab));right:14px;z-index:150;width:44px;height:44px;border-radius:50%;background:var(--txt);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(26,24,20,.4);text-decoration:none;transition:var(--t);}
+/* This page had its own WhatsApp float — 44px, white circle, dark glyph —
+   while every other page on the site runs a 50px orange circle with a white
+   glyph. Same button, same job, two different looks depending which page you
+   happened to be on. These are the site-wide values, mapped onto the tokens
+   this standalone stylesheet actually defines. */
+.wa-btn{position:fixed;bottom:calc(22px + var(--sab));right:22px;z-index:150;
+  width:50px;height:50px;border-radius:50%;background:#FF5722;
+  display:flex;align-items:center;justify-content:center;text-decoration:none;
+  box-shadow:0 8px 30px rgba(255,87,34,.35);transition:transform .3s var(--t,ease);}
 .wa-btn:hover{transform:scale(1.08);}
-.wa-btn svg{width:21px;height:21px;fill:var(--bg);}
+.wa-btn svg{width:24px;height:24px;fill:#fff;}
 footer{background:var(--bg2);border-top:1px solid var(--border2);padding:16px 16px calc(16px + var(--sab));text-align:center;font-size:.7rem;color:var(--muted);word-break:break-word;width:100%;box-sizing:border-box;}
 /* The site-wide footer lives in product.css, which this page does not load —
    it has its own standalone stylesheet. These are the same rules, mapped onto
@@ -2705,7 +2713,16 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
     btn=document.createElement('button');
     btn.id='erjInstallBtn';
     btn.textContent='⤓ Install App';
-    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;align-items:center;gap:7px;background:var(--accent-btn,#FF5722);color:#14110E;border:none;border-radius:10px;padding:9px 14px;font-weight:700;font-family:Inter,system-ui,sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.18);';
+    /* White ink on the brand orange, like every other button on the site.
+       The size is the reason it can be white: white on #FF5722 measures
+       3.16:1, which clears WCAG only as LARGE text — 18.66px bold. At the
+       0.8rem this used to be, white would have been non-compliant, which is
+       why it had been left near-black. Sizing it properly fixes both. */
+    btn.style.cssText='position:fixed;left:16px;bottom:16px;z-index:980;display:none;'
+      +'align-items:center;gap:8px;background:#FF5722;color:#fff;border:none;'
+      +'border-radius:100px;padding:11px 20px;font-family:Inter,system-ui,sans-serif;'
+      +'font-size:1.18rem;font-weight:700;line-height:1;white-space:nowrap;cursor:pointer;'
+      +'box-shadow:0 8px 30px rgba(255,87,34,.35);';
     btn.addEventListener('click',async function(){
       if(!deferred) return;
       deferred.prompt();

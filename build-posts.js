@@ -84,7 +84,7 @@ posts.forEach((p,i)=>{
 <meta name="author" content="${esc(p.author)}">
 <link rel="icon" type="image/png" sizes="64x64" href="../../favicon32.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="64x64" href="../../favicon32-dark.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="64x64" href="../../favicon32-dark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../../favicon32.png">
 <link rel="apple-touch-icon" href="../../appletouchicon.png">
 <link rel="manifest" href="../../manifest.json">
 <meta name="theme-color" content="#000000" id="metaThemeColor">

@@ -55,7 +55,12 @@
  text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.22,1,.36,1),background .25s ease;}
 .cap-btn:hover{background:var(--accent-h,#ff6f43);transform:translateY(-2px);}
 .cap-btn svg{width:17px;height:17px;fill:currentColor;flex:0 0 auto;}
-.cap-btn.small{padding:.7rem 1.1rem;font-size:.75rem;margin-top:1rem;}
+/* .small is 0.75rem — far below the 18.66px that white-on-orange needs to
+   pass WCAG. So it drops the solid fill and becomes an orange outline,
+   which reads with the same weight and passes contrast at any size. */
+.cap-btn.small{padding:.7rem 1.1rem;font-size:.75rem;margin-top:1rem;
+  background:transparent;color:var(--accent,#FF5722);border-color:var(--accent,#FF5722);}
+.cap-btn.small:hover{background:var(--accent,#FF5722);color:#fff;}
 .cap-btn.ghost{background:transparent;color:var(--ink,#fff);border-color:var(--line,rgba(128,128,128,.3));}
 .cap-btn.ghost:hover{background:transparent;border-color:var(--accent,#FF5722);color:var(--accent,#FF5722);}
 .cap-send{margin:2.2rem 0 .4rem;padding:1.5rem 1.6rem;background:var(--card,rgba(128,128,128,.06));

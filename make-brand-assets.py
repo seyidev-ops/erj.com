@@ -15,7 +15,8 @@ WHAT IT BUILDS, FROM FOUR MASTERS
   → logo-dark.png / logo-light.png     the nav mark, swapped by data-theme
   → favicon32.png / favicon32-dark.png swapped by prefers-color-scheme
   → appletouchicon.png                 iOS home screen, needs its own opaque tile
-  → icon192 / icon512 (+ maskable)     the PWA set
+  → icon192 / icon512 (+ maskable)     the PWA set, dark figure on white
+  → screenshot-*-v3.png                the two PWA install-prompt screenshots
   → preview-*-v4.jpg                   every social share card
   → github-social-preview.jpg          GitHub's own repo card, a different size
 
@@ -40,6 +41,7 @@ FONTS = ROOT / "og-fonts"
 
 BLACK = (0, 0, 0)
 PAPER = (250, 248, 244)
+TILE = (255, 255, 255)      # app icons sit on a home screen — white reads as an app
 WHITE = "#FFFFFF"
 ORANGE = "#FF5722"
 GREY = "#9A9A9A"
@@ -111,15 +113,16 @@ def icons(m):
     save(fit(mark_l, 64), "favicon32.png")
     save(fit(mark_d, 64), "favicon32-dark.png")
 
-    # iOS home screen: never transparent. iOS composites onto white and the
-    # white figure would vanish, so this tile carries its own black ground.
-    save(on(fit(mark_d, 180, pad=0.14), BLACK), "appletouchicon.png", quantise=False)
+    # App icons sit on the user's own home screen or launcher, beside every
+    # other app they own. White reads as an app; black reads as a hole punched
+    # in the wallpaper. So the tile is white and the figure is the dark one.
+    # Never transparent: a launcher composites onto whatever it likes.
+    save(on(fit(mark_l, 180, pad=0.14), TILE), "appletouchicon.png", quantise=False)
 
-    # PWA: "any" icons may be shown on any surface, so give them a ground too.
     for size in (192, 512):
-        save(on(fit(mark_d, size, pad=0.13), BLACK), f"icon{size}.png", quantise=False)
-        # maskable is cropped to a circle by the launcher — 20% safe-area inset
-        save(on(fit(mark_d, size, pad=0.22), BLACK), f"icon{size}maskable.png", quantise=False)
+        save(on(fit(mark_l, size, pad=0.13), TILE), f"icon{size}.png", quantise=False)
+        # maskable is cropped to a circle by the launcher — 22% safe-area inset
+        save(on(fit(mark_l, size, pad=0.22), TILE), f"icon{size}maskable.png", quantise=False)
 
 
 # ── 3 · social cards ─────────────────────────────────────────────────────
@@ -225,6 +228,103 @@ def card(name, kicker, headline, emph, sub, tag, size=(1200, 630)):
     return p
 
 
+
+# ── 4 · PWA install-prompt screenshots ───────────────────────────────────
+def screenshots():
+    """The two panels Chrome shows inside the "Install app" sheet.
+
+    These are the last place the old globe was still hiding: they are declared
+    in manifest.json, not in any page, so a search of the HTML never finds them
+    and a visitor only ever sees them at the exact moment they are deciding
+    whether to install.
+    """
+    lock = Image.open(ROOT / "erj-lockup-dark.png").convert("RGBA")
+
+    def panel(name, W, H, headline, emph, sub, tag):
+        """Compose the block first, measure it, then centre it.
+
+        Sizing off H alone put the wide panel's sub-lines through the footer
+        rule, because a 16:9 panel has far less vertical room per unit of width
+        than a 9:16 one. Type scales off the SHORT side; position comes from
+        measuring what was actually drawn.
+        """
+        S = min(W, H)                       # the constrained dimension
+        img = Image.new("RGB", (W, H), BLACK)
+        glow = Image.new("RGB", (W, H), BLACK)
+        ImageDraw.Draw(glow).ellipse(
+            [W - int(W * 0.55), H - int(H * 0.42), W + int(W * 0.30), H + int(H * 0.30)],
+            fill=(58, 20, 7))
+        img.paste(Image.blend(img, glow.filter(ImageFilter.GaussianBlur(int(S * 0.16))), 0.62), (0, 0))
+        d = ImageDraw.Draw(img)
+        step = max(18, S // 40)
+        for gx in range(step, W, step):
+            for gy in range(step, H, step):
+                d.point((gx, gy), fill="#171717")
+
+        pad = int(W * 0.085)
+        maxw = W - pad * 2
+
+        lock_h = int(S * 0.075)
+        kick_f = F(BODY_MED, max(14, int(S * 0.030)))
+        sub_f = F(BODY, max(13, int(S * 0.030)))
+
+        for pt in range(int(S * 0.095), int(S * 0.035), -2):
+            head_f = F(DISPLAY, pt)
+            tr = -pt * 0.02
+            lines = wrap(d, safe(headline), head_f, maxw, tr)
+            if len(lines) <= (3 if W > H else 4):
+                break
+        line_h = int(pt * 1.22)
+
+        gap1, gap2 = int(S * 0.055), int(S * 0.045)
+        block = (lock_h + gap1 + int(S * 0.045) + gap1
+                 + len(lines) * line_h + gap2
+                 + len(sub) * int(S * 0.042))
+        y = max(int(S * 0.06), (H - block) // 2)
+
+        lw = int(lock.width * (lock_h / lock.height))
+        lk = lock.resize((lw, lock_h), Image.LANCZOS)
+        img.paste(lk, ((W - lw) // 2, y), lk)
+        d = ImageDraw.Draw(img)
+        y += lock_h + gap1
+
+        ks = safe(tag.upper(), BODY_MED)
+        track(d, (W - track_len(d, ks, kick_f, 2.6)) // 2, y, ks, kick_f, ORANGE, 2.6)
+        y += int(S * 0.045) + gap1
+
+        for line in lines:
+            emphasise(d, (W - track_len(d, line, head_f, tr)) // 2, y, line, emph, head_f, tr)
+            y += line_h
+        y += gap2
+
+        for s_line in sub:
+            t = safe(s_line, BODY)
+            d.text(((W - d.textlength(t, font=sub_f)) // 2, y), t, font=sub_f, fill=GREY)
+            y += int(S * 0.042)
+
+        df = F(BODY_MED, max(12, int(S * 0.024)))
+        dt = "everythingremotejob.com"
+        rule_y = H - int(S * 0.115)
+        d.line([pad, rule_y, W - pad, rule_y], fill=RULE, width=1)
+        track(d, (W - track_len(d, dt, df, 1.2)) // 2, rule_y + int(S * 0.028), dt, df, DIM, 1.2)
+
+        out = ROOT / name
+        img.save(out, "PNG", optimize=True)
+        print(f"  {name:26s} {str((W, H)):12s} {out.stat().st_size // 1024:>4d} KB")
+
+    panel("screenshot-mobile-v3.png", 1080, 1920,
+          "Land a dollar-paying remote job from right where you are.",
+          ["dollar-paying"],
+          ["USD, EUR and GBP salaries.", "A system, not luck."],
+          "The remote job system")
+    panel("screenshot-wide-v3.png", 1920, 1080,
+          "Land a dollar-paying remote job from right where you are.",
+          ["dollar-paying"],
+          ["Four stages, twenty sessions, four finished assets.",
+           "We will not let you go until you're hired."],
+          "The remote job system")
+
+
 CARDS = [
     ("preview-index-v4.jpg", "The remote job system",
      "Land a dollar‑paying remote job — from right where you are.",
@@ -288,6 +388,8 @@ if __name__ == "__main__":
     m = masters()
     print("\n── icons ──")
     icons(m)
+    print("\n── install-prompt screenshots ──")
+    screenshots()
     print("\n── social cards ──")
     for c in CARDS:
         card(*c)

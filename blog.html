@@ -8,7 +8,7 @@
 
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="64x64" href="favicon32-dark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon32.png">
 
 
 <link rel="apple-touch-icon" href="appletouchicon.png">
@@ -37,7 +37,7 @@
 }
 html[data-theme="day"]{
   --bg:#FAFAF8;--bg2:#F2F1ED;--bg3:#FFFFFF;--bg4:#F2F1ED;
-  --accent:#AD350A;--accent-btn:#E8470F;--accent-text:#AD350A;--accent2:#C53A0B;--glow:#E8470F;
+  --accent:#AD350A;--accent-btn:#FF5722;--accent-text:#AD350A;--accent2:#FF5722;--glow:#FF5722;
   --txt:#0A0A0A;--muted:#52514C;--muted2:#6E6C65;
   --text:#0A0A0A;--ink:#0A0A0A;--paper:#FAFAF8;--line:rgba(10,10,10,0.12);--ink-faint:#6E6C65;
   --border:rgba(10,10,10,0.12);--border2:rgba(10,10,10,0.06);
@@ -197,13 +197,18 @@ button,a{-webkit-tap-highlight-color:transparent;}
 }
 .cats::-webkit-scrollbar{display:none;}
 .cat-pill{
-  flex-shrink:0;padding:6px 13px;border-radius:100px;
+  flex-shrink:0;padding:8px 15px;border-radius:100px;
   border:1.5px solid var(--border2);background:var(--bg3);
-  font-size:.7rem;font-weight:600;color:var(--muted);
+  font-size:.8rem;font-weight:600;color:var(--muted);
   cursor:pointer;transition:var(--t);white-space:nowrap;
-  min-height:30px;display:inline-flex;align-items:center;
+  min-height:38px;display:inline-flex;align-items:center;
 }
-.cat-pill.on{background:var(--accent);border-color:var(--accent);color:#14110E;font-weight:700;}
+/* White ink to match every other orange control on the site. A pill this
+   small cannot reach the 18.66px that makes white on orange compliant, so it
+   carries a dark outline instead: the ring gives the shape its edge against
+   the page, and the fill stops being the only thing separating the two. */
+.cat-pill.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.30);}
 
 /* ── FEATURED CARD ───────────────────────── */
 .feat-card{
@@ -2676,6 +2681,14 @@ h1 span,h2 span,.hero h1 span,[class*="grad"]{ -webkit-text-fill-color:var(--acc
 html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!important;}
 .featured-badge,.badge,.tag,.pill{box-shadow:none!important;}
 .cover,.post-cover,.art-cover,.card-cover,.featured-img{filter:saturate(0.6);}
+
+/* Button labels stay on one line. The type size is NOT reduced to make them
+   fit — white on #FF5722 is 3.16:1, which passes WCAG only as LARGE text
+   (18.66px bold), and the buttons sit at 18.88px. Shrinking the font would
+   quietly make every CTA non-compliant. Fit is bought with shorter labels
+   and tighter padding instead. */
+.btn-yes,.btn-pay,.btn-block,.fi-go,.r-go,.dfy-btn,.cvp-btn,.ts-cta-btn{white-space:nowrap;}
+@media(max-width:520px){.btn-yes,.btn-pay{padding-left:1.25rem;padding-right:1.25rem;gap:0.45rem;}}
 </style>
 <script id="erjPWA">
 (function(){

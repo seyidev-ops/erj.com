@@ -8,7 +8,7 @@
 <link rel="manifest" href="../manifest.json">
 <link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" sizes="64x64" href="../favicon32-dark.png" media="(prefers-color-scheme: dark)">
-<link rel="icon" type="image/png" sizes="64x64" href="../favicon32-dark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon32.png">
 <link rel="apple-touch-icon" href="../appletouchicon.png">
 <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
@@ -125,7 +125,27 @@
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Job Application DFY — Done-For-You Placement Engine (Stage 5)","description":"A done-for-you placement engagement. We build the four assets in 7 days, then run the sourcing, outbound and applications on the participant's behalf for a month, with a weekly written report, until an offer letter lands.","url":"https://everythingremotejob.com/jobapplication/","provider":{"@type":"Organization","name":"Everything Remote Job","url":"https://everythingremotejob.com/","@id":"https://everythingremotejob.com/#organization"},"inLanguage":"en","educationalLevel":"Beginner to Intermediate","teaches":["Remote job search","CV and portfolio for global employers","Async communication","Remote work tools","AI fluency for work"],"hasCourseInstance":{"@type":"CourseInstance","courseMode":"Online","courseWorkload":"P1M","name":"Cohort 10","startDate":"2026-08-31","endDate":"2026-09-26","location":{"@type":"VirtualLocation","url":"https://everythingremotejob.com/jobapplication/"},"instructor":{"@type":"Person","name":"Oluwaseyi Ashiru"},"offers":[{"@type":"Offer","name":"Job Hunt & Application (7 Days)","price":"50000","priceCurrency":"NGN","availability":"https://schema.org/LimitedAvailability","url":"https://paystack.shop/pay/dfy7days","validThrough":"2026-08-30T20:00:00+01:00","category":"Paid"},{"@type":"Offer","name":"Stage 5 Only","price":"300000","priceCurrency":"NGN","availability":"https://schema.org/LimitedAvailability","url":"https://paystack.shop/pay/gtdj-stage5","validThrough":"2026-08-30T20:00:00+01:00","category":"Paid"}]}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Job Application DFY","item":"https://everythingremotejob.com/jobapplication/"}]}</script>
-  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}</style>
+  <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}
+/* Button labels stay on one line. The type size is NOT reduced to make them
+   fit — white on #FF5722 is 3.16:1, which passes WCAG only as LARGE text
+   (18.66px bold), and the buttons sit at 18.88px. Shrinking the font would
+   quietly make every CTA non-compliant. Fit is bought with shorter labels
+   and tighter padding instead. */
+.btn-yes,.btn-pay,.btn-block,.fi-go,.r-go,.dfy-btn,.cvp-btn,.ts-cta-btn{white-space:nowrap;}
+@media(max-width:520px){.btn-yes,.btn-pay{padding-left:1.25rem;padding-right:1.25rem;gap:0.45rem;}}
+
+/* This sits at 0.75rem, far below the size white-on-orange needs, so it is
+   not a solid orange button at all — an orange outline on the page ground
+   carries the same emphasis and passes contrast at any size. */
+.cap-btn.small{background:transparent;color:var(--accent);border:1.5px solid var(--accent);font-weight:700;}
+.cap-btn.small:hover{background:var(--accent);color:#fff;}
+
+/* Too small to carry white on orange compliantly, so it does not carry a
+   solid orange fill at all — an orange outline reads with the same weight
+   and passes contrast at any size. */
+.cap-btn.small{background:transparent;color:var(--accent);border:1.5px solid var(--accent);font-weight:700;}
+.cap-btn.small:hover{background:var(--accent);color:#fff;}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -332,7 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>AI Fluency — prompt craft and AI-assisted output, woven through all five stages</li>
           <li>The until-hired pledge — we don't let go until your offer letter lands</li>
         </ul>
-        <a href="https://paystack.shop/pay/gydjo-stages1-5" class="btn-yes btn-block">Claim the Dream Job Offer <span class="arrow">→</span></a>
+        <a href="https://paystack.shop/pay/gydjo-stages1-5" class="btn-yes btn-block">Claim the offer <span class="arrow">→</span></a>
         <div class="micro-trust">
           <span>Secure Paystack checkout</span>
           <span>Cards · transfer · USSD</span>
@@ -389,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="hero-cta reveal" style="justify-content:center;margin-top:1.8rem;" id="final-cta">
-      <a href="https://paystack.shop/pay/gydjo-stages1-5" class="btn-yes">Get Your Dream Job Offer — ₦500,000 <span class="arrow">→</span></a>
+      <a href="https://paystack.shop/pay/gydjo-stages1-5" class="btn-yes">Get the Dream Job Offer <span class="arrow">→</span></a>
     </div>
   </section>
 

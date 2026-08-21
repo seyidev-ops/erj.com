@@ -1,6 +1,9 @@
 <div align="center">
 
-<img src="logo.png" alt="Everything Remote Job" width="88" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="erj-lockup-dark.png">
+  <img src="erj-lockup-light.png" alt="Everything Remote Job — Reach Higher. Work Globally." width="340" />
+</picture>
 
 # Everything Remote Job
 
@@ -49,6 +52,7 @@ The programme it powers:
 ├── admin.html                  # Admin panel
 ├── erj-nav.js · erj-theme.js · erj-product.js · erj-track.js
 ├── product.css                 # source of truth — inlined by inline-css.py
+├── make-brand-assets.py        # rebuilds EVERY image carrying the logo
 ├── sw.js                       # Service worker (cache-versioned)
 ├── manifest.json               # PWA manifest
 └── CNAME                       # everythingremotejob.com
@@ -93,6 +97,8 @@ No build step. No framework. Plain HTML/CSS/JS by design — fast on low-bandwid
 - Keep the accent colour usage disciplined — orange is for the single most important action per screen.
 - All new pages must load `erj-nav.js` and respect `scroll-padding-top` (nav overlap regression protection).
 - Each product page lives at exactly one address. Renaming a page means renaming it — do not leave a stub or a redirect behind.
+- The logo lives in four masters (`erj-mark-*.png`, `erj-lockup-*.png`) and every icon, favicon and share card is generated from them by `make-brand-assets.py`. Never hand-edit a derived image — change the master and re-run the script, or the set drifts.
+- Social platforms cache an OG image by URL and ignore changes at the same path. A new logo therefore needs new preview filenames, which is why the current set is `-v4`.
 - Pricing shown on any page must match `register.html` (single source of truth).
 
 
@@ -256,7 +262,7 @@ now resolves against its own location. Runs clean: 0 errors.
 
 ## v89 — 8 August 2026 · social preview rebuilt
 
-`preview-index-v3.jpg` (1200×630) replaces `preview-index-v2.jpg` as the Open
+`preview-index-v4.jpg` (1200×630) replaces `preview-index-v2.jpg` as the Open
 Graph / Twitter card for the site. `-v2` is left on disk deliberately: links
 already shared point at that URL and would otherwise lose their image.
 
@@ -897,8 +903,8 @@ moves these pages is the internal links (v100), the freshness, and the
 comparison page below. A perfect query on an unlinked page ranks for nothing.
 
 ### 2 · Thumbnails re-cut to match
-`preview-foundationtraining-v3.jpg`, `preview-masterysetup-v3.jpg` and
-`preview-innercircle-v3.jpg` — new headlines carrying the new positioning, built
+`preview-foundationtraining-v4.jpg`, `preview-masterysetup-v3.jpg` and
+`preview-innercircle-v4.jpg` — new headlines carrying the new positioning, built
 with `make_preview_v3.py` so they use the real brand fonts. `og:image` and
 `twitter:image` repointed on all three; `sw.js` precache updated. The `-v2`
 files stay on disk so already-shared links keep their image.
@@ -1052,7 +1058,7 @@ every page where the question arises.
 ### 2 · Self-Learn thumbnail rebuilt with the pack in it
 `preview-selflearn-v1.jpg` still carried the retired headline "Four stages.
 Twenty sessions. Four things you keep forever." Replaced by
-**`preview-selflearn-v2.jpg`**, which composites the actual product shot onto its
+**`preview-selflearn-v4.jpg`**, which composites the actual product shot onto its
 cream plate beside the text, and carries the current positioning plus the facts:
 20 sessions · 4 stages · 4 deliverables · 6 files · no certificate · ₦35,000.
 
@@ -1118,7 +1124,7 @@ Tested by reintroducing the listener — the validator catches it — then rever
 user-initiated and correct; left alone.
 
 ### Comparison page gets its own thumbnail
-`preview-compare-v1.jpg` replaces the borrowed Self-Learn card. The design *is*
+`preview-compare-v4.jpg` replaces the borrowed Self-Learn card. The design *is*
 the comparison: two columns, both priced, with the shared row in grey and the
 differing rows in white with an orange marker — so the card shows at a glance
 that the curriculum is identical and only the delivery differs. `og:image` and

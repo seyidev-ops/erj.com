@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v116';
+const CACHE   = 'erj-v119';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -12,11 +12,11 @@ const SHELL = [
   '/jobapplication/index.html',
   '/selflearn/index.html',
   '/self-learn-vs-foundation-training.html',
-  '/preview-compare-v1.jpg',
+  '/preview-compare-v4.jpg',
   '/selflearn-box-wide.png',
   '/selflearn-box.webp',
   '/selflearn-box-wide.webp',
-  '/preview-selflearn-v2.jpg',
+  '/preview-selflearn-v4.jpg',
   '/cvscan/index.html',
   '/masterclass/index.html',
   '/innercircle/index.html',
@@ -36,13 +36,13 @@ const SHELL = [
   '/erj-passcode.js',
   '/404.html',
   '/erj-schema.js',
-  '/erj-mark-white.png',
-  '/erj-lockup-white.png',
+  '/erj-mark-dark.png',
+  '/erj-lockup-dark.png',
   '/erj-ascend.js',
-  '/preview-diagnose-v2.jpg',
-  '/preview-starting-line-v2.jpg',
-  '/preview-free-v2.jpg',
-  '/preview-index-v3.jpg',
+  '/preview-diagnose-v4.jpg',
+  '/preview-starting-line-v4.jpg',
+  '/preview-free-v4.jpg',
+  '/preview-index-v4.jpg',
   '/diagnose/dx.js',
   '/diagnose/index.html',
   '/erj-capture.js',
@@ -50,7 +50,9 @@ const SHELL = [
   '/sitemap.xml',
   '/product.css',
   '/manifest.json',
-  '/logo.png',
+  '/logo-dark.png',
+  '/logo-light.png',
+  '/favicon32-dark.png',
   '/founder-oluwaseyi.jpg',
   '/photo-remote-win-v2.webp',
   '/photo-dollars-hand.webp',

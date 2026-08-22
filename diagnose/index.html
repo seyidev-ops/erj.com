@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../product.css">
+<link rel="stylesheet" href="../product.css?v=126">
 <style>
   /* The pipeline diagram, moved here from starting-line.html — it explains
      the model this page diagnoses, so it belongs with the questions. */
@@ -44,6 +44,12 @@
   .dxr-privacy{font-size:.82rem!important;color:var(--ink-faint)!important;margin-top:.9rem!important;}
   .dxr-reset{margin-top:1.25rem;}
   #dxPdf{cursor:pointer;}
+
+  .dxr-export{margin:1.1rem 0 1.25rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;padding:1rem 1.05rem;border:1px solid var(--line);border-radius:12px;background:var(--card);}
+  .dxr-export span{font-size:.82rem;line-height:1.55;color:var(--ink-soft);max-width:38ch;}
+  .dx-pdf-btn{appearance:none;border:1.5px solid var(--accent);background:transparent;color:var(--accent);border-radius:9px;padding:.72rem 1rem;font-family:var(--font-display);font-size:.95rem;font-weight:800;cursor:pointer;line-height:1.2;white-space:nowrap;}
+  .dx-pdf-btn:hover{background:rgba(255,87,34,.08);}
+  @media(max-width:560px){.dxr-export{align-items:stretch}.dx-pdf-btn{width:100%;white-space:normal}.dxr-export span{max-width:none;}}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Find Your Leak","item":"https://everythingremotejob.com/diagnose/"}]}</script>
@@ -187,9 +193,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="../erj-theme.js"></script>
 <script src="../erj-nav.js"></script>
 <script src="../erj-config.js"></script>
-<script src="../erj-capture.js"></script>
-<script src="report-pdf.js"></script>
-<script src="dx.js"></script>
+<script src="../erj-capture.js?v=126"></script>
+<script src="report-pdf.js?v=126"></script>
+<script src="dx.js?v=126"></script>
 <script src="../erj-product.js"></script>
 <script src="../erj-schema.js"></script>
 </body>

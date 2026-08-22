@@ -1,163 +1,121 @@
-/* Everything Remote Job · client-side diagnostic PDF export.
-   No third-party library and no data leaves the browser. */
-(function () {
+/* Everything Remote Job · true client-side PDF export.
+   Uses the official ERJ light logo asset; no third-party service. */
+(function(){
   'use strict';
 
-  function ascii(value) {
-    return String(value == null ? '' : value)
-      .replace(/[\u2018\u2019]/g, "'")
-      .replace(/[\u201C\u201D]/g, '"')
-      .replace(/[\u2013\u2014]/g, '-')
-      .replace(/\u2026/g, '...')
-      .replace(/\u00A0/g, ' ')
-      .replace(/[^\x20-\x7E\n]/g, '');
+  function ascii(v){
+    return String(v==null?'':v)
+      .replace(/[\u2018\u2019]/g,"'")
+      .replace(/[\u201C\u201D]/g,'"')
+      .replace(/[\u2013\u2014]/g,'-')
+      .replace(/\u2026/g,'...')
+      .replace(/\u00A0/g,' ')
+      .replace(/[^\x20-\x7E\n]/g,'');
+  }
+  function esc(v){return ascii(v).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');}
+  function wrap(text,max){
+    var words=ascii(text).replace(/\s+/g,' ').trim().split(' ').filter(Boolean), out=[], line='';
+    words.forEach(function(w){var n=line?line+' '+w:w;if(n.length>max&&line){out.push(line);line=w;}else line=n;});
+    if(line)out.push(line);return out.length?out:[''];
+  }
+  function bytes(s){return new TextEncoder().encode(s);}
+  function concat(parts){
+    var len=parts.reduce(function(n,p){return n+p.length;},0), out=new Uint8Array(len), o=0;
+    parts.forEach(function(p){out.set(p,o);o+=p.length;});return out;
   }
 
-  function pdfEsc(value) {
-    return ascii(value).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
-  }
+  function content(report,imgW,imgH){
+    var c=[], y=655;
+    function text(txt,x,yy,size,bold,orange){
+      c.push((orange?'1 0.341 0.133':'0.078 0.067 0.055')+' rg BT /'+(bold?'F2':'F1')+' '+size+' Tf '+x+' '+yy+' Td ('+esc(txt)+') Tj ET');
+    }
+    function block(txt,opt){
+      opt=opt||{};var size=opt.size||10, lead=opt.leading||size+4, max=opt.max||84;
+      wrap(txt,max).forEach(function(line){text(line,opt.x||54,y,size,!!opt.bold,!!opt.orange);y-=lead;});
+      y-=opt.after||0;
+    }
+    function rule(yy){c.push('0.85 0.83 0.80 RG 0.8 w 54 '+yy+' m 541 '+yy+' l S');}
 
-  function wrap(text, max) {
-    var words = ascii(text).replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
-    var lines = [], line = '';
-    words.forEach(function (word) {
-      var next = line ? line + ' ' + word : word;
-      if (next.length > max && line) { lines.push(line); line = word; }
-      else line = next;
+    // Logo — official attached light lockup, no recreated geometry.
+    var logoW=250, logoH=Math.max(40,logoW*(imgH/imgW));
+    c.push('q '+logoW+' 0 0 '+logoH+' 54 755 cm /Im1 Do Q');
+    text('JOB SEARCH DIAGNOSTIC REPORT',54,715,20,true,false);
+    text('Find your leak. Fix the earliest failing point first.',54,692,10,true,true);
+    rule(674);
+
+    y=648;
+    block('PRIMARY LEAK',{size:8,bold:true,orange:true,after:12});
+    block((report.number?report.number+' - ':'')+(report.joint||''),{size:24,bold:true,max:42,leading:27,after:2});
+    block(report.law||'',{size:11,bold:true,max:78,leading:15,after:7});
+    block(report.verdict||'',{size:10,max:90,leading:14,after:11});
+
+    block('HOW YOUR ANSWERS FELL',{size:8,bold:true,orange:true,after:4});
+    var scoreStart=y;
+    (report.scores||[]).forEach(function(s){
+      var active=s.name===report.joint;
+      text(s.name,54,y,9,active,false);
+      text(String(s.pct)+'%',178,y,9,true,active);
+      var w=Math.max(4,Math.min(135,(+s.pct||0)*1.35));
+      c.push('0.90 0.88 0.85 rg 225 '+(y-1)+' 135 7 re f');
+      c.push((active?'1 0.341 0.133':'0.50 0.48 0.45')+' rg 225 '+(y-1)+' '+w+' 7 re f');
+      y-=17;
     });
-    if (line) lines.push(line);
-    return lines.length ? lines : [''];
+    y-=3;
+    block('A close second is normal. Fix the earliest leak first; an upstream failure can make later readings unreliable.',{size:8,max:92,leading:11,after:10});
+
+    block('WHAT I WOULD DO NOW',{size:8,bold:true,orange:true,after:4});
+    block((report.actions&&report.actions[0])||'Fix the earliest failing point before increasing application volume.',{size:10,max:90,leading:14,after:11});
+
+    block('GET A FREE HUMAN REVIEW',{size:8,bold:true,orange:true,after:4});
+    block('The quiz identifies the joint. A human review can tell you what to fix first in your actual search.',{size:10,max:90,leading:14,after:4});
+    block('Message ERJ with AUDIT and include: target role, applications in the last 30 days, interviews in the last 30 days, and your CV or LinkedIn profile.',{size:10,bold:true,max:90,leading:14,after:7});
+    block('WhatsApp: +234 803 292 5957',{size:9,bold:true,orange:true,max:70});
+
+    rule(59);
+    text('Everything Remote Job  |  Work Beyond Borders.',54,40,8,true,false);
+    text('everythingremotejob.com/diagnose/  |  Generated: '+ascii(report.date||new Date().toLocaleDateString('en-GB')),54,27,7,false,false);
+    return c.join('\n')+'\n';
   }
 
-  function buildPages(report) {
-    var pages = [[]];
-    var page = pages[0];
-    var y = 790;
-    var bottom = 58;
+  function makePdf(report,jpeg,imgW,imgH){
+    var stream=bytes(content(report,imgW,imgH));
+    var parts=[bytes('%PDF-1.4\n%ERJ\n')], offsets=[0], pos=parts[0].length;
+    var objects=[];
+    objects[1]=bytes('<< /Type /Catalog /Pages 2 0 R >>');
+    objects[2]=bytes('<< /Type /Pages /Kids [5 0 R] /Count 1 >>');
+    objects[3]=bytes('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+    objects[4]=bytes('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
+    objects[5]=bytes('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> /XObject << /Im1 7 0 R >> >> /Contents 6 0 R >>');
+    objects[6]=concat([bytes('<< /Length '+stream.length+' >>\nstream\n'),stream,bytes('endstream')]);
+    objects[7]=concat([bytes('<< /Type /XObject /Subtype /Image /Width '+imgW+' /Height '+imgH+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+jpeg.length+' >>\nstream\n'),jpeg,bytes('\nendstream')]);
 
-    function newPage() {
-      pages.push([]); page = pages[pages.length - 1]; y = 790;
-      header(false);
+    for(var i=1;i<=7;i++){
+      offsets[i]=pos;
+      var head=bytes(i+' 0 obj\n'), tail=bytes('\nendobj\n');
+      parts.push(head,objects[i],tail);pos+=head.length+objects[i].length+tail.length;
     }
-    function ensure(height) { if (y - height < bottom) newPage(); }
-    function line(text, opts) {
-      opts = opts || {};
-      var size = opts.size || 10;
-      var leading = opts.leading || (size + 4);
-      var max = opts.max || 84;
-      var lines = wrap(text, max);
-      ensure(lines.length * leading + (opts.after || 0));
-      lines.forEach(function (t) {
-        page.push({ type: 'text', text: t, x: opts.x || 54, y: y, size: size, bold: !!opts.bold, orange: !!opts.orange });
-        y -= leading;
-      });
-      y -= opts.after || 0;
-    }
-    function rule() {
-      ensure(14);
-      page.push({ type: 'rule', y: y - 2 });
-      y -= 18;
-    }
-    function header(first) {
-      page.push({ type: 'brand', y: 806 });
-      if (!first) {
-        page.push({ type: 'text', text: 'JOB SEARCH DIAGNOSTIC REPORT - continued', x: 54, y: 776, size: 8, bold: true, orange: true });
-        y = 752;
-      }
-    }
-
-    header(true);
-    line('JOB SEARCH DIAGNOSTIC REPORT', { size: 19, bold: true, max: 50, after: 4 });
-    line('Find your leak. Fix the earliest failing point first.', { size: 10, orange: true, max: 70, after: 12 });
-    rule();
-    line('PRIMARY LEAK', { size: 8, bold: true, orange: true, after: 3 });
-    line((report.number ? report.number + ' - ' : '') + report.joint, { size: 22, bold: true, max: 40, after: 2 });
-    line(report.law, { size: 11, bold: true, max: 78, after: 10 });
-    line(report.verdict, { size: 10, max: 88, after: 12 });
-
-    line('HOW YOUR ANSWERS FELL', { size: 8, bold: true, orange: true, after: 5 });
-    (report.scores || []).forEach(function (s) {
-      line(s.name + ': ' + s.pct + '%', { size: 10, bold: s.name === report.joint, max: 40, after: 1 });
-    });
-    line('A close second is normal. Fix the earliest leak first; an upstream failure can make later readings unreliable.', { size: 8, max: 95, after: 12 });
-
-    line('ONE USEFUL STEP YOU CAN TAKE NOW', { size: 8, bold: true, orange: true, after: 5 });
-    line((report.actions && report.actions[0]) || 'Review the result and fix the earliest failing point before increasing application volume.', { size: 10, max: 88, after: 12 });
-
-    line('GET A FREE HUMAN REVIEW', { size: 8, bold: true, orange: true, after: 5 });
-    line('The quiz identifies the joint. A human review can tell you what to fix first in your actual search.', { size: 10, max: 88, after: 5 });
-    line('Message ERJ with the word AUDIT and include: target role, applications in the last 30 days, interviews in the last 30 days, and your CV or LinkedIn profile.', { size: 10, bold: true, max: 88, after: 12 });
-
-    rule();
-    line('Everything Remote Job', { size: 11, bold: true, after: 1 });
-    line('Work Beyond Borders.', { size: 9, orange: true, after: 1 });
-    line('WhatsApp: +234 803 292 5957  |  everythingremotejob.com/diagnose/', { size: 8, max: 100, after: 2 });
-    line('Generated: ' + (report.date || new Date().toLocaleDateString('en-GB')), { size: 8, max: 70 });
-    return pages;
+    var xref=pos;
+    var xr='xref\n0 8\n0000000000 65535 f \n';
+    for(var j=1;j<=7;j++)xr+=String(offsets[j]).padStart(10,'0')+' 00000 n \n';
+    xr+='trailer\n<< /Size 8 /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+    parts.push(bytes(xr));
+    return new Blob(parts,{type:'application/pdf'});
   }
 
-  function contentFor(items, pageNo, total) {
-    var c = [];
-    items.forEach(function (it) {
-      if (it.type === 'brand') {
-        c.push('1 0.341 0.133 rg 54 ' + (it.y - 2) + ' 34 5 re f');
-        c.push('0 0 0 rg BT /F2 10 Tf 96 ' + it.y + ' Td (EVERYTHING REMOTE JOB) Tj ET');
-        c.push('0.38 0.38 0.38 rg BT /F1 7 Tf 96 ' + (it.y - 12) + ' Td (WORK BEYOND BORDERS.) Tj ET');
-      } else if (it.type === 'rule') {
-        c.push('0.86 0.86 0.86 RG 0.8 w 54 ' + it.y + ' m 541 ' + it.y + ' l S');
-      } else if (it.type === 'text') {
-        c.push((it.orange ? '1 0.341 0.133' : '0.08 0.07 0.055') + ' rg BT /' + (it.bold ? 'F2' : 'F1') + ' ' + it.size + ' Tf ' + it.x + ' ' + it.y + ' Td (' + pdfEsc(it.text) + ') Tj ET');
-      }
-    });
-    c.push('0.45 0.45 0.45 rg BT /F1 7 Tf 500 30 Td (' + pageNo + ' / ' + total + ') Tj ET');
-    return c.join('\n') + '\n';
-  }
-
-  function makePdf(report) {
-    var pages = buildPages(report);
-    var objects = [];
-    objects[1] = '<< /Type /Catalog /Pages 2 0 R >>';
-    objects[3] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
-    objects[4] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>';
-
-    var kids = [];
-    var next = 5;
-    pages.forEach(function (items, idx) {
-      var pageObj = next++, contentObj = next++;
-      kids.push(pageObj + ' 0 R');
-      var stream = contentFor(items, idx + 1, pages.length);
-      objects[pageObj] = '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ' + contentObj + ' 0 R >>';
-      objects[contentObj] = '<< /Length ' + stream.length + ' >>\nstream\n' + stream + 'endstream';
-    });
-    objects[2] = '<< /Type /Pages /Kids [' + kids.join(' ') + '] /Count ' + kids.length + ' >>';
-
-    var pdf = '%PDF-1.4\n%ERJ\n';
-    var offsets = [0];
-    for (var i = 1; i < objects.length; i++) {
-      offsets[i] = pdf.length;
-      pdf += i + ' 0 obj\n' + objects[i] + '\nendobj\n';
+  async function download(report){
+    try{
+      var res=await fetch('erj-official-logo-light.jpg?v=126',{cache:'no-store'});
+      if(!res.ok)throw new Error('logo');
+      var jpeg=new Uint8Array(await res.arrayBuffer());
+      // Cropped official logo asset is 1400x380.
+      var blob=makePdf(report||{},jpeg,1400,380);
+      var url=URL.createObjectURL(blob),a=document.createElement('a');
+      a.href=url;a.download='ERJ-Job-Search-Diagnostic-'+ascii((report&&report.joint)||'Report').replace(/\s+/g,'-')+'.pdf';
+      document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},2000);
+    }catch(err){
+      console.error('ERJ diagnostic PDF export failed',err);
+      alert('The PDF could not be generated on this device. Please refresh once and try again.');
     }
-    var xref = pdf.length;
-    pdf += 'xref\n0 ' + objects.length + '\n';
-    pdf += '0000000000 65535 f \n';
-    for (var j = 1; j < objects.length; j++) {
-      pdf += String(offsets[j]).padStart(10, '0') + ' 00000 n \n';
-    }
-    pdf += 'trailer\n<< /Size ' + objects.length + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
-    return pdf;
   }
-
-  function download(report) {
-    var pdf = makePdf(report);
-    var blob = new Blob([pdf], { type: 'application/pdf' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'ERJ-Job-Search-Diagnostic-' + ascii(report.joint || 'Report').replace(/\s+/g, '-') + '.pdf';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () { URL.revokeObjectURL(url); if (a.parentNode) a.parentNode.removeChild(a); }, 1200);
-  }
-
-  window.ERJDiagnosticPDF = { download: download, makePdf: makePdf };
+  window.ERJDiagnosticPDF={download:download,makePdf:makePdf};
 })();

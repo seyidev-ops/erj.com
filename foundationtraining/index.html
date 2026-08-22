@@ -25,21 +25,25 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="../product.css">
+<link rel="stylesheet" href="../product.css?v=126">
 <style>
   /* ── sticky mobile CTA ── */
   .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;align-items:center;justify-content:space-between;
-    gap:0.9rem;padding:0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+    gap:0.65rem;padding:0.7rem 0.75rem calc(0.7rem + env(safe-area-inset-bottom));
     background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border-top:1px solid var(--line);transform:translateY(110%);transition:transform .4s var(--ease);}
   html[data-theme="day"] .sticky-cta{background:rgba(250,250,248,0.92);}
-  /* visibility:hidden removes the links from the tab order while the bar is
-     off-screen — aria-hidden alone left them focusable. */
   .sticky-cta{visibility:hidden;}
   .sticky-cta.show{transform:translateY(0);visibility:visible;}
-  .sticky-cta .s-txt{font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4;}
-  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.86rem;letter-spacing:0;text-transform:none;}
-  .sticky-cta .btn-yes{padding:0.72rem 1.2rem;font-size:1.18rem;font-weight:700;white-space:nowrap;flex-shrink:0;}
+  .sticky-cta .s-txt{font-size:0.76rem;letter-spacing:0.01em;text-transform:none;color:var(--ink-soft);line-height:1.25;min-width:0;flex:1;}
+  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.90rem;letter-spacing:-0.01em;text-transform:none;line-height:1.2;margin-bottom:0.12rem;}
+  .sticky-cta .s-txt strong,.sticky-cta .s-txt span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
+  .sticky-cta .btn-yes{padding:0.46rem 0.82rem;font-size:1.18rem;font-weight:700;color:#fff;white-space:nowrap;flex-shrink:0;gap:0.3rem;}
+  @media(max-width:430px){
+    .sticky-cta .s-txt strong{font-size:0.84rem;}
+    .sticky-cta .s-txt{font-size:0.72rem;}
+    .sticky-cta .btn-yes{padding:0.46rem 0.85rem;}
+  }
   @media (max-width:740px){
     .sticky-cta{display:flex;}
     body.sticky-on .wa-float{bottom:86px;}
@@ -122,11 +126,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <img src="../photo-remote-win-v2.webp" alt="A young Nigerian professional at his laptop, celebrating a remote offer" width="626" height="417" loading="eager" decoding="async">
     </figure>
     </div>
-    <div class="stat-row">
-      <div><div class="stat-num">382+</div><div class="stat-lbl">Professionals employed</div></div>
-      <div><div class="stat-num">4</div><div class="stat-lbl">Asset-building stages</div></div>
-      <div><div class="stat-num">20</div><div class="stat-lbl">Training days</div></div>
-      <div><div class="stat-num">100%</div><div class="stat-lbl">Hiring-focused</div></div>
+    <div class="stat-row stats-counter" id="ftImpact">
+      <div><div class="stat-num" data-count="446" data-suffix="+">446+</div><div class="stat-lbl">Professionals trained</div></div>
+      <div><div class="stat-num" data-count="382" data-suffix="+">382+</div><div class="stat-lbl">Professionals placed</div></div>
+      <div><div class="stat-num" data-count="16">16</div><div class="stat-lbl">Assets built live</div></div>
+      <div><div class="stat-num" data-count="100" data-suffix="%">100%</div><div class="stat-lbl">Hiring focus</div></div>
     </div>
   </section>
 
@@ -383,8 +387,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true" inert>
-  <div class="s-txt"><strong>Enrolment closes 30 August</strong>Cohort 10 begins Mon 31 Aug · 8PM WAT</div>
-  <a href="../register.html" class="btn-yes">Secure my place →</a>
+  <div class="s-txt"><strong>Enrolment closes 30 August</strong><span>Cohort 10 begins Mon 31 Aug · 8PM WAT</span></div>
+  <a href="../register.html" class="btn-yes">Register now →</a>
 </div>
 
 <footer class="foot wrap">
@@ -429,6 +433,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   window.addEventListener('resize',function(){ measure(); onScroll(); });
   window.addEventListener('load',function(){ measure(); apply(); });
   measure(); apply();
+})();
+</script>
+<script>
+(function(){
+  var host=document.getElementById('ftImpact');
+  if(!host||!('IntersectionObserver' in window)) return;
+  var done=false;
+  function animate(el){
+    var target=parseInt(el.getAttribute('data-count')||'0',10), suffix=el.getAttribute('data-suffix')||'', start=null, dur=1200;
+    function step(ts){
+      if(start===null) start=ts;
+      var p=Math.min((ts-start)/dur,1);
+      var eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased)+suffix;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(done || !entry.isIntersecting) return;
+      done=true;
+      host.querySelectorAll('[data-count]').forEach(animate);
+      io.disconnect();
+    });
+  },{threshold:.35});
+  io.observe(host);
 })();
 </script>
 <script src="../erj-schema.js"></script>

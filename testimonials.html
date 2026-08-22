@@ -192,18 +192,6 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 .featured-badge,.badge,.tag,.pill{box-shadow:none!important;}
 .cover,.post-cover,.art-cover,.card-cover,.featured-img{filter:saturate(0.6);}
 
-.ts-proof{margin-top:1.7rem;border:1px solid var(--line);border-radius:18px;background:var(--card);padding:1.35rem 1.2rem 1.3rem;}
-.ts-proof-head{max-width:68ch;margin-bottom:1rem;}
-.ts-proof-k{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.45rem;}
-.ts-proof-head h2{font-family:var(--fd);font-size:clamp(1.35rem,4vw,2rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:0 0 .55rem;color:var(--txt);}
-.ts-proof-head p{font-size:.95rem;line-height:1.7;color:var(--muted);margin:0;}
-.ts-proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem;margin-top:1rem;}
-.ts-proof-card{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:1rem .95rem;}
-.ts-proof-card h3{font-family:var(--fd);font-size:.95rem;font-weight:800;letter-spacing:-.01em;line-height:1.2;margin:0 0 .5rem;color:var(--txt);}
-.ts-proof-card p{font-size:.88rem;line-height:1.65;color:var(--muted);margin:0;}
-.ts-proof-card ul{margin:.55rem 0 0 1rem;padding:0;color:var(--muted);font-size:.86rem;line-height:1.65;}
-.ts-proof-note{margin-top:1rem;font-size:.8rem;line-height:1.6;color:var(--muted);}
-@media(max-width:760px){.ts-proof-grid{grid-template-columns:1fr;}}
 
 </style>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
@@ -264,6 +252,21 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 .foot .sep{color:var(--border);margin:0 0.5rem;}
 .foot .foot-links{display:flex;flex-wrap:wrap;justify-content:center;column-gap:1.1rem;row-gap:.15rem;margin-top:.45rem;}
 .foot .foot-links a{white-space:nowrap;}
+
+.ts-evidence{margin-top:1.15rem;border-top:1px solid var(--border2);padding-top:.95rem;}
+.ts-evidence summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.8rem;font-family:var(--fd);font-size:.83rem;font-weight:800;color:var(--text);}
+.ts-evidence summary::-webkit-details-marker{display:none;}
+.ts-evidence summary span:last-child{color:var(--accent);font-size:.75rem;font-family:var(--fb);font-weight:700;}
+.ts-evidence[open] summary{margin-bottom:.9rem;}
+.ts-ev-grid{display:grid;grid-template-columns:1fr;gap:.65rem;}
+.ts-ev{border:1px solid var(--border2);border-radius:10px;background:var(--bg2);padding:.75rem .8rem;}
+.ts-ev-k{font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.25rem;}
+.ts-ev p{margin:0;font-size:.78rem;line-height:1.55;color:var(--muted);}
+.ts-ev p strong{color:var(--text);font-weight:700;}
+.ts-message{border-left:3px solid var(--accent);padding:.7rem .8rem;background:rgba(255,87,34,.06);border-radius:0 10px 10px 0;font-size:.79rem;line-height:1.55;color:var(--text);}
+.ts-evidence-note{font-size:.68rem;line-height:1.5;color:var(--muted2);margin-top:.7rem;}
+@media(min-width:760px){.ts-ev-grid{grid-template-columns:1fr 1fr;}}
+
 </style>
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
   <link rel="canonical" href="https://everythingremotejob.com/testimonials.html">
@@ -297,38 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="ts-hero">
     <div class="ts-kicker"><span class="mark"></span>Success Stories · Documented Results</div>
     <h1 class="ts-h1">Real people. Real offers. <em>Real dollars.</em></h1>
-    <p class="ts-sub">Not screenshots of vibes — documented journeys with the numbers, the timelines, and the exact moves that turned ghosted applications into signed international offers.</p>
-  </div>
-
-  <div class="ts-proof reveal">
-    <div class="ts-proof-head">
-      <div class="ts-proof-k">What a real proof trail includes</div>
-      <h2>Not just testimony — documented proof.</h2>
-      <p>Where a participant grants permission, ERJ should show the trail clearly: date-stamped interview invitations, before-and-after CV or LinkedIn work, participant message screenshots, a simple timeline, and the exact work ERJ did at each step. Sensitive company details can be masked for privacy.</p>
-    </div>
-    <div class="ts-proof-grid">
-      <div class="ts-proof-card">
-        <h3>Interview invitations</h3>
-        <p>Show the invitation itself, the date received, and the role or company context.</p>
-        <ul><li>Recruiter email or calendar invite</li><li>Date received and interview stage</li><li>Role title and country or remote region</li></ul>
-      </div>
-      <div class="ts-proof-card">
-        <h3>Before / after CVs</h3>
-        <p>Make the improvement visible so the visitor can see what changed.</p>
-        <ul><li>First draft versus final CV</li><li>Headline, structure and ATS fixes</li><li>LinkedIn or portfolio updates where relevant</li></ul>
-      </div>
-      <div class="ts-proof-card">
-        <h3>Participant messages and dates</h3>
-        <p>Use consented message screenshots to show the turning points in the journey.</p>
-        <ul><li>Submission, callback and offer updates</li><li>Date-stamped WhatsApp or email excerpts</li><li>Short privacy note when names are masked</li></ul>
-      </div>
-      <div class="ts-proof-card">
-        <h3>Timeline and what ERJ did</h3>
-        <p>Spell out the work so the result feels earned, not vague.</p>
-        <ul><li>Targeting and role selection</li><li>CV / LinkedIn / portfolio refinement</li><li>Interview prep, follow-up and salary negotiation</li></ul>
-      </div>
-    </div>
-    <p class="ts-proof-note"><strong>Professional note:</strong> the strongest social proof is genuine documentation. This block is structured so you can drop in the real invites, CVs and message screenshots later without redesigning the page.</p>
+    <p class="ts-sub">Documented journeys with the numbers, the timeline, the before-and-after change, the interview or offer milestone, and the exact work that moved the search forward.</p>
   </div>
 
   <div class="ts-grid">
@@ -339,6 +311,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">₦480,000/mo (~$310)</span><span class="ts-now">$54,000</span><span class="ts-per">/year via Deel</span></div>
       <p class="ts-body">22 international applications in 5 months, 2 replies — both "US/EU only." His skills were never the problem; his pipeline was. We rebuilt his target list around companies with <strong>verified global hiring infrastructure</strong>, rewrote his GitHub and LinkedIn for remote-readiness, and moved to direct outreach. By week 7 he held two offers.</p>
       <p class="ts-quote">Same skills in week 1 as in week 7. What changed was aiming every action at companies already willing to hire him.</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>Before ERJ: 22 international applications across 5 months produced only 2 replies, both blocked by location. <strong>By week 7:</strong> two offers.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>Backend engineering skill was present, but the search was aimed at companies that could not hire him. GitHub and LinkedIn did not clearly signal remote readiness.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>A target list built around companies with verified global hiring infrastructure, plus a GitHub and LinkedIn profile rewritten for remote-readiness and direct outreach.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>Two offers by week 7. Published outcome on this page: <strong>$54,000/year via Deel.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Diagnosed Aim/Supply rather than skill; rebuilt the company target list; rewrote GitHub and LinkedIn positioning; moved the search from broad applications to direct outreach.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“Same skills in week 1 as in week 7. What changed was aiming every action at companies already willing to hire him.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -348,6 +333,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">₦1.8M/yr (~$1,180)</span><span class="ts-now">$58,000</span><span class="ts-per">/year via Deel</span></div>
       <p class="ts-body">Zero technical background. Seven years of explaining complex ideas to people who don't yet understand them — <strong>exactly what technical writing requires</strong>. Free courses, open-source documentation pull requests, first paid work at $35/hr, then a full-time offer from a UK developer-tools company.</p>
       <p class="ts-quote">"The 14 months felt very long while I was in them. Looking back, it was the shortest path to somewhere I genuinely wanted to be."</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>A <strong>14-month career pivot</strong> from classroom teaching into technical writing, including a first paid writing engagement at $35/hour before the full-time offer.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>English teacher with seven years of experience, no technical job title and no technical portfolio evidence.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>Teaching experience translated into the core technical-writing skill — explaining complex ideas clearly — then supported with courses and open-source documentation pull requests.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>First paid work at $35/hour, followed by a full-time technical-writing offer from a UK developer-tools company. Published outcome: <strong>$58,000/year via Deel.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Reframed transferable teaching experience into technical-writing value; built evidence through open-source documentation; used paid project work as the bridge to the full-time role.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“The 14 months felt very long while I was in them. Looking back, it was the shortest path to somewhere I genuinely wanted to be.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -357,6 +355,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">$38,000 offered</span><span class="ts-now">$52,000</span><span class="ts-per">accepted in 18 hours</span></div>
       <p class="ts-body">One offer. Zero competing offers. "No leverage." What he had instead: a calculated salary floor, market data showing UK fintech UX roles at $48k–$62k, and a <strong>three-paragraph email</strong> that named the band, stayed honest, and made saying yes effortless. The hiring manager accepted without a counter.</p>
       <p class="ts-quote">The email took 25 minutes to write. Over a three-year tenure, the difference compounds to $42,000.</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>The decisive change happened after the offer arrived: a <strong>$38,000 offer became $52,000 within 18 hours.</strong></p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>The problem was not his CV. He had an offer, but believed having no competing offer meant he had no leverage.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>A documented salary floor, market evidence for comparable UK fintech UX roles and a concise three-paragraph negotiation email.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>The hiring manager accepted the $52,000 counter without another counter-offer.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Calculated the salary floor; anchored the request to market data; structured the negotiation email to name the band, explain the value and make the next decision easy.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“The email took 25 minutes to write. Over a three-year tenure, the difference compounds to $42,000.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -366,6 +377,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">312 applications · 0 replies</span><span class="ts-now">$56,000</span><span class="ts-per">/year via Deel</span></div>
       <p class="ts-body">Eleven months, 312 tracked applications, 308 silences. The problem took one hour to find: her CV spoke NGO language to tech recruiters. We <strong>translated the same experience</strong> — "$2.1M multi-country programme, 14 partners, 94% on-time delivery" — switched to direct outreach, and she signed an offer in week 8.</p>
       <p class="ts-quote">"The 312 applications were not wasted. They taught me exactly what was not working. The 8 weeks taught me what was."</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>Before the intervention: <strong>11 months and 312 tracked applications</strong> with 308 silences. After the diagnosis and repositioning: signed offer in <strong>week 8.</strong></p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>The CV described NGO responsibilities in sector-specific language that tech recruiters did not translate into project-management value.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>The same experience was rewritten in measurable delivery language — including “$2.1M multi-country programme, 14 partners, 94% on-time delivery.”</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>The repositioned search moved to direct outreach and produced a remote PM offer. Published outcome: <strong>$56,000/year via Deel.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Found the representation leak in one hour; translated NGO experience into global PM language; quantified scope and delivery; changed the search from repeated portal applications to direct outreach.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“The 312 applications were not wasted. They taught me exactly what was not working. The 8 weeks taught me what was.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -375,6 +399,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">$49,500 in-office</span><span class="ts-now">$68,000</span><span class="ts-per">remote-first + benefits</span></div>
       <p class="ts-body">Four months, ~55 applications a month, 2% response rate, zero interviews. We cut applications to 10 a week, rewrote his headline around a <strong>real result</strong> ("2k → 140k monthly readers in 18 months"), built a one-page case-study PDF, and started 5 direct outreach messages a day. 23 days later: 4 discovery calls, 2 interviews, 1 offer.</p>
       <p class="ts-quote">A one-page PDF that looked like work — not a job application — changed the response rate most.</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>Four months of low response before the reset. After the new search system: <strong>23 days</strong> to 4 discovery calls, 2 formal interviews and 1 offer.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>CV/profile headline: <strong>“Content Strategist | 5 Years Experience.”</strong> About 55 applications a month and a 2% response rate.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>Headline rebuilt around proof: <strong>“Content Strategist who grew a SaaS blog from 2k to 140k monthly readers in 18 months.”</strong> A one-page case-study PDF replaced generic evidence.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>4 discovery calls, 2 interviews, 1 offer in 23 days. Published outcome: <strong>$68,000 remote-first + benefits.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Cut application volume to 10 aimed roles a week; rewrote the headline around a measurable result; built a one-page case study; started 5 direct hiring-manager outreach messages per day.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“A one-page PDF that looked like work — not a job application — changed the response rate most.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -384,6 +421,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">₦2.1M/yr (~$1,380)</span><span class="ts-now">$38,400</span><span class="ts-per">/year via Deel · 27.8× in dollar terms</span></div>
       <p class="ts-body">Two young children, a demanding day job, and a hard ceiling of <strong>90 minutes a day, four days a week</strong> — no weekends, no late nights, everything async. No international CV, no portfolio, no LinkedIn, no contacts abroad. In 9 weeks we rebuilt her CV around metrics, turned two real logistics wins (34% error reduction, 11% delivery-cost savings) into a Notion portfolio, built LinkedIn from scratch, and sent 14 personalised outreach messages — 6 replies, 3 interview processes, 1 offer from a US supply-chain SaaS company. She now works 7am–3pm WAT, async-first, no timezone penalty.</p>
       <p class="ts-quote">Not exceptional talent or luck — 90 minutes a day, applied consistently, in the right direction. The constraints don't disqualify you.</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>A constrained <strong>9-week search</strong>: 90 minutes a day, four days a week, while working full-time and raising two children.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>No international CV, no portfolio, no LinkedIn presence and no contacts abroad.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>CV rewritten around measurable operations results; two logistics wins turned into a Notion portfolio; LinkedIn built from scratch; 14 personalised outreach messages sent.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>14 outreach messages → 6 replies → 3 interview processes → 1 offer. Published outcome: <strong>$38,400/year via Deel.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Rebuilt the CV around metrics; packaged existing work into portfolio proof; built LinkedIn; narrowed outreach to a small, personalised list; designed the search around the 90-minute daily constraint.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“Not exceptional talent or luck — 90 minutes a day, applied consistently, in the right direction. The constraints don't disqualify you.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -393,6 +443,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">₦7.2M/yr (~$4,700)</span><span class="ts-now">$71,000</span><span class="ts-per">/year · contractor agreement</span></div>
       <p class="ts-body">Twelve years of experience and a real fear that both worked against him: too senior to start over, too visible to be seen searching. Nothing could touch his LinkedIn, no recruiter could call his office, and two people at his company were connected to everyone in his industry. We ran the entire search <strong>outside the public channels</strong> — a private portfolio link instead of a rebuilt profile, direct outreach to hiring managers rather than job boards, interviews taken at 6:30am before work. He resigned only after the contract was signed, and served his full notice.</p>
       <p class="ts-quote">"Being 42 was not the obstacle I thought it was. Eleven years of closing books across three subsidiaries was the entire reason they wanted me."</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>A discreet <strong>11-week search</strong> completed while he remained employed. He resigned only after the new contract was signed.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>Twelve years of finance experience, but a public LinkedIn rebuild or visible job hunt could expose the search to colleagues and industry contacts.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>A private portfolio link replaced public profile changes; outreach moved directly to hiring managers; interviews were scheduled at 6:30 AM before work.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>Contract signed before resignation. Published outcome: <strong>$71,000/year contractor agreement.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Designed a confidential search; kept the public profile stable; built private evidence; used direct outreach rather than public job-board activity; protected the existing employment until the new agreement was signed.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“Being 42 was not the obstacle I thought it was. Eleven years of closing books across three subsidiaries was the entire reason they wanted me.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -402,6 +465,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">₦180,000/mo (~$115)</span><span class="ts-now">$2,100</span><span class="ts-per">/month · US SaaS company</span></div>
       <p class="ts-body">An HND, no university degree, and a settled belief that she had "no real skill" — she just handled customers. Four years of handling customers is <strong>exactly the job</strong> global SaaS companies hire for and cannot fill. We named the work properly (Customer Success, not "retail"), evidenced it with the numbers she already had — 60+ daily interactions, a complaint-resolution rate she had never once written down — and spent one week learning Zendesk and Intercom well enough to speak about them honestly. Six weeks, 31 aimed applications, 4 interviews, 1 offer.</p>
       <p class="ts-quote">"Nobody asked about my degree. Every single person asked how I handle an angry customer at 11pm, and I had four years of answers."</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>A <strong>6-week transition</strong> from retail supervision to remote Customer Success: 31 aimed applications, 4 interviews, 1 offer.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>The experience was labelled “retail,” with no university degree and no clear global SaaS positioning.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>The work was renamed around the function actually performed — Customer Success — and supported with existing service metrics plus one week of honest Zendesk and Intercom learning.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>31 aimed applications → 4 interviews → 1 offer. Published outcome: <strong>$2,100/month with a US SaaS company.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Translated four years of customer handling into Customer Success language; surfaced measurable customer-service evidence; closed the tool-familiarity gap; aimed the applications instead of applying broadly.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“Nobody asked about my degree. Every single person asked how I handle an angry customer at 11pm, and I had four years of answers.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
 
     <article class="ts-card">
@@ -411,6 +487,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="ts-delta"><span class="ts-was">2 finals lost · 0 offers</span><span class="ts-now">$46,800</span><span class="ts-per">/year · employer of record</span></div>
       <p class="ts-body">His CV worked. His aim worked. He reached the final round twice in three months and lost both — which meant the expensive leak was in the last twenty minutes, not the document everyone told him to rewrite again. Two things had been ending it: an answer about working unsupervised built entirely on adjectives, and a salary number he volunteered inside thirty seconds. We replaced the first with a <strong>description of his actual system</strong> — how he plans a week, where he writes things down, what he does when he is blocked and his manager is asleep — and rehearsed the money question until the silence after his range stopped frightening him. Third final round: offer, at the top of the band he named.</p>
       <p class="ts-quote">"I rewrote my CV four times for a problem that was never in my CV. The thing that was broken took two weeks of practice to fix."</p>
+    
+      <details class="ts-evidence">
+        <summary><span>Open the evidence trail</span><span>Timeline · before/after · interviews · ERJ work</span></summary>
+        <div class="ts-ev-grid">
+          <div class="ts-ev"><div class="ts-ev-k">Date / timeline</div><p>Two final-round rejections across roughly <strong>three months</strong>. The conversion leak then received focused practice; the third final round produced the offer.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Before</div><p>The CV and targeting were already working. The weak point was the interview: vague adjectives about working unsupervised and an early, unprepared salary number.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">After</div><p>A concrete explanation of his real operating system — weekly planning, written work, blockers across time zones — plus rehearsed salary-range handling.</p></div>
+          <div class="ts-ev"><div class="ts-ev-k">Interview / offer evidence</div><p>Two finals lost; third final round converted. Published outcome: <strong>$46,800/year via employer of record.</strong></p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">What ERJ specifically changed</div><p>Stopped unnecessary CV rewriting; diagnosed Conversion; rebuilt the remote-work answer around actual behaviour; rehearsed the money question until he could hold the silence and the range.</p></div>
+          <div class="ts-ev" style="grid-column:1/-1"><div class="ts-ev-k">Participant statement</div><div class="ts-message">“I rewrote my CV four times for a problem that was never in my CV. The thing that was broken took two weeks of practice to fix.”</div></div>
+        </div>
+        <p class="ts-evidence-note">Only details already published in this case study are shown here. Calendar dates, invitation screenshots and original message screenshots should be added only from the participant's verified source files; none are invented on this page.</p>
+      </details>
     </article>
   </div>
 

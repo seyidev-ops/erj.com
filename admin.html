@@ -521,7 +521,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
     <a class="sidebar-item" data-label="Content" href="#" onclick="showView('content');return false"><span class="sidebar-icon">📚</span><span class="sbl"> Content</span></a>
     <a class="sidebar-item" data-label="Activity Log" href="#" onclick="showView('activity');return false"><span class="sidebar-icon">⚡</span><span class="sbl"> Activity Log</span></a>
     <div class="sidebar-label"><span class="sbl">Publishing</span></div>
-    <a class="sidebar-item" data-label="Job Board" href="#" onclick="showView('jobs');return false"><span class="sidebar-icon">🌍</span><span class="sbl"> Job Board</span></a>
+    <a class="sidebar-item" data-label="Retired Job Board" href="#" onclick="showView('jobs');return false" style="display:none" aria-hidden="true" tabindex="-1"><span class="sidebar-icon">🌍</span><span class="sbl"> Retired Job Board</span></a>
     <a class="sidebar-item" data-label="Blog Manager" href="blog-admin.html"><span class="sidebar-icon">📝</span><span class="sbl"> Blog Manager</span></a>
     <a class="sidebar-item" data-label="View Blog" href="blog.html" target="_blank"><span class="sidebar-icon">🌐</span><span class="sbl"> View Blog</span></a>
     <div class="sidebar-label"><span class="sbl">Actions</span></div>
@@ -647,7 +647,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
     <!-- ── PRIVATE JOB BOARD VIEW ── -->
     <div id="viewJobs" class="view" style="display:none">
       <div class="page-header">
-        <div class="page-title">🌍 Private Job Board</div>
+        <div class="page-title">Legacy Job Board · Retired</div>
         <div class="page-sub">Manage job listings, grant participant access, and whitelist phone numbers. Participants access via their training dashboard.</div>
       </div>
 
@@ -680,7 +680,7 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 
       <!-- PARTICIPANT ACCESS TAB -->
       <div id="jobTabUsers" style="display:none">
-        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7">Grant or revoke job board access per participant. When granted, they see the full Private Job Board inside their training dashboard — same as stage access toggles.</p>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7">Legacy controls retained for historical records only. The Private Job Board is retired and is no longer sold or shown in the participant dashboard.</p>
         <div style="display:flex;gap:.7rem;margin-bottom:1rem;flex-wrap:wrap">
           <input id="jobUserSearch" type="text" placeholder="Search participants…" oninput="renderJobAccessUsers()" style="flex:1;min-width:180px;padding:.6rem .9rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--font-b);font-size:.84rem;outline:none">
           <button onclick="grantAllJobAccess()" style="background:var(--green);color:#fff;border:none;border-radius:8px;padding:.6rem 1rem;font-size:.82rem;font-weight:700;cursor:pointer">✓ Grant All</button>

@@ -888,22 +888,19 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
   /* Two lines, and only two. Each half is held to one line with an ellipsis
      rather than allowed to wrap — a four-line bar eats a third of a phone
      screen and pushes the button off its own baseline. */
-  .sticky-cta .s-txt{font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);
-    line-height:1.35;min-width:0;flex:1;}
-  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);
-    font-size:0.8rem;letter-spacing:-0.01em;text-transform:none;line-height:1.25;}
-  .sticky-cta .s-txt strong,.sticky-cta .s-txt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .sticky-cta .s-txt{font-size:0.76rem;letter-spacing:0.01em;text-transform:none;color:var(--ink-soft);line-height:1.25;min-width:0;flex:1;}
+  .sticky-cta .s-txt strong{display:block;color:var(--ink);font-family:var(--font-display);font-size:0.90rem;letter-spacing:-0.01em;text-transform:none;line-height:1.2;margin-bottom:0.12rem;}
+  .sticky-cta .s-txt strong,.sticky-cta .s-txt span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;}
   /* White ink, brand orange, 1.18rem/700 — the same as every other button on
      the site. That size is not a style choice: white on #FF5722 is 3.16:1,
      which passes WCAG only as large text, so the type cannot come down.
      The fit is bought from the LABEL instead — "Register" rather than
-     "Secure my place" — because the line above already says what closes and
+     "Register now" — because the line above already says what closes and
      when. Padding does the rest. */
-  .sticky-cta .btn-yes{padding:0.5rem 1rem;font-size:1.18rem;font-weight:700;color:#fff;
-    white-space:nowrap;flex-shrink:0;gap:0.35rem;}
+  .sticky-cta .btn-yes{padding:0.46rem 0.82rem;font-size:1.18rem;font-weight:700;color:#fff;white-space:nowrap;flex-shrink:0;gap:0.3rem;}
   @media(max-width:430px){
-    .sticky-cta .s-txt strong{font-size:0.76rem;}
-    .sticky-cta .s-txt{font-size:0.62rem;}
+    .sticky-cta .s-txt strong{font-size:0.84rem;}
+    .sticky-cta .s-txt{font-size:0.72rem;}
     .sticky-cta .btn-yes{padding:0.46rem 0.85rem;}
   }
   @media (max-width:740px){
@@ -1013,7 +1010,7 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div id="erjNavMount"></div>
-<script>window.ERJ_NAV={active:'home',tourTitle:'A quick tour — or jump anywhere',tourSkip:{label:'Skip the tour — show me the options',href:'#paths'},onPage:[{label:'Meet Your Facilitator',href:'#facilitator',sub:'Why this page exists, in his own words'},{label:'What We Can Do For You',href:'#promise',sub:'Become hireable, represented and aimed at global employers — from right where you are'},{label:'Read This First',href:'#cost',sub:'The most expensive thing you can do is nothing'},{label:'Four Problem · Fix It',href:'#joints',sub:'The pipeline model — find where yours is leaking'},{label:'Free For You',href:'#free',sub:'The CV scan, the masterclass, the blog and the job board — all free'},{label:'Your Starting Line',href:'#paths',sub:'Four rungs — you only need to find yours'},{label:'Proof It Works',href:'#story',sub:'Real people, real offers — nine cohorts of evidence'},{label:'The Promise',href:'#pledge',sub:'We do not let you go until you are hired'},{label:'Before You Decide',href:'#faq',sub:'The questions everyone asks first'},{label:'Cohort 10 Countdown',href:'#timers',sub:'Enrolment closes Sunday 30 August · 8:00 PM WAT'}]};</script>
+<script>window.ERJ_NAV={active:'home',tourTitle:'A quick tour — or jump anywhere',tourSkip:{label:'Skip the tour — show me the options',href:'#paths'},onPage:[{label:'Meet Your Facilitator',href:'#facilitator',sub:'Why this page exists, in his own words'},{label:'What We Can Do For You',href:'#promise',sub:'Become hireable, represented and aimed at global employers — from right where you are'},{label:'Read This First',href:'#cost',sub:'The most expensive thing you can do is nothing'},{label:'Four Problem · Fix It',href:'#joints',sub:'The pipeline model — find where yours is leaking'},{label:'Free For You',href:'#free',sub:'The CV scan, the masterclass, the blog and the job board — all free'},{label:'Your Starting Line',href:'#paths',sub:'Four rungs — you only need to find yours'},{label:'Proof It Works',href:'#story',sub:'Real people, real offers — documented outcomes and case studies'},{label:'The Promise',href:'#pledge',sub:'We do not let you go until you are hired'},{label:'Before You Decide',href:'#faq',sub:'The questions everyone asks first'},{label:'Cohort 10 Countdown',href:'#timers',sub:'Enrolment closes Sunday 30 August · 8:00 PM WAT'}]};</script>
 
 <main>
 <a class="pledge-marq" href="#pledge" aria-label="We will not let you go until you're hired."><span>We will not let you go <em>until you're hired.</em></span></a>
@@ -1065,7 +1062,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="proof reveal">
       <div class="proof-cell">
         <div class="proof-n">382+</div>
-        <div class="proof-l">Professionals trained &amp; placed across the stages</div>
+        <div class="proof-l">Professionals placed into global remote work</div>
       </div>
       <div class="proof-cell">
         <div class="proof-n">USD·EUR·GBP</div>
@@ -1372,7 +1369,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="final-h">Enrolment closes <em>30 August.</em> Cohort 10 begins 31 August. Will you be in it?</h2>
       <p class="final-p">If you need the full live build and can give the programme the work it requires, Cohort 10 is the current door. If you are not sure, do not guess — run the free diagnosis and message <strong>AUDIT</strong> before you pay.</p>
       <div class="answers">
-        <a href="register.html" class="btn-yes pulse">Secure my place <span class="arrow">→</span></a>
+        <a href="register.html" class="btn-yes pulse">Register now <span class="arrow">→</span></a>
         <a href="diagnose/" class="btn-more">Run the free diagnosis first</a>
       </div>
       <div class="final-note">Enrolment open now · Secured by Paystack · Our promise applies</div>
@@ -1382,8 +1379,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </main>
 
 <div class="sticky-cta" id="stickyCta" aria-hidden="true" inert>
-  <div class="s-txt"><strong>Enrolment closes 30 Aug</strong>Cohort 10 starts Mon 31 Aug</div>
-  <a href="register.html" class="btn-yes">Register →</a>
+  <div class="s-txt"><strong>Enrolment closes 30 Aug</strong><span>Cohort 10 starts Mon 31 Aug</span></div>
+  <a href="register.html" class="btn-yes">Register now →</a>
 </div>
 
 <footer class="foot wrap">

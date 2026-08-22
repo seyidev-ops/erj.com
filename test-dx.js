@@ -211,12 +211,13 @@ ok('interviews-but-no-offers diagnoses Conversion', /dxr-name">Conversion</.test
 out = runDx([3, 3, 2, 2]);
 ok('freezing on salary diagnoses Conversion', /dxr-name">Conversion</.test(out));
 
-// result must always carry: verdict, three free actions, both doors, capture
+// result must always carry: verdict, human-review capture, one free action, both doors, PDF export
 out = runDx([0, 0, 0, 0]);
 ok('result carries a verdict', /dxr-verdict/.test(out));
-ok('result carries three free tonight-actions', (out.match(/<li>/g) || []).length >= 3);
+ok('result carries one immediate free action', (out.match(/<li>/g) || []).length >= 1);
 ok('result carries a free door and a paid door', (out.match(/dxr-door-k/g) || []).length === 2);
-ok('result carries the WhatsApp capture', /wa\.me|cap-btn/.test(out));
+ok('result carries the WhatsApp AUDIT capture', /wa\.me|Send AUDIT to ERJ/.test(out));
+ok('result carries the PDF export control', /dxPdf/.test(out));
 ok('result shows the score breakdown for all four', (out.match(/dxs-row/g) || []).length === 4);
 ok('exactly one joint marked as the winner', (out.match(/dxs-row is-win/g) || []).length === 1);
 

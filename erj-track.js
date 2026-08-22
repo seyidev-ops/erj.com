@@ -243,7 +243,13 @@
     Lead:             'generate_lead',
     InitiateCheckout: 'begin_checkout',
     Purchase:         'purchase',
-    Contact:          'contact'
+    Contact:          'contact',
+    DiagnosisComplete: 'diagnosis_complete',
+    AuditStarted: 'audit_started',
+    DiagnosticReportDownloaded: 'diagnostic_report_downloaded',
+    ProductRecommendationClick: 'product_recommendation_click',
+    MasterclassRegistrationStarted: 'masterclass_registration_started',
+    CohortCheckoutStarted: 'cohort_checkout_started'
   };
 
   function send(event, params) {
@@ -364,6 +370,15 @@
           currency: CURRENCY,
           link_url: href
         });
+        if (c.name.indexOf('Foundation Training') !== -1) {
+          send('CohortCheckoutStarted', {
+            content_name: 'Cohort 10 - ' + c.name,
+            content_ids: [key],
+            value: c.value,
+            currency: CURRENCY,
+            link_url: href
+          });
+        }
         return;
       }
     }

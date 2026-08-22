@@ -219,9 +219,9 @@ interface Window {
 
       const bridge = el('p', 'cap-bridge');
       bridge.innerHTML =
-        '<span class="cap-bridge-k">Then talk to a human</span>' +
+        '<span class="cap-bridge-k">Jobs are the feed. Diagnosis is the next step.</span>' +
         '<a href="' + waLink('channel') + '" target="_blank" rel="noopener">' +
-        'Message me and I\u2019ll tell you which of this week\u2019s roles to actually apply to ' +
+        'Applied to 5+ relevant roles with little or no interview response? Message <b>AUDIT</b> and we will find the leak ' +
         '<span class="arrow">\u2192</span></a>';
 
       const after = link.closest('p, li') || link;

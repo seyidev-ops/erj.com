@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v121';
+const CACHE   = 'erj-v122';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -12,11 +12,11 @@ const SHELL = [
   '/jobapplication/index.html',
   '/selflearn/index.html',
   '/self-learn-vs-foundation-training.html',
-  '/preview-compare-v4.jpg',
+  '/preview-compare-v5.jpg',
   '/selflearn-box-wide.png',
   '/selflearn-box.webp',
   '/selflearn-box-wide.webp',
-  '/preview-selflearn-v4.jpg',
+  '/preview-selflearn-v5.jpg',
   '/cvscan/index.html',
   '/masterclass/index.html',
   '/innercircle/index.html',
@@ -39,10 +39,10 @@ const SHELL = [
   '/erj-mark-dark.png',
   '/erj-lockup-dark.png',
   '/erj-ascend.js',
-  '/preview-diagnose-v4.jpg',
-  '/preview-starting-line-v4.jpg',
-  '/preview-free-v4.jpg',
-  '/preview-index-v4.jpg',
+  '/preview-diagnose-v5.jpg',
+  '/preview-starting-line-v5.jpg',
+  '/preview-free-v5.jpg',
+  '/preview-index-v5.jpg',
   '/diagnose/dx.js',
   '/diagnose/index.html',
   '/erj-capture.js',

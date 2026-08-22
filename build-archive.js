@@ -55,11 +55,11 @@ const html=`<!DOCTYPE html>
 <meta property="og:description" content="${sorted.length} articles on landing and keeping a dollar-paying remote job from Africa. Newest first.">
 <meta property="og:url" content="https://everythingremotejob.com/blog/">
 <meta property="og:site_name" content="Everything Remote Job">
-<meta property="og:image" content="https://everythingremotejob.com/preview-blog-v4.jpg">
+<meta property="og:image" content="https://everythingremotejob.com/preview-blog-v5.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Blog Archive — every article Everything Remote Job has published">
 <meta name="twitter:description" content="${sorted.length} articles on landing and keeping a dollar-paying remote job from Africa.">
-<meta name="twitter:image" content="https://everythingremotejob.com/preview-blog-v4.jpg">
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-blog-v5.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">

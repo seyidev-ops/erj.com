@@ -94,13 +94,13 @@ posts.forEach((p,i)=>{
 <meta property="og:url" content="${url}">
 <meta property="og:site_name" content="Everything Remote Job">
 <meta property="og:locale" content="en_NG">
-<meta property="og:image" content="${SITE}/preview-blog-v4.jpg">
+<meta property="og:image" content="${SITE}/preview-blog-v5.jpg">
 <meta property="article:published_time" content="${p.date}">
 <meta property="article:section" content="${esc(p.category)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(p.title)}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="${SITE}/preview-blog-v4.jpg">
+<meta name="twitter:image" content="${SITE}/preview-blog-v5.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">

@@ -47,14 +47,14 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot-mobile-v3.png",
+      "src": "screenshot-mobile-v4.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Everything Remote Job"
     },
     {
-      "src": "screenshot-wide-v3.png",
+      "src": "screenshot-wide-v4.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",

@@ -7,7 +7,7 @@ RUN IT AFTER ANY CHANGE TO THE LOGO:
     python3 make-brand-assets.py
 
 WHAT IT BUILDS, FROM FOUR MASTERS
-    erj-mark-dark.png     the reaching figure, white + orange, for dark surfaces
+    erj-mark-dark.png     the globe, white + orange arrow, for dark surfaces
     erj-mark-light.png    the same geometry, near-black + orange, for light ones
     erj-lockup-dark.png   mark + wordmark + strapline, for dark surfaces
     erj-lockup-light.png  the same, for light ones
@@ -15,9 +15,9 @@ WHAT IT BUILDS, FROM FOUR MASTERS
   → logo-dark.png / logo-light.png     the nav mark, swapped by data-theme
   → favicon32.png / favicon32-dark.png swapped by prefers-color-scheme
   → appletouchicon.png                 iOS home screen, needs its own opaque tile
-  → icon192 / icon512 (+ maskable)     the PWA set, dark figure on white
-  → screenshot-*-v3.png                the two PWA install-prompt screenshots
-  → preview-*-v4.jpg                   every social share card
+  → icon192 / icon512 (+ maskable)     the PWA set, dark globe on white
+  → screenshot-*-v4.png                the two PWA install-prompt screenshots
+  → preview-*-v5.jpg                   every social share card
   → github-social-preview.jpg          GitHub's own repo card, a different size
 
 WHY THE LIGHT AND DARK MARKS ARE THE SAME GEOMETRY
@@ -25,10 +25,18 @@ They swap on a theme toggle, in place, at the same size. Any difference in
 outline, weight or padding would read as the logo twitching when someone flips
 the switch. They are generated from one master so that cannot drift.
 
-WHY EVERY SHARE CARD IS -v4
+WHY THE SMALL ICONS ARE SHARPENED AND THE BIG ONES ARE NOT
+The globe carries real coastline detail. Lanczos is the right filter for it at
+poster sizes and the wrong one at 30px, where the continents blur into a grey
+smudge and the mark stops reading as a globe at all. Anything 128px or under
+therefore gets a light unsharp pass to put the edges back. 90% at radius 0.7 —
+enough to recover the coastlines, not enough to ring the outer circle.
+
+WHY EVERY SHARE CARD IS -v5 AND THE SCREENSHOTS ARE -v4
 WhatsApp, LinkedIn and Facebook cache an OG image by URL and will not re-fetch
 it because the bytes at that path changed. A new logo therefore needs new
-filenames or every existing share keeps showing the old mark for months.
+filenames or every existing share keeps showing the old mark for months. Bump
+the suffix on every logo change; never re-use a retired one.
 """
 import pathlib
 import shutil
@@ -58,11 +66,18 @@ def F(p, s):
 
 
 def fit(im, box, pad=0.0):
-    """Scale to fit a square box, centred, with optional padding."""
+    """Scale to fit a square box, centred, with optional padding.
+
+    Small boxes get an unsharp pass: see the module docstring. The threshold is
+    the box, not the resulting art, because a 512 icon with 22% padding still
+    lands its artwork around 300px and does not need it.
+    """
     inner = int(box * (1 - pad * 2))
     w, h = im.size
     k = min(inner / w, inner / h)
     im = im.resize((max(1, int(w * k)), max(1, int(h * k))), Image.LANCZOS)
+    if box <= 128:
+        im = im.filter(ImageFilter.UnsharpMask(radius=0.7, percent=90, threshold=0))
     canvas = Image.new("RGBA", (box, box), (0, 0, 0, 0))
     canvas.alpha_composite(im, ((box - im.width) // 2, (box - im.height) // 2))
     return canvas
@@ -312,12 +327,12 @@ def screenshots():
         img.save(out, "PNG", optimize=True)
         print(f"  {name:26s} {str((W, H)):12s} {out.stat().st_size // 1024:>4d} KB")
 
-    panel("screenshot-mobile-v3.png", 1080, 1920,
+    panel("screenshot-mobile-v4.png", 1080, 1920,
           "Land a dollar-paying remote job from right where you are.",
           ["dollar-paying"],
           ["USD, EUR and GBP salaries.", "A system, not luck."],
           "The remote job system")
-    panel("screenshot-wide-v3.png", 1920, 1080,
+    panel("screenshot-wide-v4.png", 1920, 1080,
           "Land a dollar-paying remote job from right where you are.",
           ["dollar-paying"],
           ["Four stages, twenty sessions, four finished assets.",
@@ -326,58 +341,58 @@ def screenshots():
 
 
 CARDS = [
-    ("preview-index-v4.jpg", "The remote job system",
+    ("preview-index-v5.jpg", "The remote job system",
      "Land a dollar‑paying remote job — from right where you are.",
      ["dollar-paying"], "We will not let you go until you're hired.", "USD · EUR · GBP"),
-    ("preview-register-v4.jpg", "Enrolment",
+    ("preview-register-v5.jpg", "Enrolment",
      "Pick the rung you can actually work — and start there.",
      ["rung"], "Secure Paystack checkout. Cards, transfer and USSD.", "Register"),
-    ("preview-testimonials-v4.jpg", "Documented results",
+    ("preview-testimonials-v5.jpg", "Documented results",
      "Real people. Real offers. Real dollars.",
      ["dollars"], "Numbers, timelines, and the exact moves that changed them.", "Success stories"),
-    ("preview-free-v4.jpg", "Costs nothing",
+    ("preview-free-v5.jpg", "Costs nothing",
      "Everything we give away, in one place.",
      ["away"], "The scan, the diagnostic, the job board and the blog.", "Free"),
-    ("preview-blog-v4.jpg", "The remote career blog",
+    ("preview-blog-v5.jpg", "The remote career blog",
      "Guides, stories and strategy for working globally from Africa.",
      ["globally"], "One new article every day. All of it free.", "Read"),
-    ("preview-starting-line-v4.jpg", "Start here",
+    ("preview-starting-line-v5.jpg", "Start here",
      "Four routes in. One of them is yours.",
      ["yours"], "Find the honest next step for where you actually are.", "Your starting line"),
-    ("preview-earlybird-v4.jpg", "Instalment offer",
+    ("preview-earlybird-v5.jpg", "Instalment offer",
      "Foundation Training, paid across two instalments.",
      ["two"], "The same twenty training days, spread over two payments.", "Early bird"),
-    ("preview-compare-v4.jpg", "An honest comparison",
+    ("preview-compare-v5.jpg", "An honest comparison",
      "Self‑Learn or the live cohort — which one should you buy?",
      ["Self-Learn"], "Same four stages. One is watched; one is not.", "Compare"),
-    ("preview-login-v4.jpg", "Participant portal",
+    ("preview-login-v5.jpg", "Participant portal",
      "Your stages, your progress, your deliverables.",
      ["your", "yours"], "Sign in with the code issued at enrolment.", "Login"),
-    ("preview-selflearn-v4.jpg", "Self‑paced · instant download",
+    ("preview-selflearn-v5.jpg", "Self‑paced · instant download",
      "Remote job training, without waiting for a cohort.",
      ["without"], "Twenty sessions. Four assets you keep. NGN 35,000.", "Stages 1-4"),
-    ("preview-foundationtraining-v4.jpg", "Live cohort",
+    ("preview-foundationtraining-v5.jpg", "Live cohort",
      "The full build, with someone marking your work.",
      ["marking"], "Twenty training days, a verdict, and a certificate.", "Stages 1-4"),
-    ("preview-jobapplication-v4.jpg", "Done for you",
+    ("preview-jobapplication-v5.jpg", "Done for you",
      "We run the hunt and the applications for you.",
      ["for", "you"], "Verified roles sourced, tailored and submitted.", "Stage 5"),
-    ("preview-innercircle-v4.jpg", "By invitation",
+    ("preview-innercircle-v5.jpg", "By invitation",
      "One to one, until the offer letter lands.",
      ["one"], "Co-applying, dry-runs, and live negotiation review.", "Stages 6-12"),
-    ("preview-cvscan-v4.jpg", "Free · runs on your device",
+    ("preview-cvscan-v5.jpg", "Free · runs on your device",
      "Score your CV against ten points in seconds.",
      ["ten"], "Nothing is uploaded. Nothing is stored.", "CV self-scan"),
-    ("preview-diagnose-v4.jpg", "Four questions",
+    ("preview-diagnose-v5.jpg", "Four questions",
      "Your job search fails at one joint. Find out which.",
      ["one"], "Fix that one instead of guessing at all four.", "Find your leak"),
-    ("preview-masterclass-v4.jpg", "Free live masterclass",
+    ("preview-masterclass-v5.jpg", "Free live masterclass",
      "The global remote job blueprint, live on Zoom.",
      ["live"], "How to land a USD remote role in the next ninety days.", "Masterclass"),
-    ("preview-cvpass-v4.jpg", "New · 30‑day pass",
+    ("preview-cvpass-v5.jpg", "New · 30‑day pass",
      "Rent the CV Engine for a month. NGN 5,000.",
      ["month"], "Thirty days from first use, not from payment.", "CV Engine pass"),
-    ("preview-portal-v4.jpg", "Everything Remote Job",
+    ("preview-portal-v5.jpg", "Everything Remote Job",
      "A private page on the Everything Remote Job platform.",
      ["private"], "You need an account to see what is behind this.", "Portal"),
 ]

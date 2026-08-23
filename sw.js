@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v127-aug23-zoom-reservation';
+const CACHE   = 'erj-v131-private-protection';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -20,10 +20,6 @@ const SHELL = [
   '/cvscan/index.html',
   '/masterclass/index.html',
   '/innercircle/index.html',
-  '/dashboard.html',
-  '/login.html',
-  '/admin-login.html',
-  '/instructor-login.html',
   '/blog.html',
   '/blog/index.html',
   '/free.html',
@@ -116,12 +112,25 @@ const NO_SW_HOSTS = [
   'doubleclick.net'
 ];
 
+const PRIVATE_PATHS = [
+  '/dashboard.html', '/participant.html', '/login.html',
+  '/admin.html', '/admin-login.html', '/instructor.html', '/instructor-login.html',
+  '/cvbuilder/'
+];
+function isPrivatePath(pathname) {
+  return PRIVATE_PATHS.some(function(p){ return p.endsWith('/') ? pathname.startsWith(p) : pathname === p; });
+}
+
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
 
   // Analytics and pixels: bypass the service worker entirely.
   if (NO_SW_HOSTS.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) return;
+
+  // Private/account pages must never be written to the service-worker cache.
+  // In the current static architecture the browser must fetch them from the network.
+  if (url.origin === self.location.origin && isPrivatePath(url.pathname)) return;
 
   if (url.hostname.includes('fonts.google') || url.hostname.includes('fonts.gstatic')) {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));

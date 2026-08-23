@@ -505,62 +505,6 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
     display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.6rem;}
   .trust span b{color:var(--ink-soft);font-weight:500;}
   @media (max-width:520px){.urgency{border-radius:18px;flex-direction:column;gap:0.5rem;padding:0.9rem 1.2rem;}}
-  /* inner-circle in-card countdown */
-  .ic-card-count{border:1px solid var(--card-line);background:var(--bg2);border-radius:12px;
-    padding:0.9rem 1.1rem;margin:0.4rem 0 1.1rem;}
-  .icc-lbl{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.5rem;}
-  .icc-row{display:flex;align-items:baseline;gap:0.9rem;flex-wrap:wrap;}
-  .icc-b{text-align:center;}
-  .icc-n{font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1;
-    letter-spacing:-0.02em;font-variant-numeric:tabular-nums;}
-  .icc-l{font-size:0.54rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.25rem;}
-  .icc-date{font-size:0.74rem;color:var(--ink-soft);font-weight:300;margin-top:0.55rem;}
-  .icc-date strong{color:var(--ink);font-weight:500;}
-  .kicker{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.66rem;font-weight:500;letter-spacing:0.22em;
-    text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;justify-content:center;}
-  .kicker .mark{width:22px;height:1px;background:var(--accent);}
-
-  .sec-label{font-size:0.66rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
-    display:flex;align-items:center;gap:1rem;margin:0 0 1.8rem;}
-  .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
-
-  .discount{margin:0 0 1.8rem;padding:1.2rem 1.5rem;background:var(--bg2);border:1px solid var(--line);border-radius:14px;
-    font-size:0.88rem;color:var(--ink-soft);line-height:1.65;text-align:center;}
-  .discount strong{color:var(--ink);font-weight:500;}
-  .discount .tag{display:block;font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;text-align:left;}
-  .pcard{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:2rem 1.8rem;display:flex;flex-direction:column;
-    transition:border-color .3s var(--ease),transform .3s var(--ease);}
-  .pcard:hover{border-color:rgba(255,87,34,0.45);transform:translateY(-3px);}
-  .pcard.feature{border-color:var(--accent);position:relative;}
-  .pcard.feature::before{content:'BEST VALUE';position:absolute;top:-10px;left:1.8rem;background:var(--accent-btn,#FF5722);color:#fff;
-    font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:4px 12px;border-radius:100px;}
-  .p-stage{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
-  .p-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:0.9rem;line-height:1.15;}
-  .p-amount{font-family:var(--font-display);font-size:2.1rem;font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1;margin-bottom:0.3rem;font-variant-numeric:tabular-nums;}
-  .p-was{font-size:0.82rem;color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--accent);margin-bottom:0.3rem;}
-  .p-save{display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.04em;color:var(--accent);border:1px solid var(--line);border-radius:100px;padding:3px 10px;margin-bottom:1.1rem;}
-  .p-multi{font-size:0.74rem;color:var(--accent);margin-bottom:1.1rem;}
-  .p-feat{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin:0.4rem 0 1.7rem;flex:1;}
-  .p-feat li{font-size:0.84rem;color:var(--ink-soft);font-weight:300;display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
-  .p-feat li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.5rem;}
-  .btn-pay{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--accent-btn,#FF5722);color:#fff;
-    text-decoration:none;padding:0.9rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;
-    border:1px solid var(--accent);transition:all 0.28s var(--ease);margin-top:auto;}
-  .btn-pay .arrow{transition:transform 0.28s var(--ease);}
-  .btn-pay:hover{background:var(--accent-h);border-color:var(--accent-h);transform:translateY(-2px);}
-  .btn-pay:hover .arrow{transform:translateX(4px);}
-  .btn-pay.quiet{background:transparent;color:var(--ink);border:1px solid var(--line);}
-  .btn-pay.quiet:hover{background:transparent;border-color:var(--ink);color:var(--ink);}
-
-  .payinfo{padding:2.2rem 2rem;background:var(--card);border:1px solid var(--card-line);border-radius:18px;text-align:center;}
-  .payinfo h3{font-family:var(--font-display);font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.8rem;}
-  .payinfo p{font-size:0.88rem;color:var(--ink-soft);line-height:1.7;max-width:540px;margin:0 auto 0.5rem;}
-  .payinfo strong{color:var(--ink);font-weight:500;}
-  .pay-actions{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1.5rem;}
-  .pay-actions a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.84rem;font-weight:500;text-decoration:none;
-    padding:0.75rem 1.5rem;border-radius:100px;transition:all 0.28s var(--ease);}
   /* Scoped to .pay-actions: the shared `.pay-actions a` rule above is
      specificity (0,1,1) and was overriding a bare .pa-primary, holding this
      button at 0.84rem — white on orange at 13px. */
@@ -808,7 +752,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="https://paystack.shop/pay/rjmtstages1-4" class="btn-pay">Enroll all 4 stages <span class="arrow">→</span></a>
         <div class="reserve-fit">
           <strong>Need salary timing, not a discount?</strong>
-          <p>After a Registrar fit check, you can reserve the full Cohort 10 programme with ₦50,000. It is credited fully toward the ₦250,000 tuition; the ₦200,000 balance is due by 6:00 PM WAT on 30 August. The reservation payment link is sent privately only after fit is confirmed.</p>
+          <p>After a Registrar fit check, you can reserve the full Cohort 10 programme with ₦50,000. It is credited fully toward the ₦250,000 tuition; the ₦200,000 balance is due by 6:00 PM WAT on 30 August. After fit is confirmed, the Registrar sends the official Business Play Ltd bank-transfer details privately. If your plans change, the reservation can move to the next cohort or be refunded on request, less applicable bank/payment service charges.</p>
           <a href="https://wa.me/2348032925957?text=COHORT%20FIT%0A%0AI%20want%20to%20check%20whether%20Foundation%20Training%20is%20the%20right%20door%20for%20me%20before%20I%20reserve%20Cohort%2010.%0A%0ATarget%20role%3A%0AApplications%20in%20last%2030%20days%3A%0AInterviews%20in%20last%2030%20days%3A%0AI%20can%20give%20the%20programme%2090%20focused%20minutes%20a%20day%3A%20Yes%2FNo" target="_blank" rel="noopener">Check my Cohort 10 fit →</a>
         </div>
         <p class="note">Covered by our promise — the community and the sourcing engine stay with you until you're hired.</p>
@@ -934,7 +878,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="p-title">The Inner Circle</div>
         <div class="p-was">₦400,000</div>
         <div class="p-amount">₦250,000</div>
-        <span class="p-save">or ₦135,000 × 2 milestones</span>
+        <span class="p-save">Private 1:1 · one payment · application-first</span>
         <ul class="p-feat">
           <li>Seven weeks, one-on-one, from positioning audit to a signed remote offer</li>
           <li>Real-time co-applying + pre-interview dry-runs</li>
@@ -942,18 +886,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>AI Fluency — prompt craft and AI-assisted output, applied to your own pipeline</li>
           <li>Application-first — admission verified before payment</li>
         </ul>
-        <div class="ic-card-count" data-deadline="2026-08-31T19:00:00+01:00">
-          <div class="icc-lbl">Next residency begins in</div>
-          <div class="icc-row">
-            <div class="icc-b"><div class="icc-n" data-k="d">00</div><div class="icc-l">Days</div></div>
-            <div class="icc-b"><div class="icc-n" data-k="h">00</div><div class="icc-l">Hrs</div></div>
-            <div class="icc-b"><div class="icc-n" data-k="m">00</div><div class="icc-l">Min</div></div>
-            <div class="icc-b"><div class="icc-n" data-k="s">00</div><div class="icc-l">Sec</div></div>
-          </div>
-          <div class="icc-date"><strong>Mon, 31 August 2026 · 7:00 PM WAT</strong></div>
-        </div>
+        
         <a href="https://paystack.shop/pay/erj-inner-circle" class="btn-pay">Join the Inner Circle <span class="arrow">→</span></a>
-        <p class="note">Pay ₦250,000 via Paystack (or ₦135,000 × 2 to the Business Play account), then send proof of payment on WhatsApp. <a href="innercircle/">See how it works →</a></p>
+        <p class="note">The Inner Circle is private 1:1 and application-first. After admission, pay ₦250,000 once through the official payment route, then send proof on WhatsApp to open your private thread. <a href="innercircle/">See how it works →</a></p>
       </div>
     </div>
   </section>
@@ -963,7 +898,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="payinfo reveal">
       <h3>All payments secured by Paystack</h3>
       <p>Cards, bank transfer, USSD and more — all supported, fully encrypted, PCI-DSS compliant. Your card details are never stored on our servers.</p>
-      <p style="margin-top:.6rem;">Prefer a bank transfer? <strong>GTBank — 0761646755</strong> (Business Play Limited). Send your receipt on WhatsApp to confirm enrolment.</p>
+      <p style="margin-top:.6rem;">Prefer a bank transfer? <strong>GTBank — 0761646755</strong> (Business Play Ltd). For full payments, send your receipt on WhatsApp to confirm enrolment. For the ₦50,000 Cohort 10 reservation, complete the COHORT FIT check first and wait for Registrar confirmation before transferring.</p>
       <div class="pay-actions">
         <a href="https://paystack.shop/pay/rjmtstages1-4" class="pa-primary">Enroll via Paystack →</a>
         <a href="login.html" class="pa-quiet">🎓 Participant Login</a>
@@ -1003,7 +938,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       price: '₦250,000 · 20 training days',
       body: 'The full build: mindset and deep-work systems, the digital toolkit, async communication, then the Global Ready Package (Remote-First CV, portfolio, STAR video). You leave hireable and properly represented — <strong>then you apply yourself</strong>, with the community and mentor support behind you.',
       cta: 'See Stages 1–4', href: '#sec-training',
-      alt: 'Need salary timing rather than a discount? After a Registrar fit check, Cohort 10 can be reserved with ₦50,000, credited fully toward the ₦250,000 tuition; ₦200,000 is due by 6:00 PM WAT on 30 August. Or take the stages individually. <a href="#sec-training">See the Foundation options →</a>'
+      alt: 'Need salary timing rather than a discount? After a Registrar fit check, Cohort 10 can be reserved with ₦50,000 by direct transfer to the official Business Play Ltd account; ₦200,000 is due by 6:00 PM WAT on 30 August. The reservation can move to the next cohort or be refunded on request, less applicable bank/payment service charges. <a href="#sec-training">See the Foundation options →</a>'
     },
     singleStage: {
       title: 'Start with one stage',
@@ -1035,7 +970,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     },
     inner: {
       title: 'The Inner Circle · Private 1:1 mentorship',
-      price: '₦250,000/year (or ₦135,000 ×2)',
+      price: '₦250,000 · private 1:1 · one payment',
       body: 'You are stable and skilled — what you lack is a room. Direct mentor access, member job leads, live reviews of your negotiations and a network that compounds for twelve months. This is the long-game option, not the emergency one.',
       cta: 'See the Inner Circle', href: '#sec-inner',
       alt: 'Want the applications sent for you as well? The 7-day done-for-you job hunt pairs naturally with it at ₦50,000. <a href="#sec-remote">See the 7-day hunt →</a>'

@@ -505,6 +505,51 @@ h1,h2,h3,h4,.ask,.cost-h,.rung-title,.shelf-title,.fb-title,.pledge-h,.joint-t,.
     display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem 1.6rem;}
   .trust span b{color:var(--ink-soft);font-weight:500;}
   @media (max-width:520px){.urgency{border-radius:18px;flex-direction:column;gap:0.5rem;padding:0.9rem 1.2rem;}}
+  .kicker{display:inline-flex;align-items:center;gap:0.7rem;font-size:0.66rem;font-weight:500;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;justify-content:center;}
+  .kicker .mark{width:22px;height:1px;background:var(--accent);}
+
+  .sec-label{font-size:0.66rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;align-items:center;gap:1rem;margin:0 0 1.8rem;}
+  .sec-label::before,.sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
+
+  .discount{margin:0 0 1.8rem;padding:1.2rem 1.5rem;background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+    font-size:0.88rem;color:var(--ink-soft);line-height:1.65;text-align:center;}
+  .discount strong{color:var(--ink);font-weight:500;}
+  .discount .tag{display:block;font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;text-align:left;}
+  .pcard{background:var(--card);border:1px solid var(--card-line);border-radius:16px;padding:2rem 1.8rem;display:flex;flex-direction:column;
+    transition:border-color .3s var(--ease),transform .3s var(--ease);}
+  .pcard:hover{border-color:rgba(255,87,34,0.45);transform:translateY(-3px);}
+  .pcard.feature{border-color:var(--accent);position:relative;}
+  .pcard.feature::before{content:'BEST VALUE';position:absolute;top:-10px;left:1.8rem;background:var(--accent-btn,#FF5722);color:#fff;
+    font-size:0.58rem;font-weight:600;letter-spacing:0.12em;padding:4px 12px;border-radius:100px;}
+  .p-stage{font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+  .p-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:0.9rem;line-height:1.15;}
+  .p-amount{font-family:var(--font-display);font-size:2.1rem;font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1;margin-bottom:0.3rem;font-variant-numeric:tabular-nums;}
+  .p-was{font-size:0.82rem;color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--accent);margin-bottom:0.3rem;}
+  .p-save{display:inline-block;font-size:0.64rem;font-weight:500;letter-spacing:0.04em;color:var(--accent);border:1px solid var(--line);border-radius:100px;padding:3px 10px;margin-bottom:1.1rem;}
+  .p-multi{font-size:0.74rem;color:var(--accent);margin-bottom:1.1rem;}
+  .p-feat{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin:0.4rem 0 1.7rem;flex:1;}
+  .p-feat li{font-size:0.84rem;color:var(--ink-soft);font-weight:300;display:flex;gap:9px;align-items:flex-start;line-height:1.5;}
+  .p-feat li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.5rem;}
+  .btn-pay{display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--accent-btn,#FF5722);color:#fff;
+    text-decoration:none;padding:0.9rem 1.5rem;border-radius:100px;font-family:var(--font-body);font-size:1.18rem;font-weight:700;
+    border:1px solid var(--accent);transition:all 0.28s var(--ease);margin-top:auto;}
+  .btn-pay .arrow{transition:transform 0.28s var(--ease);}
+  .btn-pay:hover{background:var(--accent-h);border-color:var(--accent-h);transform:translateY(-2px);}
+  .btn-pay:hover .arrow{transform:translateX(4px);}
+  .btn-pay.quiet{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn-pay.quiet:hover{background:transparent;border-color:var(--ink);color:var(--ink);}
+
+  .payinfo{padding:2.2rem 2rem;background:var(--card);border:1px solid var(--card-line);border-radius:18px;text-align:center;}
+  .payinfo h3{font-family:var(--font-display);font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.8rem;}
+  .payinfo p{font-size:0.88rem;color:var(--ink-soft);line-height:1.7;max-width:540px;margin:0 auto 0.5rem;}
+  .payinfo strong{color:var(--ink);font-weight:500;}
+  .pay-actions{display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1.5rem;}
+  .pay-actions a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.84rem;font-weight:500;text-decoration:none;
+    padding:0.75rem 1.5rem;border-radius:100px;transition:all 0.28s var(--ease);}
   /* Scoped to .pay-actions: the shared `.pay-actions a` rule above is
      specificity (0,1,1) and was overriding a bare .pa-primary, holding this
      button at 0.84rem — white on orange at 13px. */
@@ -876,7 +921,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="pcard reveal">
         <div class="p-stage">Stages 6 – 12 · Private 1:1 WhatsApp Mentorship</div>
         <div class="p-title">The Inner Circle</div>
-        <div class="p-was">₦400,000</div>
         <div class="p-amount">₦250,000</div>
         <span class="p-save">Private 1:1 · one payment · application-first</span>
         <ul class="p-feat">

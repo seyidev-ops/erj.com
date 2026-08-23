@@ -88,7 +88,6 @@
     'paystack.shop/pay/gydjo-stages1-5':  { value: 500000, name: 'Dream Job Offer (Stages 1-5)' },
     'paystack.shop/pay/erj-inner-circle': { value: 250000, name: 'The Inner Circle' },
     'paystack.shop/pay/erj-cvpass':       { value: 5000,   name: 'CV Engine Pass (30 days)' },
-    'paystack.shop/pay/rfix-j0sug':       { value: 50000,  name: 'Private Job Board (monthly)' }
   };
 
   /* ── Pages worth a ViewContent. Matched on the end of the path,
@@ -243,7 +242,15 @@
     Lead:             'generate_lead',
     InitiateCheckout: 'begin_checkout',
     Purchase:         'purchase',
-    Contact:          'contact'
+    Contact:          'contact',
+    DiagnosisComplete: 'diagnosis_complete',
+    AuditStarted: 'audit_started',
+    DiagnosticReportDownloaded: 'diagnostic_report_downloaded',
+    ProductRecommendationClick: 'product_recommendation_click',
+    MasterclassRegistrationStarted: 'masterclass_registration_started',
+    ClinicReminderOptIn: 'clinic_reminder_opt_in',
+    CohortFitStarted: 'cohort_fit_started',
+    CohortCheckoutStarted: 'cohort_checkout_started'
   };
 
   function send(event, params) {
@@ -335,6 +342,15 @@
         value: 0,
         currency: CURRENCY
       });
+      var decoded = '';
+      try { decoded = decodeURIComponent(href.replace(/\+/g, ' ')); } catch (_e) { decoded = href; }
+      if (/\bCOHORT FIT\b/i.test(decoded)) {
+        send('CohortFitStarted', { content_name: 'Cohort 10 fit check', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      } else if (/\bAUDIT\b/i.test(decoded)) {
+        send('AuditStarted', { content_name: 'Job Search AUDIT', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      } else if (/\bCLINIC\b/i.test(decoded)) {
+        send('ClinicReminderOptIn', { content_name: 'Application Clinic WhatsApp reminder', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      }
       return;
     }
 
@@ -364,6 +380,15 @@
           currency: CURRENCY,
           link_url: href
         });
+        if (c.name.indexOf('Foundation Training') !== -1) {
+          send('CohortCheckoutStarted', {
+            content_name: 'Cohort 10 - ' + c.name,
+            content_ids: [key],
+            value: c.value,
+            currency: CURRENCY,
+            link_url: href
+          });
+        }
         return;
       }
     }

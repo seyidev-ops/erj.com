@@ -869,11 +869,11 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
-<meta property="og:image" content="https://everythingremotejob.com/preview-portal-v5.jpg" />
+<meta property="og:image" content="https://everythingremotejob.com/preview-portal.jpg" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Everything Remote Job" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://everythingremotejob.com/preview-portal-v5.jpg" />
+<meta name="twitter:image" content="https://everythingremotejob.com/preview-portal.jpg" />
 <style id="erjHideLegacy">#themeDropdown,.theme-drop,.theme-drop-menu,#themeMenu,#erjTheme{display:none !important;}</style>
 <style id="erjPortalShell">
 /* ── Portal app-shell topbar: the single header for logged-in views ── */
@@ -908,7 +908,10 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
   .pt-name{font-size:.85rem;}
 }
 </style>
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <style>html[data-theme="day"] .erj-mark-night{display:none!important;}
 html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
 </head>
@@ -918,7 +921,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
 <header class="portal-topbar">
   <button class="pt-toggle" id="sidebarToggle" title="Menu" aria-label="Open menu">☰</button>
   <a class="pt-brand" href="dashboard.html">
-    <img class="pt-logo erj-mark-night" src="logo-dark.png" alt="" width="26" height="26"><img class="pt-logo erj-mark-day" src="logo-light.png" alt="" width="26" height="26" style="display:none">
+    <img class="pt-logo erj-mark-night" src="erj-mark-dark-128.png" alt="" width="26" height="26"><img class="pt-logo erj-mark-day" src="erj-mark-light-128.png" alt="" width="26" height="26" style="display:none">
     <span class="pt-name">Everything <span>RemoteJob</span></span>
   </a>
   <span class="pt-tag">Participant Portal</span>
@@ -997,7 +1000,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
       <div class="sidebar-label">Resources</div>
       <a class="sidebar-item" href="#" onclick="showView('jobs');return false" style="color:var(--teal,#E8470F)">
         <span class="sidebar-icon">🌍</span>
-        <span class="sidebar-text">Private Job Board</span>
+        <span class="sidebar-text">Done-For-You Application</span>
         <span style="font-size:.52rem;font-weight:700;letter-spacing:.8px;background:rgba(20,184,166,.15);color:var(--teal,#E8470F);border-radius:100px;padding:1px 6px;margin-left:auto;flex-shrink:0">NEW</span>
       </a>
       <a class="sidebar-item" href="https://wa.me/2348032925957" target="_blank">
@@ -1029,7 +1032,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
       <div class="wb-content">
         <div class="wb-greeting" id="welcomeGreeting">Good morning! 👋</div>
         <div class="wb-sub">Continue your remote job mastery journey. You're making great progress!</div>
-        <a href="#" onclick="showView('jobs');return false" class="wb-chip">🌍 Your Private Job Board is included — open it →</a>
+        <a href="#" onclick="showView('jobs');return false" class="wb-chip">🧭 Need us to run the applications? See Done-For-You Application →</a>
         <div class="wb-stats">
           <div class="wb-stat">
             <div class="wb-num" id="wbLessons">0</div>
@@ -1068,7 +1071,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
 
         <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.5rem">
           <a href="https://wa.me/2348032925957" class="pb-action" target="_blank">💬 Get My Access Code</a>
-          <a href="#" onclick="showView('jobs');return false" class="pb-action" style="background:rgba(16,185,129,.12);color:#7A8B5A;border-color:rgba(16,185,129,.3)">🔒 Private Job Board</a>
+          <a href="#" onclick="showView('jobs');return false" class="pb-action" style="background:rgba(255,87,34,.10);color:var(--accent);border-color:rgba(255,87,34,.3)">🧭 Done-For-You Application</a>
         </div>
       </div>
     </div>
@@ -1156,6 +1159,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
     <!-- VIEW: MATERIALS / DOWNLOADS -->
     <div id="viewMaterials" style="display:none">
       <div class="section-title">📁 Downloads & Study Materials</div>
+      <div id="erjLicenseBanner" style="margin:0 0 1rem;padding:.8rem .95rem;border:1px solid rgba(255,87,34,.28);border-left:3px solid #FF5722;border-radius:8px;background:rgba(255,87,34,.055);font-size:.76rem;line-height:1.55;color:var(--muted)"><strong style="display:block;color:var(--electric);margin-bottom:.2rem">Participant licence</strong>Materials and resource links are licensed to the signed-in participant for personal use only. Do not forward, resell, upload or redistribute them.</div>
 
       <!-- Slide Decks -->
       <div style="margin-bottom:2rem">
@@ -1179,76 +1183,20 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
       </div>
     </div>
 
-    <!-- VIEW: PRIVATE JOB BOARD -->
+    <!-- VIEW: DONE-FOR-YOU APPLICATION -->
     <div id="viewJobs" style="display:none">
-
-      <!-- LOCKED STATE -->
-      <div id="jobsLocked" style="display:none;text-align:center;padding:3rem 1rem">
-        <div style="font-size:3rem;margin-bottom:1rem">🔒</div>
-        <div style="font-family:var(--font-d);font-size:1.3rem;font-weight:800;color:var(--text);margin-bottom:.5rem">Private Job Board</div>
-        <div style="font-size:.88rem;color:var(--muted);max-width:460px;margin:0 auto 1.8rem;line-height:1.7">Global curated remote jobs from Ashby, Greenhouse, Lever, micro1.ai, Indeed and more — updated regularly. Access requires a membership or admin approval.</div>
-        <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;max-width:400px;margin:0 auto 1.5rem;backdrop-filter:blur(12px)">
-          <div style="font-family:var(--font-d);font-size:2rem;font-weight:900;color:var(--text)">₦<span style="font-size:1.6rem">50,000</span></div>
-          <div style="font-size:.78rem;color:var(--muted2);margin-bottom:1.2rem">per month · Cancel anytime</div>
-          <ul style="list-style:none;text-align:left;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:.5rem">
-            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Curated global remote jobs updated daily</li>
-            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Jobs from Ashby, Greenhouse, Lever, Pinpoint</li>
-            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>micro1.ai AI-matched worldwide roles</li>
-            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Apply directly to company sites instantly</li>
-            <li style="font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem"><span style="color:var(--green);font-weight:700">✓</span>Push notifications when new roles drop</li>
-          </ul>
-          <a href="https://paystack.shop/pay/rfix-j0sug" target="_blank" rel="noopener" onclick="showPayInstructions()" style="display:block;width:100%;background:linear-gradient(135deg,var(--accent),#963F12);color:#fff;padding:.85rem;border-radius:10px;font-family:var(--font-d);font-size:.92rem;font-weight:800;text-decoration:none;text-align:center;box-shadow:0 4px 20px rgba(255,87,34,.4);margin-bottom:.7rem;box-sizing:border-box">🔓 Unlock — ₦50,000/month →</a>
+      <div class="section-title">🧭 Done-For-You Remote Job Application</div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:clamp(1.3rem,4vw,2rem);max-width:760px;box-shadow:var(--sh)">
+        <div style="font-family:var(--font-d);font-size:1.45rem;font-weight:800;color:var(--text);line-height:1.18;margin-bottom:.65rem">You choose the field. ERJ handles the search and applications.</div>
+        <p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin:0 0 1.2rem">The active execution service is Done-For-You Application: ERJ sources verified roles, tailors the application to the opportunity and submits on your behalf.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem;margin-bottom:1.2rem">
+          <div style="border:1px solid var(--border2);border-radius:12px;padding:.9rem"><strong style="display:block;color:var(--text);margin-bottom:.25rem">7-day starter · ₦50,000</strong><span style="font-size:.8rem;color:var(--muted);line-height:1.55">One field, tailored CV/application, 3+ verified roles sourced and applied within 7 days.</span></div>
+          <div style="border:1px solid var(--border2);border-radius:12px;padding:.9rem"><strong style="display:block;color:var(--text);margin-bottom:.25rem">Monthly engine · ₦300,000</strong><span style="font-size:.8rem;color:var(--muted);line-height:1.55">Career assets completed, then 30+ verified roles sourced and applied weekly for a month.</span></div>
         </div>
-        <div id="jobPayInstructions" style="display:none;max-width:420px;margin:0 auto .9rem;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:.9rem;font-size:.8rem;color:var(--muted);text-align:left;line-height:1.7">
-          ✅ <strong style="color:var(--green)">After payment:</strong> Send your phone number to <a href="https://wa.me/2348032925957" target="_blank" style="color:#25D366;font-weight:700">+234 803 292 5957</a> on WhatsApp with "JOB BOARD ACCESS" and your payment confirmation. Admin will activate your access within 24 hours.
+        <div style="display:flex;gap:.65rem;flex-wrap:wrap">
+          <a href="jobapplication/" class="btn-outline" style="text-decoration:none;text-align:center">See how the service works →</a>
+          <a href="https://wa.me/2348032925957?text=DFY%20APPLICATION" target="_blank" rel="noopener" class="btn-outline" style="text-decoration:none;text-align:center">Ask about DFY on WhatsApp →</a>
         </div>
-        <p style="font-size:.76rem;color:var(--muted2)">Already approved by admin? Your access will appear automatically when you reload this page.</p>
-      </div>
-
-      <!-- UNLOCKED JOB BOARD -->
-      <div id="jobsBoard" style="display:none">
-        <!-- Board header -->
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.2rem">
-          <div>
-            <div class="section-title" style="margin-bottom:.2rem">🌍 Private Job Board</div>
-            <div style="font-size:.78rem;color:var(--muted);display:flex;gap:1rem;flex-wrap:wrap">
-              <span>🟢 <strong id="jbLiveCount" style="color:var(--text)">0</strong> live roles</span>
-              <span>🆕 <strong id="jbNewCount" style="color:var(--text)">0</strong> this week</span>
-              <span>🌐 Worldwide remote</span>
-            </div>
-          </div>
-          <button id="jbBellBtn" onclick="handleDashJobBell()" style="background:none;border:1px solid var(--border);border-radius:8px;width:36px;height:36px;cursor:pointer;color:var(--muted);font-size:.95rem;display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0">
-            🔔<span id="jbBellDot" style="position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:1.5px solid var(--bg);display:none"></span>
-          </button>
-        </div>
-
-        <!-- micro1 featured banner -->
-        <a href="https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:.9rem;background:linear-gradient(135deg,rgba(20,184,166,.12),rgba(255,87,34,.08));border:1px solid rgba(20,184,166,.3);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1.2rem;text-decoration:none;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
-          <span style="font-size:1.8rem;flex-shrink:0">🤖</span>
-          <div style="flex:1;min-width:0">
-            <div style="font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem">micro1.ai — AI-Matched Remote Jobs</div>
-            <div style="font-size:.76rem;color:var(--muted)">Browse 100+ worldwide remote roles matched by AI across engineering, design, data, and operations →</div>
-          </div>
-          <span style="color:var(--electric);font-size:.8rem;font-weight:700;flex-shrink:0">Browse →</span>
-        </a>
-
-        <!-- Search + filter -->
-        <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
-          <div style="flex:1;min-width:180px;position:relative">
-            <span style="position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.85rem;pointer-events:none">🔍</span>
-            <input id="jbSearchInput" type="text" placeholder="Search roles, companies…" oninput="renderDashJobs()" style="width:100%;padding:.65rem .9rem .65rem 2.2rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--font-b);font-size:.84rem;outline:none;box-sizing:border-box">
-          </div>
-          <select id="jbCatFilter" onchange="renderDashJobs()" style="padding:.65rem .9rem;background:var(--bg3);border:1.5px solid var(--border2);border-radius:9px;color:var(--text);font-family:var(--font-b);font-size:.82rem;outline:none;appearance:none;cursor:pointer;white-space:nowrap">
-            <option value="">All Categories</option>
-            <option>Engineering</option><option>Design</option><option>Marketing</option><option>Product</option>
-            <option>Customer Success</option><option>Writing & Content</option><option>Data & Analytics</option>
-            <option>AI & Machine Learning</option><option>HR & People</option><option>Finance</option>
-          </select>
-        </div>
-
-        <!-- Job cards -->
-        <div id="dashJobsList" style="display:flex;flex-direction:column;gap:.7rem"></div>
-        <div id="dashJobsPager" style="display:flex;gap:.35rem;justify-content:center;margin-top:1.1rem;flex-wrap:wrap"></div>
       </div>
     </div>
 
@@ -1292,10 +1240,10 @@ const ERJ_CLASS_LINK = 'https://t.me/+kwuCxvLwyDM5MmQ0';
 
 /* ════════════════════════════════════════
    ACCOUNT PERSISTENCE
-   A participant's identity + progress belong to the PERSON and their
-   COHORT — not to a browser. Records are keyed by email so the same
-   sign-in restores everything on any device, and survive app updates
-   because we never clear these keys on version change.
+   Current static-site persistence. Identity + progress are keyed by email
+   in this browser's local storage. This survives normal page/app updates
+   on the same browser, but it is not a server-side account record and does
+   not provide true cross-device persistence.
 ══════════════════════════════════════════ */
 const ERJ_ACCOUNTS_KEY = 'erj_accounts_v1';
 
@@ -1352,11 +1300,12 @@ function openAccountPanel() {
       ${row('Cohort', session.cohort || rec.cohort || 'Cohort 9')}
       ${row('Enrolled', enrolled)}
       ${row('Stages complete', done + ' / 5')}
-      ${row('Private Job Board', 'Included ✓')}
+      ${row('Done-For-You Application', 'Available separately')}
     </div>
     <p style="font-size:.76rem;color:var(--muted);line-height:1.65;margin:.9rem 0 1rem">
-      Your account and progress are tied to your email and cohort — sign in with the same
-      email on any device and everything comes back. Nothing expires when the app updates.
+      Your account and progress are stored in this browser and keyed to your email/cohort.
+      Normal site updates do not clear them, but a different browser or device will not automatically
+      restore them until ERJ moves participant state to the planned server-side account system.
     </p>
     <div style="display:flex;flex-direction:column;gap:.5rem">
       <a href="${ERJ_CLASS_LINK}" target="_blank" rel="noopener" class="btn-outline" style="text-align:center;text-decoration:none">💬 Open the class group</a>
@@ -2191,7 +2140,6 @@ function showView(v) {
   document.querySelectorAll('.sidebar-item')[map[v]]?.classList.add('active');
   if (v === 'materials') renderMaterials();
   if (v === 'certs')     renderCerts();
-  if (v === 'jobs')      initDashJobs();
 }
 
 /* ════════════════════════════════════════
@@ -2334,148 +2282,7 @@ function confettiBlast() {
 /* ════════════════════════════════════════
    THEME + SIDEBAR
 ══════════════════════════════════════════ */
-/* ════════════════════════════════════════
-   PRIVATE JOB BOARD — DASHBOARD
-══════════════════════════════════════════ */
-const JOB_ACCESS_KEY  = 'erj_job_user_access';
-const DASH_JOBS_KEY   = 'erj_jobs';
-const DASH_JSEEN_KEY  = 'erj_dash_jobs_seen';
-
-const SEED_JOBS = [
-  {id:'m1',src:'micro1.ai',company:'micro1.ai',emoji:'🤖',role:'AI-Matched Worldwide Jobs',cat:'AI & Machine Learning',salary:'$50k–$200k',type:'Various',loc:'Worldwide',desc:'Browse 100+ AI-matched remote roles.',url:'https://refer.micro1.ai/referral/jobs?referralCode=d3605f74-92f0-4f1c-b8e2-4ab757bffc26',posted:'2026-05-26'},
-  {id:'a1',src:'Ashby',company:'Arc (YC W16)',emoji:'⚡',role:'Senior Software Engineer',cat:'Engineering',salary:'$120k–$165k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/arc/jobs',posted:'2026-05-24'},
-  {id:'a2',src:'Ashby',company:'Mercury',emoji:'🏦',role:'Product Designer',cat:'Design',salary:'$130k–$175k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/mercury/jobs',posted:'2026-05-23'},
-  {id:'a3',src:'Ashby',company:'Linear',emoji:'📐',role:'Frontend Engineer',cat:'Engineering',salary:'$140k–$180k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/linear/jobs',posted:'2026-05-22'},
-  {id:'a4',src:'Ashby',company:'Vercel',emoji:'▲',role:'Developer Relations Engineer',cat:'Engineering',salary:'$130k–$170k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/vercel/jobs',posted:'2026-05-21'},
-  {id:'a5',src:'Ashby',company:'Notion',emoji:'📓',role:'Senior Data Analyst',cat:'Data & Analytics',salary:'$130k–$160k',type:'Full-time',loc:'Worldwide',url:'https://jobs.ashbyhq.com/notion/jobs',posted:'2026-05-20'},
-  {id:'g1',src:'Greenhouse',company:'Buffer',emoji:'📱',role:'Content Writer',cat:'Writing & Content',salary:'$55k–$70k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/buffer',posted:'2026-05-25'},
-  {id:'g2',src:'Greenhouse',company:'GitLab',emoji:'🦊',role:'Senior Marketing Manager',cat:'Marketing',salary:'$100k–$140k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/gitlab',posted:'2026-05-24'},
-  {id:'g3',src:'Greenhouse',company:'Automattic',emoji:'🅰️',role:'Happiness Engineer',cat:'Customer Success',salary:'$65k–$85k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/automattic',posted:'2026-05-23'},
-  {id:'g4',src:'Greenhouse',company:'Doist',emoji:'✅',role:'Product Manager',cat:'Product',salary:'$90k–$120k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/doist',posted:'2026-05-22'},
-  {id:'g5',src:'Greenhouse',company:'Remote.com',emoji:'🌍',role:'HR Compliance Specialist',cat:'HR & People',salary:'$70k–$95k',type:'Full-time',loc:'Worldwide',url:'https://boards.greenhouse.io/remote',posted:'2026-05-21'},
-  {id:'l1',src:'Lever',company:'Zapier',emoji:'⚡',role:'Technical Writer',cat:'Writing & Content',salary:'$80k–$110k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/zapier',posted:'2026-05-25'},
-  {id:'l2',src:'Lever',company:'InVision',emoji:'🎨',role:'UX Researcher',cat:'Design',salary:'$100k–$130k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/invisionapp',posted:'2026-05-24'},
-  {id:'l3',src:'Lever',company:'Auth0 (Okta)',emoji:'🔐',role:'Customer Success Manager',cat:'Customer Success',salary:'$85k–$115k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/auth0',posted:'2026-05-23'},
-  {id:'l4',src:'Lever',company:'Toptal',emoji:'🌟',role:'QA Engineer',cat:'Engineering',salary:'$70k–$95k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/toptal',posted:'2026-05-22'},
-  {id:'l5',src:'Lever',company:'Deel',emoji:'💸',role:'Finance Operations Analyst',cat:'Finance',salary:'$75k–$100k',type:'Full-time',loc:'Worldwide',url:'https://jobs.lever.co/deel',posted:'2026-05-21'},
-  {id:'p1',src:'Pinpoint',company:'CharlieHR',emoji:'👥',role:'People Operations Manager',cat:'HR & People',salary:'£45k–£60k',type:'Full-time',loc:'UK / Europe Remote',url:'https://pinpointhq.com/en/postings',posted:'2026-05-24'},
-  {id:'p2',src:'Pinpoint',company:'Hotjar',emoji:'🔥',role:'Growth Marketing Specialist',cat:'Marketing',salary:'€55k–€80k',type:'Full-time',loc:'Worldwide',url:'https://pinpointhq.com/en/postings',posted:'2026-05-23'},
-  {id:'i1',src:'Indeed',company:'HubSpot',emoji:'🧲',role:'Solutions Engineer',cat:'Engineering',salary:'$110k–$145k',type:'Full-time',loc:'Remote – Americas / EMEA',url:'https://www.indeed.com/cmp/Hubspot/jobs',posted:'2026-05-25'},
-  {id:'i2',src:'Indeed',company:'Shopify',emoji:'🛍️',role:'Merchant Success Manager',cat:'Customer Success',salary:'$70k–$95k',type:'Full-time',loc:'Remote – Canada / EMEA',url:'https://www.indeed.com/cmp/Shopify/jobs',posted:'2026-05-24'},
-  {id:'i3',src:'Indeed',company:'Stripe',emoji:'💳',role:'Technical Support Specialist',cat:'Customer Success',salary:'$65k–$85k',type:'Full-time',loc:'Remote – EMEA',url:'https://www.indeed.com/cmp/Stripe/jobs',posted:'2026-05-23'},
-  {id:'r1',src:'Remote.co',company:'Loom',emoji:'🎬',role:'Brand Designer',cat:'Design',salary:'$110k–$140k',type:'Full-time',loc:'Worldwide',url:'https://remote.co/remote-jobs/',posted:'2026-05-25'},
-  {id:'r2',src:'Remote.co',company:'Close CRM',emoji:'📞',role:'Sales Operations Manager',cat:'Operations',salary:'$85k–$110k',type:'Full-time',loc:'Worldwide',url:'https://remote.co/remote-jobs/',posted:'2026-05-23'},
-  {id:'h1',src:'Himalayas',company:'Basecamp',emoji:'⛺',role:'Programmer',cat:'Engineering',salary:'$150k–$175k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-22'},
-  {id:'h2',src:'Himalayas',company:'Whereby',emoji:'📹',role:'Product Manager – Enterprise',cat:'Product',salary:'$100k–$130k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-21'},
-  {id:'h3',src:'Himalayas',company:'Oyster HR',emoji:'🦪',role:'ML Engineer – Payroll Intelligence',cat:'AI & Machine Learning',salary:'$120k–$155k',type:'Full-time',loc:'Worldwide',url:'https://himalayas.app/jobs',posted:'2026-05-24'},
-];
-
-let _djPage = 1;
-const DJ_PER = 8;
-
-function getDashJobs() {
-  try {
-    const custom = JSON.parse(localStorage.getItem(DASH_JOBS_KEY)||'[]');
-    const merged = [...SEED_JOBS];
-    custom.forEach(j=>{ const idx=merged.findIndex(x=>x.id===j.id); if(idx>=0)merged[idx]=j; else merged.unshift(j); });
-    return merged.sort((a,b)=>new Date(b.posted)-new Date(a.posted));
-  } catch { return SEED_JOBS; }
-}
-
-function djIsNew(p){ return (Date.now()-new Date(p).getTime())<7*24*60*60*1000; }
-
-function checkDashJobAccess() {
-  /* Registration IS the access: every signed-in participant gets the
-     Private Job Board as part of their programme. Staff always have it. */
-  try {
-    const s = JSON.parse(localStorage.getItem('rjm_session')||'null');
-    return !!s;
-  } catch { return false; }
-}
-
-function showPayInstructions() {
-  document.getElementById('jobPayInstructions').style.display='block';
-}
-
-function initDashJobs() {
-  const ok = checkDashJobAccess();
-  document.getElementById('jobsLocked').style.display = ok?'none':'block';
-  document.getElementById('jobsBoard').style.display  = ok?'block':'none';
-  if (ok) { renderDashJobs(); checkDashJobNotif(); }
-}
-
-function renderDashJobs() {
-  const q   = (document.getElementById('jbSearchInput')?.value||'').toLowerCase();
-  const cat = document.getElementById('jbCatFilter')?.value||'';
-  const all = getDashJobs().filter(j=>{
-    if(cat&&j.cat!==cat)return false;
-    if(!q)return true;
-    return (j.role+j.company+(j.cat||'')).toLowerCase().includes(q);
-  });
-  const el = document.getElementById('dashJobsList');
-  if(!el)return;
-  document.getElementById('jbLiveCount').textContent = getDashJobs().length;
-  document.getElementById('jbNewCount').textContent  = getDashJobs().filter(j=>djIsNew(j.posted)).length;
-
-  const paged = all.slice((_djPage-1)*DJ_PER, _djPage*DJ_PER);
-  if(!paged.length){
-    el.innerHTML='<div style="text-align:center;padding:2.5rem;color:var(--muted);font-size:.85rem">No matching jobs. Try clearing the search or category filter.</div>';
-    document.getElementById('dashJobsPager').innerHTML='';
-    return;
-  }
-  el.innerHTML = paged.map(j=>`
-    <div style="background:var(--card);border:1px solid ${djIsNew(j.posted)?'rgba(16,185,129,.3)':'var(--border2)'};border-radius:var(--r);padding:1rem 1.1rem;position:relative;transition:all .25s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--sh)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-      ${djIsNew(j.posted)?'<span style="position:absolute;top:.7rem;right:.7rem;background:var(--green);color:#fff;font-size:.5rem;font-weight:700;letter-spacing:1.5px;padding:2px 7px;border-radius:100px">NEW</span>':''}
-      <div style="display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.6rem">
-        <div style="width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#963F12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">${j.emoji||'🌐'}</div>
-        <div style="flex:1;min-width:0">
-          <div style="font-family:var(--font-d);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.15rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.role}</div>
-          <div style="font-size:.76rem;color:var(--muted)">${j.company} · <span style="color:var(--electric)">${j.src}</span></div>
-        </div>
-      </div>
-      <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.75rem">
-        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(255,87,34,.1);color:var(--electric)">${j.cat||'General'}</span>
-        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(16,185,129,.08);color:var(--green)">🌐 ${j.loc||'Worldwide'}</span>
-        <span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(245,158,11,.08);color:var(--amber)">${j.type||'Full-time'}</span>
-        ${j.salary?`<span style="font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:100px;background:rgba(20,184,166,.08);color:#E8470F">💰 ${j.salary}</span>`:''}
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:.68rem;color:var(--muted2)">📅 ${new Date(j.posted).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}</span>
-        <a href="${j.url}" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border-radius:7px;padding:.42rem .9rem;font-family:var(--font-d);font-size:.76rem;font-weight:700;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:5px" onmouseover="this.style.background='#963F12'" onmouseout="this.style.background='var(--accent)'">Apply Now <span style="font-size:.9rem">→</span></a>
-      </div>
-    </div>`).join('');
-
-  const pages = Math.ceil(all.length/DJ_PER);
-  document.getElementById('dashJobsPager').innerHTML = pages>1?Array.from({length:pages},(_,i)=>
-    `<button onclick="_djPage=${i+1};renderDashJobs()" style="min-width:32px;height:32px;padding:0 .4rem;border-radius:7px;border:1px solid ${i+1===_djPage?'var(--accent)':'var(--border2)'};background:${i+1===_djPage?'var(--accent)':'var(--bg3)'};color:${i+1===_djPage?'#fff':'var(--muted)'};cursor:pointer;font-size:.78rem;font-weight:600">${i+1}</button>`
-  ).join(''):'';
-}
-
-function checkDashJobNotif() {
-  const seen = JSON.parse(localStorage.getItem(DASH_JSEEN_KEY)||'[]');
-  const nj   = getDashJobs().find(j=>djIsNew(j.posted)&&!seen.includes(j.id));
-  const dot  = document.getElementById('jbBellDot');
-  if (dot) dot.style.display = nj?'block':'none';
-}
-
-async function handleDashJobBell() {
-  const seen  = JSON.parse(localStorage.getItem(DASH_JSEEN_KEY)||'[]');
-  const nj    = getDashJobs().find(j=>djIsNew(j.posted)&&!seen.includes(j.id));
-  if (nj) {
-    seen.push(nj.id); localStorage.setItem(DASH_JSEEN_KEY,JSON.stringify(seen));
-    showToast('🆕 Latest: '+nj.role+' @ '+nj.company,'success');
-    document.getElementById('jbBellDot').style.display='none';
-    return;
-  }
-  if (!('Notification' in window)) { showToast('Push notifications not supported.','info'); return; }
-  if (Notification.permission==='granted') { showToast('✅ You will be notified when new remote jobs drop!','success'); return; }
-  if (Notification.permission==='denied')  { showToast('⚠ Enable notifications in browser settings.','info'); return; }
-  const r = await Notification.requestPermission();
-  if (r==='granted') { showToast('🔔 Job alerts enabled!','success'); try{new Notification('ERJ Job Board',{body:'You\'ll be notified when new global remote jobs are posted!',icon:'/icon192.png'})}catch{} }
-}
-
-setInterval(()=>{ if(document.getElementById('jobsBoard')?.style.display!=='none') renderDashJobs(); },60000);
-
+/* Done-For-You Application is now a service page; the retired Private Job Board runtime was removed. */
 function applyTheme(t) {
   document.documentElement.setAttribute('data-theme', t);
   var _tb=document.getElementById('themeBtn'); if(_tb) _tb.textContent = t === 'day' ? '🌙' : '☀️';
@@ -2775,5 +2582,6 @@ window.addEventListener('offline', () => { document.body.classList.add('offline'
 <!-- ===== /Unified Theme Control ===== -->
 
 <script src="erj-passcode.js" defer></script>
+<script src="erj-private-protection.js?v=1"></script>
 </body>
 </html>

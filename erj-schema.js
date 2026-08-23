@@ -86,6 +86,13 @@
         "@id": "https://everythingremotejob.com/#oluwaseyi-ashiru"
       },
       "inLanguage": "en",
+      "copyrightYear": 2026,
+      "copyrightHolder": {
+        "@type": "Organization",
+        "name": "Business Play Limited",
+        "alternateName": "Everything Remote Job"
+      },
+      "license": "All rights reserved. ERJ frameworks, curriculum and paid participant resources may not be republished, resold or redistributed without written permission.",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
@@ -101,4 +108,24 @@
   s.type = "application/ld+json";
   s.textContent = JSON.stringify(d);
   document.head.appendChild(s);
+
+  function meta(name, content) {
+    if (document.head.querySelector('meta[name="'+name+'"]')) return;
+    var m=document.createElement('meta'); m.name=name; m.content=content; document.head.appendChild(m);
+  }
+  meta('copyright','Copyright 2026 Business Play Limited, trading as Everything Remote Job. All rights reserved.');
+  meta('rights','ERJ frameworks, curriculum and paid participant resources may not be republished, resold or redistributed without written permission.');
+
+  window.addEventListener('DOMContentLoaded', function(){
+    if (document.querySelector('.erj-rights-line')) return;
+    var foot=document.querySelector('footer');
+    if (!foot) return;
+    var n=document.createElement('div');
+    n.className='erj-rights-line';
+    n.setAttribute('role','note');
+    n.innerHTML='© 2026 Business Play Limited · Everything Remote Job. All rights reserved. ERJ frameworks, curriculum and paid resources are not licensed for redistribution. <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a>';
+    n.style.cssText='max-width:900px;margin:1rem auto 0;padding-top:.85rem;border-top:1px solid rgba(127,127,127,.18);font-size:.68rem;line-height:1.55;letter-spacing:.02em;opacity:.72;text-align:center;';
+    Array.prototype.forEach.call(n.querySelectorAll('a'),function(a){a.style.cssText='color:#FF5722;text-decoration:none;';});
+    foot.appendChild(n);
+  });
 })();

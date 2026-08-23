@@ -90,7 +90,7 @@
         '<b>Referrals from outside Nigeria pay in the currency they paid in</b> &mdash; if your person pays in dollars, pounds or euros, you are paid in that same currency, not its naira equivalent.',
         '<b>No cap and no quota.</b> Refer one person a year or twenty; the rate does not change.',
         '<b>Or gift it instead</b> &mdash; hand your commission to your person as their discount. Many alumni do.',
-        '<b>You keep your alumni access</b> while you are an Ambassador, including the private job board feed.'
+        '<b>You keep your alumni access</b> while you are an Ambassador, including the private community and current ERJ career-support resources.'
       ],
       price: 'Free to join',
       priceNote: 'paid per confirmed enrolment &middot; foreign referrals paid in foreign currency',

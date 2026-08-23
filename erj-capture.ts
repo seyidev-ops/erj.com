@@ -202,32 +202,9 @@ interface Window {
      it. Without this the busiest free asset on the site grows an
      audience nobody can ever answer. */
 
-  function channelBridge(): void {
-    const links = Array.from(
-      document.querySelectorAll<HTMLAnchorElement>('a[href*="whatsapp.com/channel"]')
-    );
-    if (!links.length) return;
-
-    const seen = new Set<Element>();
-
-    links.forEach(link => {
-      // one bridge per surrounding block, not per link
-      const host = link.closest('.joint, .shelf-item, .fb-card, .free-board, .fi-block, li, p, div');
-      if (!host || seen.has(host)) return;
-      if (host.querySelector('.cap-bridge')) return;
-      seen.add(host);
-
-      const bridge = el('p', 'cap-bridge');
-      bridge.innerHTML =
-        '<span class="cap-bridge-k">Jobs are the feed. Diagnosis is the next step.</span>' +
-        '<a href="' + waLink('channel') + '" target="_blank" rel="noopener">' +
-        'Applied to 5+ relevant roles with little or no interview response? Message <b>AUDIT</b> and we will find the leak ' +
-        '<span class="arrow">\u2192</span></a>';
-
-      const after = link.closest('p, li') || link;
-      if (after.parentNode) after.parentNode.insertBefore(bridge, after.nextSibling);
-    });
-  }
+  /* Internal campaign principle only; never inject this sales bridge
+     into permanent customer navigation. */
+  function channelBridge(): void { return; }
 
   /* ═══ 3 · EVERGREEN DOORS ═════════════════════════════════
      A countdown tells a ready buyer to wait. Most who wait never

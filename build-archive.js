@@ -129,7 +129,7 @@ ${list}
 </main>
 
 <footer class="wrap">
-  &copy; 2026 Everything Remote Job · Business Play Limited
+  &copy; 2026 Business Play Limited · Everything Remote Job · Business Play Limited
   <nav><a href="../">Home</a><a href="../blog.html">Blog</a><a href="../selflearn/">Self-Learn Pack</a><a href="../register.html">Register</a><a href="../free.html">Free For You</a><a href="../testimonials.html">Testimonials</a></nav>
 </footer>
 

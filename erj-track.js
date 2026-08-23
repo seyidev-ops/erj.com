@@ -248,6 +248,8 @@
     DiagnosticReportDownloaded: 'diagnostic_report_downloaded',
     ProductRecommendationClick: 'product_recommendation_click',
     MasterclassRegistrationStarted: 'masterclass_registration_started',
+    ClinicReminderOptIn: 'clinic_reminder_opt_in',
+    CohortFitStarted: 'cohort_fit_started',
     CohortCheckoutStarted: 'cohort_checkout_started'
   };
 
@@ -340,6 +342,15 @@
         value: 0,
         currency: CURRENCY
       });
+      var decoded = '';
+      try { decoded = decodeURIComponent(href.replace(/\+/g, ' ')); } catch (_e) { decoded = href; }
+      if (/\bCOHORT FIT\b/i.test(decoded)) {
+        send('CohortFitStarted', { content_name: 'Cohort 10 fit check', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      } else if (/\bAUDIT\b/i.test(decoded)) {
+        send('AuditStarted', { content_name: 'Job Search AUDIT', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      } else if (/\bCLINIC\b/i.test(decoded)) {
+        send('ClinicReminderOptIn', { content_name: 'Application Clinic WhatsApp reminder', method: 'whatsapp', link_url: href, value: 0, currency: CURRENCY });
+      }
       return;
     }
 

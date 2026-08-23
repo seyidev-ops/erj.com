@@ -908,7 +908,10 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
   .pt-name{font-size:.85rem;}
 }
 </style>
-  <meta name="robots" content="noindex,nofollow">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <style>html[data-theme="day"] .erj-mark-night{display:none!important;}
 html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
 </head>
@@ -1156,6 +1159,7 @@ html[data-theme="day"] .erj-mark-day{display:inline-block!important;}</style>
     <!-- VIEW: MATERIALS / DOWNLOADS -->
     <div id="viewMaterials" style="display:none">
       <div class="section-title">📁 Downloads & Study Materials</div>
+      <div id="erjLicenseBanner" style="margin:0 0 1rem;padding:.8rem .95rem;border:1px solid rgba(255,87,34,.28);border-left:3px solid #FF5722;border-radius:8px;background:rgba(255,87,34,.055);font-size:.76rem;line-height:1.55;color:var(--muted)"><strong style="display:block;color:var(--electric);margin-bottom:.2rem">Participant licence</strong>Materials and resource links are licensed to the signed-in participant for personal use only. Do not forward, resell, upload or redistribute them.</div>
 
       <!-- Slide Decks -->
       <div style="margin-bottom:2rem">
@@ -1236,10 +1240,10 @@ const ERJ_CLASS_LINK = 'https://t.me/+kwuCxvLwyDM5MmQ0';
 
 /* ════════════════════════════════════════
    ACCOUNT PERSISTENCE
-   A participant's identity + progress belong to the PERSON and their
-   COHORT — not to a browser. Records are keyed by email so the same
-   sign-in restores everything on any device, and survive app updates
-   because we never clear these keys on version change.
+   Current static-site persistence. Identity + progress are keyed by email
+   in this browser's local storage. This survives normal page/app updates
+   on the same browser, but it is not a server-side account record and does
+   not provide true cross-device persistence.
 ══════════════════════════════════════════ */
 const ERJ_ACCOUNTS_KEY = 'erj_accounts_v1';
 
@@ -1299,8 +1303,9 @@ function openAccountPanel() {
       ${row('Done-For-You Application', 'Available separately')}
     </div>
     <p style="font-size:.76rem;color:var(--muted);line-height:1.65;margin:.9rem 0 1rem">
-      Your account and progress are tied to your email and cohort — sign in with the same
-      email on any device and everything comes back. Nothing expires when the app updates.
+      Your account and progress are stored in this browser and keyed to your email/cohort.
+      Normal site updates do not clear them, but a different browser or device will not automatically
+      restore them until ERJ moves participant state to the planned server-side account system.
     </p>
     <div style="display:flex;flex-direction:column;gap:.5rem">
       <a href="${ERJ_CLASS_LINK}" target="_blank" rel="noopener" class="btn-outline" style="text-align:center;text-decoration:none">💬 Open the class group</a>
@@ -2577,5 +2582,6 @@ window.addEventListener('offline', () => { document.body.classList.add('offline'
 <!-- ===== /Unified Theme Control ===== -->
 
 <script src="erj-passcode.js" defer></script>
+<script src="erj-private-protection.js?v=1"></script>
 </body>
 </html>

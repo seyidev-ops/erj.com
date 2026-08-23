@@ -145,7 +145,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <footer class="wrap">
-  &copy; 2026 Everything Remote Job
+  &copy; 2026 Business Play Limited · Everything Remote Job
   <nav><a href="../../">Home</a><a href="../../blog.html">Blog</a><a href="../">Blog Archive</a><a href="../../selflearn/">Self-Learn Pack</a><a href="../../register.html">Register</a><a href="../../free.html">Free For You</a></nav>
 </footer>
 

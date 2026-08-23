@@ -170,33 +170,11 @@
         mo.observe(results, { childList: true, subtree: true });
     }
     /* ═══ 2 · CHANNEL BRIDGE ══════════════════════════════════
-       Every link to the one-way channel gets a reply route beside
-       it. Without this the busiest free asset on the site grows an
-       audience nobody can ever answer. */
-    function channelBridge() {
-        const links = Array.from(document.querySelectorAll('a[href*="whatsapp.com/channel"]'));
-        if (!links.length)
-            return;
-        const seen = new Set();
-        links.forEach(link => {
-            // one bridge per surrounding block, not per link
-            const host = link.closest('.joint, .shelf-item, .fb-card, .free-board, .fi-block, li, p, div');
-            if (!host || seen.has(host))
-                return;
-            if (host.querySelector('.cap-bridge'))
-                return;
-            seen.add(host);
-            const bridge = el('p', 'cap-bridge');
-            bridge.innerHTML =
-                '<span class="cap-bridge-k">Jobs are the feed. Diagnosis is the next step.</span>' +
-                    '<a href="' + waLink('channel') + '" target="_blank" rel="noopener">' +
-                    'Applied to 5+ relevant roles with little or no interview response? Message <b>AUDIT</b> and we will find the leak ' +
-                    '<span class="arrow">\u2192</span></a>';
-            const after = link.closest('p, li') || link;
-            if (after.parentNode)
-                after.parentNode.insertBefore(bridge, after.nextSibling);
-        });
-    }
+       Campaign rule only. "Jobs are the feed. Diagnosis is the next step."
+       belongs in the internal conversion playbook, not in permanent public
+       navigation or the Free For You menu. AUDIT remains available through
+       diagnosis results, job-post footers, campaign posts and clinic flows. */
+    function channelBridge() { return; }
     /* ═══ 3 · EVERGREEN DOORS ═════════════════════════════════
        A countdown tells a ready buyer to wait. Most who wait never
        return. Every countdown panel now names a door that is open

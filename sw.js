@@ -2,7 +2,7 @@
    EVERYTHING REMOTE JOB — SERVICE WORKER
    Cache-first for app shell, network-first for fonts
 ═══════════════════════════════════════════════════════ */
-const CACHE   = 'erj-v122';
+const CACHE   = 'erj-20260824-production';
 const OFFLINE = '/offline.html';
 
 const SHELL = [
@@ -12,19 +12,16 @@ const SHELL = [
   '/jobapplication/index.html',
   '/selflearn/index.html',
   '/self-learn-vs-foundation-training.html',
-  '/preview-compare-v5.jpg',
+  '/preview-compare.jpg',
   '/selflearn-box-wide.png',
   '/selflearn-box.webp',
   '/selflearn-box-wide.webp',
-  '/preview-selflearn-v5.jpg',
+  '/preview-selflearn.jpg',
   '/cvscan/index.html',
   '/masterclass/index.html',
   '/innercircle/index.html',
-  '/dashboard.html',
-  '/login.html',
-  '/admin-login.html',
-  '/instructor-login.html',
   '/blog.html',
+  '/blog/index.html',
   '/free.html',
   '/starting-line.html',
   '/testimonials.html',
@@ -39,22 +36,23 @@ const SHELL = [
   '/erj-mark-dark.png',
   '/erj-lockup-dark.png',
   '/erj-ascend.js',
-  '/preview-diagnose-v5.jpg',
-  '/preview-starting-line-v5.jpg',
-  '/preview-free-v5.jpg',
-  '/preview-index-v5.jpg',
+  '/preview-diagnose.jpg',
+  '/preview-starting-line.jpg',
+  '/preview-free.jpg',
+  '/preview-index.jpg',
   '/diagnose/dx.js',
+  '/diagnose/report-pdf.js',
   '/diagnose/index.html',
   '/erj-capture.js',
   '/erj-config.js',
   '/sitemap.xml',
   '/product.css',
   '/manifest.json',
-  '/logo-dark.png',
-  '/logo-light.png',
+  '/erj-mark-dark-128.png',
+  '/erj-mark-light-128.png',
   '/favicon32-dark.png',
   '/founder-oluwaseyi.jpg',
-  '/photo-remote-win-v2.webp',
+  '/photo-remote-win.webp',
   '/photo-dollars-hand.webp',
   '/photo-dollars-woman.webp',
   '/photo-woman-laptop.webp',
@@ -79,7 +77,7 @@ self.addEventListener('install', e => {
       .then(c => Promise.all(
         SHELL.map(u => c.add(new Request(u, { cache: 'reload' })).catch(function(){ return null; }))
       ))
-      .then(() => firstInstall ? self.skipWaiting() : undefined)
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -114,12 +112,25 @@ const NO_SW_HOSTS = [
   'doubleclick.net'
 ];
 
+const PRIVATE_PATHS = [
+  '/dashboard.html', '/participant.html', '/login.html',
+  '/admin.html', '/admin-login.html', '/instructor.html', '/instructor-login.html',
+  '/cvbuilder/'
+];
+function isPrivatePath(pathname) {
+  return PRIVATE_PATHS.some(function(p){ return p.endsWith('/') ? pathname.startsWith(p) : pathname === p; });
+}
+
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
 
   // Analytics and pixels: bypass the service worker entirely.
   if (NO_SW_HOSTS.some(h => url.hostname === h || url.hostname.endsWith('.' + h))) return;
+
+  // Private/account pages must never be written to the service-worker cache.
+  // In the current static architecture the browser must fetch them from the network.
+  if (url.origin === self.location.origin && isPrivatePath(url.pathname)) return;
 
   if (url.hostname.includes('fonts.google') || url.hostname.includes('fonts.gstatic')) {
     e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));

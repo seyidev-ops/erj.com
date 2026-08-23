@@ -50,6 +50,16 @@
   }
   @media (prefers-reduced-motion:reduce){.sticky-cta{transition:none;}}
 
+
+  .reservation-panel{margin-top:1.25rem;border:1px solid var(--accent);border-radius:16px;background:var(--card);padding:1.3rem 1.35rem;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2rem;align-items:center;}
+  .reservation-k{font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.45rem;}
+  .reservation-h{font-family:var(--font-display);font-size:1.2rem;font-weight:800;color:var(--ink);line-height:1.2;margin:0 0 .45rem;}
+  .reservation-p{font-size:.86rem;color:var(--ink-soft);line-height:1.65;margin:0;max-width:68ch;}
+  .reservation-p strong{color:var(--ink);font-weight:600;}
+  .reservation-actions{min-width:min(100%,235px);}
+  .reservation-actions .btn-more{display:flex;justify-content:center;text-align:center;}
+  @media(max-width:760px){.reservation-panel{grid-template-columns:1fr;}.reservation-actions{min-width:0;}}
+
   /* ── class tracks ──
      Three schedules, one programme. The cards are deliberately identical in
      weight — no "feature" card, no recommended badge — because the whole
@@ -354,8 +364,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="section-line wrap" id="pricing">
     <p class="section-label">Investment</p>
-    <h2>Two ways to <span>commit.</span></h2>
-    <p class="section-sub">Full programme — all 4 stages, 20 training days, every workbook and template, AI Fluency, full LMS portal access and priority support. Bought stage by stage the same four stages come to ₦370,000.</p>
+    <h2>Choose how you <span>commit.</span></h2>
+    <p class="section-sub">Full programme — all 4 stages, 20 training days, every workbook and template, AI Fluency, full LMS portal access and priority support. Pay in full, take stages separately, or — if Foundation Training is confirmed as your right door — reserve Cohort 10 while you complete the balance.</p>
     <div class="price-grid">
       <div class="price-card feature reveal">
         <span class="price-tag">Option 1 · Single Investment</span>
@@ -380,6 +390,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>Total if you take all four this way: ₦370,000</li>
         </ul>
         <a href="https://paystack.shop/pay/Stage1" class="btn-more btn-block">Start with Stage 1 — ₦70,000 →</a>
+      </div>
+    </div>
+    <div class="reservation-panel reveal">
+      <div>
+        <div class="reservation-k">Cohort 10 reservation · fit check required</div>
+        <h3 class="reservation-h">Reserve the full ₦250,000 programme with ₦50,000.</h3>
+        <p class="reservation-p">The ₦50,000 is <strong>credited in full</strong> toward Foundation Training; the remaining <strong>₦200,000 is due by 6:00 PM WAT on Sunday 30 August</strong>. This is not a discount and it is not a long-term instalment plan. The Registrar confirms that Foundation Training is the right ERJ door before sending the private reservation payment link.</p>
+      </div>
+      <div class="reservation-actions">
+        <a class="btn-more" href="https://wa.me/2348032925957?text=COHORT%20FIT%0A%0AI%20want%20to%20check%20whether%20Foundation%20Training%20is%20the%20right%20door%20for%20me%20before%20I%20reserve%20Cohort%2010.%0A%0ATarget%20role%3A%0AApplications%20in%20last%2030%20days%3A%0AInterviews%20in%20last%2030%20days%3A%0AI%20can%20give%20the%20programme%2090%20focused%20minutes%20a%20day%3A%20Yes%2FNo" target="_blank" rel="noopener">Check my fit on WhatsApp →</a>
       </div>
     </div>
     <p class="note reveal">After payment, send your receipt on WhatsApp to confirm enrolment — your LMS login arrives within 24 hours. Not sure this is the right door? <a href="../diagnose/">Run the free diagnosis</a> or message <strong>AUDIT</strong> before you pay. Prefer a single stage or bank transfer? <a href="../register.html">See all options →</a></p>

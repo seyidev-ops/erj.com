@@ -2018,8 +2018,8 @@ const SEEDS=[
    category:'Announcements',tags:['cohort 10','training','enrolment','stages'],
    author:'Oluwaseyi Ashiru',ai:'OA',date:'2026-08-23',readTime:6,
    emoji:'🗓️',grad:'linear-gradient(135deg,#FF8C2820,#1A181408)',
-   excerpt:'Enrolment closes Sunday 30 August at 8:00 PM WAT and the cohort begins the following morning. Here is the honest version of what the twenty days contain, what they demand of you, and who should not join.',
-   content:`<p>Enrolment for Cohort 10 closes on <strong>Sunday 30 August at 8:00 PM WAT</strong>. Training begins the following morning, Monday 31 August.</p>
+   excerpt:'Enrolment closes Sunday 30 August at 8:00 PM WAT and the cohort begins the following evening at 8:00 PM WAT. Here is the honest version of what the twenty days contain, what they demand of you, and who should not join.',
+   content:`<p>Enrolment for Cohort 10 closes on <strong>Sunday 30 August at 8:00 PM WAT</strong>. Training begins the following evening, Monday 31 August at 8:00 PM WAT.</p>
 <p>This post is the plain description — what happens across the twenty days, what it asks of you, and the cases where the honest advice is not to join.</p>
 <h2>Stage 1 · Remote Mindset Blueprint — five days</h2>
 <p>The operating system before the tools. Deep work blocks that survive a house with people in it, a daily KPI you actually track, and the end-of-day report habit that makes your work legible to someone who cannot see you.</p>
@@ -2096,7 +2096,7 @@ let cat='All', page=1, curPost=null;
 /* ── Sync ALL seeds (incl. drafts) into localStorage so blog-admin.html can see and manage them ──
    SEED_VERSION: bump this whenever seed content/publish-state changes so existing
    visitors get the corrected seeds reconciled into their cached localStorage. ── */
-const SEED_VERSION = '2026-08-24-week-of-18-aug';
+const SEED_VERSION = '2026-08-23-wat-daily-gate-v2';
 
 /* ── AUTO-PUBLISH BY DATE ────────────────────────────────────────────
    The series is written ahead of time. Rather than requiring someone to
@@ -2106,9 +2106,13 @@ const SEED_VERSION = '2026-08-24-week-of-18-aug';
    for every visitor, with no admin action and no redeploy.
    The newest live post automatically becomes the featured post. ── */
 function erjLocalToday() {
-  const d = new Date();
-  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0')
-         + '-' + String(d.getDate()).padStart(2, '0');
+  /* The editorial calendar is WAT, not the visitor's device timezone.
+     This stops tomorrow's article appearing early for devices set ahead of Nigeria. */
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone:'Africa/Lagos', year:'numeric', month:'2-digit', day:'2-digit'
+  }).formatToParts(new Date());
+  const map = {}; parts.forEach(p => { if (p.type !== 'literal') map[p.type] = p.value; });
+  return map.year + '-' + map.month + '-' + map.day;
 }
 function erjSeedIsDue(seed) {
   return !!(seed && seed.date && seed.date <= erjLocalToday());
@@ -2212,7 +2216,9 @@ function allPosts(){
   const s=saved(), ids=new Set(s.map(p=>p.id));
   const extras = SEEDS.filter(x=>!ids.has(x.id))
                       .map(x => erjSeedIsDue(x) ? { ...x, published:true } : x);
-  return [...s,...extras].filter(p=>p.published).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  /* A cached/manual published flag never overrides the editorial date. */
+  return [...s,...extras].filter(p=>p.published && (!p.date || p.date <= erjLocalToday()))
+                         .sort((a,b)=>new Date(b.date)-new Date(a.date));
 }
 function filtered(){
   const q=document.getElementById('searchInput').value.trim().toLowerCase();
@@ -2656,15 +2662,6 @@ function pushNewPostNotif(post) {
   pushNewPostNotif(np);
 })();
 
-/* ════════════════════════════════════════
-   THEME TOGGLE
-══════════════════════════════════════════ */
-function applyTheme(t){
-  document.documentElement.setAttribute('data-theme',t);
-  var b=document.getElementById('themeBtn'); if(b){ b.textContent=t==='day'?'🌙':'☀️'; }
-  localStorage.setItem('rjt-theme',t);
-}
-(function(){ var b=document.getElementById('themeBtn'); if(b){ b.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='day'?'night':'day')); } })();
 
 /* ─── URL param: open post directly ─── */
 function checkURLParam(){
@@ -2674,7 +2671,6 @@ function checkURLParam(){
 
 /* ─── INIT ─── */
 (function init(){
-  applyTheme(localStorage.getItem('rjt-theme')||'night');
   renderCats();
   renderPosts();
   renderSidebar();
@@ -2747,53 +2743,10 @@ html[data-theme="day"] .nav,html[data-theme="day"] nav{background:var(--bg)!impo
   }
 })();
 </script>
-<!-- ===== Unified Theme Control (Day / System / Night) — header based ===== -->
-<script id="erjThemeJS">
-(function(){
-  var KEY='rjt-theme', html=document.documentElement;
-  var ICON={day:'☀️',night:'🌙',system:'💻'};
-  var NEXT={day:'system',system:'night',night:'day'};   // cycle order
-  var TITLE={day:'Theme: Day (tap for System)',system:'Theme: System (tap for Night)',night:'Theme: Night (tap for Day)'};
-  function sys(){return window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'night':'day';}
-  function bar(resolved){
-    var m=document.getElementById('metaThemeColor')||document.querySelector('meta[name="theme-color"]:not([media])');
-    if(!m){m=document.createElement('meta');m.name='theme-color';m.id='metaThemeColor';document.head.appendChild(m);}
-    m.setAttribute('content', resolved==='night'?'#000000':'#FAFAF8');
-  }
-  function curPref(){ var p=localStorage.getItem(KEY); return ICON[p]?p:'night'; }
-  function apply(pref){
-    if(!ICON[pref]) pref='system';
-    var resolved = pref==='system'? sys() : pref;
-    html.setAttribute('data-theme', resolved);
-    localStorage.setItem(KEY, pref);
-    bar(resolved);
-    // update every in-header theme button on the page
-    document.querySelectorAll('[data-erj-theme-btn], #themeToggle, #themeBtn').forEach(function(btn){
-      btn.textContent = ICON[pref];
-      btn.setAttribute('title', TITLE[pref]);
-      btn.setAttribute('aria-label', TITLE[pref]);
-    });
-  }
-  window.erjApplyTheme=apply;
-  function wire(btn){
-    if(!btn || btn.__erjWired) return; btn.__erjWired=true;
-    // strip any legacy onclick and clone to drop old listeners
-    btn.removeAttribute('onclick');
-    var fresh=btn.cloneNode(true); btn.parentNode.replaceChild(fresh,btn);
-    fresh.addEventListener('click',function(e){ e.preventDefault(); e.stopPropagation(); apply(NEXT[curPref()]); });
-    fresh.style.cursor='pointer';
-  }
-  function wireAll(){ document.querySelectorAll('[data-erj-theme-btn], #themeToggle, #themeBtn').forEach(wire); }
-  if(window.matchMedia){window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(curPref()==='system')apply('system');});}
-  if(document.readyState!=='loading'){ wireAll(); apply(curPref()); }
-  else document.addEventListener('DOMContentLoaded',function(){ wireAll(); apply(curPref()); });
-  // re-apply after a tick in case header is injected late
-  setTimeout(function(){ wireAll(); apply(curPref()); }, 300);
-})();
-</script>
-<!-- ===== /Unified Theme Control ===== -->
 
-<script src="erj-nav.js" defer></script>
+
+<script src="erj-theme.js?v=20260823a"></script>
+<script src="erj-nav.js?v=20260823a" defer></script>
 <script src="erj-config.js" defer></script>
 <script src="erj-capture.js" defer></script>
 <script src="erj-schema.js" defer></script>

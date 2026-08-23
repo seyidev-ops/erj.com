@@ -87,7 +87,7 @@
         '.erj-nav *{box-sizing:border-box;}',
         '.erj-brand{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display,"Space Grotesk",system-ui,sans-serif);',
         'font-weight:700;font-size:1rem;color:var(--enInk);letter-spacing:-0.3px;text-decoration:none;flex-shrink:0;}',
-        '.erj-brand img{width:30px;height:30px;display:block;object-fit:contain;}',
+        '.erj-brand img{width:31px;height:30px;display:block;object-fit:contain;}',
         /* Default is night, which is what <html data-theme="night"> ships as,
            so the light mark stays hidden until the theme actually changes.
 
@@ -235,8 +235,8 @@
                toggle means a network fetch mid-click and a blink where the logo
                used to be — this way the correct one is already decoded and the
                switch is instant. Same geometry, so nothing shifts. */
-            '<img class="erj-mark erj-mark-night" src="' + P('logo-dark.png') + '" alt="ERJ" width="30" height="30">' +
-            '<img class="erj-mark erj-mark-day" src="' + P('logo-light.png') + '" alt="" aria-hidden="true" width="30" height="30">' +
+            '<img class="erj-mark erj-mark-night" src="' + P('erj-mark-dark.png') + '" alt="ERJ" width="31" height="30">' +
+            '<img class="erj-mark erj-mark-day" src="' + P('erj-mark-light.png') + '" alt="" aria-hidden="true" width="31" height="30">' +
             '<b>Everything</b><i>RemoteJob</i></a>' +
             (IS_PORTAL ? '' : '<nav class="erj-bar" aria-label="Main menu">' + buildBar() + '</nav>') +
             '<div class="erj-right">' +

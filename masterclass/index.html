@@ -78,6 +78,14 @@
   .reg-privacy{font-size:.76rem;color:var(--ink-faint);line-height:1.55;margin:0;}
   .reg-status{grid-column:1/-1;border-left:3px solid var(--accent);padding:.9rem 1rem;background:var(--card);color:var(--ink-soft);font-size:.86rem;line-height:1.6;}
   @media(max-width:680px){.reg-form{grid-template-columns:1fr;}.reg-form .full,.reg-submit,.reg-status{grid-column:1;}}
+  .zoom-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:left;margin-top:1.7rem;}
+  .zoom-step{border:1px solid var(--card-line);border-radius:14px;background:var(--bg);padding:1.15rem;}
+  .zoom-step-n{font-family:var(--font-display);font-size:.72rem;font-weight:800;color:var(--accent);letter-spacing:.12em;margin-bottom:.5rem;}
+  .zoom-step h3{font-family:var(--font-display);font-size:1rem;font-weight:800;color:var(--ink);line-height:1.25;margin:0 0 .5rem;}
+  .zoom-step p{font-size:.84rem;color:var(--ink-soft);line-height:1.65;margin:0 0 .9rem;}
+  .zoom-step .btn-yes,.zoom-step .btn-more{width:100%;justify-content:center;text-align:center;}
+  .zoom-note{margin-top:1rem;font-size:.78rem;color:var(--ink-faint);line-height:1.6;}
+  @media(max-width:760px){.zoom-steps{grid-template-columns:1fr;}}
 
   /* ── Host block ── */
   .host{display:grid;grid-template-columns:minmax(180px,240px) 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center;margin-top:1.8rem;}
@@ -101,7 +109,7 @@
 </style>
   <meta property="og:locale" content="en_NG">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationEvent","name":"Remote Job Application Clinic — free live masterclass","description":"A free live application clinic where participants bring a CV and one remote job advert, diagnose the failing point in the Four Points model, review ATS and role fit, and leave with the first correction to make.","url":"https://everythingremotejob.com/masterclass/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","startDate":"2026-08-29T19:00:00+01:00","endDate":"2026-08-29T20:30:00+01:00","location":{"@type":"VirtualLocation","url":"https://everythingremotejob.com/masterclass/"},"organizer":{"@type":"Organization","name":"Everything Remote Job","url":"https://everythingremotejob.com/","@id":"https://everythingremotejob.com/#organization"},"inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"NGN","availability":"https://schema.org/InStock","url":"https://everythingremotejob.com/masterclass/"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationEvent","name":"Remote Job Application Clinic — free live masterclass","description":"A free live application clinic where participants bring a CV and one remote job advert, diagnose the failing point in the Four Points model, review ATS and role fit, and leave with the first correction to make.","url":"https://everythingremotejob.com/masterclass/","eventAttendanceMode":"https://schema.org/OnlineEventAttendanceMode","eventStatus":"https://schema.org/EventScheduled","startDate":"2026-08-29T19:00:00+01:00","endDate":"2026-08-29T20:15:00+01:00","location":{"@type":"VirtualLocation","url":"https://everythingremotejob.com/masterclass/"},"organizer":{"@type":"Organization","name":"Everything Remote Job","url":"https://everythingremotejob.com/","@id":"https://everythingremotejob.com/#organization"},"inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"NGN","availability":"https://schema.org/InStock","url":"https://us06web.zoom.us/meeting/register/Ca4SH87JS3OZtL2hZrwj1g"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://everythingremotejob.com/"},{"@type":"ListItem","position":2,"name":"Free Masterclass","item":"https://everythingremotejob.com/masterclass/"}]}</script>
   <style id="erjNavReserve">body{padding-top:63px}@media(min-width:980px){body{padding-top:65px}}
 /* Button labels stay on one line. The type size is NOT reduced to make them
@@ -174,7 +182,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
 
     <div class="clinic-note">
-      <p><strong>Registration is for commitment and reminders, not a fake seat counter.</strong> Once you send the WhatsApp registration, ERJ will reply with the Zoom link. If you want your CV considered for a live teardown, attach the CV and one job advert after you register.</p>
+      <p><strong>Registration is for commitment and reminders, not a fake seat counter.</strong> Register directly on Zoom to receive your personal join link by email. Then message <strong>CLINIC</strong> on WhatsApp for ERJ reminders and the preparation checklist.</p>
     </div>
   </section>
 
@@ -217,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="host-name">Oluwaseyi Ashiru</div>
         <div class="host-role">Lead Facilitator · Everything Remote Job</div>
         <p class="host-bio">I've spent the last several years doing one thing: helping African professionals get hired into globally competitive remote roles — from right where they are. After every cohort, I refine the system from what we see in real searches, interviews and offers.</p>
-        <p class="host-bio" style="margin-top:0.9rem;">This masterclass is the honest version of what I've learned: <strong>the system, the company categories, the ATS machine, and the routes most people never hear about.</strong> One hour, everything on the table, nothing held back for the paid programme.</p>
+        <p class="host-bio" style="margin-top:0.9rem;">This masterclass is the honest version of what I've learned: <strong>the system, the company categories, the ATS machine, and the routes most people never hear about.</strong> Seventy-five focused minutes, everything on the table, nothing held back for the paid programme.</p>
       </div>
     </div>
   </section>
@@ -227,25 +235,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="cta-panel reveal">
       <span class="live-badge"><span class="live-dot"></span> Free · Saturday 29 August</span>
       <h2 class="cta-h">Register for the <em>Remote Job Application Clinic.</em></h2>
-      <p class="cta-p">Answer these questions first. When you continue, WhatsApp opens with your registration already written. <strong>You must tap Send in WhatsApp to complete the registration.</strong></p>
+      <p class="cta-p">Registration now happens directly on Zoom. Zoom sends your personal join link by email. After that, use the WhatsApp step below so ERJ can send the preparation checklist and the 24-hour, 3-hour and 30-minute reminders.</p>
 
-      <form class="reg-form" id="clinicForm">
-        <div><label for="mcName">Full name</label><input id="mcName" name="name" autocomplete="name" required></div>
-        <div><label for="mcWa">WhatsApp number</label><input id="mcWa" name="whatsapp" type="tel" autocomplete="tel" placeholder="+234..." required></div>
-        <div><label for="mcEmail">Email</label><input id="mcEmail" name="email" type="email" autocomplete="email" required></div>
-        <div><label for="mcOccupation">Current occupation</label><input id="mcOccupation" name="occupation" placeholder="e.g. Teacher, Accountant, Designer" required></div>
-        <div class="full"><label for="mcRole">Remote role you are targeting</label><input id="mcRole" name="role" placeholder="e.g. Customer Success, Project Manager, Graphic Designer" required></div>
-        <div class="full"><label for="mcProblem">Biggest problem right now</label><select id="mcProblem" name="problem" required><option value="">Choose one</option><option>I cannot find enough real roles</option><option>I apply but hear nothing</option><option>I get rejections but few interviews</option><option>I get interviews but no offers</option><option>I am not sure what role to target</option></select></div>
-        <div><label for="mcApps">Applications in last 30 days</label><input id="mcApps" name="applications" type="number" min="0" inputmode="numeric" required></div>
-        <div><label for="mcInterviews">Interviews in last 30 days</label><input id="mcInterviews" name="interviews" type="number" min="0" inputmode="numeric" required></div>
-        <div class="full"><label for="mcNote">Anything ERJ should know? <span style="text-transform:none;letter-spacing:0;font-weight:400;">(optional)</span></label><textarea id="mcNote" name="note" placeholder="Keep this short — you can explain more on the call."></textarea></div>
-        <div class="reg-submit">
-          <button type="submit" class="btn-yes">Continue to WhatsApp <span class="arrow">→</span></button>
-          <p class="reg-privacy">Nothing in this form is stored on the webpage. It is used only to prepare the WhatsApp message you choose to send.</p>
+      <div class="zoom-steps">
+        <div class="zoom-step">
+          <div class="zoom-step-n">STEP 01</div>
+          <h3>Register on Zoom</h3>
+          <p>Complete the Zoom registration first. Use an email address you can open on the device you will join from.</p>
+          <a id="zoomRegBtn" class="btn-yes" href="https://us06web.zoom.us/meeting/register/Ca4SH87JS3OZtL2hZrwj1g" target="_blank" rel="noopener">Register on Zoom <span class="arrow">→</span></a>
         </div>
-        <div class="reg-status" id="clinicStatus" hidden></div>
-      </form>
-      <p class="cta-how">Saturday 29 August 2026 · 7:00 PM WAT · Live on Zoom · Free.<br>After registering, attach your CV + one job advert in the same WhatsApp conversation if you want to be considered for a live teardown.</p>
+        <div class="zoom-step">
+          <div class="zoom-step-n">STEP 02</div>
+          <h3>Add it to your calendar</h3>
+          <p>After registration, open Zoom's confirmation email. It contains your personal join information and an Add to Calendar option. Keep that email — your join link is personal.</p>
+          <span class="btn-more" style="cursor:default;opacity:.85;">Use the Zoom confirmation email</span>
+        </div>
+        <div class="zoom-step">
+          <div class="zoom-step-n">STEP 03</div>
+          <h3>Get WhatsApp reminders</h3>
+          <p>Once you have registered on Zoom, message ERJ so we can match your registration and send the preparation checklist and session reminders.</p>
+          <a id="clinicReminderBtn" class="btn-more" href="https://wa.me/2348032925957?text=CLINIC%0A%0AI%20have%20registered%20on%20Zoom%20for%20the%20Remote%20Job%20Application%20Clinic%20on%20Saturday%2029%20August%202026%20at%207%3A00%20PM%20WAT.%0A%0AName%3A%0AEmail%20used%20for%20Zoom%20registration%3A%0ATarget%20remote%20role%3A%0A%0APlease%20add%20me%20to%20the%20WhatsApp%20reminder%20list." target="_blank" rel="noopener">Get WhatsApp reminders →</a>
+        </div>
+      </div>
+      <p class="cta-how">Saturday 29 August 2026 · 7:00 PM WAT · Live on Zoom · Free.<br>Bring your current CV and one real remote job advert you would genuinely apply for. If you want your CV considered for a live teardown, tell us in the WhatsApp conversation.</p>
+      <p class="zoom-note"><strong>Registration is not complete until Zoom confirms it.</strong> ERJ will not manually send a general meeting link; registered participants should use the personal link in Zoom's confirmation email.</p>
     </div>
   </section>
 
@@ -293,7 +306,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
       if (live) {
         lbl.textContent = 'Happening now';
-        when.innerHTML = '<strong>We are live.</strong> Message us on WhatsApp for the Zoom link.';
+        when.innerHTML = '<strong>We are live.</strong> If you registered, open your Zoom confirmation email and use your personal join link.';
         if (blocks) blocks.style.display = 'none';
         return;
       }
@@ -315,54 +328,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     tick(); setInterval(tick, 1000);
   })();
 
-  /* Registration -> a committed WhatsApp conversation. Static site: no data is
-     stored here; the user must send the prepared message in WhatsApp. */
-  (function () {
-    var form = document.getElementById('clinicForm');
-    if (!form) return;
-    var status = document.getElementById('clinicStatus');
-    function val(id) { var el = document.getElementById(id); return el ? String(el.value || '').trim() : ''; }
-    function calendarFile() {
-      var ics = [
-        'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Everything Remote Job//Application Clinic//EN','BEGIN:VEVENT',
-        'UID:erj-application-clinic-20260829@everythingremotejob.com','DTSTAMP:20260822T180000Z',
-        'DTSTART:20260829T180000Z','DTEND:20260829T193000Z',
-        'SUMMARY:ERJ Remote Job Application Clinic','DESCRIPTION:Bring your CV and one remote job advert. Zoom link is sent in your ERJ WhatsApp conversation.',
-        'LOCATION:Zoom','END:VEVENT','END:VCALENDAR'
-      ].join('\r\n');
-      var blob = new Blob([ics], {type:'text/calendar'}), url = URL.createObjectURL(blob);
-      var a = document.createElement('a'); a.href = url; a.download = 'ERJ-Application-Clinic-29-Aug-2026.ics';
-      document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(url); if(a.parentNode)a.parentNode.removeChild(a); },1000);
-    }
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
-      var msg = [
-        'CLINIC',
-        '',
-        'I want to register for the ERJ Remote Job Application Clinic on Saturday 29 August 2026 at 7:00 PM WAT.',
-        '',
-        'Name: ' + val('mcName'),
-        'WhatsApp: ' + val('mcWa'),
-        'Email: ' + val('mcEmail'),
-        'Current occupation: ' + val('mcOccupation'),
-        'Target remote role: ' + val('mcRole'),
-        'Biggest problem: ' + val('mcProblem'),
-        'Applications in the last 30 days: ' + val('mcApps'),
-        'Interviews in the last 30 days: ' + val('mcInterviews'),
-        val('mcNote') ? 'Note: ' + val('mcNote') : '',
-        '',
-        'Please send me the Zoom link and reminders. I understand I must send this WhatsApp message to complete registration.'
-      ].filter(function(x){ return x !== ''; }).join('\n');
-      var href = 'https://wa.me/2348032925957?text=' + encodeURIComponent(msg);
-      if (window.erjTrack) window.erjTrack('MasterclassRegistrationStarted', {content_name:'Application Clinic registration',method:'whatsapp',value:0,link_url:href});
-      if (status) {
-        status.hidden = false;
-        status.innerHTML = '<strong>Almost registered.</strong> WhatsApp is opening with your details. Tap <strong>Send</strong> there to complete registration. <button type="button" class="btn-more" id="clinicCalendar" style="margin-left:.4rem;">Add to calendar</button>';
-        var cal = document.getElementById('clinicCalendar'); if (cal) cal.addEventListener('click', calendarFile);
-      }
-      window.open(href, '_blank', 'noopener');
-    });
+  /* Track the two intentional conversion steps: Zoom registration and WhatsApp reminder opt-in. */
+  (function(){
+    var z=document.getElementById('zoomRegBtn'), w=document.getElementById('clinicReminderBtn');
+    if(z)z.addEventListener('click',function(){if(window.erjTrack)window.erjTrack('MasterclassRegistrationStarted',{content_name:'Application Clinic Zoom registration',method:'zoom',value:0,link_url:z.href});});
+    if(w)w.addEventListener('click',function(){if(window.erjTrack)window.erjTrack('ClinicReminderOptIn',{content_name:'Application Clinic WhatsApp reminders',method:'whatsapp',value:0,link_url:w.href});});
   })();
 
 </script>
